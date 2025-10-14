@@ -1,103 +1,158 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Théophile Sauffisseau — Portfolio</title>
-  <meta name="description" content="Machine Learning & Computer Vision — Projects, Resume, Scientific Poster, Digital Art." />
+  <title>Théophile Sauffisseau</title>
+  <meta name="description" content="Portfolio — Machine Learning & Computer Vision. Projects, Poster, Resume, Digital Art." />
+
+  <!-- FAVICON (mets ton fichier dans /assets/ et adapte la ligne ci-dessous) -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.png">
+
+  <!-- Open Graph (optionnel) -->
+  <meta property="og:title" content="Théophile Sauffisseau — Portfolio" />
+  <meta property="og:description" content="Machine Learning & Computer Vision — EEG, 3D, creative AI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://theophile-sffss.github.io/" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <!-- NAV -->
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#poster">Poster</a>
-      <a href="#resume">Resume</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <!-- Logo/header icon -->
+        <img src="assets/favicon.svg" alt="Logo TS" />
+        <span>Théophile</span>
+      </a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#poster">Poster</a>
+        <a href="#resume">Resume</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO / ABOUT -->
+  <main id="top">
+    <!-- HERO -->
     <section id="about" class="hero">
-      <img src="assets/profile.jpg" alt="Profile photo of Théophile" onerror="this.style.display='none'">
-      <div>
-        <h1>Théophile Sauffisseau</h1>
-        <p>Machine Learning & Computer Vision — exploring AI for health and creative technology.</p>
-        <div class="badge-row">
-          <span class="badge">Télécom SudParis (IP Paris)</span>
-          <span class="badge">Deep Learning</span>
-          <span class="badge">Computer Vision</span>
-          <span class="badge">Biomedical Signals</span>
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <h1>Théophile Sauffisseau</h1>
+          <p class="tagline">Machine Learning & Computer Vision — exploring AI for health and creative technology.</p>
+          <p class="sub">
+            Étudiant ingénieur à Télécom SudParis (Institut Polytechnique de Paris). 
+            Intérêt pour l’IA appliquée aux signaux biomédicaux (EEG) et à la vision 3D.
+          </p>
+          <div class="cta-row">
+            <a class="button" href="#poster">Voir le poster</a>
+            <a class="button ghost" href="#resume">Voir le CV</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <!-- Photo de profil (optionnelle). Mets profile.jpg dans /assets/ ou laisse vide -->
+          <img src="assets/profile.jpg" alt="Photo de profil" onerror="this.style.display='none'">
+          <div class="mini-contact">
+            <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu">theophile.sauffisseau@telecom-sudparis.eu</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- POSTER -->
     <section id="poster" class="section">
-      <h2>Scientific Poster</h2>
-      <p>EEG-based Alzheimer detection — Cassiopée (1st Prize ESSI 2025).</p>
-      <div class="links">
-        <a class="button" href="assets/poster_ESSI2025.pdf" target="_blank" rel="noopener">View Poster (PDF)</a>
+      <div class="container">
+        <h2>Scientific Poster</h2>
+        <p>EEG-based Alzheimer detection — <strong>Cassiopée</strong> (1er prix ESSI 2025).</p>
+        <div class="links">
+          <!-- Remplace par le bon nom de fichier -->
+          <a class="button" href="assets/poster_ESSI2025.pdf" target="_blank" rel="noopener">Ouvrir le poster (PDF)</a>
+        </div>
       </div>
     </section>
 
     <!-- RESUME -->
     <section id="resume" class="section">
-      <h2>Resume</h2>
-      <div class="links">
-        <a class="button" href="assets/v6.pdf" target="_blank" rel="noopener">Resume (General)</a>
-        <a class="button secondary" href="assets/ATS_v4.pdf" target="_blank" rel="noopener">Resume (ATS)</a>
+      <div class="container">
+        <h2>Resume</h2>
+        <p>Deux versions — générale (humaine) et optimisée ATS.</p>
+        <div class="links">
+          <a class="button" href="assets/v6.pdf" target="_blank" rel="noopener">Resume (general)</a>
+          <a class="button ghost" href="assets/ATS_v4.pdf" target="_blank" rel="noopener">Resume (ATS)</a>
+        </div>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Cassiopée — EEG Alzheimer Detection</h3>
-          <p>Pipeline CNN on Recurrence Plots (EEG) — biomedical signal processing + deep learning.</p>
-          <div class="small-links">
-            <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Digital Art — Creative AI</h3>
-          <p>Generative visuals, edits & audiovisual collages — exploring AI x design.</p>
-          <div class="small-links">
-            <a href="https://instagram.com/TON_COMPTE_ART" target="_blank" rel="noopener">Instagram (Art)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>SplaTAM — 3D Reconstruction</h3>
-          <p>3D Gaussian Splatting-SLAM experiments (RGB-D), PyTorch / Open3D.</p>
-          <div class="small-links">
-            <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>AI Mini-Projects</h3>
-          <p>LLM demos, data viz, computer vision prototypes — documented & commented.</p>
-          <div class="small-links">
-            <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
-          </div>
+      <div class="container">
+        <h2>Projects</h2>
+
+        <div class="cards">
+          <!-- Cassiopée -->
+          <article class="card">
+            <h3>Cassiopée — EEG Alzheimer Detection</h3>
+            <p>Pipeline CNN sur <em>Recurrence Plots</em> (EEG). Traitement du signal biomédical + deep learning.</p>
+            <div class="small-links">
+              <!-- Remplace par l’URL exacte de ton repo Cassiopée -->
+              <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
+              <!-- Lien LinkedIn vers le post / projet -->
+              <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </article>
+
+          <!-- SplaTAM -->
+          <article class="card">
+            <h3>SplaTAM — 3D Reconstruction</h3>
+            <p>Expérimentations 3D Gaussian Splatting-SLAM (RGB-D). PyTorch / Open3D / CUDA.</p>
+            <div class="small-links">
+              <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- AI mini-projects -->
+          <article class="card">
+            <h3>AI Mini-Projects</h3>
+            <p>Petits prototypes ML/LLM, data viz et computer vision. Démos documentées.</p>
+            <div class="small-links">
+              <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Digital Art -->
+          <article class="card">
+            <h3>Digital Art — Creative AI</h3>
+            <p>Créations génératives, collages/edits audio-visuels. Recherche visuelle autour de l’IA.</p>
+            <div class="small-links">
+              <!-- Remplace TON_COMPTE_ART par ton @ -->
+              <a href="https://instagram.com/TON_COMPTE_ART" target="_blank" rel="noopener">Instagram (Art)</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu">theophile.sauffisseau@telecom-sudparis.eu</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">linkedin.com/in/theophile-sauffisseau</a></p>
-      <p>GitHub: <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">github.com/tsauffisseau</a></p>
+      <div class="container">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li><strong>Email</strong> — <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu">theophile.sauffisseau@telecom-sudparis.eu</a></li>
+          <li><strong>GitHub</strong> — <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener">github.com/tsauffisseau</a></li>
+          <li><strong>LinkedIn</strong> — <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">linkedin.com/in/theophile-sauffisseau</a></li>
+          <li><strong>Instagram (Art)</strong> — <a href="https://instagram.com/TON_COMPTE_ART" target="_blank" rel="noopener">@TON_COMPTE_ART</a></li>
+        </ul>
+      </div>
     </section>
+  </main>
 
-    <footer class="footer">
+  <footer class="footer">
+    <div class="container">
       <p>© Théophile Sauffisseau — Built with GitHub Pages</p>
-    </footer>
-  </div>
+    </div>
+  </footer>
 </body>
 </html>
