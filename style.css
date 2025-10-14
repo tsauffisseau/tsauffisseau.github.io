@@ -1,4 +1,4 @@
-/* ===== Thème & palette (noir/blanc/bleu) ===== */
+/* ===== Thème & palette ===== */
 :root{
   --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2; --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
   --font: Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -9,68 +9,67 @@
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.55; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-a{color:var(--blue); text-decoration:none} a:hover{text-decoration:underline}
+body{
+  font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.55;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  min-height:100vh; display:flex; flex-direction:column;
+}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
 .container{max-width:980px; margin:0 auto; padding:0 20px}
 
-/* ===== Topbar commune ===== */
+/* ===== TOPBAR – nav centrée, hover gris ===== */
 .topbar{position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--border); z-index:10}
-.topbar .row{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-.brand{display:flex; align-items:center; gap:10px; font-weight:800; color:var(--text)}
-.brand img{width:28px;height:28px;border-radius:6px;border:1px solid var(--border)}
-.nav{display:flex; gap:22px; align-items:center}
+.topbar .row.only-nav{display:flex; justify-content:center; padding:14px 0}
+.nav{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav a{color:var(--muted); font-weight:600; position:relative}
-.nav a.active{color:var(--text)}
-.nav a::after{content:""; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:var(--blue); transition:width .18s ease}
-.nav a:hover::after{width:100%}
-.toggle{display:inline-flex; align-items:center; gap:6px; background:transparent; border:1px solid var(--border); color:var(--text);
-  border-radius:8px; padding:6px 10px; cursor:pointer}
+.nav a.active{color:var(--text); border-bottom:2px solid var(--muted); padding-bottom:6px}
+.nav a::after{content:none}           /* plus d’underline animée */
+.nav a:hover{color:var(--text)}       /* hover = gris foncé, pas de trait bleu */
+.toggle{
+  background:transparent; border:1px solid var(--border); color:var(--text);
+  border-radius:8px; padding:6px 10px; cursor:pointer
+}
 .toggle img{width:16px;height:16px}
 
-/* ===== Hero Home ===== */
+/* ===== MAIN pour footer collé en bas ===== */
+.main{flex:1}
+
+/* ===== HERO home ===== */
 .hero{padding:56px 0; border-bottom:1px solid var(--border)}
-.hero__grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center}
-.hero h1{margin:0 0 8px; font-size:40px; letter-spacing:.2px}
-.tagline{margin:6px 0 10px; color:var(--muted); font-size:17px}
-.sub{margin:0 0 18px; color:var(--muted)}
-.cta-row{display:flex; gap:12px; flex-wrap:wrap}
-.button{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid #1f2937; background:#1f2937; color:#fff; font-weight:700;
-  transition:transform .12s ease,opacity .12s ease}
-.button:hover{transform:translateY(-1px); opacity:.95}
-.button.ghost{background:transparent; border-color:var(--border); color:var(--text)}
-.hero__media{display:flex; flex-direction:column; align-items:center; gap:10px}
-.hero__media img{width:220px;height:220px;border-radius:50%;object-fit:cover;border:1px solid var(--border); box-shadow:var(--shadow)}
-.socials{display:flex; gap:12px; margin-top:8px}
+.hero__stack{
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+}
+.pp{
+  width:220px; height:220px; border-radius:50%; object-fit:cover;
+  border:1px solid var(--border); box-shadow:var(--shadow)
+}
+.hero__name{margin:14px 0 4px; font-size:40px; letter-spacing:.2px}
+.hero__mail{margin:0 0 18px; color:var(--muted)}
+
+/* ===== Cartes Home – 3 colonnes, centrées, 2 lignes ===== */
+.cards--home{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:10px; width:100%}
+.card--home{
+  background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px;
+  box-shadow:var(--shadow); transition:transform .12s ease, box-shadow .12s ease;
+  text-align:center;
+}
+.card--home:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.card__title{margin:0 0 6px; font-size:18px}
+.card__title a{color:var(--text)}
+.card__title a:hover{text-decoration:underline}
+.card__desc{margin:0; color:var(--muted);}
+
+/* ===== Socials – icônes ===== */
+.socials{display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; justify-content:center}
 .sbtn{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); font-weight:600}
+.sbtn--icon svg{width:18px; height:18px; display:block}
 
-/* ===== Sections pages ===== */
-.page{padding:38px 0}
-.page h1{margin:0 0 10px; font-size:28px}
-.page .lead{color:var(--muted); margin:0 0 16px}
-
-/* ===== Cards projets ===== */
-.cards{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:12px}
-.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; box-shadow:var(--shadow);
-  transition:transform .12s ease, box-shadow .12s ease}
-.card:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.card h3{margin:0 0 8px; font-size:16px}
-.card p{margin:0 10px 10px 0; color:var(--muted)}
-.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px}
-.tag{font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted)}
-.small-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
-
-/* ===== Listes type Posters / Resume ===== */
-.list{display:flex; flex-direction:column; gap:10px; margin-top:8px}
-.list a.item{display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); font-weight:600}
-.list a.item span{color:var(--muted); font-weight:500}
-
-/* ===== Footer ===== */
+/* ===== Footer centré ===== */
 .footer{border-top:1px solid var(--border)}
-.footer .container{padding:22px; color:var(--muted); font-size:14px}
+.footer .container{padding:22px; color:var(--muted); font-size:14px; text-align:center}
 
 /* ===== Responsive ===== */
-@media (max-width: 880px){
-  .hero__grid{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-  .nav{gap:14px; flex-wrap:wrap}
+@media (max-width: 980px){
+  .cards--home{grid-template-columns:1fr; max-width:620px}
 }
