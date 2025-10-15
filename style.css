@@ -1,75 +1,75 @@
-/* ===== Thème & palette ===== */
+/* ——— Police élégante (Inter si dispo) ———
+   OPTIONNEL : dans <head> ajoute :
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+*/
 :root{
   --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2; --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
-  --font: Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font: "Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 :root[data-theme="light"]{
   --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569; --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
 }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.55;
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  min-height:100vh; display:flex; flex-direction:column;
-}
-a{color:var(--blue); text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:980px; margin:0 auto; padding:0 20px}
+body{ font-family:var(--font); }
 
-/* ===== TOPBAR – nav centrée, hover gris ===== */
-.topbar{position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--border); z-index:10}
+/* TOPBAR – nav centrée, hover sobre */
 .topbar .row.only-nav{display:flex; justify-content:center; padding:14px 0}
 .nav{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav a{color:var(--muted); font-weight:600; position:relative}
 .nav a.active{color:var(--text); border-bottom:2px solid var(--muted); padding-bottom:6px}
-.nav a::after{content:none}           /* plus d’underline animée */
-.nav a:hover{color:var(--text)}       /* hover = gris foncé, pas de trait bleu */
+.nav a::after{content:none}
+.nav a:hover{color:var(--text)}
+
+/* Switch thème : pastille grise clickable */
 .toggle{
-  background:transparent; border:1px solid var(--border); color:var(--text);
-  border-radius:8px; padding:6px 10px; cursor:pointer
+  background:rgba(148,163,184,.15); /* gris doux */
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:999px;
+  padding:6px 10px;
+  cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px;
 }
-.toggle img{width:16px;height:16px}
+.toggle img{width:16px;height:16px; display:block}
+.toggle:hover{filter:brightness(1.05)}
 
-/* ===== MAIN pour footer collé en bas ===== */
-.main{flex:1}
-
-/* ===== HERO home ===== */
-.hero{padding:56px 0; border-bottom:1px solid var(--border)}
-.hero__stack{
-  display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
-}
-.pp{
-  width:220px; height:220px; border-radius:50%; object-fit:cover;
-  border:1px solid var(--border); box-shadow:var(--shadow)
-}
-.hero__name{margin:14px 0 4px; font-size:40px; letter-spacing:.2px}
+/* HERO */
+.hero__stack{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
+.pp{ width:220px; height:220px; border-radius:50%; object-fit:cover; border:1px solid var(--border); box-shadow:var(--shadow) }
+.hero__name{margin:14px 0 4px; font-size:40px; font-weight:700; letter-spacing:.2px}
 .hero__mail{margin:0 0 18px; color:var(--muted)}
 
-/* ===== Cartes Home – 3 colonnes, centrées, 2 lignes ===== */
+/* Cartes Home – 3 colonnes */
 .cards--home{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:10px; width:100%}
-.card--home{
-  background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px;
-  box-shadow:var(--shadow); transition:transform .12s ease, box-shadow .12s ease;
-  text-align:center;
+.card--home{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; box-shadow:var(--shadow); text-align:center; transition:transform .12s ease, box-shadow .12s ease }
+.card--home:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28) }
+.card__title{ margin:0 0 6px; font-size:18px; font-weight:700 }
+.card__title a{ color:var(--text) }
+.card__title a:hover{ text-decoration:underline }
+.card__desc{ margin:0; color:var(--muted) }
+
+/* LIGNES SOCIALES : 3 cases alignées SOUS chaque carte */
+.socials-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:14px; width:100%;
 }
-.card--home:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.card__title{margin:0 0 6px; font-size:18px}
-.card__title a{color:var(--text)}
-.card__title a:hover{text-decoration:underline}
-.card__desc{margin:0; color:var(--muted);}
 
-/* ===== Socials – icônes ===== */
-.socials{display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; justify-content:center}
-.sbtn{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); font-weight:600}
-.sbtn--icon svg{width:18px; height:18px; display:block}
+/* Case sociale (icône + label) avec petite anim “trait” au hover */
+.sbtn-tile{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:var(--card);
+  position:relative; overflow:hidden; transition:transform .12s ease;
+}
+.sbtn-tile:hover{ transform:translateY(-1px) }
+.sbtn-tile::after{
+  content:""; position:absolute; left:8%; right:8%; bottom:6px; height:2px;
+  background:currentColor; opacity:.25; width:0; transition:width .18s ease;
+}
+.sbtn-tile:hover::after{ width:84% }
+.sbtn-tile img{ width:18px; height:18px; display:block }
+.sbtn-label{ color:var(--text); font-weight:600 }
 
-/* ===== Footer centré ===== */
-.footer{border-top:1px solid var(--border)}
-.footer .container{padding:22px; color:var(--muted); font-size:14px; text-align:center}
-
-/* ===== Responsive ===== */
+/* Responsive */
 @media (max-width: 980px){
   .cards--home{grid-template-columns:1fr; max-width:620px}
+  .socials-grid{grid-template-columns:1fr}
 }
