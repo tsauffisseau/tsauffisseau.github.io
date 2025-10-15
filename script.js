@@ -1,30 +1,30 @@
 (function(){
-  const root = document.documentElement;
+  const root = document.documentElement;           // <html>
   const btn  = document.getElementById('themeToggle');
   const icon = document.getElementById('themeIcon');
 
-  // préférence
+  // Mettre dark par défaut si rien en mémoire
+  if (!root.getAttribute('data-theme')) root.setAttribute('data-theme','dark');
+
+  // Charger préférence
   const saved = localStorage.getItem('theme');
-  if (saved === 'light') root.setAttribute('data-theme','light');
-  if (saved === 'dark')  root.setAttribute('data-theme','dark');
+  if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
 
   function refreshIcon(){
-    const isDark = root.getAttribute('data-theme') !== 'light';
+    const isDark = root.getAttribute('data-theme') === 'dark';
     if (icon) icon.src = isDark ? '/assets/icon-moon.svg' : '/assets/icon-sun.svg';
 
-    // >>> switch GitHub icon selon thème
+    // Switch GitHub (si tu utilises deux SVG)
     const gh = document.getElementById('ghIcon');
-    if (gh){
-      gh.src = isDark ? gh.dataset.srcDark : gh.dataset.srcLight;
-    }
+    if (gh){ gh.src = isDark ? gh.dataset.srcDark : gh.dataset.srcLight; }
   }
   refreshIcon();
 
   if (btn){
     btn.addEventListener('click', ()=>{
-      const isDark = root.getAttribute('data-theme') !== 'light';
-      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
       refreshIcon();
     });
   }
