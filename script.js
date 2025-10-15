@@ -10,7 +10,7 @@
 
   function refreshIcon(){
     const isDark = root.getAttribute('data-theme') !== 'light';
-    if (icon) icon.src = isDark ? '/assets/icon-moon.png' : '/assets/icon-sun.png';
+    if (icon) icon.src = isDark ? '/assets/icon-moon.svg' : '/assets/icon-sun.svg';
 
     // >>> switch GitHub icon selon thème
     const gh = document.getElementById('ghIcon');
