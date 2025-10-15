@@ -64,16 +64,27 @@
           </article>
         </div>
 
-        <!-- Liens sociaux avec icônes -->
-        <div class="socials socials--icons">
-          <a class="sbtn sbtn--icon" href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <img src="/assets/icon-linkedin.svg" alt="" />
+        <!-- 3 cases sociales alignées SOUS les cartes correspondantes -->
+        <div class="socials-grid">
+          <!-- Sous Rewarded (LinkedIn) -->
+          <a class="sbtn-tile" href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">
+            <img src="/assets/icon-linkedin.svg" alt="">
+            <span class="sbtn-label">LinkedIn</span>
           </a>
-          <a class="sbtn sbtn--icon" href="https://github.com/tsauffisseau" target="_blank" rel="noopener" aria-label="GitHub">
-            <img src="/assets/icon-github.svg" alt="" />
+        
+          <!-- Sous Projects (GitHub) -->
+          <a class="sbtn-tile" href="https://github.com/tsauffisseau" target="_blank" rel="noopener">
+            <!-- GitHub géré par JS pour version noir/blanc -->
+            <img id="ghIcon" src="/assets/icon-github-white.svg" alt=""
+                 data-src-dark="/assets/icon-github-white.svg"
+                 data-src-light="/assets/icon-github-black.svg">
+            <span class="sbtn-label">GitHub</span>
           </a>
-          <a class="sbtn sbtn--icon" href="https://instagram.com/philes_art" target="_blank" rel="noopener" aria-label="Instagram">
-            <img src="/assets/icon-instagram.png" alt="" />
+        
+          <!-- Sous Creations (Instagram) -->
+          <a class="sbtn-tile" href="https://instagram.com/philes_art" target="_blank" rel="noopener">
+            <img src="/assets/icon-instagram.svg" alt="">
+            <span class="sbtn-label">Instagram</span>
           </a>
         </div>
       </div>
