@@ -1,100 +1,98 @@
-/* ——— Police élégante (Inter si dispo) ———
-   OPTIONNEL : dans <head> ajoute :
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-*/
+/* ---------- Thème (dark par défaut) ---------- */
 :root{
-  --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2; --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
-  --font: "Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* DARK */
+  --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2;
+  --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
+  --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 html[data-theme="light"]{
-  --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569; --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
+  /* LIGHT */
+  --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569;
+  --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
 }
 
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.55;
+  min-height:100vh; display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
 
-body{ font-family:var(--font); }
-
-/* TOPBAR – nav centrée, hover sobre */
-.topbar .row.only-nav{display:flex; justify-content:center; padding:14px 0}
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:var(--bg); border-bottom:1px solid var(--border);
+  margin-top:12px;                 /* un peu d’espace au-dessus */
+}
+.topbar .row.only-nav{
+  display:flex; justify-content:center; padding:16px 0;
+}
+/* nav centrée, JAMAIS soulignée */
 .nav{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
-.nav a{ color:var(--muted); font-weight:600; position:relative; text-decoration:none; }
-.nav a.active{ color:var(--text); }      /* ← plus de border-bottom */
-.nav a::after{ content:none; }           /* ← aucune barre animée */
-.nav a:hover{ color:var(--text); }       /* léger changement de couleur suffit */
+.nav a{color:var(--muted); font-weight:600; text-decoration:none}
+.nav a:hover{color:var(--text)}
+.nav a.active{color:var(--text)}
 
-
-/* Switch thème : pastille grise clickable */
+/* bouton thème : pastille grise SEULEMENT AU SURVOL, légèrement à droite de la page */
 .toggle{
-  background:rgba(148,163,184,.15); /* gris doux */
-  border:1px solid var(--border);
-  color:var(--text);
-  border-radius:999px;
-  padding:6px 10px;
-  cursor:pointer;
+  position:fixed; top:18px; right:24px;           /* un peu plus à droite que la barre */
+  background:transparent; border:1px solid transparent;
+  color:var(--text); border-radius:999px; padding:6px 10px; cursor:pointer;
   display:inline-flex; align-items:center; gap:8px;
 }
+.toggle:hover{
+  background:rgba(148,163,184,.12);               /* gris très léger au hover */
+  border-color:var(--border);
+}
 .toggle img{width:16px;height:16px; display:block}
-.toggle:hover{filter:brightness(1.05)}
 
-/* HERO */
+/* ---------- Hero ---------- */
+.main{flex:1}
+.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
 .hero__stack{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
-.hero{ padding:96px 0 56px; border-bottom:1px solid var(--border); }
-.pp{ width:220px; height:220px; border-radius:50%; object-fit:cover; border:1px solid var(--border); box-shadow:var(--shadow) }
-.hero__name{margin:14px 0 4px; font-size:40px; font-weight:700; letter-spacing:.2px}
+.pp{width:220px;height:220px;border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow)}
+.hero__name{margin:12px 0 4px; font-size:32px; font-weight:600}    /* NOM plus petit */
 .hero__mail{margin:0 0 18px; color:var(--muted)}
 
-/* Cartes Home – 3 colonnes */
-.cards--home{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:10px; width:100%}
-.card--home{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; box-shadow:var(--shadow); text-align:center; transition:transform .12s ease, box-shadow .12s ease }
-.card--home:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28) }
+/* ---------- Cartes Home ---------- */
+/* 3 colonnes centrées et étroites, comme avant */
+.cards--home{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:16px; margin:10px auto 0; width:100%; max-width:760px;
+}
+/* mêmes couleurs que le fond, léger contour gris, titres non soulignés */
+.card--home{
+  background:var(--bg); border:1px solid var(--border); border-radius:12px;
+  padding:16px; text-align:center; transition:transform .12s ease, box-shadow .12s ease;
+}
+.card--home:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,.18) }
 .card__title{ margin:0 0 6px; font-size:18px; font-weight:700 }
-.card__title a{ color:var(--text) }
-.card__title a:hover{ text-decoration:underline }
+.card__title a{ color:var(--text); text-decoration:none }
+.card__title a:hover{ text-decoration:none }                  /* jamais souligné */
 .card__desc{ margin:0; color:var(--muted) }
 
-/* LIGNES SOCIALES : 3 cases alignées SOUS chaque carte */
-.socials-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:14px; width:100%;
-}
-
-/* grille alignée sous les cartes */
+/* ---------- Tuiles sociales sous chaque carte ---------- */
 .socials-grid{
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:16px; margin:14px auto 0; width:100%; max-width:760px;
 }
-
-/* case = icône + libellé, sans underline/trait */
 .sbtn-tile{
   display:flex; align-items:center; justify-content:center; gap:10px;
-  padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:var(--card);
-  transition:transform .12s ease, box-shadow .12s ease;
-  text-decoration:none;
+  padding:10px 12px; border:1px solid var(--border); border-radius:12px;
+  background:var(--bg); text-decoration:none; transition:transform .12s ease, box-shadow .12s ease;
 }
-.sbtn-tile:hover{ transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.18); }
+.sbtn-tile:hover{ transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.16) }
 .sbtn-tile img{ width:18px; height:18px; display:block; }
-.sbtn-label{ color:var(--text); font-weight:600; }
+.sbtn-label{ color:var(--text); font-weight:600 }
 
-
+/* ---------- Footer centré ---------- */
+.footer{border-top:1px solid var(--border)}
 .footer .container{
-  display:flex;
-  justify-content:center;
-  padding:22px;
-  color:var(--muted);
-  font-size:14px;
-  text-align:center;
+  display:flex; justify-content:center; padding:22px; color:var(--muted); font-size:14px; text-align:center;
 }
 
-
-/* Responsive */
-.cards--home{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin:10px auto 0;     /* ← centré */
-  width:100%;
-  max-width:760px;        /* ← largeur raisonnable */
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .cards--home{grid-template-columns:1fr; max-width:620px}
+  .socials-grid{grid-template-columns:1fr}
 }
-@media (max-width: 980px){
-  .cards--home{ grid-template-columns:1fr; max-width:620px; }
-}
-
