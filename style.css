@@ -65,7 +65,7 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .toggle{
   position: fixed;
   top: 18px;
-  right: calc((100vw - var(--container))/2 + 0px); /* pile au bord droit du container */
+  right: calc((100vw - var(--container))/2 + 0px);
   background: transparent;
   border: 1px solid transparent;
   color: var(--text);
@@ -73,7 +73,9 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
   padding: 6px 10px;
   cursor: pointer;
   display: inline-flex; align-items: center; gap: 8px;
+  z-index: 20; /* <-- important */
 }
+
 .toggle:hover{
   background: rgba(148,163,184,.12); /* gris très léger au survol */
   border-color: var(--border);
