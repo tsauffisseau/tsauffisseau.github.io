@@ -18,6 +18,31 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
+/* Grain doux sur toute la page */
+body::after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px);
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 10px 10px;
+  opacity:.05;                   /* force de base (dark) */
+  mix-blend-mode: overlay;       /* joli en dark & light */
+}
+
+/* Un soupçon plus faible en thème clair (optionnel) */
+html[data-theme="light"] body::after{
+  opacity:.04;
+}
+
+/* Fallback ultra-sobre si un jour le blend pose souci (désactive si inutile) */
+/*
+body::after{ mix-blend-mode: normal; opacity:.03; }
+*/
+
+.topbar, .main, .footer { position: relative; z-index: 1; }
+
 /* ---------- Topbar ---------- */
 .topbar{
   position:sticky; top:0; z-index:10;
@@ -72,18 +97,29 @@ body{
 .card__desc{ margin:0; color:var(--muted) }
 
 /* ---------- Tuiles sociales sous chaque carte ---------- */
+
+
+/* grille: toujours sous les 3 cartes */
 .socials-grid{
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:16px; margin:14px auto 0; width:100%; max-width:760px;
 }
+/* tuile compacte centrée dans sa colonne */
 .sbtn-tile{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  padding:10px 12px; border:1px solid var(--border); border-radius:12px;
-  background:var(--bg); text-decoration:none; transition:transform .12s ease, box-shadow .12s ease;
+  justify-self:center;                 /* centrée sous chaque carte */
+  display:flex; align-items:center; gap:10px;
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--bg);                /* même couleur que le fond */
+  text-decoration:none;
+  transition:transform .12s ease, box-shadow .12s ease;
 }
-.sbtn-tile:hover{ transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.16) }
+.sbtn-tile:hover{ transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.16); }
 .sbtn-tile img{ width:18px; height:18px; display:block; }
-.sbtn-label{ color:var(--text); font-weight:600 }
+.sbtn-label{ color:var(--text); font-weight:600; }
+
+
 
 /* ---------- Footer centré ---------- */
 .footer{border-top:1px solid var(--border)}
