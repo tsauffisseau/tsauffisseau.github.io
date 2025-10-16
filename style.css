@@ -58,32 +58,47 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .nav a:hover{color:var(--text)}
 .nav a.active{color:var(--text)}
 
-/* bouton thème : pastille grise SEULEMENT AU SURVOL, légèrement à droite de la page */
+/* largeur logique du container (déjà 980px chez toi) */
+:root{ --container: 980px; }
+
+/* Switch thème : aligné sur le bord droit du container */
 .toggle{
-  position:fixed; top:18px; right:24px;           /* un peu plus à droite que la barre */
-  background:transparent; border:1px solid transparent;
-  color:var(--text); border-radius:999px; padding:6px 10px; cursor:pointer;
-  display:inline-flex; align-items:center; gap:8px;
+  position: fixed;
+  top: 18px;
+  right: calc((100vw - var(--container))/2 + 0px); /* pile au bord droit du container */
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
 }
 .toggle:hover{
-  background:rgba(148,163,184,.12);               /* gris très léger au hover */
-  border-color:var(--border);
+  background: rgba(148,163,184,.12); /* gris très léger au survol */
+  border-color: var(--border);
 }
-.toggle img{width:16px;height:16px; display:block}
+
+/* Sur petits écrans, on revient à un padding bord d'écran */
+@media (max-width: 1020px){
+  .toggle{ right: 16px; }
+}
+
 
 /* ---------- Hero ---------- */
 .main{flex:1}
-.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
+.hero{padding:36px 0 48px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
 .hero__stack{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
-.pp{width:220px;height:220px;border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow)}
-.hero__name{margin:12px 0 4px; font-size:32px; font-weight:600}    /* NOM plus petit */
-.hero__mail{margin:0 0 18px; color:var(--muted)}
+.pp{width:220px;height:220px; margin-bottom: 6px; border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow)}
+.hero__name{margin:6px 0 2px; font-size:30px; font-weight:600}    /* NOM plus petit */
+.hero__mail{margin:0 0 12px; color:var(--muted)}
+
 
 /* ---------- Cartes Home ---------- */
 /* 3 colonnes centrées et étroites, comme avant */
 .cards--home{
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:16px; margin:10px auto 0; width:100%; max-width:760px;
+  gap:16px; margin:6px auto 0; width:100%; max-width:760px;
 }
 /* mêmes couleurs que le fond, léger contour gris, titres non soulignés */
 .card--home{
@@ -102,8 +117,10 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 /* grille: toujours sous les 3 cartes */
 .socials-grid{
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:16px; margin:14px auto 0; width:100%; max-width:760px;
+  gap:16px; margin:10px auto 0; width:100%; max-width:760px;
 }
+
+
 /* tuile compacte centrée dans sa colonne */
 .sbtn-tile{
   justify-self:center;                 /* centrée sous chaque carte */
