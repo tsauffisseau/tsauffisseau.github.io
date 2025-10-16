@@ -61,40 +61,55 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 /* largeur logique du container (déjà 980px chez toi) */
 :root{ --container: 980px; }
 
-/* Switch thème : aligné sur le bord droit du container */
+/* bouton thème : pastille grise SEULEMENT AU SURVOL, légèrement à droite de la page */
 .toggle{
   position: fixed;
   top: 18px;
-  right: calc((100vw - var(--container))/2 + 0px);
+  right: calc((100vw - var(--container))/2 + 0px); /* aligné sur le bord droit du container */
   background: transparent;
   border: 1px solid transparent;
   color: var(--text);
   border-radius: 999px;
   padding: 6px 10px;
   cursor: pointer;
-  display: inline-flex; align-items: center; gap: 8px;
-  z-index: 20; /* <-- important */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
 }
 
 .toggle:hover{
-  background: rgba(148,163,184,.12); /* gris très léger au survol */
+  background: rgba(148,163,184,.12);  /* gris très léger au hover */
   border-color: var(--border);
 }
 
-/* Sur petits écrans, on revient à un padding bord d'écran */
+.toggle img{
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Sur petits écrans, repli au bord de l’écran */
 @media (max-width: 1020px){
   .toggle{ right: 16px; }
 }
 
-
 /* ---------- Hero ---------- */
 .main{flex:1}
-.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
-.hero__stack{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
-.pp{width:220px;height:220px; margin-bottom: 6px; border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow)}
-.hero__name{margin:3px 0 2px; font-size:30px; font-weight:600}    /* NOM plus petit */
-.hero__mail{margin:0 0 8px; color:var(--muted)}
 
+.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
+.hero__stack{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:6px; /* garde 6px */
+}
+.pp{width:220px;height:220px; margin-top: 6px;  margin-bottom: 6px; border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow)}
+.hero__name{margin:3px 0 2px; line-height: 1.15; font-size:30px; font-weight:600}    /* NOM plus petit */
+.hero__mail{margin:0 0 10px; color:var(--muted)}
+
+@media (max-width: 980px){
+  .hero__stack { gap: 5px; }
+  .pp { margin-bottom: 4px; }
+}
 
 /* ---------- Cartes Home ---------- */
 /* 3 colonnes centrées et étroites, comme avant */
