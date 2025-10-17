@@ -496,13 +496,24 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .badge--gold{ color:#fbbf24; border-color:#433; }
 
 /* ===== Case study (Cassiopée) ===== */
-.page-case .brand{ display:none; }
+
+
 .case-header{
-  display:grid; grid-template-columns: 1.4fr .9fr; gap:24px; align-items:center;
+  display: block;            /* plus de grille 2 colonnes */
   margin: 8px 0 20px;
+}
+.case-title{
+  max-width: 860px;          /* largeur de lecture idéale */
+  margin: 0 auto;            /* centre dans le container */
 }
 .case-title h1{ margin:0 0 6px; font-size:30px; }
 .case-sub{ margin:0; color:var(--muted); }
+.badges{ margin-top:8px; }
+.btns{ margin-top:12px; }
+
+
+.page-case .brand{ display:none; }
+
 .case-visual img{
   width:100%; height:auto; display:block; border:1px solid var(--border);
   border-radius:14px; box-shadow:var(--shadow);
