@@ -384,3 +384,79 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .twhen{ color: var(--muted); font-size: 14px; }
 .tcontent{ line-height: 1.55; }
 
+
+/* ===== Projects ===== */
+.page-projects .brand{ display:none; }
+.page .container{ padding-top: 10px; }
+
+/* Liste : cartes pleine largeur, respirées */
+.project-list{
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 28px;
+  max-width: 980px;   /* garde une ligne de lecture confortable */
+}
+
+/* Carte cliquable */
+.project-card{
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.project-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.20);
+  border-color: rgba(148,163,184,.28);
+}
+.project-card:focus-visible{
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* Header interne */
+.pheader{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.ptitle{ margin: 0; font-size: 20px; font-weight: 700; line-height: 1.25; }
+.pcta{
+  margin-left: auto;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Description + tags */
+.pdesc{ margin: 8px 0 10px; color: var(--muted); }
+.ptags{
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 0; padding: 0; list-style: none;
+}
+.ptags li{
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px; color: var(--muted);
+  background: var(--bg);
+}
+
+/* Option: si tu veux des cartes côte à côte sur écrans larges */
+@media (min-width: 1100px){
+  .project-list{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px){
+  .ptitle{ font-size: 18px; }
+}
+
+
