@@ -6,29 +6,52 @@
   <title>Posters — Théophile</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css?v=2" />
   <script defer src="/script.js"></script>
 </head>
-<body>
+<body class="page-posters">
+  <!-- TOPBAR centrée (sans brand) -->
   <header class="topbar">
-    <div class="container row">
-      <a class="brand" href="/"><img src="/assets/favicon.svg" alt="TS logo"/><span>Théophile</span></a>
+    <div class="container row only-nav">
       <nav class="nav">
-        <a href="/">Home</a><a href="/projects/">My Projects</a><a class="active" href="/posters/">Posters</a><a href="/resume/">Resume</a><a href="/about/">About me</a>
-        <button class="toggle" id="themeToggle"><img id="themeIcon" src="/assets/icon-moon.png" alt="theme" /></button>
+        <a href="/">Home</a>
+        <a href="/projects/">My Projects</a>
+        <a class="active" href="/posters/">Posters</a>
+        <a href="/resume/">Resume</a>
+        <a href="/about/">About me</a>
+        <button class="toggle" id="themeToggle" title="Toggle theme">
+          <img id="themeIcon" src="/assets/icon-moon.svg" alt="theme" />
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="page">
     <div class="container">
-      <h1>Posters</h1>
-      <div class="list">
-        <a class="item" href="/assets/poster_ESSI2025.pdf" target="_blank">Cassiopée — EEG Alzheimer <span>PDF</span></a>
+      <h1 class="page-title">Posters</h1>
+      <p class="page-intro">
+        Sélection de posters académiques et projets (IA, vision par ordinateur, biomédical).
+        Cliquez pour ouvrir le PDF ou la page associée.
+      </p>
+
+      <!-- Grille de cartes poster -->
+      <div class="poster-grid">
+        <!-- Poster 1 -->
+        <a class="poster-card" href="/assets/posters/alzheimer_eeg_poster.pdf" target="_blank" rel="noopener">
+          <img class="poster-thumb" src="/assets/posters/alzheimer_eeg_thumb.jpg" alt="Aperçu poster Alzheimer EEG">
+          <div class="poster-body">
+            <h3 class="poster-title">Alzheimer Detection from EEG signals</h3>
+            <p class="poster-meta">2025 • Prize-winning project • PDF</p>
+          </div>
+          <span class="poster-cta">Ouvrir</span>
+        </a>
+        <!-- Duplique ce bloc <a.poster-card> pour chaque poster -->
       </div>
     </div>
   </main>
 
-  <footer class="footer"><div class="container"><p>© Théophile Sauffisseau</p></div></footer>
+  <footer class="footer">
+    <div class="container"><p>© Théophile Sauffisseau</p></div>
+  </footer>
 </body>
 </html>
