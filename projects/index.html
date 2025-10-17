@@ -3,67 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Projects — Théophile Sauffisseau</title>
+  <title>Projects — Théophile</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css?v=5" />
   <script defer src="/script.js"></script>
 </head>
-<body>
+<body class="page-projects">
+  <!-- Topbar sans brand -->
   <header class="topbar">
-    <div class="container row">
-      <a class="brand" href="/"><img src="/assets/favicon.svg" alt="TS logo" /><span>Théophile</span></a>
+    <div class="container row only-nav">
       <nav class="nav">
         <a href="/">Home</a>
         <a class="active" href="/projects/">My Projects</a>
         <a href="/posters/">Posters</a>
         <a href="/resume/">Resume</a>
         <a href="/about/">About me</a>
-        <button class="toggle" id="themeToggle"><img id="themeIcon" src="/assets/icon-moon.png" alt="theme" /></button>
+        <button class="toggle" id="themeToggle" title="Toggle theme">
+          <img id="themeIcon" src="/assets/icon-moon.svg" alt="theme" />
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="page">
     <div class="container">
-      <h1>Projects</h1>
-      <p class="lead">Personal projects and open-source contributions.</p>
+      <h1 class="page-title">Projects</h1>
+      <p class="page-intro">Personal projects and open-source contributions. Click a card to open the GitHub repo.</p>
 
-      <div class="cards">
-        <article class="card">
-          <h3>Luth x LFM2</h3>
-          <p>Fine-tuning FR LLMs (1.2B/700M/350M) — instruction & eval FR.</p>
-          <div class="tags"><span class="tag">LLM</span><span class="tag">Transformers</span><span class="tag">French</span></div>
-          <div class="small-links"><a href="https://github.com/..." target="_blank">GitHub</a></div>
-        </article>
-
-        <article class="card">
-          <h3>Cassiopée — EEG Alzheimer</h3>
-          <p>EEG → Recurrence Plots → CNN. Rewarded project (ESSI 2025).</p>
-          <div class="tags"><span class="tag">Deep Learning</span><span class="tag">EEG</span><span class="tag">PyTorch</span></div>
-          <div class="small-links">
-            <a href="/rewarded/">Project page</a>
-            <a href="https://github.com/tsauffisseau" target="_blank">GitHub</a>
+      <div class="project-list">
+        <!-- ====== PROJECT CARD (duplique ce bloc) ====== -->
+        <a class="project-card" href="https://github.com/tsauffisseau/chess_chat" target="_blank" rel="noopener">
+          <div class="pheader">
+            <h3 class="ptitle">ChessCoach – PGN Analysis & Errors</h3>
+            <span class="pcta">GitHub</span>
           </div>
-        </article>
+          <p class="pdesc">
+            Streamlit tool to analyze PGN games with Stockfish: mistake classification, blunder heatmap,
+            player report. Clean module architecture + tests.
+          </p>
+          <ul class="ptags">
+            <li>Python</li><li>Streamlit</li><li>Stockfish</li><li>Data Viz</li>
+          </ul>
+        </a>
 
-        <article class="card">
-          <h3>SplaTAM — Reconstruction 3D</h3>
-          <p>Gaussian Splatting-SLAM (RGB-D), PyTorch / Open3D / CUDA.</p>
-          <div class="tags"><span class="tag">3D</span><span class="tag">SLAM</span><span class="tag">PyTorch</span></div>
-          <div class="small-links"><a href="https://github.com/tsauffisseau" target="_blank">GitHub</a></div>
-        </article>
+        <a class="project-card" href="https://github.com/tsauffisseau/cassiopee-eeg-alzheimer" target="_blank" rel="noopener">
+          <div class="pheader">
+            <h3 class="ptitle">Cassiopée — Alzheimer Detection from EEG</h3>
+            <span class="pcta">GitHub</span>
+          </div>
+          <p class="pdesc">
+            CNN on Recurrence Plots from 19-channel EEG. Window-level scores and patient-level averaging,
+            reproducible preprocessing & training pipeline (PyTorch).
+          </p>
+          <ul class="ptags">
+            <li>PyTorch</li><li>EEG</li><li>Signal Processing</li><li>Computer Vision</li>
+          </ul>
+        </a>
 
-        <article class="card">
-          <h3>AI Mini-Projects</h3>
-          <p>LLM demos, data-viz, CV prototypes — docs & README.</p>
-          <div class="tags"><span class="tag">ML</span><span class="tag">LLM</span><span class="tag">Viz</span></div>
-          <div class="small-links"><a href="https://github.com/tsauffisseau" target="_blank">GitHub</a></div>
-        </article>
+        <a class="project-card" href="https://github.com/tsauffisseau/splatam" target="_blank" rel="noopener">
+          <div class="pheader">
+            <h3 class="ptitle">SplaTAM — 3D Gaussian Splatting SLAM</h3>
+            <span class="pcta">GitHub</span>
+          </div>
+          <p class="pdesc">
+            RGB-D loader, ROS bag conversion, and evaluation utilities for real-time 3D Gaussian Splatting SLAM.
+            Clean conda/CUDA setup & scripts.
+          </p>
+          <ul class="ptags">
+            <li>3D</li><li>SLAM</li><li>CUDA</li><li>Python</li>
+          </ul>
+        </a>
+
+        <!-- Exemple avec un “demo” en plus (facultatif)
+        <a class="project-card" href="https://github.com/..." target="_blank" rel="noopener" data-demo="https://tsauffisseau.github.io/demo">
+          ...
+        </a>
+        -->
       </div>
     </div>
   </main>
 
-  <footer class="footer"><div class="container"><p>© Théophile Sauffisseau</p></div></footer>
+  <footer class="footer">
+    <div class="container"><p>© Théophile Sauffisseau</p></div>
+  </footer>
 </body>
 </html>
