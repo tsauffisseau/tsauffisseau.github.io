@@ -307,6 +307,8 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .page-about .brand{ display:none; }          /* sécurité si jamais */
 .page .container{ padding-top: 10px; }
 
+
+
 .about-grid{
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -337,12 +339,29 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 /* aside */
-.about-side{ display: grid; gap: 14px; align-content: start; }
-.about-pp{
-  width: 100%; max-width: 260px; justify-self: center;
-  border-radius: 16px; object-fit: cover;
-  border: 1px solid var(--border); box-shadow: var(--shadow);
+
+
+.page-about .about-side picture{
+  display:block;
+  width:100%;
+  max-width:260px;      /* ← taille visuelle voulue */
 }
+
+.page-about .about-pp{
+  display:block;
+  width:100%;
+  height:auto;          /* pas d'étirement vertical */
+  border-radius:16px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+/* (option) centre l'image dans la colonne */
+.page-about .about-side picture{ margin: 0 auto; }
+
+.about-side{ display: grid; gap: 14px; align-content: start; }
+
 .aside-card{
   background: var(--card);
   border: 1px solid var(--border);
