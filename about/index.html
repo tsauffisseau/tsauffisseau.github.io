@@ -6,31 +6,112 @@
   <title>About me — Théophile</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css?v=3" />
   <script defer src="/script.js"></script>
 </head>
-<body>
+<body class="page-about">
+  <!-- TOPBAR centrée, sans brand -->
   <header class="topbar">
-    <div class="container row">
-      <a class="brand" href="/"><img src="/assets/favicon.svg" alt="TS logo"/><span>Théophile</span></a>
+    <div class="container row only-nav">
       <nav class="nav">
-        <a href="/">Home</a><a href="/projects/">My Projects</a><a href="/posters/">Posters</a><a href="/resume/">Resume</a><a class="active" href="/about/">About me</a>
-        <button class="toggle" id="themeToggle"><img id="themeIcon" src="/assets/icon-moon.png" alt="theme" /></button>
+        <a href="/">Home</a>
+        <a href="/projects/">My Projects</a>
+        <a href="/posters/">Posters</a>
+        <a href="/resume/">Resume</a>
+        <a class="active" href="/about/">About me</a>
+        <button class="toggle" id="themeToggle" title="Toggle theme">
+          <img id="themeIcon" src="/assets/icon-moon.svg" alt="theme" />
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="page">
-    <div class="container narrow">
-      <h1>About me</h1>
-      <p class="lead">Machine Learning Student — IP Paris (Télécom SudParis). IA appliquée santé, vision 3D, et création numérique.</p>
-      <p>Je m’intéresse aux intersections entre modèles neuronaux, perception humaine et design. Mon objectif : construire des systèmes IA utiles, fiables et élégants, avec un impact réel (santé, industrie créative).</p>
-      <p>Projets marquants : <strong>Cassiopée</strong> (EEG Alzheimer, lauréat ESSI 2025) ; <strong>Projets Persos</strong> ;. Côté créatif : Art Digital et Génératif - Création Audiovisuels.</p>
-      <p>Liens : <a href="/assets/poster_ESSI2025.pdf" target="_blank">Poster</a> · <a href="/assets/v6.pdf" target="_blank">CV</a> · <a href="https://github.com/tsauffisseau" target="_blank">GitHub</a> · <a href="https://instagram.com/philes_art" target="_blank">Instagram</a></p>
+    <div class="container">
+      <h1 class="page-title">About me</h1>
+
+      <div class="about-grid">
+        <!-- Colonne contenu -->
+        <section class="about-main">
+          <p class="about-lead">
+            I’m Théophile Sauffisseau, a French engineering student focused on <strong>AI for healthcare</strong> —
+            EEG analysis, computer vision, and biomedical imaging. I’m currently in a dual-degree between
+            <strong>Télécom SudParis</strong> and the <strong>Institut Polytechnique de Paris</strong>.
+          </p>
+          <p>
+            I like building end-to-end projects: from data collection & cleaning, to modeling (mostly
+            <strong>PyTorch</strong>), evaluation, and simple UIs to make results tangible. I won a
+            first-prize student challenge with an <em>Alzheimer’s detection from EEG</em> project and completed an MRI
+            segmentation internship. On this site I share a few selected works.
+          </p>
+          <p>
+            If you’re curious, start with my <a class="alink" href="/projects/">projects</a>,
+            browse the <a class="alink" href="/posters/">posters</a>, or grab my
+            <a class="alink" href="/resume/">resume</a>. I’m looking for a 5–6-month R&D internship from <strong>April 2026</strong>
+            (med-tech/health preferred, open to high-impact domains).
+          </p>
+
+          <!-- Timeline -->
+          <h2 class="about-subtitle">Timeline</h2>
+          <ul class="timeline">
+            <li class="titem">
+              <span class="twhen">2025–2026</span>
+              <div class="tcontent">
+                <strong>Master — Biomedical Engineering (IP Paris)</strong><br>
+                AI for medical imaging and biosignals • projects in CV/EEG
+              </div>
+            </li>
+            <li class="titem">
+              <span class="twhen">2023–2026</span>
+              <div class="tcontent">
+                <strong>Engineering diploma — Télécom SudParis</strong><br>
+                Data/ML track • software engineering foundations
+              </div>
+            </li>
+            <li class="titem">
+              <span class="twhen">2025</span>
+              <div class="tcontent">
+                <strong>Prize — Alzheimer EEG project</strong><br>
+                CNN on recurrence plots, signal processing pipeline, evaluation
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Colonne side -->
+        <aside class="about-side">
+          <img class="about-pp" src="/assets/profile.jpg" alt="Photo de Théophile" loading="lazy">
+          
+          <div class="aside-card">
+            <h3>Now</h3>
+            <ul class="bullets">
+              <li>Building a clean GitHub portfolio</li>
+              <li>Deep learning for EEG & MRI</li>
+              <li>Preparing 2026 R&D internship</li>
+            </ul>
+          </div>
+
+          <div class="aside-card">
+            <h3>Skills</h3>
+            <ul class="chips">
+              <li>Python</li><li>PyTorch</li><li>OpenCV</li>
+              <li>Signal Proc.</li><li>Computer Vision</li><li>EEG</li>
+              <li>Git/GitHub</li><li>Linux</li>
+            </ul>
+          </div>
+
+          <div class="aside-links">
+            <a class="btn-link" href="mailto:theophilesauffisseau@gmail.com">Email</a>
+            <a class="btn-link" href="https://github.com/tsauffisseau" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn-link" href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
+      </div>
     </div>
   </main>
 
-  <footer class="footer"><div class="container"><p>© Théophile Sauffisseau</p></div></footer>
+  <footer class="footer">
+    <div class="container"><p>© Théophile Sauffisseau</p></div>
+  </footer>
 </body>
 </html>
-
