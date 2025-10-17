@@ -233,13 +233,24 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .page-posters .brand{ display:none; }          /* au cas où */
 .page .container{ padding-top: 10px; }         /* même respiration que resume */
 
-/* Grille */
+
+
+/* Grille responsive : colonnes qui s'ajustent avec une largeur mini confortable */
 .poster-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* ← au lieu de repeat(3,1fr) */
   gap: 16px;
   margin: 18px 0 28px;
 }
+
+
+.poster-body{ flex: 1; min-width: 0; }       /* ← important pour que ça s'étale correctement */
+.poster-title{ font-size: 20px; line-height: 1.25; }  /* lisible, moins de retours à la ligne */
+.poster-meta{ font-size: 14px; color: var(--muted); }
+
+
+
+
 @media (max-width: 980px){
   .poster-grid{ grid-template-columns: 1fr; }
 }
