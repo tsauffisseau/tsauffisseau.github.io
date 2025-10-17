@@ -228,3 +228,66 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
   .cards--home{grid-template-columns:1fr; max-width:620px}
   .socials-grid{grid-template-columns:1fr}
 }
+
+/* Page Posters */
+.page-posters .brand{ display:none; }          /* au cas où */
+.page .container{ padding-top: 10px; }         /* même respiration que resume */
+
+/* Grille */
+.poster-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 18px 0 28px;
+}
+@media (max-width: 980px){
+  .poster-grid{ grid-template-columns: 1fr; }
+}
+
+/* Carte poster (style “lien carte”) */
+.poster-card{
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.poster-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.20);
+  border-color: rgba(148,163,184,.28);
+}
+.poster-card:focus-visible{
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* Vignette */
+.poster-thumb{
+  width: 90px; height: 120px;      /* ratio A4 approximatif */
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Corps */
+.poster-body{ display: grid; gap: 4px; }
+.poster-title{ margin: 0; font-size: 18px; font-weight: 700; }
+.poster-meta{ margin: 0; color: var(--muted); font-size: 14px; }
+
+/* CTA à droite */
+.poster-cta{
+  margin-left: auto;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
