@@ -3,36 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rewarded Project — Cassiopée</title>
+  <title>Cassiopée — Alzheimer from EEG</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css?v=7" />
   <script defer src="/script.js"></script>
 </head>
-<body>
+<body class="page-case page-case--cassiopee">
   <header class="topbar">
-    <div class="container row">
-      <a class="brand" href="/"><img src="/assets/favicon.svg" alt="TS logo"/><span>Théophile</span></a>
+    <div class="container row only-nav">
       <nav class="nav">
-        <a href="/">Home</a><a href="/projects/">My Projects</a><a href="/posters/">Posters</a><a href="/resume/">Resume</a><a href="/about/">About me</a>
-        <button class="toggle" id="themeToggle"><img id="themeIcon" src="/assets/icon-moon.png" alt="theme" /></button>
+        <a href="/">Home</a>
+        <a class="active" href="/projects/">My Projects</a>
+        <a href="/posters/">Posters</a>
+        <a href="/resume/">Resume</a>
+        <a href="/about/">About me</a>
+        <button class="toggle" id="themeToggle" title="Toggle theme">
+          <img id="themeIcon" src="/assets/icon-moon.svg" alt="theme" />
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="page">
-    <div class="container narrow">
-      <h1>Cassiopée — EEG Alzheimer Detection</h1>
-      <p class="lead">Pipeline de classification EEG via <em>Recurrence Plots</em> (200×200) et CNN — <strong>1er prix ESSI 2025</strong>.</p>
-      <p>Rôle : conception de la pipeline complète, génération des RP multi-canaux, entraînement CNN, agrégation par patient.</p>
-      <div class="small-links">
-        <a href="/assets/poster_ESSI2025.pdf" target="_blank">Poster (PDF)</a> ·
-        <a href="https://github.com/tsauffisseau" target="_blank">GitHub repo</a> ·
-        <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank">LinkedIn</a>
+    <div class="container case-header">
+      <div class="case-title">
+        <h1>Cassiopée — Alzheimer Detection from EEG</h1>
+        <p class="case-sub">CNN on <em>Recurrence Plots</em> from 19-channel EEG • end-to-end pipeline</p>
+
+        <div class="badges">
+          <span class="badge badge--gold">🏆 1st Prize</span>
+          <span class="badge">EEG</span>
+          <span class="badge">PyTorch</span>
+          <span class="badge">Signal Processing</span>
+        </div>
+
+        <div class="btns">
+          <a class="btn" href="https://github.com/tsauffisseau/cassiopee-eeg-alzheimer" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="/assets/posters/alzheimer_eeg_poster.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
+        </div>
       </div>
+
+      <!-- visuel (optionnel) -->
+      <figure class="case-visual">
+        <img src="/assets/posters/alzheimer_eeg_thumb.jpg" alt="Recurrence plots preview" loading="lazy">
+      </figure>
+    </div>
+
+    <div class="container case-body">
+      <article class="case-main">
+        <h2>Context</h2>
+        <p>
+          Early detection of Alzheimer’s disease from non-invasive EEG is challenging: signals are noisy,
+          non-stationary and class imbalance is common. We explore a representation-learning approach by
+          transforming windows of EEG into <strong>Recurrence Plots (RP)</strong> and training a lightweight CNN.
+        </p>
+
+        <h2>Approach</h2>
+        <ul>
+          <li>19 electrodes (10–20) → 20 s windows → RP images (200×200) per second.</li>
+          <li>Simple CNN (32/64) + BatchNorm + MaxPool → 128-FC → 1 logit (no sigmoid).</li>
+          <li><em>BCEWithLogitsLoss</em>, per-second scores then <strong>patient-level averaging</strong>.</li>
+          <li>Reproducible preprocessing & splits, metrics at window & patient level.</li>
+        </ul>
+
+        <h2>Results & highlights</h2>
+        <ul>
+          <li>Robust patient-level discrimination and interpretable RP patterns.</li>
+          <li>Clean code structure (dataset, transforms, model, train/eval scripts).</li>
+          <li>Project awarded <strong>1st prize</strong> (student challenge).</li>
+        </ul>
+
+        <h2>Resources</h2>
+        <p>
+          • <a class="alink" href="https://github.com/tsauffisseau/cassiopee-eeg-alzheimer" target="_blank" rel="noopener">Repository</a><br>
+          • <a class="alink" href="/assets/posters/alzheimer_eeg_poster.pdf" target="_blank" rel="noopener">Poster PDF</a>
+        </p>
+      </article>
+
+      <aside class="case-side">
+        <div class="meta-card">
+          <h3>Stack</h3>
+          <ul class="bullets">
+            <li>Python, PyTorch, NumPy</li>
+            <li>Matplotlib, OpenCV</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Data</h3>
+          <ul class="bullets">
+            <li>EEG 19-ch, 20s windows</li>
+            <li>Recurrence Plots 200×200</li>
+          </ul>
+        </div>
+        <div class="meta-card">
+          <h3>Deliverables</h3>
+          <ul class="bullets">
+            <li>Training pipeline</li>
+            <li>Per-second & patient scores</li>
+            <li>Poster & README</li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </main>
 
-  <footer class="footer"><div class="container"><p>© Théophile Sauffisseau</p></div></footer>
+  <footer class="footer">
+    <div class="container"><p>© Théophile Sauffisseau</p></div>
+  </footer>
 </body>
 </html>
