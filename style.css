@@ -137,6 +137,10 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
   gap:16px; margin:10px auto 0; width:100%; max-width:760px;
 }
 
+.item:focus-visible{
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
 
 /* tuile compacte centrée dans sa colonne */
 .sbtn-tile{
@@ -160,6 +164,64 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .footer .container{
   display:flex; justify-content:center; padding:22px; color:var(--muted); font-size:14px; text-align:center;
 }
+
+
+/* Centrage et respirations de base (si pas déjà défini) */
+.container{
+  width: min(100%, var(--container));
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Page “Resume” : titres & intro */
+.page-title{ margin: 22px 0 8px; font-size: 30px; font-weight: 700; }
+.page-intro{ margin: 0 0 18px; color: var(--muted); }
+
+/* Liste + item stylé (le lien PDF) */
+.list{ display: grid; gap: 14px; margin: 18px 0 24px; }
+.item{
+  text-decoration: none;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.item:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.20);
+  border-color: rgba(148,163,184,.28);
+}
+
+/* Composition interne du “card-link” */
+.item__icon{ font-size: 20px; line-height: 1; }
+.item__texts{ display: grid; }
+.item__title{ font-weight: 700; }
+.item__meta{ color: var(--muted); font-size: 14px; }
+.item__cta{
+  margin-left: auto;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  padding: 6px 10px; border-radius: 999px;
+}
+
+/* (Optionnel) petites “chips” de mots-clés */
+.chips{ list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.chips li{
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 6px 10px; font-size: 13px; color: var(--muted);
+  background: var(--bg);
+}
+
+/* Spécifique Resume : si jamais tu gardes une <a class="brand">, cache-la ici */
+.page-resume .brand{ display: none; }
+
+/* Optionnel : un peu d’air sous la topbar */
+.page .container{ padding-top: 10px; }
+
 
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
