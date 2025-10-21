@@ -39,9 +39,12 @@
         </div>
 
         <div class="btns">
-          <a class="btn" href="/assets/Poster_ESSI2025" target="_blank" rel="noopener">📜 Poster(PDF)</a>
+          <a class="btn" href="/assets/Poster_ESSI2025" target="_blank" rel="noopener">📄 Poster(PDF)</a>
             <a class="sbtn-tile" href="https://github.com/tsauffisseau/eeg_vision" target="_blank" rel="noopener">
-            <img src="/assets/icon-github-black.svg" alt="">
+
+            <img id="ghIcon" src="/assets/icon-github-white.svg" alt=""
+            data-src-dark="/assets/icon-github-white.svg"
+            data-src-light="/assets/icon-github-black.svg">
             <span class="sbtn-label">GitHub(repo)</span>
           </a>
         </div>
@@ -60,22 +63,21 @@
 
         <h2>Approach</h2>
         <ul>
-          <li>19 electrodes (10–20) → 20 s windows → RP images (200×200) per second.</li>
-          <li>Simple CNN (32/64) + BatchNorm + MaxPool → 128-FC → 1 logit (no sigmoid).</li>
-          <li><em>BCEWithLogitsLoss</em>, per-second scores then <strong>patient-level averaging</strong>.</li>
+          <li>19 electrodes (10–20) - 20 s windows - RP images (200×200) per second.</li>
+          <li>Simple CNN (32/64) + BatchNorm + MaxPool - 128-FC - 1 logit (no sigmoid).</li>
           <li>Reproducible preprocessing & splits, metrics at window & patient level.</li>
         </ul>
 
         <h2>Results & highlights</h2>
         <ul>
-          <li>Robust patient-level discrimination and interpretable RP patterns.</li>
-          <li>Clean code structure (dataset, transforms, model, train/eval scripts).</li>
+          <li>Coherent structure for good results for a first approach.</li>
           <li>Project awarded <strong>1st prize</strong> (student challenge).</li>
+          <li>Won the best <strong>Poster</strong> from the Colloque ESSI 2025.</li>
         </ul>
 
         <h2>Libraries used</h2>
         <ul>
-          <li>Numpy, Pandas , Open CV, Pytorch, Matplotlib</li>
+          <li>Pytorch, Numpy, Pandas, Open CV, Matplotlib</li>
         </ul>
       </article>
 
@@ -97,6 +99,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
