@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projet Cassiopée 2025 - Alzheimer Detection from EEG</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/style.css?v=7" />
+  <script defer src="/script.js"></script>
+</head>
+<body class="page-case page-case--cassiopee">
+  <header class="topbar">
+    <div class="container row only-nav">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a class="active" href="/projects/">My Projects</a>
+        <a href="/posters/">Posters</a>
+        <a href="/resume/">Resume</a>
+        <a href="/about/">About me</a>
+        <button class="toggle" id="themeToggle" title="Toggle theme">
+          <img id="themeIcon" src="/assets/icon-moon.svg" alt="theme" />
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container case-header">
+      <div class="case-title">
+        <h1>Projet Cassiopée 2025 - Alzheimer Detection from EEG</h1>
+        <p class="case-sub">CNN on <em>Recurrence Plots</em> from 19-channel EEG - End-to-end Pipeline</p>
+
+        <div class="badges">
+          <span class="badge badge--gold">🏆 1st Prize</span>
+          <span class="badge">Medical Engineering</span>
+          <span class="badge">PyTorch</span>
+          <span class="badge">Deep Learning</span>
+        </div>
+
+        <div class="btns">
+          <a class="btn" href="/assets/poster_ESSI2025.pdf" target="_blank" rel="noopener">📄 Poster(PDF)</a>
+            <a class="sbtn-tile" href="https://github.com/tsauffisseau/eeg_vision" target="_blank" rel="noopener">
+
+            <img id="ghIcon" src="/assets/icon-github-white.svg" alt=""
+            data-src-dark="/assets/icon-github-white.svg"
+            data-src-light="/assets/icon-github-black.svg">
+            <span class="sbtn-label">GitHub(repo)</span>
+          </a>
+        </div>
+      </div>
+
+  
+
+    <div class="container case-body">
+      <article class="case-main">
+        <h2>Context</h2>
+        <p>
+          Early detection of Alzheimer’s disease from non-invasive EEG is challenging: signals are noisy,
+          non-stationary and class imbalance is common. We explore a representation-learning approach by
+          transforming windows of EEG into <strong>Recurrence Plots (RP)</strong> and training a lightweight CNN.
+        </p>
+
+        <h2>Approach</h2>
+        <ul>
+          <li>19 electrodes (10–20) - 20 s windows - RP images (200×200) per second.</li>
+          <li>Simple CNN (32/64) + BatchNorm + MaxPool - 128-FC - 1 logit (no sigmoid).</li>
+          <li>Reproducible preprocessing & splits, metrics at window & patient level.</li>
+        </ul>
+
+        <h2>Results & highlights</h2>
+        <ul>
+          <li>Coherent structure for good results for a first approach.</li>
+          <li>Project awarded <strong>1st prize</strong> (student challenge).</li>
+          <li>Won the best <strong>Poster</strong> from the Colloque ESSI 2025.</li>
+        </ul>
+
+        <h2>Libraries used</h2>
+        <ul>
+          <li>Pytorch, Numpy, Pandas, Open CV, Matplotlib</li>
+        </ul>
+      </article>
+
+      <aside class="case-side">
+        <div class="meta-card">
+          <h3>Deliverables</h3>
+          <ul class="bullets">
+            <li>Training pipeline</li>
+            <li>Per-second & patient scores</li>
+            <li>Poster & README</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><p>© Théophile Sauffisseau</p></div>
+  </footer>
+</body>
+</html>
