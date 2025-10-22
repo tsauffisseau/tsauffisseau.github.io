@@ -166,48 +166,92 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 
-/* Centrage et respirations de base (si pas déjà défini) */
-.container{
-  width: min(100%, var(--container));
-  margin: 0 auto;
-  padding: 0 16px;
+
+
+
+
+
+
+/* Page Resume */
+.page-resume .brand{ display:none; }          /* au cas où */
+.page .container{ padding-top: 10px; }         /* même respiration que resume */
+
+
+
+/* Grille responsive : colonnes qui s'ajustent avec une largeur mini confortable */
+.resume-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* ← au lieu de repeat(3,1fr) */
+  gap: 16px;
+  margin: 18px 0 28px;
 }
 
-/* ===== Resume card (miniature + texte côte à côte) ===== */
-.item.item--resume{
+
+.resume-body{ flex: 1; min-width: 0; }       /* ← important pour que ça s'étale correctement */
+.resume-title{ font-size: 20px; line-height: 1.25; }  /* lisible, moins de retours à la ligne */
+.resume-meta{ font-size: 14px; color: var(--muted); }
+
+
+
+
+@media (max-width: 980px){
+  .resume-grid{ grid-template-columns: 1fr; }
+}
+
+/* Carte poster (style “lien carte”) */
+.resume-card{
   display: flex;
-  align-items: center;
   gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.resume-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.20);
+  border-color: rgba(148,163,184,.28);
+}
+.resume-card:focus-visible{
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
 }
 
-.item--resume .resume-thumb{
-  width: clamp(96px, 12vw, 140px); /* miniature responsive */
-  height: auto;
-  flex: 0 0 auto;                  /* pas d’étirement */
-  border-radius: 10px;
+/* Vignette */
+.resume-thumb{
+  width: 90px; height: 120px;      /* ratio A4 approximatif */
   object-fit: cover;
-  max-width: none;                  /* casse un éventuel img{max-width:100%} */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
-/* Si tu as .item img { width:100% } quelque part, écrase-le ici : */
-.item--resume img.resume-thumb{ width: auto !important; }
+/* Corps */
+.resume-body{ display: grid; gap: 4px; }
+.resume-title{ margin: 0; font-size: 18px; font-weight: 700; }
+.resume-meta{ margin: 0; color: var(--muted); font-size: 14px; }
 
-/* Corps texte + CTA */
-.item--resume .resume-body{ flex: 1 1 auto; min-width: 0; }
-.item--resume .resume-title{ font-size: 20px; font-weight: 700; margin: 0; }
-.item--resume .resume-meta{ color: var(--muted); font-size: 14px; margin: 0; }
-.item--resume .item__cta{ margin-left: auto; }
-
-/* Option mobile : miniature un peu plus petite */
-@media (max-width:560px){
-  .item--resume .resume-thumb{ width: 96px; }
+/* CTA à droite */
+.resume-cta{
+  margin-left: auto;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 999px;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width:980px){
-  .cards--home{grid-template-columns:1fr; max-width:620px}
-  .socials-grid{grid-template-columns:1fr}
-}
+
+
+
+
+
+
+
 
 /* Page Posters */
 .page-posters .brand{ display:none; }          /* au cas où */
