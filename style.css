@@ -18,6 +18,22 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
+
+/* Wrapper commun centré */
+.container{
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;           /* ← centre horizontalement */
+  padding: 0 16px;          /* petits paddings latéraux */
+}
+
+/* le <main class="page"> ne profite pas de .main{flex:1} */
+.page{ flex: 1; }
+
+/* (si besoin) la grille du case study avait perdu display:grid */
+.case-body{ display: grid; }
+
+
 /* Grain doux sur toute la page */
 body::after{
   content:"";
