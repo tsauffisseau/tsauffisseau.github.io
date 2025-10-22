@@ -18,7 +18,7 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-
+F
 /* Wrapper commun centré */
 .container{
   max-width: var(--container);
@@ -457,29 +457,26 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 
-/* Titre + icône à gauche */
-.ptitle{
-  display: flex;
-  align-items: center;
-  gap: 8px;               /* espace icône/texte */
-}
-.picon{
-  width: 18px;
-  height: 18px;
-  display: block;
+/* Titre + icône gauche */
+.ptitle{ display:flex; align-items:center; gap:8px; }
+.ptitle .picon{
+  width:18px; height:18px; flex:0 0 18px;
+  object-fit:contain; display:block;
 }
 
-/* Badge GitHub avec icône à droite */
-.pcta{
-  display: inline-flex;   /* garde le style pilule existant */
-  align-items: center;
-  gap: 8px;
-}
+/* Badge GitHub à droite */
+.pcta{ display:inline-flex; align-items:center; gap:8px; }
 .pcta .icon{
-  width: 16px;
-  height: 16px;
-  display: block;
+  width:16px; height:16px; flex:0 0 16px;
+  object-fit:contain; display:block;
 }
+
+/* Ceinture + bretelles : neutralise tout style "img { width:100% }" */
+.project-card .pheader img{ max-width:none; }
+
+
+
+  
 
 
 /* Carte cliquable */
