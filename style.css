@@ -456,6 +456,32 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
   max-width: 980px;   /* garde une ligne de lecture confortable */
 }
 
+
+/* Titre + icône à gauche */
+.ptitle{
+  display: flex;
+  align-items: center;
+  gap: 8px;               /* espace icône/texte */
+}
+.picon{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Badge GitHub avec icône à droite */
+.pcta{
+  display: inline-flex;   /* garde le style pilule existant */
+  align-items: center;
+  gap: 8px;
+}
+.pcta .icon{
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+
 /* Carte cliquable */
 .project-card{
   display: block;
