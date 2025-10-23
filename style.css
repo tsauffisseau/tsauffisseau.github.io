@@ -427,6 +427,57 @@ html[data-theme="light"] body::after{
   padding-top: 14px;
 }
 
+
+
+
+/* Titre + boutons alignés côte à côte, côté gauche */
+.page-header{
+  display:flex;
+  align-items:center;
+  gap:12px;              /* espace entre le titre et le bloc */
+  margin-bottom:12px;
+}
+
+/* Rangée des liens (collée au titre) */
+.page-header .socials-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Petit bouton “chip” avec icône + label */
+.sbtn-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--bg);
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
+}
+.sbtn-chip:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 18px rgba(0,0,0,.16);
+  border-color:rgba(148,163,184,.28);
+  opacity:0.95;
+}
+.sbtn-chip img{
+  width:18px; height:18px; display:block;
+}
+
+/* Sur mobile, si ça manque de place, passe à la ligne sous le titre */
+@media (max-width: 560px){
+  .page-header{ flex-wrap:wrap; }
+  .page-header .socials-top{ width:100%; }
+}
+
+
+
 /* liens discrets dans le texte */
 .alink{
   color: var(--text);
