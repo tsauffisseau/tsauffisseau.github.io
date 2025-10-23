@@ -20,6 +20,14 @@
   }
   refreshIcon();
 
+      // Switch Email (si tu utilises deux SVG)
+    const em = document.getElementById('emIcon');
+    if (em){ em.src = isDark ? em.dataset.srcDark : em.dataset.srcLight; }
+  }
+  refreshIcon();
+
+
+
   if (btn){
     btn.addEventListener('click', ()=>{
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
