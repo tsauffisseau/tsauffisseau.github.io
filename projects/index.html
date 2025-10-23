@@ -34,32 +34,36 @@
       <div class="project-list">
         <!-- ====== PROJECT CARD (duplique ce bloc) ====== -->
 
+<article class="project-card">
+  <div class="pheader">
+    <h3 class="ptitle">
+      <img class="picon" src="/assets/icon-brain.svg" alt="" aria-hidden="true">
+      Projet Cassiopée 2025 - Alzheimer Detection from EEG
+    </h3>
 
-            <a class="project-card" href="/projects/cassiopee/">
-          <div class="pheader">
-            <h3 class="ptitle">
-              <img class="picon" src="/assets/icon-brain.svg" alt="" aria-hidden="true">
-              Projet Cassiopée 2025 - Alzheimer Detection from EEG
-            </h3>
-        
-            <!-- pill at the right -->
-            <span class="pcta">
-              <img class="icon" id="ghIcon"
-                   src="/assets/icon-github-white.svg" alt=""
-                   data-src-dark="/assets/icon-github-white.svg"
-                   data-src-light="/assets/icon-github-black.svg">
-              <span class="sbtn-label">repo</span>
-            </span>
-          </div>
-        
-          <p class="pdesc">
-            CNN on Recurrence Plots from 19-channel EEG. Window-level scores and patient-level averaging,
-            reproducible preprocessing & training pipeline (PyTorch).
-          </p>
-          <ul class="ptags">
-            <li>PyTorch</li><li>EEG</li><li>Signal Processing</li><li>Computer Vision</li>
-          </ul>
-        </a>
+    <!-- repo badge is now a real link -->
+    <a class="pcta"
+       href="https://github.com/tsauffisseau/cassiopee_repo" 
+       target="_blank" rel="noopener">
+      <img id="ghIcon" src="/assets/icon-github-white.svg" alt=""
+           data-src-dark="/assets/icon-github-white.svg"
+           data-src-light="/assets/icon-github-black.svg">
+      <span class="sbtn-label">repo</span>
+    </a>
+  </div>
+
+  <p class="pdesc">
+    CNN on Recurrence Plots from 19-channel EEG. Window-level scores and patient-level averaging,
+    reproducible preprocessing &amp; training pipeline (PyTorch).
+  </p>
+
+  <ul class="ptags">
+    <li>PyTorch</li><li>EEG</li><li>Signal Processing</li><li>Computer Vision</li>
+  </ul>
+
+  <!-- invisible link that makes the whole card (except the repo badge) clickable -->
+  <a class="stretched-link" href="/projects/cassiopee/" aria-label="Open case page"></a>
+  </article>
 
 
 
@@ -132,6 +136,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
