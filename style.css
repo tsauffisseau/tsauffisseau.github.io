@@ -4,12 +4,17 @@
   --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2;
   --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
   --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  
+  --container: 980px;
 }
 html[data-theme="light"]{
   /* LIGHT */
   --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569;
   --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
+   
+
 }
+
 
 html,body{margin:0;padding:0}
 body{
@@ -18,7 +23,17 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-F
+
+
+
+
+
+
+
+
+
+
+
 /* Wrapper commun centré */
 .container{
   max-width: var(--container);
@@ -27,12 +42,17 @@ F
   padding: 0 16px;          /* petits paddings latéraux */
 }
 
+
+/* Respiration sous la topbar pour toutes les pages */
+.page .container{ padding-top: 10px; }
+
+
+
 /* le <main class="page"> ne profite pas de .main{flex:1} */
 .page{ flex: 1; }
 
 /* (si besoin) la grille du case study avait perdu display:grid */
 .case-body{ display: grid; }
-
 
 /* Grain doux sur toute la page */
 body::after{
@@ -52,10 +72,17 @@ html[data-theme="light"] body::after{
   opacity:.04;
 }
 
-/* Fallback ultra-sobre si un jour le blend pose souci (désactive si inutile) */
-/*
-body::after{ mix-blend-mode: normal; opacity:.03; }
-*/
+
+
+
+
+
+
+
+
+
+
+
 
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
@@ -109,6 +136,14 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 @media (max-width: 1020px){
   .toggle{ right: 16px; }
 }
+
+
+
+
+
+
+
+
 
 /* ---------- Hero ---------- */
 .main{flex:1}
@@ -188,10 +223,16 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 
 
 
+
+
+
+
+
+
+/*__________________________________*/
+
 /* Page Resume */
 .page-resume .brand{ display:none; }          /* au cas où */
-.page .container{ padding-top: 10px; }         /* même respiration que resume */
-
 
 
 /* Grille responsive : colonnes qui s'ajustent avec une largeur mini confortable */
@@ -202,13 +243,9 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
   margin: 18px 0 28px;
 }
 
-
 .resume-body{ flex: 1; min-width: 0; }       /* ← important pour que ça s'étale correctement */
 .resume-title{ font-size: 20px; line-height: 1.25; }  /* lisible, moins de retours à la ligne */
 .resume-meta{ font-size: 14px; color: var(--muted); }
-
-
-
 
 @media (max-width: 980px){
   .resume-grid{ grid-template-columns: 1fr; }
@@ -269,9 +306,20 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 
 
 
+
+
+
+
+
+
+
+/*__________________________________*/
+
+
+
 /* Page Posters */
 .page-posters .brand{ display:none; }          /* au cas où */
-.page .container{ padding-top: 10px; }         /* même respiration que resume */
+
 
 
 
@@ -343,9 +391,17 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 
+
+
+
+
+
+
+
+
+/*__________________________________*/
 /* ===== About ===== */
 .page-about .brand{ display:none; }          /* sécurité si jamais */
-.page .container{ padding-top: 10px; }
 
 
 
@@ -389,16 +445,17 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 
 .page-about .about-pp{
   display:block;
+  max-width:260px;   /* ← la vraie limite */
   width:100%;
-  height:auto;          /* pas d'étirement vertical */
+  height:auto;
   border-radius:16px;
   object-fit:cover;
   border:1px solid var(--border);
   box-shadow:var(--shadow);
 }
 
-/* (option) centre l'image dans la colonne */
-.page-about .about-side picture{ margin: 0 auto; }
+/* Centrer l’image dans la colonne de droite (optionnel) */
+.page-about .about-side{ justify-items:center; }
 
 .about-side{ display: grid; gap: 14px; align-content: start; }
 
@@ -444,9 +501,24 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .tcontent{ line-height: 1.55; }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*__________________________________*/
+
 /* ===== Projects ===== */
 .page-projects .brand{ display:none; }
-.page .container{ padding-top: 10px; }
+
 
 /* Liste : cartes pleine largeur, respirées */
 .project-list{
@@ -475,7 +547,9 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 .project-card .pheader img{ max-width:none; }
 
 
-
+.page-projects .project-list{
+  grid-template-columns: 1fr !important;
+}
   
 
 
@@ -532,11 +606,26 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 
-}
+
 @media (max-width: 600px){
   .ptitle{ font-size: 18px; }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*__________________________________*/
 /* ===== Boutons & badges (réutilisables) ===== */
 .btns{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0; }
 .btn{
@@ -554,12 +643,21 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 .badge--gold{ color:#fbbf24; border-color:#433; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*__________________________________*/
 /* ===== Case study (Cassiopée) ===== */
-
-
-
-/* un peu d'air latéral */
-.page-case .container{ padding: 0 28px; }
 
 /* HEADER sans image, centré */
 .case-header{
@@ -602,6 +700,20 @@ body::after{ mix-blend-mode: normal; opacity:.03; }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*__________________________________*/
 /* ===== Creations ===== */
 .page-creations .brand{ display:none; }
 .center-cta{ text-align:center; margin:14px 0; }
