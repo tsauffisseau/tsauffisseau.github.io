@@ -158,26 +158,6 @@ html[data-theme="light"] body::after{
 .hero__mail{margin:0 0 10px; color:var(--muted)}
 
 
-/* Lien mail – même couleur que le texte, pas de violet */
-.mail-link,
-.mail-link:link,
-.mail-link:visited{
-  color: var(--text);                 /* ou var(--muted) si tu le veux plus discret */
-  text-decoration-line: underline;    /* garde un soulignement si tu veux */
-  text-decoration-style: dotted;      /* pointillé comme ailleurs */
-  text-decoration-color: currentColor;
-  text-underline-offset: 3px;
-}
-
-.mail-link:hover{
-  opacity: .95;                       /* léger hover, sans changer la couleur */
-}
-
-.mail-link:focus-visible{
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
 
 
 
@@ -923,4 +903,24 @@ html[data-theme="light"] body::after{
 
 
 
+/* Mail discret sous le nom dans le hero */
+.mail-link,
+.mail-link:link,
+.mail-link:visited{
+  color: var(--muted);           /* gris léger */
+  text-decoration: none;         /* pas de soulignement */
+  font-size: 16px;               /* plus petit – ajuste si besoin */
+  line-height: 1.4;
+}
 
+.mail-link:hover{
+  color: var(--text);            /* un peu plus lisible au survol (optionnel) */
+  text-decoration: none;
+  opacity: .95;
+}
+
+.mail-link:focus-visible{        /* accessibilité clavier */
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
