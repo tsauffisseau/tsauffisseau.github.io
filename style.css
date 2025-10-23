@@ -454,6 +454,49 @@ html[data-theme="light"] body::after{
   box-shadow:var(--shadow);
 }
 
+
+
+/* Header with icons next to the page title */
+.page-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+/* Row of small icon buttons */
+.socials-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Compact square buttons for icons-only */
+.sbtn-mini{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px; height:36px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  text-decoration:none;
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.sbtn-mini:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 18px rgba(0,0,0,.16);
+  border-color:rgba(148,163,184,.28);
+}
+
+/* Icon size */
+.sbtn-mini img{
+  width:18px; height:18px; display:block;
+}
+
+
+
 /* Centrer l’image dans la colonne de droite (optionnel) */
 .page-about .about-side{ justify-items:center; }
 
