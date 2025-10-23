@@ -428,24 +428,25 @@ html[data-theme="light"] body::after{
 }
 
 
-
-
-/* Titre + boutons alignés côte à côte, côté gauche */
+/* ===== Page header (titre + icônes) ===== */
 .page-header{
   display:flex;
   align-items:center;
-  gap:12px;              /* espace entre le titre et le bloc */
+  justify-content:center;   /* centré */
+  gap:12px;
   margin-bottom:12px;
 }
-
-/* Rangée des liens (collée au titre) */
+.page-header .page-title{
+  margin:0;
+  flex:0 0 auto;            /* le H1 ne pousse pas les icônes */
+}
 .page-header .socials-top{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-/* Bouton “chip” icône + label */
+/* ===== Bouton “chip” (icône + label) ===== */
 .sbtn-chip{
   display:inline-flex;
   align-items:center;
@@ -464,94 +465,21 @@ html[data-theme="light"] body::after{
   transform:translateY(-1px);
   box-shadow:0 8px 18px rgba(0,0,0,.16);
   border-color:rgba(148,163,184,.28);
-  opacity:0.95;
+  opacity:.95;
 }
 .sbtn-chip img{
-  width:18px !important;
-  height:18px !important;
-  max-width:none;       /* ceinture et bretelles contre img{width:100%} */
+  width:18px;
+  height:18px;
+  max-width:none;    /* neutralise un éventuel img{width:100%} global */
   display:block;
   flex:0 0 auto;
 }
 
-/* Sur mobile, si ça manque de place, passe à la ligne sous le titre */
-@media (max-width: 560px){
+/* ===== Responsive ===== */
+@media (max-width:560px){
   .page-header{ flex-wrap:wrap; }
-  .page-header .socials-top{ width:100%; }
+  .page-header .socials-top{ width:100%; justify-content:center; }
 }
-
-
-
-/* liens discrets dans le texte */
-.alink{
-  color: var(--text);
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
-}
-
-/* aside */
-
-
-.page-about .about-side picture{
-  display:block;
-  width:100%;
-  max-width:260px;      /* ← taille visuelle voulue */
-}
-
-.page-about .about-pp{
-  display:block;
-  max-width:260px;   /* ← la vraie limite */
-  width:100%;
-  height:auto;
-  border-radius:16px;
-  object-fit:cover;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-}
-
-
-
-
-
-/* Titre + boutons alignés côte à côte, côté gauche */
-.page-header{
-  display:flex;
-  align-items:center;
-  gap:12px;              /* espace entre le titre et le bloc */
-  margin-bottom:12px;
-}
-
-/* Row of small icon buttons */
-.socials-top{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-/* Compact square buttons for icons-only */
-.sbtn-mini{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:36px; height:36px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:var(--bg);
-  text-decoration:none;
-  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.sbtn-mini:hover{
-  transform:translateY(-1px);
-  box-shadow:0 8px 18px rgba(0,0,0,.16);
-  border-color:rgba(148,163,184,.28);
-}
-
-/* Icon size */
-.sbtn-mini img{
-  width:18px; height:18px; display:block;
-}
-
-
 
 
 
@@ -592,6 +520,15 @@ html[data-theme="light"] body::after{
 }
 .btn-link:hover{ transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,.16); }
 .btn-link:focus-visible{ outline: 2px solid var(--blue); outline-offset: 3px; }
+
+
+
+
+
+
+
+
+
 
 /* timeline */
 .timeline{ list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 10px; }
