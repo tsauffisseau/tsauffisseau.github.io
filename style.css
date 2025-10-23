@@ -445,7 +445,7 @@ html[data-theme="light"] body::after{
   gap:10px;
 }
 
-/* Petit bouton “chip” avec icône + label */
+/* Bouton “chip” icône + label */
 .sbtn-chip{
   display:inline-flex;
   align-items:center;
@@ -467,7 +467,11 @@ html[data-theme="light"] body::after{
   opacity:0.95;
 }
 .sbtn-chip img{
-  width:18px; height:18px; display:block;
+  width:18px !important;
+  height:18px !important;
+  max-width:none;       /* ceinture et bretelles contre img{width:100%} */
+  display:block;
+  flex:0 0 auto;
 }
 
 /* Sur mobile, si ça manque de place, passe à la ligne sous le titre */
@@ -507,12 +511,13 @@ html[data-theme="light"] body::after{
 
 
 
-/* Header with icons next to the page title */
+
+
+/* Titre + boutons alignés côte à côte, côté gauche */
 .page-header{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  gap:12px;              /* espace entre le titre et le bloc */
   margin-bottom:12px;
 }
 
@@ -545,6 +550,10 @@ html[data-theme="light"] body::after{
 .sbtn-mini img{
   width:18px; height:18px; display:block;
 }
+
+
+
+
 
 
 
