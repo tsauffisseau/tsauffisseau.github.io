@@ -488,6 +488,8 @@ html[data-theme="light"] body::after{
 /* Centrer l’image dans la colonne de droite (optionnel) */
 .page-about .about-side{ justify-items:center; }
 
+
+
 .about-side{ display: grid; gap: 14px; align-content: start; }
 
 .aside-card{
@@ -523,7 +525,23 @@ html[data-theme="light"] body::after{
 
 
 
+/* Image de la colonne droite : taille contrôlée et centrée */
+.page-about .about-side picture{
+  display:block;
+  width:100%;
+  max-width:260px;     /* ← ajuste ici si tu veux plus grand (ex: 320px) */
+  margin:0 auto;
+}
 
+.page-about .about-pp{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:16px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
 
 
 
