@@ -835,3 +835,49 @@ html[data-theme="light"] body::after{
   border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow);
 }
 
+
+
+/* ====== ABOUT HEADER: titre à gauche + liens CENTRÉS (override) ====== */
+.page-about .page-header {
+  position: relative !important;
+  display: block !important;
+  min-height: 56px;
+  margin-bottom: 14px;
+}
+
+.page-about .page-header .page-title {
+  margin: 0;
+  text-align: left;
+}
+
+.page-about .page-header .socials-top {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50%;
+  transform: translate(-50%, -50%) !important; /* centre PARFAITEMENT */
+  display: flex;
+  align-items: center;
+  gap: 16px;                 /* léger + d’espace entre les boutons */
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Mobile: on repasse en pile centrée */
+@media (max-width: 640px){
+  .page-about .page-header {
+    display: grid !important;
+    justify-items: center;
+    gap: 10px;
+  }
+  .page-about .page-header .socials-top {
+    position: static !important;
+    transform: none !important;
+  }
+}
+
+
+
+
+
+
+
