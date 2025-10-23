@@ -543,7 +543,11 @@ html[data-theme="light"] body::after{
   box-shadow:var(--shadow);
 }
 
+/* Empêche toute image de dépasser son conteneur dans les pages */
+.page img{ max-width:100%; height:auto; }
 
+/* Si un style externe forçait la largeur de l'image, on verrouille aussi ici */
+.page-about .about-pp{ max-width:260px; }
 
 
 
