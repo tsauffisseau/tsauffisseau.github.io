@@ -86,56 +86,59 @@ html[data-theme="light"] body::after{
 
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
-/* ---------- Topbar ---------- */
+
+
+/* ===== Topbar hauteur fixe partout ===== */
+:root{
+  --topbar-h: 64px;          /* ajuste 56–72px selon ton goût */
+}
+
 .topbar{
-  position:sticky; top:0; z-index:10;
-  background:var(--bg); border-bottom:1px solid var(--border);
-  margin-top:12px;                 /* un peu d’espace au-dessus */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--topbar-h);   /* ← hauteur fixe */
+  margin-top: 0;             /* évite des variations de marge */
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
+
 .topbar .row.only-nav{
-  display:flex; justify-content:center; padding:16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--topbar-h);   /* ← même hauteur que la barre */
+  padding: 0;                /* on ne dépend plus d’un padding variable */
 }
-/* nav centrée, JAMAIS soulignée */
-.nav{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
-.nav a{color:var(--muted); font-weight:600; text-decoration:none}
-.nav a:hover{color:var(--text)}
-.nav a.active{color:var(--text)}
 
-/* largeur logique du container (déjà 980px chez toi) */
-:root{ --container: 980px; }
+/* Liens de nav : une seule ligne */
+.nav{
+  display: flex;
+  align-items: center;
+  gap: 24px;                 /* réduit un peu le gap pour tenir dans 1 ligne */
+  flex-wrap: nowrap;         /* ← empêche le retour à la ligne */
+  white-space: nowrap;       /* idem */
+}
 
-/* bouton thème : pastille grise SEULEMENT AU SURVOL, légèrement à droite de la page */
+/* Bouton thème : centré verticalement à l’intérieur de la barre */
 .toggle{
   position: fixed;
-  top: 18px;
-  right: calc((100vw - var(--container))/2 + 0px); /* aligné sur le bord droit du container */
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--text);
-  border-radius: 999px;
-  padding: 6px 10px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 20;
+  top: calc((var(--topbar-h) - 32px) / 2); /* 32px ≈ hauteur du bouton */
+  right: calc((100vw - var(--container))/2 + 0px);
 }
 
-.toggle:hover{
-  background: rgba(148,163,184,.12);  /* gris très léger au hover */
-  border-color: var(--border);
+/* Petits écrans : garder une hauteur fixe mais autoriser le défilement horizontal si ça ne tient pas */
+@media (max-width: 900px){
+  .nav{ gap: 18px; }
+}
+@media (max-width: 720px){
+  .topbar .row.only-nav{ overflow-x: auto; }
+  .nav{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
-.toggle img{
-  width: 16px;
-  height: 16px;
-  display: block;
-}
 
-/* Sur petits écrans, repli au bord de l’écran */
-@media (max-width: 1020px){
-  .toggle{ right: 16px; }
-}
+
+
 
 
 
