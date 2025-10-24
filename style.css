@@ -745,33 +745,37 @@ html[data-theme="light"] body::after{
 
 
 
-
-/*__________________________________*/
 /* ===== Case study (Cassiopée) ===== */
 
-/* HEADER sans image, centré */
+/* HEADER sans image – aligné à GAUCHE dans le container */
 .case-header{
-  display: block;              /* pas de grille ici */
-  max-width: 980px;
-  margin: 8px auto 20px;       /* centre le header */
+  display:block;
+  max-width:980px;
+  margin:8px 0 20px;        /* ← plus de auto ici */
 }
+
 .case-title{
-  max-width: 860px;
-  margin: 0 auto;              /* centre la colonne texte */
+  max-width:860px;
+  margin-left:0;            /* ← aligne à gauche */
+  margin-right:auto;        /* garde la limite à 860px */
+  text-align:left;
 }
 .case-title h1{ margin:0 0 6px; font-size:30px; }
 .case-sub{ margin:0; color:var(--muted); }
 .badges{ margin-top:8px; }
 .btns{ margin-top:12px; }
 
-/* CORPS : main + side, centré */
+/* CORPS : main + side – aligné à GAUCHE dans le container */
 .case-body{
-  max-width: 1100px;           /* largeur totale */
-  margin: 0 auto 28px;         /* centre la grille */
-  gap: 28px;
-  grid-template-columns: minmax(640px, 1fr) 340px;
+  max-width:1100px;
+  margin-left:0;            /* ← aligne à gauche */
+  margin-right:auto;
+  margin-bottom:28px;
+  gap:28px;
+  grid-template-columns:minmax(640px,1fr) 340px;
 }
-.case-main{ max-width: 860px; }
+
+.case-main{ max-width:860px; }
 .case-main h2{ margin:10px 0 2px; font-size:20px; }
 
 .case-side{ display:grid; gap:14px; align-content:start; }
@@ -786,11 +790,8 @@ html[data-theme="light"] body::after{
 
 /* Responsive */
 @media (max-width:980px){
-  .case-body{ grid-template-columns:1fr; max-width: 860px; }
+  .case-body{ grid-template-columns:1fr; max-width:860px; }
 }
-
-
-
 
 
 
