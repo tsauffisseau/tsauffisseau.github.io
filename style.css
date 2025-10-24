@@ -945,3 +945,29 @@ html[data-theme="light"] body::after{
 /* 4) Petit bonus: l’intro sous le h1 a la même marge partout */
 .page-intro{ margin: 0 0 14px; color: var(--muted); }
 
+
+
+/* GitHub chip : même rendu qu'une tuile + pas de violet */
+.pcta,
+.pcta:link,
+.pcta:visited{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--bg);
+  color:var(--text);          /* neutralise le violet des liens */
+  text-decoration:none;       /* pas de soulignement */
+  font-weight:600;
+  transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.pcta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 18px rgba(0,0,0,.16);
+  border-color:rgba(148,163,184,.28);
+}
+.pcta .icon{ width:18px; height:18px; display:block; }
+
+
