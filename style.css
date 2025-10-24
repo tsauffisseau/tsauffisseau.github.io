@@ -1058,14 +1058,14 @@ html[data-theme="light"] body::after{
   line-height: 1;        /* remove extra font slack */
   display: flex;
   align-items: center;
-  transform: translateY(1px);   /* ← micro-nudge; try 0px/1px/2px */
+  transform: translateY(2px);   /* ← micro-nudge; try 0px/1px/2px */
 }
 
 .page-about .page-header .socials-top{
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); /* center chips on the same midline */
+  transform: translate(-51%, -49%); /* center chips on the same midline */
   display: flex;
   align-items: center;
   gap: 14px;
