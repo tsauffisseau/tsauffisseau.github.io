@@ -6,10 +6,9 @@
   --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   --container: 980px;
+  --topbar-h: 72px;        /* hauteur identique partout */
+  --nav-font-size: 16px; 
 
-  /* Topbar unifiée */
-  --topbar-h: 72px;           /* même hauteur partout */
-  --nav-font-size: 18px;      /* taille de texte des liens */
 }
 
 html[data-theme="light"]{
@@ -17,6 +16,12 @@ html[data-theme="light"]{
   --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569;
   --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
 }
+
+
+
+/* Icône du toggle un poil plus grande (comme Home) */
+.toggle img{ width:18px; height:18px; }
+
 
 html { scrollbar-gutter: stable; }
 @supports not (scrollbar-gutter: stable) { html { overflow-y: scroll; } }
