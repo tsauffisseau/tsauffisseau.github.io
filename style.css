@@ -1043,3 +1043,35 @@ html[data-theme="light"] body::after{
   padding-top: 18px;            /* même “respiration” partout */
 }
 
+
+/* About header: perfectly align title and chips on one line */
+.page-about .page-header{
+  position: relative;
+  display: flex;
+  align-items: center;   /* centers the H1 vertically */
+  height: 72px;          /* same band height everywhere */
+  margin-bottom: 14px;
+}
+
+.page-about .page-header .page-title{
+  margin: 0;
+  line-height: 1;        /* remove extra font slack */
+  display: flex;
+  align-items: center;
+  transform: translateY(1px);   /* ← micro-nudge; try 0px/1px/2px */
+}
+
+.page-about .page-header .socials-top{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* center chips on the same midline */
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+/* make sure chips themselves don't add extra height */
+.pcta, .pcta .sbtn-label{ line-height: 1; }
+
