@@ -4,27 +4,22 @@
   --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2;
   --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
   --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  
+
   --container: 980px;
-  --topbar-h: 72px;  
+
+  /* Topbar unifiée */
+  --topbar-h: 72px;           /* même hauteur partout */
+  --nav-font-size: 18px;      /* taille de texte des liens */
 }
-
-
-
 
 html[data-theme="light"]{
   /* LIGHT */
   --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569;
   --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
-   
-
 }
 
-html { scrollbar-gutter: stable; }    
-/* Fallback pour navigateurs sans scrollbar-gutter (ex: Safari) */
-@supports not (scrollbar-gutter: stable) {
-  html { overflow-y: scroll; }
-}
+html { scrollbar-gutter: stable; }
+@supports not (scrollbar-gutter: stable) { html { overflow-y: scroll; } }
 
 html,body{margin:0;padding:0}
 body{
@@ -33,36 +28,19 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* Wrapper commun centré */
 .container{
   max-width: var(--container);
   width: 100%;
-  margin: 0 auto;           /* ← centre horizontalement */
-  padding: 0 16px;          /* petits paddings latéraux */
+  margin: 0 auto;
+  padding: 0 16px;
 }
-
 
 /* Respiration sous la topbar pour toutes les pages */
 .page .container{ padding-top: 10px; }
 
-
-
 /* le <main class="page"> ne profite pas de .main{flex:1} */
 .page{ flex: 1; }
-
-/* (si besoin) la grille du case study avait perdu display:grid */
-.case-body{ display: grid; }
 
 /* Grain doux sur toute la page */
 body::after{
@@ -73,33 +51,14 @@ body::after{
     radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px);
   background-size: 3px 3px, 4px 4px;
   background-position: 0 0, 10px 10px;
-  opacity:.05;                   /* force de base (dark) */
-  mix-blend-mode: overlay;       /* joli en dark & light */
+  opacity:.05;
+  mix-blend-mode: overlay;
 }
+html[data-theme="light"] body::after{ opacity:.04; }
 
-/* Un soupçon plus faible en thème clair (optionnel) */
-html[data-theme="light"] body::after{
-  opacity:.04;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ===== Topbar unifiée ===== */
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
-/* ===== Topbar propre, même hauteur partout ===== */
-:root{ --topbar-h: 72px; }  /* 56–72px selon ton goût */
-
-/* La barre */
 .topbar{
   position: sticky; top: 0; z-index: 10;
   height: var(--topbar-h);
@@ -109,25 +68,32 @@ html[data-theme="light"] body::after{
 
 /* Contenu centré verticalement, sans padding qui bouge */
 .topbar .row.only-nav{
-  position: relative;              /* pour placer le toggle dedans */
+  position: relative;
   display: flex; justify-content: center; align-items: center;
   height: var(--topbar-h);
   padding: 0;
 }
 
-/* Nav horizontale, pas d'underline violet */
+/* Liens de nav : même typo et même zone cliquable partout */
 .nav{ display:flex; gap:28px; align-items:center; flex-wrap:nowrap; }
 .nav a{
-  color: var(--muted);
-  text-decoration: none;           /* fini le souligné violet */
+  display: inline-flex;
+  align-items: center;                 /* centrage vertical parfait */
+  height: var(--topbar-h);             /* zone cliquable = hauteur barre */
+  padding: 0 6px;                      /* léger espace latéral */
+  font-family: var(--font);
   font-weight: 600;
+  font-size: var(--nav-font-size);     /* <- uniformise la taille */
+  line-height: 1;                      /* retire le “slack” vertical */
+  color: var(--muted);
+  text-decoration: none;
 }
 .nav a:hover,
 .nav a.active{ color: var(--text); }
 
 /* Bouton thème plaqué à droite, centré verticalement */
 .toggle{
-  position: absolute;              /* dans la topbar, pas fixed */
+  position: absolute;
   right: 12px;
   top: 50%; transform: translateY(-50%);
   background: transparent;
@@ -150,8 +116,6 @@ html[data-theme="light"] body::after{
   .topbar .row.only-nav{ overflow-x:auto; }
   .nav{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 }
-
-
 
 
 
