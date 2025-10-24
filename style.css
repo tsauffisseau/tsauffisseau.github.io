@@ -418,28 +418,30 @@ html[data-theme="light"] body::after{
 
 
 
-* ===== About ===== */
+/* ===== About (clean) ===== */
 .page-about .brand{ display:none; }
 
-/* Header About : titre + chips parfaitement alignés */
+/* Titre + chips parfaitement alignés sur une même ligne */
 .page-about .page-header{
   position: relative;
   display: flex;
-  align-items: center;     /* centre verticalement le H1 */
-  height: 72px;            /* même bande partout (ajuste si besoin) */
+  align-items: center;      /* centre verticalement le H1 */
+  height: 72px;             /* même bande que Home */
   margin: 18px 0 14px;
 }
 .page-about .page-header .page-title{
   margin: 0;
-  line-height: 1;          /* supprime le “slack” vertical */
+  line-height: 1;           /* supprime le slack vertical */
   display: flex;
   align-items: center;
 }
+
+/* Bloc de liens centré sur la même médiane que le H1 */
 .page-about .page-header .socials-top{
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);  /* même médiane que le H1 */
+  transform: translate(-50%, calc(-50% - 1px)); /* micro-nudge ↑ 1px */
   display: flex;
   align-items: center;
   gap: 14px;
@@ -448,12 +450,10 @@ html[data-theme="light"] body::after{
 }
 
 /* Les chips ne doivent pas ajouter de hauteur */
-.pcta, .pcta .sbtn-label{ line-height: 1; }
+.pcta{ display:inline-flex; align-items:center; height:40px; padding:0 14px; }
+.pcta .sbtn-label{ line-height: 1; }
 
-/* Intro sous le H1 (optionnel, pratique) */
-.page-intro{ margin: 0 0 14px; color: var(--muted); }
-
-/* Mobile : on repasse en pile centrée */
+/* Mobile : pile centrée */
 @media (max-width: 640px){
   .page-about .page-header{
     display: grid;
@@ -466,7 +466,6 @@ html[data-theme="light"] body::after{
     transform: none;
   }
 }
-
 
 
 
@@ -536,44 +535,6 @@ html[data-theme="light"] body::after{
 
 
 
-/* ===== Header About : titre à gauche + liens centrés HORIZONTALEMENT ===== */
-.page-header{
-  position: relative;                 /* permet de centrer le bloc de liens */
-  display: flex;
-  align-items: center;
-  min-height: 56px;                   /* hauteur visuelle du bandeau */
-  margin-bottom: 14px;
-}
-
-.page-header .page-title{
-  margin: 0;                          /* reste aligné à gauche */
-  text-align: left;
-}
-
-/* Groupe de liens centré par rapport au container, peu importe la largeur du H1 */
-.page-header .socials-top{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);        /* ← centrage horizontal parfait */
-  display: flex;
-  align-items: center;
-  gap: 14px;                          /* léger espacement entre boutons */
-  white-space: nowrap;
-  z-index: 1;                         /* passe au-dessus des éléments voisins si besoin */
-}
-
-/* Responsive : en-dessous de 640px on repasse en pile centrée */
-@media (max-width: 640px){
-  .page-header{
-    display: grid;
-    justify-items: center;
-    gap: 10px;
-  }
-  .page-header .socials-top{
-    position: static;
-    transform: none;
-  }
-}
 
 
 
