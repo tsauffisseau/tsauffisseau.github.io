@@ -15,6 +15,11 @@ html[data-theme="light"]{
 
 }
 
+html { scrollbar-gutter: stable; }    
+/* Fallback pour navigateurs sans scrollbar-gutter (ex: Safari) */
+@supports not (scrollbar-gutter: stable) {
+  html { overflow-y: scroll; }
+}
 
 html,body{margin:0;padding:0}
 body{
@@ -971,10 +976,5 @@ html[data-theme="light"] body::after{
 .pcta .icon{ width:18px; height:18px; display:block; }
 
 
-/* Réserve toujours la place du scrollbar pour éviter le shift */
-html { scrollbar-gutter: stable both-edges; }
 
-/* Fallback pour navigateurs sans scrollbar-gutter (ex: Safari) */
-@supports not (scrollbar-gutter: stable) {
-  html { overflow-y: scroll; }
-}
+
