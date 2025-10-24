@@ -976,5 +976,38 @@ html[data-theme="light"] body::after{
 .pcta .icon{ width:18px; height:18px; display:block; }
 
 
+/* About header: lock both on the same horizontal line */
+.page-about .page-header{
+  position: relative;
+  display: flex;
+  align-items: center;   /* center the H1 vertically */
+  height: 64px;          /* fixed band height; tweak 60–68px if you want */
+  margin-bottom: 14px;
+}
+
+.page-about .page-header .page-title{
+  margin: 0;
+  line-height: 1;        /* removes extra vertical slack */
+}
+
+/* Chip links perfectly centered in the same band */
+.page-about .page-header .socials-top{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);  /* same midline as the H1 */
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+/* — Optional micro-adjust (use one of these) — */
+/* If the chips look 1–2px high/low, nudge them: */
+.page-about .page-header .socials-top{
+  transform: translate(-50%, calc(-50% + 1px)); /* try 1px or 2px */
+}
+/* Or nudge the title instead: */
+/* .page-about .page-header .page-title{ transform: translateY(1px); } */
 
 
