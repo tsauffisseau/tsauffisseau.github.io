@@ -97,7 +97,7 @@ html[data-theme="light"] body::after{
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
 /* ===== Topbar propre, même hauteur partout ===== */
-:root{ --topbar-h: 64px; }  /* 56–72px selon ton goût */
+:root{ --topbar-h: 72px; }  /* 56–72px selon ton goût */
 
 /* La barre */
 .topbar{
@@ -450,7 +450,7 @@ html[data-theme="light"] body::after{
 }
 
 /* Les chips ne doivent pas ajouter de hauteur */
-.pcta{ display:inline-flex; align-items:center; height:40px; padding:0 14px; }
+.pcta{ display:inline-flex; align-items:center; height:auto; padding:0 10px; }
 .pcta .sbtn-label{ line-height: 1; }
 
 /* Mobile : pile centrée */
