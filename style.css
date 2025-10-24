@@ -1075,3 +1075,26 @@ html[data-theme="light"] body::after{
 /* make sure chips themselves don't add extra height */
 .pcta, .pcta .sbtn-label{ line-height: 1; }
 
+
+
+/* Cassiopée: remettre le centrage du container */
+.case-header{
+  max-width: 980px;
+  margin: 8px auto 20px;     /* ← auto re-centre */
+}
+
+.case-body{
+  max-width: 1100px;
+  margin: 0 auto 28px;       /* ← auto re-centre */
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(640px, 1fr) 340px;
+}
+
+/* Optionnel: le bloc titre reste aligné à gauche mais limité en largeur */
+.case-title{
+  max-width: 860px;
+  margin: 0;                 /* pas besoin d'auto ici */
+  text-align: left;
+}
+
