@@ -6,7 +6,12 @@
   --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   
   --container: 980px;
+  --topbar-h: 72px;  
 }
+
+
+
+
 html[data-theme="light"]{
   /* LIGHT */
   --bg:#ffffff; --card:#f6f8fb; --text:#0f172a; --muted:#475569;
@@ -983,9 +988,7 @@ html[data-theme="light"] body::after{
 
 
 /* ===== Topbar: même taille partout (comme Home) ===== */
-:root{
-  --topbar-h: 72px;             /* choisis 64–76px selon ton goût */
-}
+
 
 .topbar{
   height: var(--topbar-h);
