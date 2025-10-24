@@ -86,57 +86,60 @@ html[data-theme="light"] body::after{
 
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
+/* ===== Topbar propre, même hauteur partout ===== */
+:root{ --topbar-h: 64px; }  /* 56–72px selon ton goût */
 
-
-/* ===== Topbar hauteur fixe partout ===== */
-:root{
-  --topbar-h: 64px;          /* ajuste 56–72px selon ton goût */
-}
-
+/* La barre */
 .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  height: var(--topbar-h);   /* ← hauteur fixe */
-  margin-top: 0;             /* évite des variations de marge */
+  position: sticky; top: 0; z-index: 10;
+  height: var(--topbar-h);
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 
+/* Contenu centré verticalement, sans padding qui bouge */
 .topbar .row.only-nav{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--topbar-h);   /* ← même hauteur que la barre */
-  padding: 0;                /* on ne dépend plus d’un padding variable */
+  position: relative;              /* pour placer le toggle dedans */
+  display: flex; justify-content: center; align-items: center;
+  height: var(--topbar-h);
+  padding: 0;
 }
 
-/* Liens de nav : une seule ligne */
-.nav{
-  display: flex;
-  align-items: center;
-  gap: 24px;                 /* réduit un peu le gap pour tenir dans 1 ligne */
-  flex-wrap: nowrap;         /* ← empêche le retour à la ligne */
-  white-space: nowrap;       /* idem */
+/* Nav horizontale, pas d'underline violet */
+.nav{ display:flex; gap:28px; align-items:center; flex-wrap:nowrap; }
+.nav a{
+  color: var(--muted);
+  text-decoration: none;           /* fini le souligné violet */
+  font-weight: 600;
 }
+.nav a:hover,
+.nav a.active{ color: var(--text); }
 
-/* Bouton thème : centré verticalement à l’intérieur de la barre */
+/* Bouton thème plaqué à droite, centré verticalement */
 .toggle{
-  position: fixed;
-  top: calc((var(--topbar-h) - 32px) / 2); /* 32px ≈ hauteur du bouton */
-  right: calc((100vw - var(--container))/2 + 0px);
+  position: absolute;              /* dans la topbar, pas fixed */
+  right: 12px;
+  top: 50%; transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 10px;
+  display: inline-flex; align-items: center; gap: 8px;
+  cursor: pointer;
 }
-
-/* Petits écrans : garder une hauteur fixe mais autoriser le défilement horizontal si ça ne tient pas */
-@media (max-width: 900px){
-  .nav{ gap: 18px; }
+.toggle:hover{
+  background: rgba(148,163,184,.12);
+  border-color: var(--border);
 }
-@media (max-width: 720px){
-  .topbar .row.only-nav{ overflow-x: auto; }
-  .nav{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.toggle img{ width:16px; height:16px; display:block; }
+
+/* Petits écrans : garder la même hauteur et permettre le scroll horizontal si besoin */
+@media (max-width: 900px){ .nav{ gap:20px; } }
+@media (max-width: 700px){
+  .topbar .row.only-nav{ overflow-x:auto; }
+  .nav{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 }
-
-
 
 
 
