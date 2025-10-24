@@ -909,3 +909,39 @@ html[data-theme="light"] body::after{
   outline-offset: 2px;
   border-radius: 6px;
 }
+
+
+
+/* === Offsets & titres unifiés sur TOUTES les pages === */
+
+/* 1) Espace fixe sous la topbar */
+.page { padding-top: 16px; }             /* ajuste à 16–24px si tu préfères */
+.page .container { padding-top: 0; }     /* neutralise d’anciens réglages */
+
+/* 2) Style et marges identiques pour les H1 */
+.page-title{
+  font-size: 28px;                       /* même taille partout */
+  line-height: 1.25;
+  margin: 18px 0 12px;                   /* même respiration partout */
+  font-weight: 800;                      /* option : plus “titre” */
+}
+
+/* 3) About a un header spécial : on lui impose une hauteur mini
+      pour qu’il “prenne” la même place que les pages avec H1 seul */
+.page-about .page-header{
+  min-height: 56px;                      /* ~ hauteur des chips */
+  margin: 18px 0 12px;                   /* mêmes marges que le H1 simple */
+  position: relative;                    /* garde ton centrage d’icônes */
+}
+
+/* Les icônes d’About restent centrées horizontalement */
+.page-about .page-header .socials-top{
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  display: flex; gap: 16px; align-items: center;
+  white-space: nowrap;
+}
+
+/* 4) Petit bonus: l’intro sous le h1 a la même marge partout */
+.page-intro{ margin: 0 0 14px; color: var(--muted); }
+
