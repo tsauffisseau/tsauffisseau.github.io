@@ -413,10 +413,64 @@ html[data-theme="light"] body::after{
 
 
 
+* ===== About ===== */
+.page-about .brand{ display:none; }
 
-/*__________________________________*/
-/* ===== About ===== */
-.page-about .brand{ display:none; }          /* sécurité si jamais */
+/* Header About : titre + chips parfaitement alignés */
+.page-about .page-header{
+  position: relative;
+  display: flex;
+  align-items: center;     /* centre verticalement le H1 */
+  height: 72px;            /* même bande partout (ajuste si besoin) */
+  margin: 18px 0 14px;
+}
+.page-about .page-header .page-title{
+  margin: 0;
+  line-height: 1;          /* supprime le “slack” vertical */
+  display: flex;
+  align-items: center;
+}
+.page-about .page-header .socials-top{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);  /* même médiane que le H1 */
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Les chips ne doivent pas ajouter de hauteur */
+.pcta, .pcta .sbtn-label{ line-height: 1; }
+
+/* Intro sous le H1 (optionnel, pratique) */
+.page-intro{ margin: 0 0 14px; color: var(--muted); }
+
+/* Mobile : on repasse en pile centrée */
+@media (max-width: 640px){
+  .page-about .page-header{
+    display: grid;
+    height: auto;
+    gap: 10px;
+    justify-items: center;
+  }
+  .page-about .page-header .socials-top{
+    position: static;
+    transform: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -637,6 +691,13 @@ html[data-theme="light"] body::after{
 
 
 
+
+
+
+
+
+
+
 /*__________________________________*/
 
 /* ===== Projects ===== */
@@ -831,45 +892,6 @@ html[data-theme="light"] body::after{
 
 
 
-/* ====== ABOUT HEADER: titre à gauche + liens CENTRÉS (override) ====== */
-.page-about .page-header {
-  position: relative !important;
-  display: block !important;
-  min-height: 56px;
-  margin-bottom: 14px;
-}
-
-.page-about .page-header .page-title {
-  margin: 0;
-  text-align: left;
-}
-
-.page-about .page-header .socials-top {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50%;
-  transform: translate(-50%, -50%) !important; /* centre PARFAITEMENT */
-  display: flex;
-  align-items: center;
-  gap: 16px;                 /* léger + d’espace entre les boutons */
-  white-space: nowrap;
-  z-index: 1;
-}
-
-/* Mobile: on repasse en pile centrée */
-@media (max-width: 640px){
-  .page-about .page-header {
-    display: grid !important;
-    justify-items: center;
-    gap: 10px;
-  }
-  .page-about .page-header .socials-top {
-    position: static !important;
-    transform: none !important;
-  }
-}
-
-
 
 /* title with tiny icon */
 .ptitle{ display:flex; align-items:center; gap:8px; margin:0; font-size:20px; font-weight:700; line-height:1.25; }
@@ -931,26 +953,6 @@ html[data-theme="light"] body::after{
   font-weight: 800;                      /* option : plus “titre” */
 }
 
-/* 3) About a un header spécial : on lui impose une hauteur mini
-      pour qu’il “prenne” la même place que les pages avec H1 seul */
-.page-about .page-header{
-  min-height: 56px;                      /* ~ hauteur des chips */
-  margin: 18px 0 12px;                   /* mêmes marges que le H1 simple */
-  position: relative;                    /* garde ton centrage d’icônes */
-}
-
-/* Les icônes d’About restent centrées horizontalement */
-.page-about .page-header .socials-top{
-  position: absolute;
-  left: 50%; transform: translateX(-50%);
-  display: flex; gap: 16px; align-items: center;
-  white-space: nowrap;
-}
-
-/* 4) Petit bonus: l’intro sous le h1 a la même marge partout */
-.page-intro{ margin: 0 0 14px; color: var(--muted); }
-
-
 
 /* GitHub chip : même rendu qu'une tuile + pas de violet */
 .pcta,
@@ -976,39 +978,9 @@ html[data-theme="light"] body::after{
 .pcta .icon{ width:18px; height:18px; display:block; }
 
 
-/* About header: lock both on the same horizontal line */
-.page-about .page-header{
-  position: relative;
-  display: flex;
-  align-items: center;   /* center the H1 vertically */
-  height: 64px;          /* fixed band height; tweak 60–68px if you want */
-  margin-bottom: 14px;
-}
 
-.page-about .page-header .page-title{
-  margin: 0;
-  line-height: 1;        /* removes extra vertical slack */
-}
 
-/* Chip links perfectly centered in the same band */
-.page-about .page-header .socials-top{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);  /* same midline as the H1 */
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  white-space: nowrap;
-}
 
-/* — Optional micro-adjust (use one of these) — */
-/* If the chips look 1–2px high/low, nudge them: */
-.page-about .page-header .socials-top{
-  transform: translate(-50%, calc(-50% + 1px)); /* try 1px or 2px */
-}
-/* Or nudge the title instead: */
-/* .page-about .page-header .page-title{ transform: translateY(1px); } */
 
 /* ===== Topbar: même taille partout (comme Home) ===== */
 :root{
@@ -1044,33 +1016,8 @@ html[data-theme="light"] body::after{
 }
 
 
-/* About header: perfectly align title and chips on one line */
-.page-about .page-header{
-  position: relative;
-  display: flex;
-  align-items: center;   /* centers the H1 vertically */
-  height: 72px;          /* same band height everywhere */
-  margin-bottom: 14px;
-}
 
-.page-about .page-header .page-title{
-  margin: 0;
-  line-height: 1;        /* remove extra font slack */
-  display: flex;
-  align-items: center;
-  transform: translateY(2px);   /* ← micro-nudge; try 0px/1px/2px */
-}
 
-.page-about .page-header .socials-top{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-51%, -49%); /* center chips on the same midline */
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  white-space: nowrap;
-}
 
 /* make sure chips themselves don't add extra height */
 .pcta, .pcta .sbtn-label{ line-height: 1; }
