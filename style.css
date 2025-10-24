@@ -113,7 +113,7 @@ html[data-theme="light"] body::after{ opacity:.04; }
   background: rgba(148,163,184,.12);
   border-color: var(--border);
 }
-.toggle img{ width:16px; height:16px; display:block; }
+
 
 /* Petits écrans : garder la même hauteur et permettre le scroll horizontal si besoin */
 @media (max-width: 900px){ .nav{ gap:20px; } }
