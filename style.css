@@ -629,41 +629,16 @@ html[data-theme="light"] body::after{
 /*__________________________________*/
 
 /* ===== Projects ===== */
-.page-projects .brand{ display:none; }
+.page-projects .brand { display: none; }
 
-
-/* Liste : cartes pleine largeur, respirées */
+/* Liste de cartes */
 .project-list{
   display: grid;
-  gap: 14px;
-  margin: 18px 0 28px;
-  max-width: 980px;   /* garde une ligne de lecture confortable */
+  gap: 24px;               /* + d'espace entre les cartes */
+  margin: 22px 0 32px;     /* respiration haut/bas */
+  max-width: 980px;
+  grid-template-columns: 1fr !important; /* 1 colonne */
 }
-
-
-/* Titre + icône gauche */
-.ptitle{ display:flex; align-items:center; gap:8px; }
-.ptitle .picon{
-  width:18px; height:18px; flex:0 0 18px;
-  object-fit:contain; display:block;
-}
-
-/* Badge GitHub à droite */
-.pcta{ display:inline-flex; align-items:center; gap:8px; }
-.pcta .icon{
-  width:16px; height:16px; flex:0 0 16px;
-  object-fit:contain; display:block;
-}
-
-/* Ceinture + bretelles : neutralise tout style "img { width:100% }" */
-.project-card .pheader img{ max-width:none; }
-
-
-.page-projects .project-list{
-  grid-template-columns: 1fr !important;
-}
-  
-
 
 /* Carte cliquable */
 .project-card{
@@ -671,7 +646,7 @@ html[data-theme="light"] body::after{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 16px 18px;
+  padding: 20px 22px;      /* un peu plus d’air dans la carte */
   color: var(--text);
   text-decoration: none;
   box-shadow: var(--shadow);
@@ -688,42 +663,45 @@ html[data-theme="light"] body::after{
 }
 
 /* Header interne */
-.pheader{
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.ptitle{ margin: 0; font-size: 20px; font-weight: 700; line-height: 1.25; }
+.pheader{ display:flex; gap:10px; align-items:center; }
+.ptitle{ margin:0; font-size:20px; font-weight:700; line-height:1.25; }
+.ptitle .picon{ width:18px; height:18px; flex:0 0 18px; object-fit:contain; display:block; }
+
+/* Pastille repo à droite */
 .pcta{
-  margin-left: auto;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  padding: 6px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
+  margin-left:auto;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--bg);
+  font-weight:600;
+  white-space:nowrap;
 }
+.pcta .icon{ width:16px; height:16px; flex:0 0 16px; object-fit:contain; display:block; }
+
+/* Sécurité contre img {width:100%} globaux */
+.project-card .pheader img{ max-width:none; }
 
 /* Description + tags */
-.pdesc{ margin: 8px 0 10px; color: var(--muted); }
+.pdesc{ margin:8px 0 10px; color:var(--muted); }
 .ptags{
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin: 0; padding: 0; list-style: none;
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin:0 0 2px;              /* petit espace bas */
+  padding:0; list-style:none;
 }
 .ptags li{
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 13px; color: var(--muted);
-  background: var(--bg);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:13px; color:var(--muted);
+  background:var(--bg);
 }
 
-
-
+/* Responsive */
 @media (max-width: 600px){
-  .ptitle{ font-size: 18px; }
+  .ptitle{ font-size:18px; }
 }
-
-
 
 
 
