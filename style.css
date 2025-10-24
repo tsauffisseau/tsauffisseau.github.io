@@ -1010,4 +1010,36 @@ html[data-theme="light"] body::after{
 /* Or nudge the title instead: */
 /* .page-about .page-header .page-title{ transform: translateY(1px); } */
 
+/* ===== Topbar: même taille partout (comme Home) ===== */
+:root{
+  --topbar-h: 72px;             /* choisis 64–76px selon ton goût */
+}
+
+.topbar{
+  height: var(--topbar-h);
+}
+
+.topbar .row.only-nav{
+  height: var(--topbar-h);
+  padding: 0;                   /* pas de padding qui change la hauteur */
+}
+
+/* Typo/align cohérents dans la nav */
+.nav a{
+  font-size: 16px;
+  line-height: 1;               /* évite que la ligne gonfle la barre */
+  padding: 0;                   /* on garde l’espacement via gap */
+}
+
+.toggle{
+  top: 50%;
+  transform: translateY(-50%);  /* parfaitement centré verticalement */
+}
+.toggle img{ width: 18px; height: 18px; }
+
+/* ===== Espace sous la topbar: identique Home / autres pages ===== */
+.main .container,
+.page .container{
+  padding-top: 18px;            /* même “respiration” partout */
+}
 
