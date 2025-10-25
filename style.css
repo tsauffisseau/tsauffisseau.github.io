@@ -422,11 +422,10 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .pcta{ display:inline-flex; align-items:center; height:auto; padding:0 10px; }
 .pcta .sbtn-label{ line-height: 1; }
 
-
-/* ——— Chips Poster / GitHub : alignement parfait ——— */
+/* --- Fix alignement chips Poster / GitHub --- */
 .pcta{
   display:inline-flex;
-  align-items:center;      /* centre tout verticalement */
+  align-items:center;
   gap:12px;
   padding:10px 14px;
   border:1px solid var(--border);
@@ -435,28 +434,37 @@ html[data-theme="light"] body::after{ opacity:.04; }
   color:var(--text);
   text-decoration:none;
   font-weight:600;
-  line-height:1;           /* pas de “slack” vertical */
+  line-height:1;                          /* pas de slack vertical */
 }
 
 .pcta .sbtn-label{
   display:flex;
-  align-items:center;      /* centre le texte */
+  align-items:center;
   line-height:1;
 }
 
-/* Normalise les icônes (SVG/PNG) et corrige leur baseline */
+/* Normalisation de toutes les icônes */
 .pcta .icon{
   display:block;
   width:20px;
   height:20px;
+  flex:0 0 20px;
   object-fit:contain;
-  position:relative;
-  top:1px;                 /* ↓ micro-nudge : mets 0/2px si besoin */
+  vertical-align:middle;
 }
 
-/* Si GitHub reste un poil haut chez toi, ajoute ce ciblage : */
-.pcta .icon[src*="github"]{ top:2px; }
+/* Nudge spécifique GitHub (SVG trop haut) */
+.pcta .icon[src*="github"]{
+  position:relative;
+  top:2px !important;                     /* ajuste 1–3px si besoin */
+}
 
+/* (optionnel) remet 0px pour d'autres icônes si tu les vois trop basses */
+.pcta .icon[src*="mail"],
+.pcta .icon[src*="poster"],
+.pcta .icon[src*="pdf"]{
+  top:0 !important;
+}
 /* Mobile : pile centrée */
 @media (max-width: 640px){
   .page-about .page-header{
