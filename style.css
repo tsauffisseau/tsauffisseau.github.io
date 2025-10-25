@@ -805,10 +805,14 @@ html[data-theme="light"] body::after{ opacity:.04; }
   margin:8px 0 20px;        /* ← plus de auto ici */
 }
 
+
+
+
 .case-title{
   max-width:860px;
   margin-left:0;            /* ← aligne à gauche */
-  margin-right:auto;        /* garde la limite à 860px */
+  margin-right:auto;
+  row-gap: 14px; /
   text-align:left;
 }
 .case-title h1{ margin:0 0 6px; font-size:30px; }
