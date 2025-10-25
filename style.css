@@ -423,49 +423,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .pcta{ display:inline-flex; align-items:center; height:auto; padding:0 10px; }
 .pcta .sbtn-label{ line-height: 1; }
 
-/* --- Fix alignement chips Poster / GitHub --- */
-.pcta{
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  padding:10px 14px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background:var(--bg);
-  color:var(--text);
-  text-decoration:none;
-  font-weight:600;
-  line-height:1;                          /* pas de slack vertical */
-}
-
-.pcta .sbtn-label{
-  display:flex;
-  align-items:center;
-  line-height:1;
-}
-
-/* Normalisation de toutes les icônes */
-.pcta .icon{
-  display:block;
-  width:20px;
-  height:20px;
-  flex:0 0 20px;
-  object-fit:contain;
-  vertical-align:middle;
-}
-
-/* Nudge spécifique GitHub (SVG trop haut) */
-.pcta .icon[src*="github"]{
-  position:relative;
-  top:2px !important;                     /* ajuste 1–3px si besoin */
-}
-
-/* (optionnel) remet 0px pour d'autres icônes si tu les vois trop basses */
-.pcta .icon[src*="mail"],
-.pcta .icon[src*="poster"],
-.pcta .icon[src*="pdf"]{
-  top:0 !important;
-}
 /* Mobile : pile centrée */
 @media (max-width: 640px){
   .page-about .page-header{
