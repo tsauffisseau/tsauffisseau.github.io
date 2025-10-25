@@ -423,40 +423,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .pcta .sbtn-label{ line-height: 1; }
 
 
-/* Chips uniformes : même hauteur, même centrage pour tous */
-.pcta{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  height:36px;            /* fixe et identique */
-  padding:0 12px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:var(--bg);
-  font-weight:600;
-  text-decoration:none;
-}
-
-/* Boîte icône normalisée (image ou emoji) */
-.pcta .icon{
-  width:18px;
-  height:18px;
-  display:block;
-  flex:0 0 18px;
-}
-
-/* Spécifique emoji : le centrer comme une image 16–18px */
-.pcta .emoji{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:16px;  /* évite qu’il “déborde” */
-  line-height:1;
-}
-
-/* Label sans slack typographique */
-.pcta .sbtn-label{ line-height:1; }
-
 
 /* Mobile : pile centrée */
 @media (max-width: 640px){
