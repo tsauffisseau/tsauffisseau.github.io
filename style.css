@@ -793,14 +793,25 @@ a.mail-link:focus-visible{
 
 
 
-/* ===== Topbar mobile : nav puis toggle en dessous ===== */
+/* ====== Mobile & Chrome full height / layout ====== */
+html, body { height: 100%; background: var(--bg); }
+body { min-height: 100dvh; /* Chrome/Android & iOS address bar safe */ }
+
+/* --- Réglages mobiles généraux --- */
 @media (max-width: 720px){
-  .topbar{ height:auto; } /* on libère la hauteur fixe */
+
+  /* 1) Topbar compacte + bouton thème en dessous */
+  :root{
+    --topbar-h: 56px;     /* barre un peu plus petite sur tel */
+    --nav-font-size: 15px;
+  }
+
+  .topbar{ height:auto; }
   .topbar .row.only-nav{
     height:auto;
     padding: env(safe-area-inset-top) 0 8px;
     display:flex;
-    flex-direction:column;       /* nav en haut, toggle en dessous */
+    flex-direction: column;   /* nav au-dessus, toggle en dessous */
     align-items:center;
     gap:8px;
   }
@@ -808,15 +819,59 @@ a.mail-link:focus-visible{
   .nav{
     order:1;
     gap:18px;
-    overflow-x:auto;             /* scroll horizontal si ça déborde */
-    -webkit-overflow-scrolling:touch;
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav a{
+    height: var(--topbar-h);
+    line-height: 1;
+    padding: 0 4px;
   }
 
   .toggle{
     order:2;
-    position:static;             /* plus d’absolu → plus de chevauchement */
-    transform:none;
-    margin-top:6px;              /* petit espace sous la nav */
-    align-self:center;
+    position: static;         /* plus d’absolu → pas de chevauchement */
+    transform: none;
+    margin-top: 4px;
+    align-self: center;
   }
+
+  /* 2) HERO plus serré */
+  .hero{ padding: 28px 0 32px; }
+  .pp{ width: 148px; height: 148px; border-width: 1px; }
+  .hero__name{ font-size: 26px; }
+  .hero__mail{ font-size: 14px; }
+
+  /* 3) HOME : cartes en colonne */
+  .cards--home{
+    grid-template-columns: 1fr;     /* vertical */
+    max-width: 520px;               /* colonne lisible */
+    gap: 12px;
+  }
+  .card--home{ text-align: left; }  /* (option) gauche sur mobile */
+
+  /* 4) Tuiles sociales : une par ligne, icône avant le texte */
+  .socials-grid{
+    grid-template-columns: 1fr;     /* vertical */
+    max-width: 520px;
+    gap: 10px;
+  }
+  .sbtn-tile{
+    justify-self: stretch;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .sbtn-tile img{ width: 18px; height: 18px; }
+
+  /* 5) Un peu moins d’air global sous la topbar */
+  .main .container,
+  .page .container{ padding-top: 12px; }
+
+  /* 6) Petits ajustements de texte */
+  .page-title{ font-size: 26px; margin: 14px 0 10px; }
 }
+
+/* ====== (Option) Légers arrondis et centrage des icônes bouton-lien ====== */
+.pcta .icon,
+.sbtn-tile .icon{ display:block; flex:0 0 auto; }
