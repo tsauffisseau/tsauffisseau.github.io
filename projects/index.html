@@ -11,7 +11,7 @@
   <script defer src="/script.js"></script>
 </head>
 <body class="page-projects">
-  <!-- Topbar sans brand -->
+  <!-- Topbar -->
   <header class="topbar">
     <div class="container row only-nav">
       <nav class="nav">
@@ -33,33 +33,29 @@
       <p class="page-intro">Personal projects and open-source contributions. Click on the card to see more.</p>
 
       <div class="project-list">
-        <!-- ====== PROJECT CARD (duplique ce bloc) ====== -->
-        
-       <a class="project-card" href="/projects/cassiopee">
-  <div class="pheader">
-    <h3 class="ptitle">
-      <img class="picon" src="/assets/icon-brain.svg" alt="" aria-hidden="true">
-      Alzheimer Detection - EEG
-    </h3>
-
-
-    
-    <span class="pcta">
-      <img class="icon swap-theme" src="/assets/icon-github-white.svg"
-           data-src-dark="/assets/icon-github-white.svg"
-           data-src-light="/assets/icon-github-black.svg" alt="">
-      <span class="sbtn-label">repo</span>
-    </span>
-  </div>
-
-  <p class="pdesc">
-    CNN on recurrence-plot representations of multichannel time-series (19 channels).
-    Window-level scoring with subject-level aggregation. Reproducible PyTorch pipeline.
-  </p>
-  <ul class="ptags">
-    <li>PyTorch</li><li>Medical Engineering</li><li>Signal Processing</li><li>Deep Learning</li>
-  </ul>
-</a>
+        <!-- ====== PROJECT CARD ====== -->
+      
+          <a class="project-card" href="/projects/cassiopee">
+          <div class="pheader">
+            <h3 class="ptitle">
+              <img class="picon" src="/assets/icon-brain.svg" alt="" aria-hidden="true">
+              Alzheimer Detection - EEG
+            </h3>
+            <span class="pcta">
+              <img class="icon swap-theme" src="/assets/icon-github-white.svg"
+                   data-src-dark="/assets/icon-github-white.svg"
+                   data-src-light="/assets/icon-github-black.svg" alt="">
+              <span class="sbtn-label">repo</span>
+            </span>
+          </div>
+          <p class="pdesc">
+            CNN on recurrence-plot representations of multichannel time-series (19 channels).
+            Window-level scoring with subject-level aggregation. Reproducible PyTorch pipeline.
+          </p>
+          <ul class="ptags">
+            <li>PyTorch</li><li>Medical Engineering</li><li>Signal Processing</li><li>Deep Learning</li>
+          </ul>
+        </a>
 
         
             <a class="project-card" href="https://github.com/tsauffisseau/chesscoach" target="_blank" rel="noopener">
@@ -68,8 +64,6 @@
               <img class="picon" src="/assets/icon-chess.svg" alt="" aria-hidden="true">
               Chesscoach - Game Analyst
             </h3>
-        
-            <!-- pill at the right -->
             <span class="pcta">
               <img class="icon swap-theme"
                    src="/assets/icon-github-white.svg" alt=""
@@ -78,7 +72,6 @@
               <span class="sbtn-label">repo</span>
             </span>
           </div>
-        
           <p class="pdesc">
             Streamlit tool to analyze PGN games with Stockfish: Evolution of your score. Mistakes, blunders and worsts moves classification.
           </p>
@@ -96,8 +89,6 @@
               <img class="picon" src="/assets/icon-game.svg" alt="" aria-hidden="true">
               BoardGame Analysis
             </h3>
-        
-            <!-- pill at the right -->
             <span class="pcta">
               <img class="icon swap-theme"
                    src="/assets/icon-github-white.svg" alt=""
@@ -106,7 +97,6 @@
               <span class="sbtn-label">repo</span>
             </span>
           </div>
-        
           <p class="pdesc">
             Exploring the BoardGameGeek landscape through the lens of playtime, complexity, and popularity.
           </p>
@@ -126,6 +116,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
