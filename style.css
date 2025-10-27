@@ -787,3 +787,36 @@ a.mail-link:focus-visible{
   margin: 0;                 
   text-align: left;
 }
+
+
+
+
+
+
+/* ===== Topbar mobile : nav puis toggle en dessous ===== */
+@media (max-width: 720px){
+  .topbar{ height:auto; } /* on libère la hauteur fixe */
+  .topbar .row.only-nav{
+    height:auto;
+    padding: env(safe-area-inset-top) 0 8px;
+    display:flex;
+    flex-direction:column;       /* nav en haut, toggle en dessous */
+    align-items:center;
+    gap:8px;
+  }
+
+  .nav{
+    order:1;
+    gap:18px;
+    overflow-x:auto;             /* scroll horizontal si ça déborde */
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .toggle{
+    order:2;
+    position:static;             /* plus d’absolu → plus de chevauchement */
+    transform:none;
+    margin-top:6px;              /* petit espace sous la nav */
+    align-self:center;
+  }
+}
