@@ -601,15 +601,17 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .case-header{
   display:block;
   max-width:980px;
-  margin:8px 0 20px;       
+  margin:8px 0 20px;
+}
 
 .case-title{
   max-width:860px;
   margin-left:0;           
   margin-right:auto;
-  row-gap: 14px; /
   text-align:left;
 }
+
+
 .case-title h1{ margin:0 0 6px; font-size:30px; }
 .case-sub{ margin:0; color:var(--muted); }
 .badges{ margin-top:8px; }
@@ -679,27 +681,35 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .pcta .sbtn-label{ line-height:1; }
 
 
+
+
 /* Mail */
-.mail-link,
-.mail-link:link,
-.mail-link:visited{
-  color: var(--muted);         
-  text-decoration: none;       
-  font-size: 16px;             
+a, a:link, a:visited{
+  color: var(--text);
+  text-decoration: none;
+}
+
+a.mail-link,
+a.mail-link:link,
+a.mail-link:visited{
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 16px;
   line-height: 1.4;
 }
 
-.mail-link:hover{
-  color: var(--text);           
+a.mail-link:hover{
+  color: var(--text);
   text-decoration: none;
   opacity: .95;
 }
 
-.mail-link:focus-visible{       
+a.mail-link:focus-visible{
   outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 6px;
 }
+
 
 
 
