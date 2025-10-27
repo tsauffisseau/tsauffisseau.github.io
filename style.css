@@ -875,3 +875,73 @@ body { min-height: 100dvh; /* Chrome/Android & iOS address bar safe */ }
 /* ====== (Option) Légers arrondis et centrage des icônes bouton-lien ====== */
 .pcta .icon,
 .sbtn-tile .icon{ display:block; flex:0 0 auto; }
+
+
+/* ===== Mobile foundation (Chrome/Android + iOS Safari) ===== */
+html, body { height: 100%; background: var(--bg); }
+body{
+  min-height: 100dvh;              /* hauteur utile sur mobiles modernes */
+  min-height: -webkit-fill-available; /* fallback iOS Safari anciens */
+}
+
+/* ===== Layout mobile ===== */
+@media (max-width: 720px){
+
+  /* Topbar compacte + toggle (soleil) en dessous des liens */
+  :root{ --topbar-h: 56px; --nav-font-size: 15px; }
+
+  .topbar{ height:auto; }
+  .topbar .row.only-nav{
+    height:auto;
+    padding: env(safe-area-inset-top) 0 8px; /* iPhone notch */
+    display:flex;
+    flex-direction: column;   /* liens au-dessus, toggle en dessous */
+    align-items:center;
+    gap:8px;
+  }
+  .nav{
+    order:1;
+    gap:18px;
+    overflow-x:auto;          /* si ça déborde */
+    -webkit-overflow-scrolling:touch;
+  }
+  .nav a{
+    height: var(--topbar-h);
+    line-height: 1;
+    padding: 0 4px;
+  }
+  .toggle{
+    order:2;
+    position: static;         /* plus d'absolu → pas de chevauchement */
+    transform: none;
+    margin-top: 4px;
+    align-self: center;
+  }
+
+  /* Hero un peu plus serré */
+  .hero{ padding: 28px 0 32px; }
+  .pp{ width: 148px; height: 148px; border-width: 1px; }
+  .hero__name{ font-size: 26px; }
+  .hero__mail{ font-size: 14px; }
+
+  /* HOME : cartes en colonne */
+  .cards--home{
+    grid-template-columns: 1fr;  /* vertical */
+    max-width: 520px;
+    gap: 12px;
+  }
+  /* Tuiles sociales : aussi en colonne */
+  .socials-grid{
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    gap: 10px;
+  }
+  .sbtn-tile{ justify-self: stretch; justify-content: center; }
+
+  /* Un peu moins d’air sous la topbar */
+  .main .container, .page .container{ padding-top: 12px; }
+
+  /* Titres mobiles */
+  .page-title{ font-size: 26px; margin: 14px 0 10px; }
+}
+
