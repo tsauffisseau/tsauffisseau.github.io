@@ -1,6 +1,6 @@
-/* ---------- Thème (dark par défaut) ---------- */
+/* Page CSS unique */
 :root{
-  /* DARK */
+  /* DARK par défaut */
   --bg:#0b0f16; --card:#111827; --text:#e5e7eb; --muted:#9aa3b2;
   --blue:#3b82f6; --border:#1f2937; --shadow:0 6px 18px rgba(0,0,0,.35);
   --font:"Inter", Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -17,11 +17,7 @@ html[data-theme="light"]{
   --blue:#2563eb; --border:#e2e8f0; --shadow:0 6px 18px rgba(2,8,23,.06);
 }
 
-
-
-/* Icône du toggle un poil plus grande (comme Home) */
 .toggle img{ width:18px; height:18px; }
-
 
 html { scrollbar-gutter: stable; }
 @supports not (scrollbar-gutter: stable) { html { overflow-y: scroll; } }
@@ -41,13 +37,9 @@ body{
   padding: 0 16px;
 }
 
-/* Respiration sous la topbar pour toutes les pages */
 .page .container{ padding-top: 10px; }
-
-/* le <main class="page"> ne profite pas de .main{flex:1} */
 .page{ flex: 1; }
 
-/* Grain doux sur toute la page */
 body::after{
   content:"";
   position:fixed; inset:0; pointer-events:none; z-index:0;
@@ -61,7 +53,6 @@ body::after{
 }
 html[data-theme="light"] body::after{ opacity:.04; }
 
-/* ===== Topbar unifiée ===== */
 .topbar, .main, .footer { position: relative; z-index: 1; }
 
 .topbar{
@@ -71,7 +62,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
   border-bottom: 1px solid var(--border);
 }
 
-/* Contenu centré verticalement, sans padding qui bouge */
 .topbar .row.only-nav{
   position: relative;
   display: flex; justify-content: center; align-items: center;
@@ -79,24 +69,23 @@ html[data-theme="light"] body::after{ opacity:.04; }
   padding: 0;
 }
 
-/* Liens de nav : même typo et même zone cliquable partout */
+
 .nav{ display:flex; gap:28px; align-items:center; flex-wrap:nowrap; }
 .nav a{
   display: inline-flex;
-  align-items: center;                 /* centrage vertical parfait */
-  height: var(--topbar-h);             /* zone cliquable = hauteur barre */
-  padding: 0 6px;                      /* léger espace latéral */
+  align-items: center;                 
+  height: var(--topbar-h);            
+  padding: 0 6px;                     
   font-family: var(--font);
   font-weight: 600;
-  font-size: var(--nav-font-size);     /* <- uniformise la taille */
-  line-height: 1;                      /* retire le “slack” vertical */
+  font-size: var(--nav-font-size);     
+  line-height: 1;                      
   color: var(--muted);
   text-decoration: none;
 }
 .nav a:hover,
 .nav a.active{ color: var(--text); }
 
-/* Bouton thème plaqué à droite, centré verticalement */
 .toggle{
   position: absolute;
   right: 12px;
@@ -115,7 +104,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 }
 
 
-/* Petits écrans : garder la même hauteur et permettre le scroll horizontal si besoin */
 @media (max-width: 900px){ .nav{ gap:20px; } }
 @media (max-width: 700px){
   .topbar .row.only-nav{ overflow-x:auto; }
@@ -124,26 +112,18 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
-
-
-
-
-
-
 /* ---------- Hero ---------- */
 .main{flex:1}
 
-.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)}  /* plus proche de la barre */
+.hero{padding:48px 0 56px; border-bottom:1px solid var(--border)} 
 .hero__stack{
   display:flex; flex-direction:column; align-items:center; text-align:center;
-  gap:6px; /* garde 6px */
+  gap:6px;
 }
 .pp{width:220px;height:220px; margin-top: 6px; margin-bottom: 6px; border-radius:51%;object-fit:cover;border:2px solid var(--border);box-shadow:var(--shadow)}
 
-.hero__name{margin:3px 0 2px; line-height: 1.15; font-size:30px; font-weight:600}    /* NOM plus petit */
+.hero__name{margin:3px 0 2px; line-height: 1.15; font-size:30px; font-weight:600} 
 .hero__mail{margin:0 0 10px; color:var(--muted)}
-
-
 
 
 
@@ -153,12 +133,12 @@ html[data-theme="light"] body::after{ opacity:.04; }
 }
 
 /* ---------- Cartes Home ---------- */
-/* 3 colonnes centrées et étroites, comme avant */
+
 .cards--home{
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:16px; margin:6px auto 0; width:100%; max-width:760px;
 }
-/* mêmes couleurs que le fond, léger contour gris, titres non soulignés */
+
 .card--home{
   background:var(--bg); border:1px solid var(--border); border-radius:12px;
   padding:16px; text-align:center; transition:transform .12s ease, box-shadow .12s ease;
@@ -166,13 +146,11 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .card--home:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,.18) }
 .card__title{ margin:0 0 6px; font-size:18px; font-weight:700 }
 .card__title a{ color:var(--text); text-decoration:none }
-.card__title a:hover{ text-decoration:none }                  /* jamais souligné */
+.card__title a:hover{ text-decoration:none }                  
 .card__desc{ margin:0; color:var(--muted) }
 
 /* ---------- Tuiles sociales sous chaque carte ---------- */
 
-
-/* grille: toujours sous les 3 cartes */
 .socials-grid{
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:16px; margin:10px auto 0; width:100%; max-width:760px;
@@ -183,14 +161,13 @@ html[data-theme="light"] body::after{ opacity:.04; }
   outline-offset: 3px;
 }
 
-/* tuile compacte centrée dans sa colonne */
 .sbtn-tile{
-  justify-self:center;                 /* centrée sous chaque carte */
+  justify-self:center;                 
   display:flex; align-items:center; gap:10px;
   padding:8px 12px;
   border:1px solid var(--border);
   border-radius:12px;
-  background:var(--bg);                /* même couleur que le fond */
+  background:var(--bg);                
   text-decoration:none;
   transition:transform .12s ease, box-shadow .12s ease;
 }
@@ -208,40 +185,24 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
+/* Resume (copie de Poster) */
+.page-resume .brand{ display:none; }          
 
-
-
-
-
-
-
-
-
-
-
-/*__________________________________*/
-
-/* Page Resume */
-.page-resume .brand{ display:none; }          /* au cas où */
-
-
-/* Grille responsive : colonnes qui s'ajustent avec une largeur mini confortable */
 .resume-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* ← au lieu de repeat(3,1fr) */
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 16px;
   margin: 18px 0 28px;
 }
 
-.resume-body{ flex: 1; min-width: 0; }       /* ← important pour que ça s'étale correctement */
-.resume-title{ font-size: 20px; line-height: 1.25; }  /* lisible, moins de retours à la ligne */
+.resume-body{ flex: 1; min-width: 0; }      
+.resume-title{ font-size: 20px; line-height: 1.25; } 
 .resume-meta{ font-size: 14px; color: var(--muted); }
 
 @media (max-width: 980px){
   .resume-grid{ grid-template-columns: 1fr; }
 }
 
-/* Carte poster (style “lien carte”) */
 .resume-card{
   display: flex;
   gap: 14px;
@@ -265,21 +226,21 @@ html[data-theme="light"] body::after{ opacity:.04; }
   outline-offset: 3px;
 }
 
-/* Vignette */
+
 .resume-thumb{
-  width: 90px; height: 120px;      /* ratio A4 approximatif */
+  width: 90px; height: 120px;     
   object-fit: cover;
   border: 1px solid var(--border);
   border-radius: 8px;
   flex-shrink: 0;
 }
 
-/* Corps */
+
 .resume-body{ display: grid; gap: 4px; }
 .resume-title{ margin: 0; font-size: 18px; font-weight: 700; }
 .resume-meta{ margin: 0; color: var(--muted); font-size: 14px; }
 
-/* CTA à droite */
+
 .resume-cta{
   margin-left: auto;
   font-weight: 600;
@@ -291,39 +252,21 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
+/* Poster */
+.page-posters .brand{ display:none; }     
 
 
 
-
-
-
-
-
-
-
-
-
-/*__________________________________*/
-
-
-
-/* Page Posters */
-.page-posters .brand{ display:none; }          /* au cas où */
-
-
-
-
-/* Grille responsive : colonnes qui s'ajustent avec une largeur mini confortable */
 .poster-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* ← au lieu de repeat(3,1fr) */
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 16px;
   margin: 18px 0 28px;
 }
 
 
-.poster-body{ flex: 1; min-width: 0; }       /* ← important pour que ça s'étale correctement */
-.poster-title{ font-size: 20px; line-height: 1.25; }  /* lisible, moins de retours à la ligne */
+.poster-body{ flex: 1; min-width: 0; }       
+.poster-title{ font-size: 20px; line-height: 1.25; } 
 .poster-meta{ font-size: 14px; color: var(--muted); }
 
 
@@ -333,7 +276,7 @@ html[data-theme="light"] body::after{ opacity:.04; }
   .poster-grid{ grid-template-columns: 1fr; }
 }
 
-/* Carte poster (style “lien carte”) */
+
 .poster-card{
   display: flex;
   gap: 14px;
@@ -357,21 +300,21 @@ html[data-theme="light"] body::after{ opacity:.04; }
   outline-offset: 3px;
 }
 
-/* Vignette */
+
 .poster-thumb{
-  width: 90px; height: 120px;      /* ratio A4 approximatif */
+  width: 90px; height: 120px;     
   object-fit: cover;
   border: 1px solid var(--border);
   border-radius: 8px;
   flex-shrink: 0;
 }
 
-/* Corps */
+
 .poster-body{ display: grid; gap: 4px; }
 .poster-title{ margin: 0; font-size: 18px; font-weight: 700; }
 .poster-meta{ margin: 0; color: var(--muted); font-size: 14px; }
 
-/* CTA à droite */
+
 .poster-cta{
   margin-left: auto;
   font-weight: 600;
@@ -382,36 +325,30 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
-
-
-
-
-
-
-/* ===== About (clean) ===== */
+/* About11 */
 .page-about .brand{ display:none; }
 
-/* Titre + chips parfaitement alignés sur une même ligne */
+
 .page-about .page-header{
   position: relative;
   display: flex;
-  align-items: center;      /* centre verticalement le H1 */
-  height: 72px;             /* même bande que Home */
+  align-items: center;    
+  height: 72px;          
   margin: 18px 0 14px;
 }
 .page-about .page-header .page-title{
   margin: 0;
-  line-height: 1;           /* supprime le slack vertical */
+  line-height: 1;          
   display: flex;
   align-items: center;
 }
 
-/* Bloc de liens centré sur la même médiane que le H1 */
+
 .page-about .page-header .socials-top{
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, calc(-50% - 1px)); /* micro-nudge ↑ 1px */
+  transform: translate(-50%, calc(-50% - 1px));
   display: flex;
   align-items: center;
   gap: 14px;
@@ -419,11 +356,11 @@ html[data-theme="light"] body::after{ opacity:.04; }
   z-index: 1;
 }
 
-/* Les chips ne doivent pas ajouter de hauteur */
+
 .pcta{ display:inline-flex; align-items:center; height:auto; padding:0 10px; }
 .pcta .sbtn-label{ line-height: 1; }
 
-/* Mobile : pile centrée */
+
 @media (max-width: 640px){
   .page-about .page-header{
     display: grid;
@@ -436,15 +373,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
     transform: none;
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -471,9 +399,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 }
 
 
-
-
-/* ===== Bouton “chip” (icône + label) ===== */
 .sbtn-chip{
   display:inline-flex;
   align-items:center;
@@ -497,37 +422,16 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .sbtn-chip img{
   width:18px;
   height:18px;
-  max-width:none;    /* neutralise un éventuel img{width:100%} global */
+  max-width:none;   
   display:block;
   flex:0 0 auto;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Centrer l’image dans la colonne de droite (optionnel) */
+/* About */
 .page-about .about-side{ justify-items:center; }
-
-
-
 .about-side{ display: grid; gap: 14px; align-content: start; }
-
 .aside-card{
   background: var(--card);
   border: 1px solid var(--border);
@@ -539,7 +443,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .bullets{ margin: 0; padding-left: 18px; color: var(--muted); }
 .bullets li{ margin: 4px 0; }
 
-/* chips réutilise déjà ta classe .chips */
 .chips{ list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
 .chips li{
   border: 1px solid var(--border); border-radius: 999px;
@@ -547,7 +450,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
   background: var(--bg);
 }
 
-/* CTA links */
 .aside-links{ display: flex; gap: 10px; flex-wrap: wrap; }
 .btn-link{
   display: inline-flex; align-items: center; gap: 8px;
@@ -562,25 +464,24 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .alink,
 .alink:link,
 .alink:visited{
-  color: var(--text);                       /* même couleur que le texte */
+  color: var(--text);                      
   text-decoration-line: underline;
-  text-decoration-style: dotted;            /* pointillé */
-  text-decoration-color: currentColor;      /* pas violet */
+  text-decoration-style: dotted;           
+  text-decoration-color: currentColor;      
   text-underline-offset: 3px;
 }
 
-/* Option: légère mise en valeur au survol (sans changer la couleur) */
+
 .alink:hover{
   text-decoration-style: dotted;
-  text-decoration-thickness: from-font;     /* plus net si la police le permet */
-  opacity: 0.95;                             /* discret */
+  text-decoration-thickness: from-font;    
+  opacity: 0.95;                           
 }
 
-/* Image de la colonne droite : taille contrôlée et centrée */
 .page-about .about-side picture{
   display:block;
   width:100%;
-  max-width:260px;     /* ← ajuste ici si tu veux plus grand (ex: 320px) */
+  max-width:260px;     
   margin:0 auto;
 }
 
@@ -594,16 +495,10 @@ html[data-theme="light"] body::after{ opacity:.04; }
   box-shadow:var(--shadow);
 }
 
-/* Empêche toute image de dépasser son conteneur dans les pages */
-.page img{ max-width:100%; height:auto; }
 
-/* Si un style externe forçait la largeur de l'image, on verrouille aussi ici */
+.page img{ max-width:100%; height:auto; }
 .page-about .about-pp{ max-width:260px; }
 
-
-
-
-/* timeline */
 .timeline{ list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 10px; }
 .titem{
   display: grid; grid-template-columns: 110px 1fr; gap: 12px;
@@ -614,47 +509,23 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .tcontent{ line-height: 1.55; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*__________________________________*/
-
-/* ===== Projects ===== */
+/* Projects */
 .page-projects .brand { display: none; }
 
-/* Liste de cartes */
 .project-list{
   display: grid;
-  gap: 24px;               /* + d'espace entre les cartes */
-  margin: 22px 0 32px;     /* respiration haut/bas */
+  gap: 24px;             
+  margin: 22px 0 32px;   
   max-width: 980px;
-  grid-template-columns: 1fr !important; /* 1 colonne */
+  grid-template-columns: 1fr !important;
 }
 
-/* Carte cliquable */
 .project-card{
   display: block;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 20px 22px;      /* un peu plus d’air dans la carte */
+  padding: 20px 22px;      
   color: var(--text);
   text-decoration: none;
   box-shadow: var(--shadow);
@@ -670,12 +541,11 @@ html[data-theme="light"] body::after{ opacity:.04; }
   outline-offset: 3px;
 }
 
-/* Header interne */
+
 .pheader{ display:flex; gap:10px; align-items:center; }
 .ptitle{ margin:0; font-size:20px; font-weight:700; line-height:1.25; }
 .ptitle .picon{ width:18px; height:18px; flex:0 0 18px; object-fit:contain; display:block; }
 
-/* Pastille repo à droite */
 .pcta{
   margin-left:auto;
   display:inline-flex; align-items:center; gap:8px;
@@ -687,15 +557,12 @@ html[data-theme="light"] body::after{ opacity:.04; }
   white-space:nowrap;
 }
 .pcta .icon{ width:16px; height:16px; flex:0 0 16px; object-fit:contain; display:block; }
-
-/* Sécurité contre img {width:100%} globaux */
 .project-card .pheader img{ max-width:none; }
 
-/* Description + tags */
 .pdesc{ margin:8px 0 10px; color:var(--muted); }
 .ptags{
   display:flex; flex-wrap:wrap; gap:8px;
-  margin:0 0 2px;              /* petit espace bas */
+  margin:0 0 2px;            
   padding:0; list-style:none;
 }
 .ptags li{
@@ -706,7 +573,7 @@ html[data-theme="light"] body::after{ opacity:.04; }
   background:var(--bg);
 }
 
-/* Responsive */
+
 @media (max-width: 600px){
   .ptitle{ font-size:18px; }
 }
@@ -714,17 +581,6 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
-
-
-
-
-
-
-
-
-
-/*__________________________________*/
-/* ===== Boutons & badges (réutilisables) ===== */
 .btns{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0; }
 .btn{
   display:inline-flex; align-items:center; gap:8px;
@@ -742,32 +598,14 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .badge--gold{ color:#fbbf24; border-color:#433; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* ===== Case study (Cassiopée) ===== */
-
-/* HEADER sans image – aligné à GAUCHE dans le container */
 .case-header{
   display:block;
   max-width:980px;
-  margin:8px 0 20px;        /* ← plus de auto ici */
-}
-
-
-
+  margin:8px 0 20px;       
 
 .case-title{
   max-width:860px;
-  margin-left:0;            /* ← aligne à gauche */
+  margin-left:0;           
   margin-right:auto;
   row-gap: 14px; /
   text-align:left;
@@ -777,10 +615,10 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .badges{ margin-top:8px; }
 .btns{ margin-top:12px; }
 
-/* CORPS : main + side – aligné à GAUCHE dans le container */
+
 .case-body{
   max-width:1100px;
-  margin-left:0;            /* ← aligne à gauche */
+  margin-left:0;         
   margin-right:auto;
   margin-bottom:28px;
   gap:28px;
@@ -797,27 +635,16 @@ html[data-theme="light"] body::after{ opacity:.04; }
 }
 .meta-card h3{ margin:0; font-size:16px; }
 
-/* Sécurité : pas de brand sur cette page */
+
 .page-case .brand{ display:none; }
 
-/* Responsive */
+
 @media (max-width:980px){
   .case-body{ grid-template-columns:1fr; max-width:860px; }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-/*__________________________________*/
-/* ===== Creations ===== */
+/* Creations */
 .page-creations .brand{ display:none; }
 .center-cta{ text-align:center; margin:14px 0; }
 .crea-grid{
@@ -833,11 +660,9 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
-/* title with tiny icon */
+
 .ptitle{ display:flex; align-items:center; gap:8px; margin:0; font-size:20px; font-weight:700; line-height:1.25; }
 .ptitle .picon{ width:18px; height:18px; flex:0 0 18px; object-fit:contain; display:block; }
-
-/* right-side "repo" chip */
 .pcta{
   margin-left:auto;
   display:inline-flex;
@@ -854,24 +679,23 @@ html[data-theme="light"] body::after{ opacity:.04; }
 .pcta .sbtn-label{ line-height:1; }
 
 
-
-/* Mail discret sous le nom dans le hero */
+/* Mail */
 .mail-link,
 .mail-link:link,
 .mail-link:visited{
-  color: var(--muted);           /* gris léger */
-  text-decoration: none;         /* pas de soulignement */
-  font-size: 16px;               /* plus petit – ajuste si besoin */
+  color: var(--muted);         
+  text-decoration: none;       
+  font-size: 16px;             
   line-height: 1.4;
 }
 
 .mail-link:hover{
-  color: var(--text);            /* un peu plus lisible au survol (optionnel) */
+  color: var(--text);           
   text-decoration: none;
   opacity: .95;
 }
 
-.mail-link:focus-visible{        /* accessibilité clavier */
+.mail-link:focus-visible{       
   outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 6px;
@@ -879,22 +703,17 @@ html[data-theme="light"] body::after{ opacity:.04; }
 
 
 
-/* === Offsets & titres unifiés sur TOUTES les pages === */
 
-/* 1) Espace fixe sous la topbar */
-.page { padding-top: 16px; }             /* ajuste à 16–24px si tu préfères */
-.page .container { padding-top: 0; }     /* neutralise d’anciens réglages */
 
-/* 2) Style et marges identiques pour les H1 */
+
+.page { padding-top: 16px; }            
+.page .container { padding-top: 0; }    
 .page-title{
-  font-size: 28px;                       /* même taille partout */
+  font-size: 28px;                   
   line-height: 1.25;
-  margin: 18px 0 12px;                   /* même respiration partout */
-  font-weight: 800;                      /* option : plus “titre” */
+  margin: 18px 0 12px;                   
+  font-weight: 800;                      
 }
-
-
-/* GitHub chip : même rendu qu'une tuile + pas de violet */
 .pcta,
 .pcta:link,
 .pcta:visited{
@@ -905,8 +724,8 @@ html[data-theme="light"] body::after{ opacity:.04; }
   border:1px solid var(--border);
   border-radius:12px;
   background:var(--bg);
-  color:var(--text);          /* neutralise le violet des liens */
-  text-decoration:none;       /* pas de soulignement */
+  color:var(--text);         
+  text-decoration:none;       
   font-weight:600;
   transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
@@ -917,69 +736,44 @@ html[data-theme="light"] body::after{ opacity:.04; }
 }
 .pcta .icon{ width:18px; height:18px; display:block; }
 
-
-
-
-
-
-/* ===== Topbar: même taille partout (comme Home) ===== */
-
-
 .topbar{
   height: var(--topbar-h);
 }
-
 .topbar .row.only-nav{
   height: var(--topbar-h);
-  padding: 0;                   /* pas de padding qui change la hauteur */
+  padding: 0;                  
 }
-
-/* Typo/align cohérents dans la nav */
 .nav a{
   font-size: 16px;
-  line-height: 1;               /* évite que la ligne gonfle la barre */
-  padding: 0;                   /* on garde l’espacement via gap */
+  line-height: 1;               
+  padding: 0;                  
 }
-
 .toggle{
   top: 50%;
-  transform: translateY(-50%);  /* parfaitement centré verticalement */
+  transform: translateY(-50%); 
 }
 .toggle img{ width: 18px; height: 18px; }
-
-/* ===== Espace sous la topbar: identique Home / autres pages ===== */
 .main .container,
 .page .container{
-  padding-top: 18px;            /* même “respiration” partout */
+  padding-top: 18px;          
 }
-
-
-
-
-
-/* make sure chips themselves don't add extra height */
 .pcta, .pcta .sbtn-label{ line-height: 1; }
 
 
-
-/* Cassiopée: remettre le centrage du container */
+/* Case */
 .case-header{
   max-width: 980px;
-  margin: 8px auto 20px;     /* ← auto re-centre */
+  margin: 8px auto 20px;    
 }
-
 .case-body{
   max-width: 1100px;
-  margin: 0 auto 28px;       /* ← auto re-centre */
+  margin: 0 auto 28px;      
   display: grid;
   gap: 28px;
   grid-template-columns: minmax(640px, 1fr) 340px;
 }
-
-/* Optionnel: le bloc titre reste aligné à gauche mais limité en largeur */
 .case-title{
   max-width: 860px;
-  margin: 0;                 /* pas besoin d'auto ici */
+  margin: 0;                 
   text-align: left;
 }
-
