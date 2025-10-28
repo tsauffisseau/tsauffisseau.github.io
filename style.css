@@ -1113,3 +1113,63 @@ body { min-height: 100dvh; }                /* full height on mobile browsers */
 }
 
 
+
+/* ===== MOBILE HEADER: nav centered + sun centered underneath ===== */
+@media (max-width: 720px){
+
+  /* Let the bar auto-size and account for iOS safe area */
+  .topbar{ height:auto; }
+  .topbar .row.only-nav{
+    display:flex;
+    flex-direction:column;              /* nav on top, sun below */
+    align-items:center;
+    gap:10px;
+    height:auto;
+    padding: calc(env(safe-area-inset-top) + 6px) 0 10px;
+  }
+
+  /* Nav: centered row, wraps if needed */
+  .nav{
+    order:1;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;                     /* wrap instead of horizontal scroll */
+    gap:20px;
+  }
+  .nav a{
+    height:auto;                        /* no fixed bar height on mobile */
+    padding:6px 0;
+    line-height:1.2;
+  }
+
+  /* Optional: subtle underline on the active link (like your example) */
+  .nav a.active{
+    color: var(--text);
+    position:relative;
+  }
+  .nav a.active::after{
+    content:"";
+    display:block;
+    width:42px;                         /* tweak width if you want */
+    height:2px;
+    margin:6px auto 0;
+    background: currentColor;
+    border-radius:2px;
+    opacity:.6;
+  }
+
+  /* Theme toggle: small icon, centered, no big pill background */
+  .toggle{
+    order:2;
+    position:static;                    /* no absolute → no overlap */
+    transform:none;
+    align-self:center;                  /* center on its own row */
+    background:transparent;
+    border-color:transparent;
+    padding:6px;
+  }
+  .toggle:hover{ background: rgba(148,163,184,.12); border-color: transparent; }
+  .toggle img{ width:18px; height:18px; } /* smaller sun */
+}
+
+
