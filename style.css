@@ -1172,4 +1172,20 @@ body { min-height: 100dvh; }                /* full height on mobile browsers */
   .toggle img{ width:18px; height:18px; } /* smaller sun */
 }
 
+/* Mobile: 2 colonnes pour les 4 liens, centrés */
+@media (max-width: 560px){
+  .page-about .page-header .socials-top{
+    position: static;
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    gap: 10px 14px;        /* espace lignes/colonnes */
+    width: 100%;
+  }
+  .page-about .page-header .socials-top .pcta{
+    justify-content: center;   /* texte + icône centrés dans la puce */
+    width: auto;               /* pas de largeur fixe */
+  }
+}
 
