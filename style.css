@@ -945,3 +945,171 @@ body{
   .page-title{ font-size: 26px; margin: 14px 0 10px; }
 }
 
+/* ---------- GLOBAL small fixes ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }          /* kill accidental horizontal pan */
+body { min-height: 100dvh; }                /* full height on mobile browsers */
+
+/* ---------- Mobile layout (phones) ---------- */
+@media (max-width: 720px){
+
+  /* respect iPhone notch + stretch to full width */
+  .container{
+    padding-left: calc(16px + env(safe-area-inset-left));
+    padding-right: calc(16px + env(safe-area-inset-right));
+  }
+
+  /* smaller topbar + put the toggle UNDER the links */
+  :root { --topbar-h: 56px; --nav-font-size: 15px; }
+  .topbar{ height: auto; }
+  .topbar .row.only-nav{
+    height: auto;
+    padding: env(safe-area-inset-top) 0 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+
+  .nav{
+    order: 1;
+    gap: 18px;
+    overflow-x: auto;                 /* allow horizontal scroll if needed */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;              /* avoid clipping */
+    scrollbar-width: none;            /* hide thin scrollbar (Firefox) */
+    -ms-overflow-style: none;         /* IE/Edge legacy */
+  }
+  .nav::-webkit-scrollbar{ display: none; } /* hide thin bar (Safari/Chrome) */
+
+  .nav a{
+    height: 44px;                     /* comfy tap target */
+    padding: 0 4px;
+  }
+
+  .toggle{
+    order: 2;
+    position: static;                 /* no overlap */
+    transform: none;
+    margin-top: 6px;
+    align-self: center;
+  }
+
+  /* Home hero + cards: stack vertically, full-width */
+  .hero{ padding: 28px 0 32px; }
+  .pp{ width: 180px; height: 180px; } /* a bit smaller on phones */
+
+  .cards--home{
+    grid-template-columns: 1fr;       /* stack */
+    gap: 12px;
+    max-width: 640px;
+    margin-top: 10px;
+  }
+
+  .socials-grid{
+    grid-template-columns: 1fr;       /* stack */
+    gap: 10px;
+    max-width: 640px;
+  }
+  .sbtn-tile{
+    justify-self: stretch;
+    justify-content: flex-start;      /* icon BEFORE label, left-aligned */
+    width: 100%;
+  }
+
+  /* Case pages: make sure they’re centered and single column */
+  .case-header{ margin: 8px auto 16px; }
+  .case-body{
+    max-width: 860px;
+    margin: 0 auto 24px;
+    display: grid; gap: 20px;
+    grid-template-columns: 1fr;       /* 1 column on phone */
+  }
+
+  /* Resume/Poster card lists: single column is already responsive,
+     but tighten spacing a bit on phones */
+  .resume-grid, .poster-grid{ gap: 12px; margin: 14px 0 22px; }
+}
+
+/* (Optional) if you still see a micro horizontal bar under the nav anywhere,
+   you can force the topbar container to hide it: */
+@media (max-width: 720px){
+  .topbar .row.only-nav{ overflow: hidden; }
+}
+/* ===== Mobile layout (≤ 720px) ===== */
+@media (max-width: 720px){
+
+  :root{
+    --topbar-h: 56px;           /* topbar un peu plus basse sur mobile */
+    --nav-font-size: 15px;
+    --topbar-mobile-h: 56px;
+  }
+
+  /* Topbar pleine largeur + safe area */
+  .topbar{
+    height: auto;               /* plus de hauteur figée */
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Nav sur une ligne, WRAP si ça déborde */
+  .nav{
+    display:flex;
+    flex-wrap: wrap;            /* permet d'envoyer le bouton sur la ligne du dessous */
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding: 8px 12px 6px;
+  }
+
+  /* Liens: pas besoin d'une grande hauteur cliquable sur mobile */
+  .nav a{
+    height: auto;
+    padding: 6px 4px;
+    font-size: var(--nav-font-size);
+    line-height: 1.1;
+  }
+
+  /* Bouton thème sous les liens */
+  .toggle{
+    position: static;           /* enlève le absolute */
+    order: 2;                   /* passe après les liens */
+    flex-basis: 100%;           /* prend toute la ligne ⇒ descend dessous */
+    margin-top: 2px;
+    transform: none;
+    display: flex;
+    justify-content: center;    /* centré */
+  }
+
+  /* Hero plein écran (corrigé iOS) */
+  .hero{
+    padding: 18px 0 24px;
+    min-height: calc(100vh - var(--topbar-mobile-h));  /* fallback */
+  }
+  @supports (height: 1dvh){
+    .hero{ min-height: calc(100dvh - var(--topbar-mobile-h)); } /* iOS/Chrome moderne */
+  }
+
+  /* Empiler les 3 cartes “rectangles” + tuiles sociales pleine largeur */
+  .cards--home{ 
+    grid-template-columns: 1fr; 
+    gap: 12px; 
+    max-width: 560px; 
+    margin-top: 12px;
+  }
+  .socials-grid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 560px;
+  }
+  .sbtn-tile{ width: 100%; justify-content: center; }
+
+  /* Un peu plus petit pour la photo/nom si tu veux */
+  .pp{ width: 200px; height: 200px; }
+  .hero__name{ font-size: 26px; }
+
+  /* Cas d'étude / projets: colonnes → 1 colonne */
+  .case-body{ grid-template-columns: 1fr; }
+  .project-list{ grid-template-columns: 1fr !important; }
+
+  /* Anti scroll horizontal accidentel */
+  html, body{ overflow-x: hidden; }
+}
+
+
