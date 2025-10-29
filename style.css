@@ -792,466 +792,110 @@ a.mail-link:focus-visible{
 
 
 
-
-/* ====== Mobile & Chrome full height / layout ====== */
+/* ===== Mobile full-height foundation ===== */
 html, body { height: 100%; background: var(--bg); }
-body { min-height: 100dvh; /* Chrome/Android & iOS address bar safe */ }
+body{
+  min-height: 100dvh;                 /* modern mobile */
+  min-height: -webkit-fill-available; /* older iOS fallback */
+  overflow-x: hidden;                  /* no accidental side scroll */
+}
 
-/* --- Réglages mobiles généraux --- */
+/* ===== TOPBAR: full-width nav + sun underneath (≤ 720px) ===== */
 @media (max-width: 720px){
 
-  /* 1) Topbar compacte + bouton thème en dessous */
   :root{
-    --topbar-h: 56px;     /* barre un peu plus petite sur tel */
+    --topbar-h: 56px;    /* smaller bar on phone */
     --nav-font-size: 15px;
   }
 
-  .topbar{ height:auto; }
-  .topbar .row.only-nav{
-    height:auto;
-    padding: env(safe-area-inset-top) 0 8px;
-    display:flex;
-    flex-direction: column;   /* nav au-dessus, toggle en dessous */
-    align-items:center;
-    gap:8px;
+  .topbar{
+    height: auto;
+    padding-top: env(safe-area-inset-top);
+    border-bottom: 1px solid var(--border);
   }
 
-  .nav{
-    order:1;
-    gap:18px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .nav a{
-    height: var(--topbar-h);
-    line-height: 1;
-    padding: 0 4px;
-  }
-
-  .toggle{
-    order:2;
-    position: static;         /* plus d’absolu → pas de chevauchement */
-    transform: none;
-    margin-top: 4px;
-    align-self: center;
-  }
-
-  /* 2) HERO plus serré */
-  .hero{ padding: 28px 0 32px; }
-  .pp{ width: 148px; height: 148px; border-width: 1px; }
-  .hero__name{ font-size: 26px; }
-  .hero__mail{ font-size: 14px; }
-
-  /* 3) HOME : cartes en colonne */
-  .cards--home{
-    grid-template-columns: 1fr;     /* vertical */
-    max-width: 520px;               /* colonne lisible */
-    gap: 12px;
-  }
-  .card--home{ text-align: left; }  /* (option) gauche sur mobile */
-
-  /* 4) Tuiles sociales : une par ligne, icône avant le texte */
-  .socials-grid{
-    grid-template-columns: 1fr;     /* vertical */
-    max-width: 520px;
-    gap: 10px;
-  }
-  .sbtn-tile{
-    justify-self: stretch;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 14px;
-  }
-  .sbtn-tile img{ width: 18px; height: 18px; }
-
-  /* 5) Un peu moins d’air global sous la topbar */
-  .main .container,
-  .page .container{ padding-top: 12px; }
-
-  /* 6) Petits ajustements de texte */
-  .page-title{ font-size: 26px; margin: 14px 0 10px; }
-}
-
-/* ====== (Option) Légers arrondis et centrage des icônes bouton-lien ====== */
-.pcta .icon,
-.sbtn-tile .icon{ display:block; flex:0 0 auto; }
-
-
-/* ===== Mobile foundation (Chrome/Android + iOS Safari) ===== */
-html, body { height: 100%; background: var(--bg); }
-body{
-  min-height: 100dvh;              /* hauteur utile sur mobiles modernes */
-  min-height: -webkit-fill-available; /* fallback iOS Safari anciens */
-}
-
-/* ===== Layout mobile ===== */
-@media (max-width: 720px){
-
-  /* Topbar compacte + toggle (soleil) en dessous des liens */
-  :root{ --topbar-h: 56px; --nav-font-size: 15px; }
-
-  .topbar{ height:auto; }
-  .topbar .row.only-nav{
-    height:auto;
-    padding: env(safe-area-inset-top) 0 8px; /* iPhone notch */
-    display:flex;
-    flex-direction: column;   /* liens au-dessus, toggle en dessous */
-    align-items:center;
-    gap:8px;
-  }
-  .nav{
-    order:1;
-    gap:18px;
-    overflow-x:auto;          /* si ça déborde */
-    -webkit-overflow-scrolling:touch;
-  }
-  .nav a{
-    height: var(--topbar-h);
-    line-height: 1;
-    padding: 0 4px;
-  }
-  .toggle{
-    order:2;
-    position: static;         /* plus d'absolu → pas de chevauchement */
-    transform: none;
-    margin-top: 4px;
-    align-self: center;
-  }
-
-  /* Hero un peu plus serré */
-  .hero{ padding: 28px 0 32px; }
-  .pp{ width: 148px; height: 148px; border-width: 1px; }
-  .hero__name{ font-size: 26px; }
-  .hero__mail{ font-size: 14px; }
-
-  /* HOME : cartes en colonne */
-  .cards--home{
-    grid-template-columns: 1fr;  /* vertical */
-    max-width: 520px;
-    gap: 12px;
-  }
-  /* Tuiles sociales : aussi en colonne */
-  .socials-grid{
-    grid-template-columns: 1fr;
-    max-width: 520px;
-    gap: 10px;
-  }
-  .sbtn-tile{ justify-self: stretch; justify-content: center; }
-
-  /* Un peu moins d’air sous la topbar */
-  .main .container, .page .container{ padding-top: 12px; }
-
-  /* Titres mobiles */
-  .page-title{ font-size: 26px; margin: 14px 0 10px; }
-}
-
-/* ---------- GLOBAL small fixes ---------- */
-*, *::before, *::after { box-sizing: border-box; }
-html, body { overflow-x: hidden; }          /* kill accidental horizontal pan */
-body { min-height: 100dvh; }                /* full height on mobile browsers */
-
-/* ---------- Mobile layout (phones) ---------- */
-@media (max-width: 720px){
-
-  /* respect iPhone notch + stretch to full width */
-  .container{
-    padding-left: calc(16px + env(safe-area-inset-left));
-    padding-right: calc(16px + env(safe-area-inset-right));
-  }
-
-  /* smaller topbar + put the toggle UNDER the links */
-  :root { --topbar-h: 56px; --nav-font-size: 15px; }
-  .topbar{ height: auto; }
   .topbar .row.only-nav{
     height: auto;
-    padding: env(safe-area-inset-top) 0 8px;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    display: flex;
+    flex-direction: column;            /* nav on top, sun below */
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0 8px;
+    overflow: visible;                 /* no scroll-rail */
   }
 
+  /* NAV = full width, evenly spaced items on one row */
   .nav{
-    order: 1;
-    gap: 18px;
-    overflow-x: auto;                 /* allow horizontal scroll if needed */
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;              /* avoid clipping */
-    scrollbar-width: none;            /* hide thin scrollbar (Firefox) */
-    -ms-overflow-style: none;         /* IE/Edge legacy */
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));  /* Home..About me */
+    align-items: center;
+    justify-items: center;
+    gap: 0;                             /* equal slots, no extra gaps */
   }
-  .nav::-webkit-scrollbar{ display: none; } /* hide thin bar (Safari/Chrome) */
-
   .nav a{
-    height: 44px;                     /* comfy tap target */
-    padding: 0 4px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    height: auto;                       /* no fixed bar height */
+    line-height: 1.2;
+    white-space: nowrap;                /* avoid breaking "About me" */
+    text-decoration: none;
   }
 
+  /* Kill any decorative underline/after line */
+  .nav a.active::after{ content: none !important; display: none !important; }
+
+  /* Sun toggle: compact, centered, no huge pill */
   .toggle{
     order: 2;
-    position: static;                 /* no overlap */
-    transform: none;
-    margin-top: 6px;
-    align-self: center;
+    position: static; transform: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 6px; border-radius: 999px; border: 1px solid var(--border);
+    background: transparent; width: auto; flex: 0 0 auto; margin-top: 2px;
   }
+  .toggle img{ width: 16px; height: 16px; }
+}
 
-  /* Home hero + cards: stack vertically, full-width */
+/* ===== HOME: stack the three cards + social tiles on phones ===== */
+@media (max-width: 720px){
   .hero{ padding: 28px 0 32px; }
-  .pp{ width: 180px; height: 180px; } /* a bit smaller on phones */
+  .pp{ width: 180px; height: 180px; }
 
   .cards--home{
-    grid-template-columns: 1fr;       /* stack */
+    grid-template-columns: 1fr;     /* vertical stack */
     gap: 12px;
     max-width: 640px;
     margin-top: 10px;
   }
 
   .socials-grid{
-    grid-template-columns: 1fr;       /* stack */
-    gap: 10px;
+    grid-template-columns: 1fr;     /* vertical stack */
+    gap: 12px;
     max-width: 640px;
   }
   .sbtn-tile{
-    justify-self: stretch;
-    justify-content: flex-start;      /* icon BEFORE label, left-aligned */
     width: 100%;
-  }
-
-  /* Case pages: make sure they’re centered and single column */
-  .case-header{ margin: 8px auto 16px; }
-  .case-body{
-    max-width: 860px;
-    margin: 0 auto 24px;
-    display: grid; gap: 20px;
-    grid-template-columns: 1fr;       /* 1 column on phone */
-  }
-
-  /* Resume/Poster card lists: single column is already responsive,
-     but tighten spacing a bit on phones */
-  .resume-grid, .poster-grid{ gap: 12px; margin: 14px 0 22px; }
-}
-
-/* (Optional) if you still see a micro horizontal bar under the nav anywhere,
-   you can force the topbar container to hide it: */
-@media (max-width: 720px){
-  .topbar .row.only-nav{ overflow: hidden; }
-}
-/* ===== Mobile layout (≤ 720px) ===== */
-@media (max-width: 720px){
-
-  :root{
-    --topbar-h: 56px;           /* topbar un peu plus basse sur mobile */
-    --nav-font-size: 15px;
-    --topbar-mobile-h: 56px;
-  }
-
-  /* Topbar pleine largeur + safe area */
-  .topbar{
-    height: auto;               /* plus de hauteur figée */
-    padding-top: env(safe-area-inset-top);
-  }
-
-  /* Nav sur une ligne, WRAP si ça déborde */
-  .nav{
-    display:flex;
-    flex-wrap: wrap;            /* permet d'envoyer le bouton sur la ligne du dessous */
     justify-content: center;
-    align-items: center;
-    gap: 18px;
-    padding: 8px 12px 6px;
-  }
-
-  /* Liens: pas besoin d'une grande hauteur cliquable sur mobile */
-  .nav a{
-    height: auto;
-    padding: 6px 4px;
-    font-size: var(--nav-font-size);
-    line-height: 1.1;
-  }
-
-  /* Bouton thème sous les liens */
-  .toggle{
-    position: static;           /* enlève le absolute */
-    order: 2;                   /* passe après les liens */
-    flex-basis: 100%;           /* prend toute la ligne ⇒ descend dessous */
-    margin-top: 2px;
-    transform: none;
-    display: flex;
-    justify-content: center;    /* centré */
-  }
-
-  /* Hero plein écran (corrigé iOS) */
-  .hero{
-    padding: 18px 0 24px;
-    min-height: calc(100vh - var(--topbar-mobile-h));  /* fallback */
-  }
-  @supports (height: 1dvh){
-    .hero{ min-height: calc(100dvh - var(--topbar-mobile-h)); } /* iOS/Chrome moderne */
-  }
-
-  /* Empiler les 3 cartes “rectangles” + tuiles sociales pleine largeur */
-  .cards--home{ 
-    grid-template-columns: 1fr; 
-    gap: 12px; 
-    max-width: 560px; 
-    margin-top: 12px;
-  }
-  .socials-grid{
-    grid-template-columns: 1fr;
     gap: 10px;
-    max-width: 560px;
+    padding: 10px 14px;
   }
-  .sbtn-tile{ width: 100%; justify-content: center; }
-
-  /* Un peu plus petit pour la photo/nom si tu veux */
-  .pp{ width: 200px; height: 200px; }
-  .hero__name{ font-size: 26px; }
-
-  /* Cas d'étude / projets: colonnes → 1 colonne */
-  .case-body{ grid-template-columns: 1fr; }
-  .project-list{ grid-template-columns: 1fr !important; }
-
-  /* Anti scroll horizontal accidentel */
-  html, body{ overflow-x: hidden; }
+  .sbtn-tile img{ width: 18px; height: 18px; }
 }
 
-
-
-/* ===== MOBILE HEADER: nav centered + sun centered underneath ===== */
-@media (max-width: 720px){
-
-  /* Let the bar auto-size and account for iOS safe area */
-  .topbar{ height:auto; }
-  .topbar .row.only-nav{
-    display:flex;
-    flex-direction:column;              /* nav on top, sun below */
-    align-items:center;
-    gap:10px;
-    height:auto;
-    padding: calc(env(safe-area-inset-top) + 6px) 0 10px;
-  }
-
-  /* Nav: centered row, wraps if needed */
-  .nav{
-    order:1;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;                     /* wrap instead of horizontal scroll */
-    gap:20px;
-  }
-  .nav a{
-    height:auto;                        /* no fixed bar height on mobile */
-    padding:6px 0;
-    line-height:1.2;
-  }
-
-  /* Optional: subtle underline on the active link (like your example) */
-  .nav a.active{
-    color: var(--text);
-    position:relative;
-  }
-  .nav a.active::after{
-    content:"";
-    display:block;
-    width:42px;                         /* tweak width if you want */
-    height:2px;
-    margin:6px auto 0;
-    background: currentColor;
-    border-radius:2px;
-    opacity:.6;
-  }
-
-  /* Theme toggle: small icon, centered, no big pill background */
-  .toggle{
-    order:2;
-    position:static;                    /* no absolute → no overlap */
-    transform:none;
-    align-self:center;                  /* center on its own row */
-    background:transparent;
-    border-color:transparent;
-    padding:6px;
-  }
-  .toggle:hover{ background: rgba(148,163,184,.12); border-color: transparent; }
-  .toggle img{ width:18px; height:18px; } /* smaller sun */
-}
-
-/* Mobile: 2 colonnes pour les 4 liens, centrés */
+/* ===== ABOUT header (optional nice mobile layout) ===== */
 @media (max-width: 560px){
+  .page-about .page-header{ display: grid; justify-items: center; gap: 10px; }
   .page-about .page-header .socials-top{
-    position: static;
-    transform: none;
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: center;
-    gap: 10px 14px;        /* espace lignes/colonnes */
-    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));  /* 2×2 */
+    gap: 10px 12px; width: 100%; max-width: 420px; justify-items: stretch;
   }
   .page-about .page-header .socials-top .pcta{
-    justify-content: center;   /* texte + icône centrés dans la puce */
-    width: auto;               /* pas de largeur fixe */
+    width: 100%; justify-content: center; gap: 10px; padding: 10px 12px;
   }
 }
 
-/* ===== Mobile tidy (<= 720px) ===== */
-@media (max-width: 720px){
+/* Safety: never stretch the toggle */
+.toggle{ max-width: none; width: auto; flex: 0 0 auto; }
 
-  /* Topbar : nav centrée, pas de barre moche iOS, bouton thème petit */
-  .topbar{ height:auto; }
-  .topbar .row.only-nav{
-    height:auto;
-    padding: env(safe-area-inset-top) 0 8px;
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-  }
-  .nav{
-    gap:18px; overflow-x:auto; -webkit-overflow-scrolling:touch;
-    scrollbar-width: none;          /* Firefox */
-  }
-  .nav::-webkit-scrollbar{ display:none; } /* iOS/Chrome */
-
-  /* Petit bouton soleil (ne prend pas toute la largeur) */
-  .toggle{
-    order:2; position:static; transform:none; /* plus d'absolu */
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:6px; border-radius:999px; border:1px solid var(--border);
-    background:transparent; width:auto; flex:0 0 auto; margin-top:2px;
-  }
-  .toggle img{ width:16px; height:16px; }
-
-  /* HOME : cartes et tiles en colonne */
-  .cards--home{ grid-template-columns:1fr; max-width:540px; gap:12px; }
-  .socials-grid{ grid-template-columns:1fr; max-width:540px; gap:12px; }
-
-  /* ABOUT: layout propre du titre + soleil + liens */
-  .page-about .page-header{
-    display:grid; justify-items:center; gap:10px;
-    margin:14px 0 8px;
-  }
-  /* Si tu as mis un bouton .toggle dans la page-header, même style compact */
-  .page-about .page-header .toggle{
-    padding:6px; width:auto; background:transparent;
-  }
-
-  /* Les 4 liens : grille 2x2 avec jolis espaces */
-  .page-about .socials-top{
-    display:grid !important;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-    gap:10px 12px;
-    width:100%; max-width:420px;
-    justify-items:stretch; /* chaque chip prend sa colonne */
-  }
-  .page-about .socials-top .pcta{
-    width:100%; justify-content:center;
-    gap:10px; padding:10px 12px; border-radius:12px;
-  }
-  .page-about .socials-top .pcta .icon{
-    width:18px; height:18px; flex:0 0 18px; display:block;
-  }
-}
-
-/* Option : même si la traduction passe, éviter les overlaps en autorisant la nav à wrap (si tu préfères wrap au lieu de scroll) */
-/*
-@media (max-width: 720px){
-  .nav{ flex-wrap:wrap; justify-content:center; }
-  .nav a{ white-space:nowrap; }
-}
-*/
-
-/* (au cas où) neutralise tout style qui forcerait .toggle à s'étirer */
-.toggle{ max-width: none; width:auto; flex:0 0 auto; }
