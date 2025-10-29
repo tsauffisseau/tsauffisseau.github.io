@@ -899,3 +899,63 @@ body{
 /* Safety: never stretch the toggle */
 .toggle{ max-width: none; width: auto; flex: 0 0 auto; }
 
+/* ===== Mobile topbar (≤720px): full-width links + centered sun ===== */
+@media (max-width: 720px){
+  :root{ --topbar-h:56px; --nav-font-size:15px; }
+
+  .topbar{ height:auto; }
+  .topbar .row.only-nav{
+    display:grid;
+    grid-template-rows: auto auto;       /* nav row + sun row */
+    align-items:center;
+    gap:8px;
+    height:auto;
+    padding: calc(env(safe-area-inset-top) + 6px) 12px 10px;
+  }
+
+  /* full-width nav using grid */
+  .nav{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr); /* change 4 if you add/remove tabs */
+    justify-items:center;
+    gap:0;
+  }
+  .nav a{
+    width:100%;
+    text-align:center;
+    height:auto;
+    padding:10px 0;
+    line-height:1.2;
+    font-size:var(--nav-font-size);
+    white-space:nowrap;
+    text-decoration:none;
+    border-bottom: 0;                    /* we’ll kill any underline below */
+  }
+
+  /* kill the old underline “trait” */
+  .nav a::after{ content:none !important; }
+  .nav a.active::after{ content:none !important; }
+
+  /* centered, compact theme button */
+  .toggle{
+    justify-self:center;
+    position:static;
+    transform:none;
+    padding:6px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:transparent;
+    width:auto; flex:0 0 auto; margin-top:2px;
+  }
+  .toggle img{ width:18px; height:18px; }
+
+  /* prevent tiny iOS scroll bar under the nav */
+  .topbar .row.only-nav{ overflow:hidden; }
+}
+
+/* optional: if you want a subtle active bar across the whole tab (no pseudo) */
+@media (max-width: 720px){
+  .nav a{ border-bottom:2px solid transparent; }
+  .nav a.active{ border-bottom-color: var(--border); }
+}
