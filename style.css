@@ -1189,3 +1189,69 @@ body { min-height: 100dvh; }                /* full height on mobile browsers */
   }
 }
 
+/* ===== Mobile tidy (<= 720px) ===== */
+@media (max-width: 720px){
+
+  /* Topbar : nav centrée, pas de barre moche iOS, bouton thème petit */
+  .topbar{ height:auto; }
+  .topbar .row.only-nav{
+    height:auto;
+    padding: env(safe-area-inset-top) 0 8px;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .nav{
+    gap:18px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scrollbar-width: none;          /* Firefox */
+  }
+  .nav::-webkit-scrollbar{ display:none; } /* iOS/Chrome */
+
+  /* Petit bouton soleil (ne prend pas toute la largeur) */
+  .toggle{
+    order:2; position:static; transform:none; /* plus d'absolu */
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:6px; border-radius:999px; border:1px solid var(--border);
+    background:transparent; width:auto; flex:0 0 auto; margin-top:2px;
+  }
+  .toggle img{ width:16px; height:16px; }
+
+  /* HOME : cartes et tiles en colonne */
+  .cards--home{ grid-template-columns:1fr; max-width:540px; gap:12px; }
+  .socials-grid{ grid-template-columns:1fr; max-width:540px; gap:12px; }
+
+  /* ABOUT: layout propre du titre + soleil + liens */
+  .page-about .page-header{
+    display:grid; justify-items:center; gap:10px;
+    margin:14px 0 8px;
+  }
+  /* Si tu as mis un bouton .toggle dans la page-header, même style compact */
+  .page-about .page-header .toggle{
+    padding:6px; width:auto; background:transparent;
+  }
+
+  /* Les 4 liens : grille 2x2 avec jolis espaces */
+  .page-about .socials-top{
+    display:grid !important;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap:10px 12px;
+    width:100%; max-width:420px;
+    justify-items:stretch; /* chaque chip prend sa colonne */
+  }
+  .page-about .socials-top .pcta{
+    width:100%; justify-content:center;
+    gap:10px; padding:10px 12px; border-radius:12px;
+  }
+  .page-about .socials-top .pcta .icon{
+    width:18px; height:18px; flex:0 0 18px; display:block;
+  }
+}
+
+/* Option : même si la traduction passe, éviter les overlaps en autorisant la nav à wrap (si tu préfères wrap au lieu de scroll) */
+/*
+@media (max-width: 720px){
+  .nav{ flex-wrap:wrap; justify-content:center; }
+  .nav a{ white-space:nowrap; }
+}
+*/
+
+/* (au cas où) neutralise tout style qui forcerait .toggle à s'étirer */
+.toggle{ max-width: none; width:auto; flex:0 0 auto; }
