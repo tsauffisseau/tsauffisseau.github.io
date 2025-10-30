@@ -787,20 +787,26 @@ a.mail-link:focus-visible{
   margin: 0;                 
   text-align: left;
 }
-/* ===== MOBILE (≤ 720px) – version clean ===== */
+
+
+
+
+
+
+/* ====== MOBILE CLEAN (≤ 720px) ====== */
 @media (max-width: 720px){
 
-  /* 0. base : on supprime tout décalage latéral et tout scroll horizontal */
+  /* 0. sécurité : tout compte le padding dans la largeur */
+  *, *::before, *::after{
+    box-sizing: border-box;
+  }
   html, body{
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
   }
 
-  /* 1. TOPBAR : liens centrés, "About me" qui tient, soleil en dessous */
+  /* 1. TOPBAR : centrée, soleil en dessous */
   :root{
-    --topbar-h: 54px;
-    --nav-font-size: 14px;       /* un peu plus petit pour que "About me" passe */
+    --nav-font-size: 14.5px;
   }
 
   .topbar{
@@ -810,33 +816,35 @@ a.mail-link:focus-visible{
 
   .topbar .row.only-nav{
     display: flex;
-    flex-direction: column;      /* liens puis soleil */
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    /* petite marge G/D mais pas trop sinon "About me" saute */
-    padding: 6px 14px 6px;
+    gap: 6px;
+    /* petit padding G/D mais pas trop → "About me" rentre */
+    padding: 6px 14px 8px;
   }
 
+  /* ligne de liens */
   .nav{
     display: flex;
-    flex-wrap: wrap;             /* au cas où tu remets la traduction plus tard */
+    flex-wrap: wrap;               /* si jamais ça casse, ça passe ligne 2 */
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     width: 100%;
   }
-
   .nav a{
     font-size: var(--nav-font-size);
-    height: auto;
     line-height: 1.2;
     text-decoration: none;
-    padding: 0;
+    /* mini marge intérieure pour ne pas coller au bord */
+    padding: 0 2px;
   }
-  /* on tue tous les traits desktop */
+  /* on VIRE tout trait / underline venant du desktop */
   .nav a::after,
-  .nav a.active::after{ content: none !important; }
+  .nav a.active::after{
+    content: none !important;
+  }
 
-  /* soleil CENTRÉ sous la nav */
+  /* soleil SOUS la nav, centré */
   .toggle{
     order: 2;
     position: static;
@@ -844,6 +852,7 @@ a.mail-link:focus-visible{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2px;
     padding: 5px;
     border: 1px solid var(--border);
     border-radius: 999px;
@@ -854,42 +863,27 @@ a.mail-link:focus-visible{
     height: 16px;
   }
 
-  /* 2. CONTENEURS : toute la page bien centrée, pas poussée à droite */
+  /* 2. CONTENEURS : centrés, pas plus larges que l’écran */
   .container,
   .page .container,
   .main .container{
-    width: 100%;
-    max-width: 100%;
+    width: min(100%, 960px);                 /* jamais plus large que l’écran */
     margin: 0 auto;
-    padding: 0 14px;             /* même marge G/D partout */
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  /* 3. HOME : les 3 blocs les uns sous les autres */
+  /* 3. HOME : cartes les unes SOUS les autres */
   .cards--home{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    width: 100%;
-  }
-  .cards--home > *{
-    width: 100%;                 /* pas de carte qui dépasse → pas de scroll */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  /* 4. Titres un peu plus petits + pas collés au bord haut */
-  .page-title,
-  .page .title,
-  .hero__name{
-    font-size: 30px;
-  }
-  .main,
-  .page{
-    padding-top: 6px;
-  }
-
-  /* 5. "About me" : tes 4 boutons pas trop larges */
+  /* 4. ABOUT : 2x2 propres */
   .page-about .page-header .socials-top{
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
     gap: 10px;
     max-width: 360px;
     margin: 0 auto;
@@ -901,17 +895,31 @@ a.mail-link:focus-visible{
     border-radius: 14px;
   }
 
-  /* 6. Pages projet / Cassiopée : pas de décalage à droite */
+  /* 5. TITRES un peu plus petits pour que ça tienne */
+  .page-title,
+  .page .title,
+  h1.page-title{
+    font-size: 30px;
+  }
+
+  /* 6. PAGES "CASIOPÉE" / "CASE STUDY" : pas de décalage à droite */
   .case-header,
-  .case-body{
+  .case-body,
+  .case-content{
+    width: 100%;
+    max-width: 100%;
     padding-left: 0;
     padding-right: 0;
   }
+  /* pour les gros paragraphes : */
+  .case-body p{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 
-  /* 7. Cartes projets : padding un peu réduit pour ne pas dépasser */
+  /* 7. cartes projet un chouïa moins larges */
   .project-card{
     padding: 16px 14px 14px;
   }
 }
-
 
