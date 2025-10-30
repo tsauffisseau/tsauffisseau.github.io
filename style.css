@@ -1035,3 +1035,102 @@ body{
     height: 18px;
   }
 }
+
+/* ======= FIX MOBILE (<= 720px) ======= */
+@media (max-width: 720px){
+
+  /* 1. topbar : nav centrée, plus de trait sous le lien actif */
+  .topbar{
+    height: auto;
+    padding-top: env(safe-area-inset-top);
+  }
+  .topbar .row.only-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: auto;
+    padding: 6px 0 10px;
+  }
+  .nav{
+    display: flex;
+    flex-wrap: wrap;          /* on accepte 2 lignes si ça traduit "À propos de moi" */
+    justify-content: center;
+    gap: 16px 20px;
+  }
+  .nav a{
+    height: auto;
+    padding: 4px 0;
+    line-height: 1.2;
+  }
+  /* ➜ on supprime le soulignement qu’on avait mis */
+  .nav a.active::after{ 
+    content: none !important;
+  }
+
+  /* 2. bouton soleil juste après la nav, petit, rond */
+  .toggle{
+    order: 2;
+    position: static;
+    transform: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    width: auto;
+  }
+  .toggle img{
+    width: 16px;
+    height: 16px;
+  }
+
+  /* 3. containers : même marge à gauche/droite partout (home, projects, cassiopee…) */
+  .container,
+  .page .container,
+  .main .container{
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding-left: calc(16px + env(safe-area-inset-left));
+    padding-right: calc(16px + env(safe-area-inset-right));
+  }
+
+  /* 4. about : 2 lignes / 2 colonnes mais PAS pleine largeur */
+  .page-about .page-header .socials-top{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;          /* <-- ça évite que ça touche les bords */
+    margin: 0 auto;
+  }
+  .page-about .page-header .socials-top .pcta{
+    width: 100%;
+    justify-content: center;
+    padding: 9px 10px;
+    border-radius: 12px;
+  }
+
+  /* 5. cartes / projets : un peu moins d'air pour éviter le décalage à droite */
+  .project-card{
+    padding: 16px 16px 14px;
+  }
+  .project-card .pdesc{
+    word-break: break-word;
+  }
+
+  /* 6. pour ta page "Cassiopee" / "Projet Cassiopée 2025" (page projet) */
+  .case-header,
+  .case-body{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* 7. petit trait horizontal juste sous la topbar → on le neutralise */
+  .topbar + *{
+    border-top: none !important;
+  }
+}
