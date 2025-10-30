@@ -843,8 +843,7 @@ body{
     text-decoration: none;
   }
 
-  /* Kill any decorative underline/after line */
-  .nav a.active::after{ content: none !important; display: none !important; }
+
 
   /* Sun toggle: compact, centered, no huge pill */
   .toggle{
