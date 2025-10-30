@@ -789,65 +789,61 @@ a.mail-link:focus-visible{
 }
 
 
-
-/* ===== MOBILE (<= 720px) — version propre ===== */
+/* ======= MOBILE CLEAN (≤ 720px) ======= */
 @media (max-width: 720px){
 
-  /* 0. base mobile */
-  html, body{
-    height: 100%;
-    min-height: 100dvh;
-    background: var(--bg);
-    overflow-x: hidden;
+  /* 0) Air sur les côtés de la topbar */
+  .topbar .row.only-nav{
+    padding: calc(env(safe-area-inset-top) + 6px)
+             clamp(14px, 4vw, 24px)
+             8px;
+  }
+  .nav{
+    padding-inline: clamp(10px, 3.5vw, 22px);
+  }
+  .nav a{
+    padding-inline: 6px; /* évite de coller aux bords quand ça wrap */
   }
 
-  /* 1. TOPBAR : nav sur UNE ligne, soleil en dessous, PAS de trait actif */
+  /* 1) topbar compacte, centrée, sans trait sous le lien actif */
+  :root{
+    --topbar-h: 54px;
+    --nav-font-size: 14.5px;
+  }
+
   .topbar{
     height: auto;
-    background: var(--bg);
     padding-top: env(safe-area-inset-top);
-    border-bottom: 0; /* tu ne veux plus de ligne entre topbar et le reste */
   }
 
   .topbar .row.only-nav{
     display: flex;
-    flex-direction: column;   /* nav puis soleil */
+    flex-direction: column;
     align-items: center;
     gap: 8px;
-    height: auto;
-    padding: 6px 0 10px;
+    /* le padding est déjà défini plus haut */
   }
 
-  /* nav = défilement horizontal, comme sur ta 1re photo */
+  /* ligne de liens */
   .nav{
-    order: 1;
     display: flex;
-    flex-wrap: nowrap;         /* PAS de retour à la ligne */
-    gap: 20px;
-    width: 100vw;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 14px;
+    flex-wrap: wrap;          /* si un jour tu as “À propos de moi” */
+    justify-content: center;
+    gap: 14px;
   }
-  .nav::-webkit-scrollbar{ display: none; }
-
   .nav a{
-    white-space: nowrap;       /* "About me" reste sur une ligne même traduit */
+    font-size: var(--nav-font-size);
     height: auto;
     line-height: 1.2;
-    padding: 4px 0;
-    font-size: 16px;
     text-decoration: none;
-    border-bottom: 0;
   }
-
-  /* ➜ on coupe le petit trait indicatif PARTOUT */
+  /* on tue les traits / ::after de la version desktop */
   .nav a::after,
   .nav a.active::after{
     content: none !important;
   }
 
-  /* 2. bouton soleil : ligne d’en dessous, petit, rond */
+  /* 2) petit soleil juste sous les liens, visible sans scroller */
   .toggle{
     order: 2;
     position: static;
@@ -855,103 +851,72 @@ a.mail-link:focus-visible{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px;
-    border-radius: 999px;
+    padding: 5px;
     border: 1px solid var(--border);
+    border-radius: 999px;
     background: transparent;
-    width: auto;
   }
   .toggle img{
     width: 16px;
     height: 16px;
   }
 
-  /* 3. CONTAINERS : tout centré, même padding, plein écran */
+  /* 3) toutes les pages → même marge G/D, bien centrées */
   .container,
   .page .container,
   .main .container{
     width: 100%;
-    max-width: 980px;  /* tu peux baisser si tu veux plus étroit */
+    max-width: 980px;
     margin: 0 auto;
     padding-left: calc(16px + env(safe-area-inset-left));
     padding-right: calc(16px + env(safe-area-inset-right));
-    /* un peu d’air sous la topbar, pas énorme */
-    padding-top: 10px;
   }
 
-  /* 4. HOME (ta page d’accueil) : tout centré, cartes en colonne */
-  .hero{
-    text-align: center;
-    padding: 20px 0 16px;
+  /* 4) titres un peu plus petits + pas collés en haut */
+  .page-title,
+  .page .title,
+  .hero__name{
+    font-size: 30px;
   }
-  .pp{ width: 168px; height: 168px; }
-  .hero__name{ font-size: 30px; }
-
-  .cards--home{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 10px;
+  .page .container:first-child,
+  .main .container:first-child{
+    margin-top: 4px;
   }
 
-  /* 5. ABOUT : 4 boutons pas trop larges, bien au centre comme sur ta dernière photo */
-  .page-about .page-header{
-    display: grid;
-    justify-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
+  /* 5) boutons "About me" : 2 colonnes, pas trop larges */
   .page-about .page-header .socials-top{
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(135px, 1fr));
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
     gap: 10px;
-    width: 100%;
-    max-width: 360px;           /* ← évite l’effet “plein écran” moche */
+    max-width: 360px;
     margin: 0 auto;
   }
-
   .page-about .page-header .socials-top .pcta{
     width: 100%;
     justify-content: center;
-    gap: 8px;
-    padding: 9px 10px;
+    padding: 8px 10px;
     border-radius: 14px;
   }
-  .page-about .page-header .socials-top .pcta img{
+  .page-about .page-header .socials-top .pcta .icon{
     width: 18px;
     height: 18px;
   }
 
-  /* 6. PAGES PROJETS / CASSIOPEE : pas décalées, texte à 1 colonne */
-  /* tes pages de détail ont souvent une "case-header" ou "case-body" */
+  /* 6) pages “projet / cassiopée” : pas de décalage à droite */
   .case-header,
-  .case-body,
-  .project-page,
-  .page-project{
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;                 /* on enlève les gros paddings desktop */
+  .case-body{
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  /* cartes de projet (celle Alzheimer) : on réduit juste un peu le padding */
+  /* 7) cards (projects) : un peu moins de padding pour mobile */
   .project-card{
     padding: 16px 16px 14px;
-    word-break: break-word;     /* pour éviter que le long texte déborde */
   }
 
-  /* 7. Résumé / Posters : même rendu (1 colonne) */
-  .poster-grid,
-  .resume-grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin: 14px 0 24px;
-  }
-
-  /* 8. On enlève toute “barre” ou bordure automatique sous la topbar */
-  .topbar + *{
-    border-top: none !important;
+  /* 8) pas de scroll horizontal chelou */
+  html, body{
+    overflow-x: hidden;
   }
 }
 
