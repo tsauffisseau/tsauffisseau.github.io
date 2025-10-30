@@ -973,3 +973,54 @@ a.mail-link:focus-visible{
 .resume-card .resume-body{
   min-width: 0;    /* important avec flex */
 }
+
+/* ===== Fix mobile page "Cassiopee" / projet ===== */
+@media (max-width: 720px){
+
+  /* 1. le conteneur de la page projet : on remet un vrai padding G/D */
+  .case-page,
+  .page-case,
+  .project-case,
+  .case-header,
+  .case-body{
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+
+  /* 2. le TRES long titre → on le force à couper proprement */
+  .case-title,
+  .page-case h1,
+  .project-title{
+    font-size: clamp(26px, 5.3vw, 30px);
+    line-height: 1.05;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* 3. la ligne boutons + tags (Poster / Repo / badges) doit pouvoir revenir à la ligne */
+  .case-actions,
+  .case-badges,
+  .project-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 4. le texte lui-même : pas de mot qui fait déborder */
+  .case-body p,
+  .case-body li{
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* 5. au cas où un élément reste trop large */
+  .page-case img,
+  .case-body img{
+    max-width: 100%;
+    height: auto;
+  }
+}
