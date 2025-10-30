@@ -958,3 +958,80 @@ body{
   .nav a{ border-bottom:2px solid transparent; }
   .nav a.active{ border-bottom-color: var(--border); }
 }
+/* ====== 1. Moins d'air en haut sur mobile ====== */
+@media (max-width: 720px){
+  .page,
+  .main,
+  .page .container,
+  .main .container{
+    padding-top: 8px;
+  }
+}
+/* ====== 2. Resume = comme Posters (mobile) ====== */
+@media (max-width: 720px){
+  /* même marge que posters */
+  .page-resume .page-title{
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+
+  /* grille 1 colonne comme posters */
+  .page-resume .resume-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0 24px;
+  }
+
+  /* carte = même look que poster-card */
+  .page-resume .resume-card{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    padding: 10px 12px;
+  }
+
+  /* vignette un peu plus petite sur tel */
+  .page-resume .resume-thumb{
+    width: 70px;
+    height: 94px;
+  }
+
+  /* bouton "Open" qui ne prend pas trop de place */
+  .page-resume .resume-cta{
+    margin-left: auto;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+  }
+}
+/* ====== 3. Boutons "About me" pas trop larges ====== */
+@media (max-width: 720px){
+  /* ton conteneur des 4 boutons */
+  .page-about .socials-top{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  /* chaque bouton */
+  .page-about .socials-top .pcta{
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 14px;
+  }
+
+  /* icône un peu plus petite */
+  .page-about .socials-top .pcta img{
+    width: 18px;
+    height: 18px;
+  }
+}
