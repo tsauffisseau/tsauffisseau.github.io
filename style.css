@@ -969,3 +969,7 @@ a.mail-link:focus-visible{
     overflow-wrap: anywhere;
   }
 }
+
+.resume-card .resume-body{
+  min-width: 0;    /* important avec flex */
+}
