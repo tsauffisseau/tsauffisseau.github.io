@@ -1024,3 +1024,53 @@ a.mail-link:focus-visible{
     height: auto;
   }
 }
+
+
+/* ===== Fix mobile pour la page projet Cassiopée SEULEMENT ===== */
+@media (max-width: 720px){
+
+  /* 1. on cible vraiment le conteneur projet (pas la topbar) */
+  main.case-page,
+  .case-page .case-header,
+  .case-page .case-body{
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+
+  /* 2. le gros titre très long → coupe proprement */
+  .case-page .case-title,
+  .case-page h1{
+    font-size: clamp(25px, 5.1vw, 30px);
+    line-height: 1.05;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* 3. la ligne Poster / Repo / tags → doit WRAP, sinon ça déborde */
+  .case-page .case-actions,
+  .case-page .case-badges,
+  .case-page .project-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* certains badges sont en nowrap dans ton style global → on annule ici */
+  .case-page .badge,
+  .case-page .tag,
+  .case-page .chip{
+    white-space: normal;
+  }
+
+  /* 4. sécurité anti-scroll horizontal juste pour la page projet */
+  .case-page{
+    overflow-x: hidden;
+  }
+  .case-page *{
+    max-width: 100%;
+  }
+}
