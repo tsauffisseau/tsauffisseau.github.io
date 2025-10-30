@@ -956,3 +956,11 @@ a.mail-link:focus-visible{
     gap: 8px;
   }
 }
+
+
+@media (max-width: 720px){
+  .hero__name{
+    font-size: 30px;      /* un poil plus petit que maintenant */
+    white-space: nowrap;  /* ne coupe pas prénom / nom */
+  }
+}
