@@ -790,285 +790,64 @@ a.mail-link:focus-visible{
 
 
 
-
-
-/* ===== Mobile full-height foundation ===== */
-html, body { height: 100%; background: var(--bg); }
-body{
-  min-height: 100dvh;                 /* modern mobile */
-  min-height: -webkit-fill-available; /* older iOS fallback */
-  overflow-x: hidden;                  /* no accidental side scroll */
-}
-
-/* ===== TOPBAR: full-width nav + sun underneath (≤ 720px) ===== */
+/* ===== MOBILE (<= 720px) — version propre ===== */
 @media (max-width: 720px){
 
-  :root{
-    --topbar-h: 56px;    /* smaller bar on phone */
-    --nav-font-size: 15px;
+  /* 0. base mobile */
+  html, body{
+    height: 100%;
+    min-height: 100dvh;
+    background: var(--bg);
+    overflow-x: hidden;
   }
 
+  /* 1. TOPBAR : nav sur UNE ligne, soleil en dessous, PAS de trait actif */
   .topbar{
     height: auto;
+    background: var(--bg);
     padding-top: env(safe-area-inset-top);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0; /* tu ne veux plus de ligne entre topbar et le reste */
   }
 
   .topbar .row.only-nav{
-    height: auto;
     display: flex;
-    flex-direction: column;            /* nav on top, sun below */
+    flex-direction: column;   /* nav puis soleil */
     align-items: center;
     gap: 8px;
-    padding: 6px 0 8px;
-    overflow: visible;                 /* no scroll-rail */
-  }
-
-  /* NAV = full width, evenly spaced items on one row */
-  .nav{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0,1fr));  /* Home..About me */
-    align-items: center;
-    justify-items: center;
-    gap: 0;                             /* equal slots, no extra gaps */
-  }
-  .nav a{
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    height: auto;                       /* no fixed bar height */
-    line-height: 1.2;
-    white-space: nowrap;                /* avoid breaking "About me" */
-    text-decoration: none;
-  }
-
-
-
-  /* Sun toggle: compact, centered, no huge pill */
-  .toggle{
-    order: 2;
-    position: static; transform: none;
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 6px; border-radius: 999px; border: 1px solid var(--border);
-    background: transparent; width: auto; flex: 0 0 auto; margin-top: 2px;
-  }
-  .toggle img{ width: 16px; height: 16px; }
-}
-
-/* ===== HOME: stack the three cards + social tiles on phones ===== */
-@media (max-width: 720px){
-  .hero{ padding: 28px 0 32px; }
-  .pp{ width: 180px; height: 180px; }
-
-  .cards--home{
-    grid-template-columns: 1fr;     /* vertical stack */
-    gap: 12px;
-    max-width: 640px;
-    margin-top: 10px;
-  }
-
-  .socials-grid{
-    grid-template-columns: 1fr;     /* vertical stack */
-    gap: 12px;
-    max-width: 640px;
-  }
-  .sbtn-tile{
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 14px;
-  }
-  .sbtn-tile img{ width: 18px; height: 18px; }
-}
-
-/* ===== ABOUT header (optional nice mobile layout) ===== */
-@media (max-width: 560px){
-  .page-about .page-header{ display: grid; justify-items: center; gap: 10px; }
-  .page-about .page-header .socials-top{
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));  /* 2×2 */
-    gap: 10px 12px; width: 100%; max-width: 420px; justify-items: stretch;
-  }
-  .page-about .page-header .socials-top .pcta{
-    width: 100%; justify-content: center; gap: 10px; padding: 10px 12px;
-  }
-}
-
-/* Safety: never stretch the toggle */
-.toggle{ max-width: none; width: auto; flex: 0 0 auto; }
-
-/* ===== Mobile topbar (≤720px): full-width links + centered sun ===== */
-@media (max-width: 720px){
-  :root{ --topbar-h:56px; --nav-font-size:15px; }
-
-  .topbar{ height:auto; }
-  .topbar .row.only-nav{
-    display:grid;
-    grid-template-rows: auto auto;       /* nav row + sun row */
-    align-items:center;
-    gap:8px;
-    height:auto;
-    padding: calc(env(safe-area-inset-top) + 6px) 12px 10px;
-  }
-
-  /* full-width nav using grid */
-  .nav{
-    width:100%;
-    display:grid;
-    grid-template-columns: repeat(4, 1fr); /* change 4 if you add/remove tabs */
-    justify-items:center;
-    gap:0;
-  }
-  .nav a{
-    width:100%;
-    text-align:center;
-    height:auto;
-    padding:10px 0;
-    line-height:1.2;
-    font-size:var(--nav-font-size);
-    white-space:nowrap;
-    text-decoration:none;
-    border-bottom: 0;                    /* we’ll kill any underline below */
-  }
-
-  /* kill the old underline “trait” */
-  .nav a::after{ content:none !important; }
-  .nav a.active::after{ content:none !important; }
-
-  /* centered, compact theme button */
-  .toggle{
-    justify-self:center;
-    position:static;
-    transform:none;
-    padding:6px;
-    border:1px solid var(--border);
-    border-radius:999px;
-    background:transparent;
-    width:auto; flex:0 0 auto; margin-top:2px;
-  }
-  .toggle img{ width:18px; height:18px; }
-
-  /* prevent tiny iOS scroll bar under the nav */
-  .topbar .row.only-nav{ overflow:hidden; }
-}
-
-/* optional: if you want a subtle active bar across the whole tab (no pseudo) */
-@media (max-width: 720px){
-  .nav a{ border-bottom:2px solid transparent; }
-  .nav a.active{ border-bottom-color: var(--border); }
-}
-/* ====== 1. Moins d'air en haut sur mobile ====== */
-@media (max-width: 720px){
-  .page,
-  .main,
-  .page .container,
-  .main .container{
-    padding-top: 8px;
-  }
-}
-/* ====== 2. Resume = comme Posters (mobile) ====== */
-@media (max-width: 720px){
-  /* même marge que posters */
-  .page-resume .page-title{
-    margin-top: 10px;
-    margin-bottom: 6px;
-  }
-
-  /* grille 1 colonne comme posters */
-  .page-resume .resume-grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin: 14px 0 24px;
-  }
-
-  /* carte = même look que poster-card */
-  .page-resume .resume-card{
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--card);
-    box-shadow: var(--shadow);
-    padding: 10px 12px;
-  }
-
-  /* vignette un peu plus petite sur tel */
-  .page-resume .resume-thumb{
-    width: 70px;
-    height: 94px;
-  }
-
-  /* bouton "Open" qui ne prend pas trop de place */
-  .page-resume .resume-cta{
-    margin-left: auto;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 14px;
-  }
-}
-/* ====== 3. Boutons "About me" pas trop larges ====== */
-@media (max-width: 720px){
-  /* ton conteneur des 4 boutons */
-  .page-about .socials-top{
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-    gap: 10px;
-    justify-content: center;
-    max-width: 420px;
-    margin-inline: auto;
-  }
-
-  /* chaque bouton */
-  .page-about .socials-top .pcta{
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 10px;
-    border-radius: 14px;
-  }
-
-  /* icône un peu plus petite */
-  .page-about .socials-top .pcta img{
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* ======= FIX MOBILE (<= 720px) ======= */
-@media (max-width: 720px){
-
-  /* 1. topbar : nav centrée, plus de trait sous le lien actif */
-  .topbar{
-    height: auto;
-    padding-top: env(safe-area-inset-top);
-  }
-  .topbar .row.only-nav{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
     height: auto;
     padding: 6px 0 10px;
   }
+
+  /* nav = défilement horizontal, comme sur ta 1re photo */
   .nav{
+    order: 1;
     display: flex;
-    flex-wrap: wrap;          /* on accepte 2 lignes si ça traduit "À propos de moi" */
-    justify-content: center;
-    gap: 16px 20px;
+    flex-wrap: nowrap;         /* PAS de retour à la ligne */
+    gap: 20px;
+    width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 14px;
   }
+  .nav::-webkit-scrollbar{ display: none; }
+
   .nav a{
+    white-space: nowrap;       /* "About me" reste sur une ligne même traduit */
     height: auto;
-    padding: 4px 0;
     line-height: 1.2;
+    padding: 4px 0;
+    font-size: 16px;
+    text-decoration: none;
+    border-bottom: 0;
   }
-  /* ➜ on supprime le soulignement qu’on avait mis */
-  .nav a.active::after{ 
+
+  /* ➜ on coupe le petit trait indicatif PARTOUT */
+  .nav a::after,
+  .nav a.active::after{
     content: none !important;
   }
 
-  /* 2. bouton soleil juste après la nav, petit, rond */
+  /* 2. bouton soleil : ligne d’en dessous, petit, rond */
   .toggle{
     order: 2;
     position: static;
@@ -1087,50 +866,92 @@ body{
     height: 16px;
   }
 
-  /* 3. containers : même marge à gauche/droite partout (home, projects, cassiopee…) */
+  /* 3. CONTAINERS : tout centré, même padding, plein écran */
   .container,
   .page .container,
   .main .container{
     width: 100%;
-    max-width: 980px;
+    max-width: 980px;  /* tu peux baisser si tu veux plus étroit */
     margin: 0 auto;
     padding-left: calc(16px + env(safe-area-inset-left));
     padding-right: calc(16px + env(safe-area-inset-right));
+    /* un peu d’air sous la topbar, pas énorme */
+    padding-top: 10px;
   }
 
-  /* 4. about : 2 lignes / 2 colonnes mais PAS pleine largeur */
+  /* 4. HOME (ta page d’accueil) : tout centré, cartes en colonne */
+  .hero{
+    text-align: center;
+    padding: 20px 0 16px;
+  }
+  .pp{ width: 168px; height: 168px; }
+  .hero__name{ font-size: 30px; }
+
+  .cards--home{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  /* 5. ABOUT : 4 boutons pas trop larges, bien au centre comme sur ta dernière photo */
+  .page-about .page-header{
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
   .page-about .page-header .socials-top{
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    grid-template-columns: repeat(2, minmax(135px, 1fr));
     gap: 10px;
     width: 100%;
-    max-width: 360px;          /* <-- ça évite que ça touche les bords */
+    max-width: 360px;           /* ← évite l’effet “plein écran” moche */
     margin: 0 auto;
   }
+
   .page-about .page-header .socials-top .pcta{
     width: 100%;
     justify-content: center;
+    gap: 8px;
     padding: 9px 10px;
-    border-radius: 12px;
+    border-radius: 14px;
+  }
+  .page-about .page-header .socials-top .pcta img{
+    width: 18px;
+    height: 18px;
   }
 
-  /* 5. cartes / projets : un peu moins d'air pour éviter le décalage à droite */
+  /* 6. PAGES PROJETS / CASSIOPEE : pas décalées, texte à 1 colonne */
+  /* tes pages de détail ont souvent une "case-header" ou "case-body" */
+  .case-header,
+  .case-body,
+  .project-page,
+  .page-project{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;                 /* on enlève les gros paddings desktop */
+  }
+
+  /* cartes de projet (celle Alzheimer) : on réduit juste un peu le padding */
   .project-card{
     padding: 16px 16px 14px;
-  }
-  .project-card .pdesc{
-    word-break: break-word;
+    word-break: break-word;     /* pour éviter que le long texte déborde */
   }
 
-  /* 6. pour ta page "Cassiopee" / "Projet Cassiopée 2025" (page projet) */
-  .case-header,
-  .case-body{
-    padding-left: 0;
-    padding-right: 0;
+  /* 7. Résumé / Posters : même rendu (1 colonne) */
+  .poster-grid,
+  .resume-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0 24px;
   }
 
-  /* 7. petit trait horizontal juste sous la topbar → on le neutralise */
+  /* 8. On enlève toute “barre” ou bordure automatique sous la topbar */
   .topbar + *{
     border-top: none !important;
   }
 }
+
