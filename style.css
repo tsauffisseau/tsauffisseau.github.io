@@ -923,3 +923,36 @@ a.mail-link:focus-visible{
   }
 }
 
+/* ====== Cassiopee / pages projet : pas de dépassement (mobile) ====== */
+@media (max-width: 720px){
+  .case-page,
+  .page-case,
+  .project-case,
+  .case-body,
+  .case-header{
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* le vrai fix : même padding que les autres pages */
+  .case-header,
+  .case-body{
+    padding-left: calc(16px + env(safe-area-inset-left));
+    padding-right: calc(16px + env(safe-area-inset-right));
+  }
+
+  /* titres longs → on casse proprement */
+  .case-header h1,
+  .case-header .title,
+  .case-body h1{
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* les petites puces/badges en ligne → retour à la ligne si trop long */
+  .case-header .tags,
+  .case-header .actions{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
