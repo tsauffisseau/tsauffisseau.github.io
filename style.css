@@ -789,134 +789,112 @@ a.mail-link:focus-visible{
 }
 
 
-/* ======= MOBILE CLEAN (≤ 720px) ======= */
+/* ===== MOBILE FIX THÉO (≤720px) ===== */
 @media (max-width: 720px){
 
-  /* 0) Air sur les côtés de la topbar */
-  .topbar .row.only-nav{
-    padding: calc(env(safe-area-inset-top) + 6px)
-             clamp(14px, 4vw, 24px)
-             8px;
-  }
-  .nav{
-    padding-inline: clamp(10px, 3.5vw, 22px);
-  }
-  .nav a{
-    padding-inline: 6px; /* évite de coller aux bords quand ça wrap */
-  }
-
-  /* 1) topbar compacte, centrée, sans trait sous le lien actif */
-  :root{
-    --topbar-h: 54px;
-    --nav-font-size: 14.5px;
-  }
-
+  /* --- 1. TOPBAR propre --- */
   .topbar{
-    height: auto;
+    height:auto;
     padding-top: env(safe-area-inset-top);
   }
-
   .topbar .row.only-nav{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    /* le padding est déjà défini plus haut */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    /* marge G/D mais pas énorme pour que "About me" rentre */
+    padding: 6px 14px 6px;
   }
 
   /* ligne de liens */
   .nav{
-    display: flex;
-    flex-wrap: wrap;          /* si un jour tu as “À propos de moi” */
-    justify-content: center;
-    gap: 14px;
+    display:flex;
+    flex-wrap:wrap;               /* au cas où Safari zoome ou traduit */
+    justify-content:center;
+    gap:14px;
   }
   .nav a{
-    font-size: var(--nav-font-size);
-    height: auto;
-    line-height: 1.2;
-    text-decoration: none;
+    font-size: 14px;              /* ↓ un peu pour que "About me" tienne */
+    line-height:1.1;
+    height:auto;
+    padding:0;
+    white-space:nowrap;
+    text-decoration:none;
   }
-  /* on tue les traits / ::after de la version desktop */
+  /* on tue tous les soulignements / ::after */
   .nav a::after,
   .nav a.active::after{
-    content: none !important;
+    content:none !important;
   }
 
-  /* 2) petit soleil juste sous les liens, visible sans scroller */
+  /* bouton soleil juste sous les liens, petit */
   .toggle{
-    order: 2;
-    position: static;
-    transform: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: transparent;
+    order:2;
+    position:static;
+    transform:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:5px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:transparent;
   }
   .toggle img{
-    width: 16px;
-    height: 16px;
+    width:16px;
+    height:16px;
   }
 
-  /* 3) toutes les pages → même marge G/D, bien centrées */
+  /* --- 2. Contenu centré, pas de scroll horizontal --- */
+  html, body{ overflow-x:hidden; }
   .container,
   .page .container,
   .main .container{
-    width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
-    padding-left: calc(16px + env(safe-area-inset-left));
-    padding-right: calc(16px + env(safe-area-inset-right));
+    width:100%;
+    max-width:980px;
+    margin:0 auto;
+    padding-left:16px;
+    padding-right:16px;
   }
 
-  /* 4) titres un peu plus petits + pas collés en haut */
-  .page-title,
-  .page .title,
-  .hero__name{
-    font-size: 30px;
-  }
-  .page .container:first-child,
-  .main .container:first-child{
-    margin-top: 4px;
+  /* --- 3. HOME : 1 bloc par ligne (comme avant) --- */
+  .cards--home{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:12px;
+    max-width:560px;
+    margin-inline:auto;
   }
 
-  /* 5) boutons "About me" : 2 colonnes, pas trop larges */
+  /* --- 4. About : 2 colonnes mais pas trop larges --- */
   .page-about .page-header .socials-top{
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-    gap: 10px;
-    max-width: 360px;
-    margin: 0 auto;
+    display:grid !important;
+    grid-template-columns: repeat(2, minmax(135px, 1fr));
+    gap:10px;
+    max-width:360px;
+    margin:0 auto;
   }
   .page-about .page-header .socials-top .pcta{
-    width: 100%;
-    justify-content: center;
-    padding: 8px 10px;
-    border-radius: 14px;
+    justify-content:center;
+    padding:8px 10px;
+    border-radius:14px;
   }
   .page-about .page-header .socials-top .pcta .icon{
-    width: 18px;
-    height: 18px;
+    width:18px;
+    height:18px;
   }
 
-  /* 6) pages “projet / cassiopée” : pas de décalage à droite */
+  /* --- 5. Titres un peu moins gros pour éviter le "trop à droite" --- */
+  .page-title,
+  .page .title{
+    font-size:30px;
+  }
+
+  /* --- 6. Pages projets / cassiopée : pas de padding chelou --- */
   .case-header,
   .case-body{
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* 7) cards (projects) : un peu moins de padding pour mobile */
-  .project-card{
-    padding: 16px 16px 14px;
-  }
-
-  /* 8) pas de scroll horizontal chelou */
-  html, body{
-    overflow-x: hidden;
+    padding-left:0;
+    padding-right:0;
   }
 }
 
