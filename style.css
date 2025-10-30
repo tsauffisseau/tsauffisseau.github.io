@@ -959,8 +959,13 @@ a.mail-link:focus-visible{
 
 
 @media (max-width: 720px){
-  .hero__name{
-    font-size: 30px;      /* un poil plus petit que maintenant */
-    white-space: nowrap;  /* ne coupe pas prénom / nom */
+  .case-header,
+  .case-body{
+    padding-left: calc(16px + env(safe-area-inset-left));
+    padding-right: calc(16px + env(safe-area-inset-right));
+    max-width: 100%;
+  }
+  .case-header h1{
+    overflow-wrap: anywhere;
   }
 }
