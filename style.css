@@ -792,11 +792,10 @@ a.mail-link:focus-visible{
 
 
 
-
 /* ====== MOBILE CLEAN (≤ 720px) ====== */
 @media (max-width: 720px){
 
-  /* 0. sécurité : tout compte le padding dans la largeur */
+  /* 0. base safe */
   *, *::before, *::after{
     box-sizing: border-box;
   }
@@ -806,7 +805,7 @@ a.mail-link:focus-visible{
 
   /* 1. TOPBAR : centrée, soleil en dessous */
   :root{
-    --nav-font-size: 14.5px;
+    --nav-font-size: 14px;   /* un poil plus petit pour que "About me" tienne */
   }
 
   .topbar{
@@ -819,32 +818,30 @@ a.mail-link:focus-visible{
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    /* petit padding G/D mais pas trop → "About me" rentre */
-    padding: 6px 14px 8px;
+    /* marge pas trop grosse pour ne PAS pousser "About me" dehors */
+    padding: 6px 12px 8px;
   }
 
-  /* ligne de liens */
   .nav{
     display: flex;
-    flex-wrap: wrap;               /* si jamais ça casse, ça passe ligne 2 */
+    flex-wrap: wrap;               /* si un jour tu remets des longs titres */
     justify-content: center;
-    gap: 14px;
+    gap: 12px 16px;
     width: 100%;
   }
   .nav a{
     font-size: var(--nav-font-size);
-    line-height: 1.2;
+    line-height: 1.15;
     text-decoration: none;
-    /* mini marge intérieure pour ne pas coller au bord */
-    padding: 0 2px;
+    padding: 0 2px;                /* mini marge pour éviter de coller au bord */
   }
-  /* on VIRE tout trait / underline venant du desktop */
+  /* on tue les soulignements desktop */
   .nav a::after,
   .nav a.active::after{
     content: none !important;
   }
 
-  /* soleil SOUS la nav, centré */
+  /* soleil SOUS la nav */
   .toggle{
     order: 2;
     position: static;
@@ -852,7 +849,6 @@ a.mail-link:focus-visible{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2px;
     padding: 5px;
     border: 1px solid var(--border);
     border-radius: 999px;
@@ -863,24 +859,24 @@ a.mail-link:focus-visible{
     height: 16px;
   }
 
-  /* 2. CONTENEURS : centrés, pas plus larges que l’écran */
+  /* 2. CONTENEURS GLOBAUX : toujours centrés */
   .container,
   .page .container,
   .main .container{
-    width: min(100%, 960px);                 /* jamais plus large que l’écran */
+    width: min(100%, 960px);
     margin: 0 auto;
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  /* 3. HOME : cartes les unes SOUS les autres */
+  /* 3. HOME : cartes l’une sous l’autre (comme tu aimais) */
   .cards--home{
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  /* 4. ABOUT : 2x2 propres */
+  /* 4. ABOUT : 2x2 propres pour Email / Insta / LinkedIn / GitHub */
   .page-about .page-header .socials-top{
     display: grid !important;
     grid-template-columns: repeat(2, minmax(130px, 1fr));
@@ -895,141 +891,15 @@ a.mail-link:focus-visible{
     border-radius: 14px;
   }
 
-  /* 5. TITRES un peu plus petits pour que ça tienne */
+  /* 5. Titres un peu plus petits */
   .page-title,
   .page .title,
   h1.page-title{
     font-size: 30px;
   }
 
-  /* 6. PAGES "CASIOPÉE" / "CASE STUDY" : pas de décalage à droite */
-  .case-header,
-  .case-body,
-  .case-content{
-    width: 100%;
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* pour les gros paragraphes : */
-  .case-body p{
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* 7. cartes projet un chouïa moins larges */
-  .project-card{
-    padding: 16px 14px 14px;
-  }
-}
-
-/* ====== Cassiopee / pages projet : pas de dépassement (mobile) ====== */
-@media (max-width: 720px){
-  .case-page,
-  .page-case,
-  .project-case,
-  .case-body,
-  .case-header{
-    max-width: 100%;
-    width: 100%;
-  }
-
-  /* le vrai fix : même padding que les autres pages */
-  .case-header,
-  .case-body{
-    padding-left: calc(16px + env(safe-area-inset-left));
-    padding-right: calc(16px + env(safe-area-inset-right));
-  }
-
-  /* titres longs → on casse proprement */
-  .case-header h1,
-  .case-header .title,
-  .case-body h1{
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-  }
-
-  /* les petites puces/badges en ligne → retour à la ligne si trop long */
-  .case-header .tags,
-  .case-header .actions{
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-}
-
-
-@media (max-width: 720px){
-  .case-header,
-  .case-body{
-    padding-left: calc(16px + env(safe-area-inset-left));
-    padding-right: calc(16px + env(safe-area-inset-right));
-    max-width: 100%;
-  }
-  .case-header h1{
-    overflow-wrap: anywhere;
-  }
-}
-
-.resume-card .resume-body{
-  min-width: 0;    /* important avec flex */
-}
-
-/* ===== Fix mobile page "Cassiopee" / projet ===== */
-@media (max-width: 720px){
-
-  /* 1. le conteneur de la page projet : on remet un vrai padding G/D */
-  .case-page,
-  .page-case,
-  .project-case,
-  .case-header,
-  .case-body{
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-
-  /* 2. le TRES long titre → on le force à couper proprement */
-  .case-title,
-  .page-case h1,
-  .project-title{
-    font-size: clamp(26px, 5.3vw, 30px);
-    line-height: 1.05;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* 3. la ligne boutons + tags (Poster / Repo / badges) doit pouvoir revenir à la ligne */
-  .case-actions,
-  .case-badges,
-  .project-actions{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* 4. le texte lui-même : pas de mot qui fait déborder */
-  .case-body p,
-  .case-body li{
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* 5. au cas où un élément reste trop large */
-  .page-case img,
-  .case-body img{
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-
-/* ===== Fix mobile pour la page projet Cassiopée SEULEMENT ===== */
-@media (max-width: 720px){
-
-  /* 1. on cible vraiment le conteneur projet (pas la topbar) */
+  /* 6. PAGE PROJET / CASSIOPEE : pas de débordement, même padding */
+  /* ton <main> doit avoir au moins une de ces classes : .case-page / .page-case */
   main.case-page,
   .case-page .case-header,
   .case-page .case-body{
@@ -1041,16 +911,16 @@ a.mail-link:focus-visible{
     box-sizing: border-box;
   }
 
-  /* 2. le gros titre très long → coupe proprement */
+  /* titre très long → on le casse proprement */
   .case-page .case-title,
   .case-page h1{
-    font-size: clamp(25px, 5.1vw, 30px);
+    font-size: clamp(25px, 5.2vw, 30px);
     line-height: 1.05;
-    word-wrap: break-word;
     overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
-  /* 3. la ligne Poster / Repo / tags → doit WRAP, sinon ça déborde */
+  /* ligne Poster / Repo / tags → doit wrap */
   .case-page .case-actions,
   .case-page .case-badges,
   .case-page .project-actions{
@@ -1058,19 +928,36 @@ a.mail-link:focus-visible{
     flex-wrap: wrap;
     gap: 10px;
   }
-
-  /* certains badges sont en nowrap dans ton style global → on annule ici */
+  /* certains badges sont parfois en nowrap : on neutralise */
   .case-page .badge,
   .case-page .tag,
   .case-page .chip{
     white-space: normal;
   }
 
-  /* 4. sécurité anti-scroll horizontal juste pour la page projet */
+  /* paragraphes du contenu : pas de texte qui dépasse à droite */
+  .case-page .case-body p,
+  .case-page .case-body li{
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* sécurité anti scroll horizontal UNIQUEMENT sur la page projet */
   .case-page{
     overflow-x: hidden;
   }
   .case-page *{
     max-width: 100%;
   }
+
+  /* 7. cartes projet un poil moins larges */
+  .project-card{
+    padding: 16px 14px 14px;
+  }
 }
+
+/* petit fix resume (flex) */
+.resume-card .resume-body{
+  min-width: 0;
+}
+
