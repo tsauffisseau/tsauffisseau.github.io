@@ -1051,4 +1051,46 @@ a.mail-link:focus-visible{
   .case-page{ overflow-x: hidden; }
 }
 
+/* ======= PATCH CASSIOPEE MOBILE (à mettre tout en bas) ======= */
+@media (max-width: 720px) {
+
+  /* 1. la page projet et ses conteneurs ne dépassent jamais */
+  .page-case,
+  .page-case .container,
+  .page-case .case-header,
+  .page-case .case-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+  }
+
+  /* 2. on enlève le GRID qui te faisait un minmax(640px,1fr) */
+  .page-case .case-body {
+    display: block !important;
+  }
+
+  /* 3. boutons / badges / lignes d’actions → ils peuvent revenir à la ligne */
+  .page-case .socials-top,
+  .page-case .badges {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px;
+  }
+
+  /* 4. aucun élément ne peut être plus large que l’écran */
+  .page-case * {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* 5. sécurité globale anti scroll horizontal */
+  html, body {
+    overflow-x: hidden !important;
+  }
+}
 
