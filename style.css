@@ -995,4 +995,60 @@ a.mail-link:focus-visible{
   min-width: 0;
 }
 
+/* ==== PATCH ULTRA-CIBLE pour la page Cassiopée (mobile) ==== */
+@media (max-width: 720px){
+
+  /* 1. le conteneur principal du case */
+  main.case-page,
+  .case-page,
+  .case-page .case-header,
+  .case-page .case-body{
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+
+  /* 2. on OBLIGE tous les flex à wrap */
+  .case-page .case-header,
+  .case-page .case-actions,
+  .case-page .case-badges,
+  .case-page .chips,
+  .case-page .tags,
+  .case-page .project-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 3. on casse les boutons / badges qui sont en nowrap quelque part */
+  .case-page .badge,
+  .case-page .tag,
+  .case-page .chip,
+  .case-page .btn,
+  .case-page .pill{
+    white-space: normal !important;
+    max-width: 100%;
+  }
+
+  /* 4. le titre très long */
+  .case-page h1,
+  .case-page .case-title{
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* 5. le texte lui-même */
+  .case-page p,
+  .case-page li{
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  /* 6. sécurité anti-scroll horizontal */
+  .case-page{ overflow-x: hidden; }
+}
+
 
