@@ -1094,3 +1094,46 @@ a.mail-link:focus-visible{
   }
 }
 
+/* ===== PATCH Cassiopée mobile : topbar + boutons ===== */
+@media (max-width: 720px) {
+
+  /* 1) Sur la page case seulement : on NE wrap PAS la nav
+        → elle reste sur 1 ligne qui scrolle horizontalement */
+  .page-case .topbar .row.only-nav .nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 18px;
+  }
+  .page-case .topbar .row.only-nav .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 2) on laisse le soleil en dessous comme sur les autres pages */
+  .page-case .topbar .row.only-nav .toggle {
+    order: 2;
+    position: static;
+    transform: none;
+    margin-top: 4px;
+  }
+
+  /* 3) Boutons Poster / Repo trop gros → on les compacte */
+  .page-case .socials-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .page-case .socials-top .pcta {
+    padding: 7px 14px;
+    border-radius: 14px;
+    gap: 8px;
+    height: auto;
+    min-height: 0;
+    font-size: 15px;
+    flex: 0 0 auto;   /* évite qu’ils prennent toute la largeur */
+  }
+  .page-case .socials-top .pcta .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
