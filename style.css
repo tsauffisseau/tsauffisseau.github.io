@@ -1137,3 +1137,61 @@ a.mail-link:focus-visible{
     height: 18px;
   }
 }
+
+
+/* ====== PATCH FINAL CASSIOPEE (mobile) ====== */
+@media (max-width: 720px) {
+
+  /* 1. le header de la page projet = bloc normal */
+  .page-case .case-header {
+    display: block !important;
+  }
+
+  /* 2. la NAV reste sur une seule ligne, on scrolle si besoin */
+  .page-case .topbar .row.only-nav .nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page-case .topbar .row.only-nav .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 3. le bouton thème est DANS la nav → on le sort visuellement */
+  .page-case .topbar .row.only-nav {
+    position: relative;
+    padding-bottom: 40px;   /* place pour le soleil dessous */
+  }
+  .page-case .topbar .row.only-nav .toggle {
+    position: absolute !important;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+
+  /* 4. boutons Poster / Repo trop gros → on les compacte */
+  .page-case .socials-top {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px;
+  }
+  .page-case .socials-top .pcta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    height: auto;
+    border-radius: 14px;
+    font-size: 15px;
+    flex: 0 0 auto;
+  }
+  .page-case .socials-top .pcta .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
