@@ -792,6 +792,8 @@ a.mail-link:focus-visible{
 
 
 
+
+
 /* ====== MOBILE CLEAN (≤ 720px) ====== */
 @media (max-width: 720px){
 
@@ -805,7 +807,7 @@ a.mail-link:focus-visible{
 
   /* 1. TOPBAR : centrée, soleil en dessous */
   :root{
-    --nav-font-size: 14px;   /* un poil plus petit pour que "About me" tienne */
+    --nav-font-size: 14px;   /* assez petit pour que "About me" tienne */
   }
 
   .topbar{
@@ -818,13 +820,12 @@ a.mail-link:focus-visible{
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    /* marge pas trop grosse pour ne PAS pousser "About me" dehors */
-    padding: 6px 12px 8px;
+    padding: 6px 12px 8px;   /* pas énorme sinon "About me" saute */
   }
 
   .nav{
     display: flex;
-    flex-wrap: wrap;               /* si un jour tu remets des longs titres */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 12px 16px;
     width: 100%;
@@ -833,15 +834,13 @@ a.mail-link:focus-visible{
     font-size: var(--nav-font-size);
     line-height: 1.15;
     text-decoration: none;
-    padding: 0 2px;                /* mini marge pour éviter de coller au bord */
+    padding: 0 2px;
   }
-  /* on tue les soulignements desktop */
   .nav a::after,
   .nav a.active::after{
     content: none !important;
   }
 
-  /* soleil SOUS la nav */
   .toggle{
     order: 2;
     position: static;
@@ -859,7 +858,7 @@ a.mail-link:focus-visible{
     height: 16px;
   }
 
-  /* 2. CONTENEURS GLOBAUX : toujours centrés */
+  /* 2. CONTENEURS GLOBAUX : centrés */
   .container,
   .page .container,
   .main .container{
@@ -869,14 +868,21 @@ a.mail-link:focus-visible{
     padding-right: 16px;
   }
 
-  /* 3. HOME : cartes l’une sous l’autre (comme tu aimais) */
+  /* 3. HOME : cartes l’une sous l’autre */
   .cards--home{
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
   }
+  /* ...puis les liens sociaux juste en dessous, aussi en colonne */
+  .socials-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
 
-  /* 4. ABOUT : 2x2 propres pour Email / Insta / LinkedIn / GitHub */
+  /* 4. ABOUT : 2x2 propres */
   .page-about .page-header .socials-top{
     display: grid !important;
     grid-template-columns: repeat(2, minmax(130px, 1fr));
@@ -899,10 +905,21 @@ a.mail-link:focus-visible{
   }
 
   /* 6. PAGE PROJET / CASSIOPEE : pas de débordement, même padding */
-  /* ton <main> doit avoir au moins une de ces classes : .case-page / .page-case */
+  /* on couvre .case-page ET .page-case (selon ton HTML) */
   main.case-page,
+  main.page-case,
+  .case-page,
+  .page-case{
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
   .case-page .case-header,
-  .case-page .case-body{
+  .case-page .case-body,
+  .page-case .case-header,
+  .page-case .case-body{
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -911,53 +928,71 @@ a.mail-link:focus-visible{
     box-sizing: border-box;
   }
 
-  /* titre très long → on le casse proprement */
+  /* titre très long → casse proprement */
   .case-page .case-title,
-  .case-page h1{
+  .case-page h1,
+  .page-case .case-title,
+  .page-case h1{
     font-size: clamp(25px, 5.2vw, 30px);
     line-height: 1.05;
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
-  /* ligne Poster / Repo / tags → doit wrap */
+  /* ligne Poster / Repo / tags → wrap */
   .case-page .case-actions,
   .case-page .case-badges,
-  .case-page .project-actions{
+  .case-page .project-actions,
+  .page-case .case-actions,
+  .page-case .case-badges,
+  .page-case .project-actions{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  }
-  /* certains badges sont parfois en nowrap : on neutralise */
-  .case-page .badge,
-  .case-page .tag,
-  .case-page .chip{
-    white-space: normal;
-  }
-
-  /* paragraphes du contenu : pas de texte qui dépasse à droite */
-  .case-page .case-body p,
-  .case-page .case-body li{
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* sécurité anti scroll horizontal UNIQUEMENT sur la page projet */
-  .case-page{
-    overflow-x: hidden;
-  }
-  .case-page *{
     max-width: 100%;
   }
 
-  /* 7. cartes projet un poil moins larges */
+  /* certains badges sont parfois en nowrap : on neutralise */
+  .case-page .badge,
+  .case-page .tag,
+  .case-page .chip,
+  .page-case .badge,
+  .page-case .tag,
+  .page-case .chip{
+    white-space: normal;
+  }
+
+  /* paragraphes : pas de texte qui dépasse à droite */
+  .case-page .case-body p,
+  .case-page .case-body li,
+  .page-case .case-body p,
+  .page-case .case-body li{
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  /* 7. cartes projet : un poil moins larges */
   .project-card{
     padding: 16px 14px 14px;
   }
+
+  /* 8. Posters & Resume : pleine largeur en mobile */
+  .poster-grid,
+  .resume-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .poster-card,
+  .resume-card{
+    width: 100%;
+  }
 }
 
-/* petit fix resume (flex) */
+/* petit fix resume (flex) - hors media (ok) */
 .resume-card .resume-body{
   min-width: 0;
 }
+
 
