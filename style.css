@@ -793,11 +793,10 @@ a.mail-link:focus-visible{
 
 
 
-
-/* ====== MOBILE CLEAN (≤ 720px) ====== */
+/* ====== MOBILE (≤ 720px) ====== */
 @media (max-width: 720px){
 
-  /* 0. base safe */
+  /* base */
   *, *::before, *::after{
     box-sizing: border-box;
   }
@@ -805,24 +804,22 @@ a.mail-link:focus-visible{
     overflow-x: hidden;
   }
 
-  /* 1. TOPBAR : centrée, soleil en dessous */
   :root{
-    --nav-font-size: 14px;   /* assez petit pour que "About me" tienne */
+    --nav-font-size: 14px;
   }
 
+  /* TOPBAR GÉNÉRALE (toutes les pages) */
   .topbar{
     height: auto;
     padding-top: env(safe-area-inset-top);
   }
-
   .topbar .row.only-nav{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px 8px;   /* pas énorme sinon "About me" saute */
+    padding: 6px 12px 8px;
   }
-
   .nav{
     display: flex;
     flex-wrap: wrap;
@@ -835,12 +832,12 @@ a.mail-link:focus-visible{
     line-height: 1.15;
     text-decoration: none;
     padding: 0 2px;
+    white-space: nowrap;
   }
   .nav a::after,
   .nav a.active::after{
     content: none !important;
   }
-
   .toggle{
     order: 2;
     position: static;
@@ -858,7 +855,7 @@ a.mail-link:focus-visible{
     height: 16px;
   }
 
-  /* 2. CONTENEURS GLOBAUX : centrés */
+  /* CONTENEURS GLOBAUX */
   .container,
   .page .container,
   .main .container{
@@ -868,13 +865,12 @@ a.mail-link:focus-visible{
     padding-right: 16px;
   }
 
-  /* 3. HOME : cartes l’une sous l’autre */
+  /* HOME en colonne */
   .cards--home{
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  /* ...puis les liens sociaux juste en dessous, aussi en colonne */
   .socials-grid{
     display: grid;
     grid-template-columns: 1fr;
@@ -882,7 +878,7 @@ a.mail-link:focus-visible{
     margin-top: 12px;
   }
 
-  /* 4. ABOUT : 2x2 propres */
+  /* ABOUT : 2x2 */
   .page-about .page-header .socials-top{
     display: grid !important;
     grid-template-columns: repeat(2, minmax(130px, 1fr));
@@ -897,87 +893,14 @@ a.mail-link:focus-visible{
     border-radius: 14px;
   }
 
-  /* 5. Titres un peu plus petits */
+  /* titres mobiles */
   .page-title,
   .page .title,
   h1.page-title{
     font-size: 30px;
   }
 
-  /* 6. PAGE PROJET / CASSIOPEE : pas de débordement, même padding */
-  /* on couvre .case-page ET .page-case (selon ton HTML) */
-  main.case-page,
-  main.page-case,
-  .case-page,
-  .page-case{
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    overflow-x: hidden;
-  }
-
-  .case-page .case-header,
-  .case-page .case-body,
-  .page-case .case-header,
-  .page-case .case-body{
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-
-  /* titre très long → casse proprement */
-  .case-page .case-title,
-  .case-page h1,
-  .page-case .case-title,
-  .page-case h1{
-    font-size: clamp(25px, 5.2vw, 30px);
-    line-height: 1.05;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* ligne Poster / Repo / tags → wrap */
-  .case-page .case-actions,
-  .case-page .case-badges,
-  .case-page .project-actions,
-  .page-case .case-actions,
-  .page-case .case-badges,
-  .page-case .project-actions{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 100%;
-  }
-
-  /* certains badges sont parfois en nowrap : on neutralise */
-  .case-page .badge,
-  .case-page .tag,
-  .case-page .chip,
-  .page-case .badge,
-  .page-case .tag,
-  .page-case .chip{
-    white-space: normal;
-  }
-
-  /* paragraphes : pas de texte qui dépasse à droite */
-  .case-page .case-body p,
-  .case-page .case-body li,
-  .page-case .case-body p,
-  .page-case .case-body li{
-    overflow-wrap: break-word;
-    word-break: break-word;
-    max-width: 100%;
-  }
-
-  /* 7. cartes projet : un poil moins larges */
-  .project-card{
-    padding: 16px 14px 14px;
-  }
-
-  /* 8. Posters & Resume : pleine largeur en mobile */
+  /* POSTERS / RESUME : 1 colonne */
   .poster-grid,
   .resume-grid{
     display: grid;
@@ -988,205 +911,12 @@ a.mail-link:focus-visible{
   .resume-card{
     width: 100%;
   }
-}
 
-/* petit fix resume (flex) - hors media (ok) */
-.resume-card .resume-body{
-  min-width: 0;
-}
+  /* ========= CASIOPÉE / PAGES PROJET ========= */
 
-
-/* ======= PATCH UNIQUE CASSIOPEE (mettre TOUT EN BAS) ======= */
-@media (max-width: 720px) {
-
-  /* 1. Topbar de la page Cassiopée = comme Posters/Projects */
-  .page-case .topbar {
-    height: auto;
-    padding-top: env(safe-area-inset-top);
-  }
-  .page-case .topbar .row.only-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px 8px;
-  }
-  .page-case .topbar .row.only-nav .nav {
-    display: flex;
-    flex-wrap: wrap;          /* comme les autres pages */
-    justify-content: center;
-    gap: 12px 16px;
-    width: 100%;
-    overflow: visible;
-  }
-  .page-case .topbar .row.only-nav .nav a {
-    white-space: nowrap;      /* pas de retour à la ligne sur "About me" */
-  }
-  .page-case .topbar .row.only-nav .toggle {
-    order: 2;
-    position: static;
-    transform: none;
-  }
-
-  /* 2. Boutons Poster / Repo = petits, côte à côte, à gauche */
-  .page-case .socials-top {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-top: 12px;
-    width: 100%;
-  }
-  .page-case .socials-top .pcta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 14px;
-    height: auto;
-    font-size: 14px;
-    background: transparent;
-  }
-  .page-case .socials-top .pcta .icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* 3. On recadre le contenu pour éviter le mini scroll horizontal */
-  .page-case .case-header,
-  .page-case .case-body {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-}
-
-/* ===== CASIOPEE – FIX MOBILE FINAL (≤720px) ===== */
-@media (max-width: 720px) {
-
-  /* 1. Topbar = exactement comme les autres pages */
-  body.page-case header.topbar {
-    height: auto !important;
-    padding-top: env(safe-area-inset-top);
-  }
-  body.page-case header.topbar .row.only-nav {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 6px !important;
-    padding: 6px 12px 8px !important;
-  }
-  body.page-case header.topbar .row.only-nav .nav {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 12px 16px !important;
-    width: 100% !important;
-    overflow: visible !important;
-  }
-  body.page-case header.topbar .row.only-nav .nav a {
-    white-space: nowrap !important;
-    font-size: 14px !important;
-    line-height: 1.15 !important;
-  }
-  body.page-case header.topbar .row.only-nav .toggle {
-    order: 2 !important;
-    position: static !important;
-    transform: none !important;
-  }
-
-  /* 2. Titre et sous-titre pas géants */
-  body.page-case .case-title h1,
-  body.page-case .case-header h1 {
-    font-size: 26px !important;
-    line-height: 1.1 !important;
-    word-wrap: break-word;
-  }
-  body.page-case .case-sub {
-    font-size: 15px !important;
-  }
-
-  /* 3. Poster / Repo petits, à gauche, sur une ligne */
-  body.page-case .socials-top {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: flex-start !important;
-    gap: 10px !important;
-    margin-top: 10px !important;
-    width: 100% !important;
-  }
-  body.page-case .socials-top .pcta {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    padding: 6px 12px !important;
-    border-radius: 14px !important;
-    font-size: 14px !important;
-    height: auto !important;
-  }
-  body.page-case .socials-top .pcta .icon {
-    width: 16px !important;
-    height: 16px !important;
-  }
-
-  /* 4. Contenu recadré comme les autres */
+  /* 1. même largeur / padding que les autres pages */
   body.page-case .case-header,
-  body.page-case .case-body {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    box-sizing: border-box !important;
-  }
-}
-
-
-/* ===== RESET CASSIOPEE MOBILE (doit être le DERNIER bloc) ===== */
-@media (max-width: 720px) {
-
-  /* 1) Topbar : même que les autres pages */
-  body.page-case .topbar {
-    height: auto;
-    padding-top: env(safe-area-inset-top);
-  }
-  body.page-case .topbar .row.only-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px 8px;
-  }
-  body.page-case .topbar .nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 16px;
-    width: 100%;
-    overflow: visible;
-  }
-  body.page-case .topbar .nav a {
-    white-space: nowrap;
-    font-size: 14px;
-    line-height: 1.15;
-  }
-  body.page-case .topbar .toggle {
-    order: 2;
-    position: static;
-    transform: none;
-    padding: 5px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-  }
-  body.page-case .topbar .toggle img {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* 2) Contenu : largeur écran, pas de grid chelou */
-  body.page-case .case-header,
-  body.page-case .case-body {
+  body.page-case .case-body{
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -1194,36 +924,34 @@ a.mail-link:focus-visible{
     padding-right: 16px;
     box-sizing: border-box;
   }
-  /* casse le layout 2 colonnes du desktop */
-  body.page-case .case-body {
+
+  /* 2. on casse le layout 2 colonnes du desktop */
+  body.page-case .case-body{
     display: block;
   }
 
-  /* 3) Titre + texte : coupure correcte */
+  /* 3. titre et sous-titre pas énormes */
   body.page-case .case-title h1,
-  body.page-case h1 {
-    font-size: clamp(25px, 5.2vw, 30px);
-    line-height: 1.05;
+  body.page-case h1{
+    font-size: 26px;
+    line-height: 1.1;
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
-  body.page-case p,
-  body.page-case li {
-    overflow-wrap: break-word;
-    word-break: break-word;
-    max-width: 100%;
+  body.page-case .case-sub{
+    font-size: 15px;
   }
 
-  /* 4) Boutons Poster / Repo : petits, côte à côte, à gauche */
-  body.page-case .socials-top {
+  /* 4. boutons Poster / Repo : côte à côte, petits, à gauche */
+  body.page-case .socials-top{
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px;
     justify-content: flex-start;
+    gap: 10px;
     margin-top: 10px;
     width: 100%;
   }
-  body.page-case .socials-top .pcta {
+  body.page-case .socials-top .pcta{
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1231,16 +959,25 @@ a.mail-link:focus-visible{
     border-radius: 14px;
     font-size: 14px;
     height: auto;
+    background: transparent;
   }
-  body.page-case .socials-top .pcta .icon {
+  body.page-case .socials-top .pcta .icon{
     width: 16px;
     height: 16px;
   }
 
-  /* 5) Badges → wrap normal */
-  body.page-case .badges {
+  /* 5. badges → wrap normal */
+  body.page-case .badges{
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  /* 6. texte → jamais plus large que l’écran */
+  body.page-case p,
+  body.page-case li{
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
 }
