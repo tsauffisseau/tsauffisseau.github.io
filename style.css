@@ -995,215 +995,15 @@ a.mail-link:focus-visible{
   min-width: 0;
 }
 
-/* ==== PATCH ULTRA-CIBLE pour la page Cassiopée (mobile) ==== */
-@media (max-width: 720px){
 
-  /* 1. le conteneur principal du case */
-  main.case-page,
-  .case-page,
-  .case-page .case-header,
-  .case-page .case-body{
-    width: 100%;
-    max-width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-
-  /* 2. on OBLIGE tous les flex à wrap */
-  .case-page .case-header,
-  .case-page .case-actions,
-  .case-page .case-badges,
-  .case-page .chips,
-  .case-page .tags,
-  .case-page .project-actions{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* 3. on casse les boutons / badges qui sont en nowrap quelque part */
-  .case-page .badge,
-  .case-page .tag,
-  .case-page .chip,
-  .case-page .btn,
-  .case-page .pill{
-    white-space: normal !important;
-    max-width: 100%;
-  }
-
-  /* 4. le titre très long */
-  .case-page h1,
-  .case-page .case-title{
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* 5. le texte lui-même */
-  .case-page p,
-  .case-page li{
-    overflow-wrap: break-word;
-    word-break: break-word;
-    max-width: 100%;
-  }
-
-  /* 6. sécurité anti-scroll horizontal */
-  .case-page{ overflow-x: hidden; }
-}
-
-/* ======= PATCH CASSIOPEE MOBILE (à mettre tout en bas) ======= */
+/* ======= PATCH UNIQUE CASSIOPEE (mettre TOUT EN BAS) ======= */
 @media (max-width: 720px) {
 
-  /* 1. la page projet et ses conteneurs ne dépassent jamais */
-  .page-case,
-  .page-case .container,
-  .page-case .case-header,
-  .page-case .case-body {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    box-sizing: border-box;
-  }
-
-  /* 2. on enlève le GRID qui te faisait un minmax(640px,1fr) */
-  .page-case .case-body {
-    display: block !important;
-  }
-
-  /* 3. boutons / badges / lignes d’actions → ils peuvent revenir à la ligne */
-  .page-case .socials-top,
-  .page-case .badges {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px;
-  }
-
-  /* 4. aucun élément ne peut être plus large que l’écran */
-  .page-case * {
-    max-width: 100% !important;
-    overflow-wrap: break-word !important;
-    word-break: break-word !important;
-    white-space: normal !important;
-  }
-
-  /* 5. sécurité globale anti scroll horizontal */
-  html, body {
-    overflow-x: hidden !important;
-  }
-}
-
-/* ===== PATCH Cassiopée mobile : topbar + boutons ===== */
-@media (max-width: 720px) {
-
-  /* 1) Sur la page case seulement : on NE wrap PAS la nav
-        → elle reste sur 1 ligne qui scrolle horizontalement */
-  .page-case .topbar .row.only-nav .nav {
-    flex-wrap: nowrap !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 18px;
-  }
-  .page-case .topbar .row.only-nav .nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* 2) on laisse le soleil en dessous comme sur les autres pages */
-  .page-case .topbar .row.only-nav .toggle {
-    order: 2;
-    position: static;
-    transform: none;
-    margin-top: 4px;
-  }
-
-  /* 3) Boutons Poster / Repo trop gros → on les compacte */
-  .page-case .socials-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .page-case .socials-top .pcta {
-    padding: 7px 14px;
-    border-radius: 14px;
-    gap: 8px;
-    height: auto;
-    min-height: 0;
-    font-size: 15px;
-    flex: 0 0 auto;   /* évite qu’ils prennent toute la largeur */
-  }
-  .page-case .socials-top .pcta .icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-
-/* ====== PATCH FINAL CASSIOPEE (mobile) ====== */
-@media (max-width: 720px) {
-
-  /* 1. le header de la page projet = bloc normal */
-  .page-case .case-header {
-    display: block !important;
-  }
-
-  /* 2. la NAV reste sur une seule ligne, on scrolle si besoin */
-  .page-case .topbar .row.only-nav .nav {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: center;
-    gap: 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .page-case .topbar .row.only-nav .nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* 3. le bouton thème est DANS la nav → on le sort visuellement */
-  .page-case .topbar .row.only-nav {
-    position: relative;
-    padding-bottom: 40px;   /* place pour le soleil dessous */
-  }
-  .page-case .topbar .row.only-nav .toggle {
-    position: absolute !important;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-  }
-
-  /* 4. boutons Poster / Repo trop gros → on les compacte */
-  .page-case .socials-top {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px;
-  }
-  .page-case .socials-top .pcta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    height: auto;
-    border-radius: 14px;
-    font-size: 15px;
-    flex: 0 0 auto;
-  }
-  .page-case .socials-top .pcta .icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-/* ==== FIX Cassiopée mobile : topbar comme les autres ==== */
-@media (max-width: 720px) {
-
-  /* même structure que les autres pages */
+  /* 1. Topbar de la page Cassiopée = comme Posters/Projects */
   .page-case .topbar {
     height: auto;
     padding-top: env(safe-area-inset-top);
   }
-
   .page-case .topbar .row.only-nav {
     display: flex;
     flex-direction: column;
@@ -1211,97 +1011,30 @@ a.mail-link:focus-visible{
     gap: 6px;
     padding: 6px 12px 8px;
   }
-
-  /* nav centrée + PAS de retour à la ligne DANS les liens */
-  .page-case .topbar .nav {
+  .page-case .topbar .row.only-nav .nav {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 16px;
-    overflow: visible;
-  }
-
-  /* on annule ton "white-space: normal" global juste pour le menu */
-  .page-case .topbar .nav a {
-    white-space: nowrap !important;
-  }
-
-  /* soleil sous la nav comme partout */
-  .page-case .topbar .toggle {
-    order: 2;
-    position: static;
-    transform: none;
-  }
-}
-
-/* ==== FIX Cassiopée mobile : boutons Poster / Repo ==== */
-@media (max-width: 720px) {
-  .page-case .socials-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .page-case .socials-top .pcta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 14px;
-    height: auto;
-    min-width: 0;
-  }
-  .page-case .socials-top .pcta .icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-
-/* === Cassiopée : remettre EXACTEMENT la topbar mobile comme les autres === */
-@media (max-width: 720px) {
-
-  /* même structure que Projects / Posters */
-  .page-case header.topbar {
-    height: auto;
-    padding-top: env(safe-area-inset-top);
-  }
-
-  .page-case header.topbar .row.only-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px 8px;
-  }
-
-  /* le menu est centré et peut passer sur 2 lignes */
-  .page-case header.topbar .row.only-nav nav.nav {
-    display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;          /* comme les autres pages */
     justify-content: center;
     gap: 12px 16px;
     width: 100%;
+    overflow: visible;
   }
-
-  /* ⚠️ très important : on annule le white-space: normal qu’on a mis plus haut
-     pour le CONTENU, mais ici on veut les liens sur une seule ligne */
-  .page-case header.topbar .row.only-nav nav.nav a {
-    white-space: nowrap !important;
+  .page-case .topbar .row.only-nav .nav a {
+    white-space: nowrap;      /* pas de retour à la ligne sur "About me" */
   }
-
-  /* le soleil en dessous comme partout */
-  .page-case header.topbar .row.only-nav .toggle {
+  .page-case .topbar .row.only-nav .toggle {
     order: 2;
     position: static;
     transform: none;
   }
 
-  /* === boutons Poster / Repo : côte à côte, à gauche, plus petits === */
+  /* 2. Boutons Poster / Repo = petits, côte à côte, à gauche */
   .page-case .socials-top {
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: flex-start;
     gap: 10px;
+    margin-top: 12px;
     width: 100%;
   }
   .page-case .socials-top .pcta {
@@ -1310,12 +1043,23 @@ a.mail-link:focus-visible{
     gap: 6px;
     padding: 6px 12px;
     border-radius: 14px;
-    font-size: 14px;
     height: auto;
+    font-size: 14px;
+    background: transparent;
   }
   .page-case .socials-top .pcta .icon {
     width: 16px;
     height: 16px;
+  }
+
+  /* 3. On recadre le contenu pour éviter le mini scroll horizontal */
+  .page-case .case-header,
+  .page-case .case-body {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
   }
 }
 
