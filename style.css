@@ -981,3 +981,23 @@ a.mail-link:focus-visible{
     max-width: 100%;
   }
 }
+
+/* Cassiopée – aligner Poster / Repo à gauche sur mobile */
+@media (max-width: 720px){
+  body.page-case .socials-top{
+    display: flex;
+    justify-content: flex-start;   /* à gauche */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  body.page-case .socials-top .pcta{
+    padding: 6px 12px;
+    gap: 6px;
+    border-radius: 14px;
+    font-size: 14px;
+    height: auto;
+  }
+}
