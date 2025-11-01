@@ -11,6 +11,7 @@
   <script defer src="/script.js"></script>
 </head>
 <body class="page-case page-case--cassiopee">
+  <!-- TOPBAR (même structure que projects/posters) -->
   <header class="topbar">
     <div class="container row only-nav">
       <nav class="nav" translate="no">
@@ -26,42 +27,41 @@
     </div>
   </header>
 
-  <main class="page">
+  <main class="page case-page">
+    <!-- HEADER DU CASE -->
     <div class="container case-header">
       <div class="case-title">
         <h1>Projet Cassiopée 2025 - Alzheimer Detection from EEG</h1>
-        <p class="case-sub">CNN on <em>Recurrence Plots</em> from 19-channel EEG - End-to-end Pipeline</p>
+        <p class="case-sub">CNN on <em>Recurrence Plots</em> from 19-channel EEG – End-to-end pipeline</p>
 
-          <div class="socials-top">
-            <a class="pcta" href="/assets/poster_ESSI2025.pdf" target="_blank" rel="noopener">
+        <!-- boutons poster / repo -->
+        <div class="socials-top">
+          <a class="pcta" href="/assets/poster_ESSI2025.pdf" target="_blank" rel="noopener">
             <img class="icon" src="/assets/icon-pdf.svg" alt="">
             <span class="sbtn-label">Poster</span>
           </a>
-        
           <a class="pcta" href="https://github.com/tsauffisseau" target="_blank" rel="noopener" aria-label="Open GitHub repo">
-            <img class="icon swap-theme"
-               src="/assets/icon-github-white.svg"
-               data-src-dark="/assets/icon-github-white.svg"
-               data-src-light="/assets/icon-github-black.svg" alt="">
+            <img
+              class="icon swap-theme"
+              src="/assets/icon-github-white.svg"
+              data-src-dark="/assets/icon-github-white.svg"
+              data-src-light="/assets/icon-github-black.svg"
+              alt="">
             <span class="sbtn-label" translate="no">Repo</span>
           </a>
         </div>
 
-      
-
+        <!-- badges -->
         <div class="badges">
           <span class="badge badge--gold">🏆 1st Prize</span>
           <span class="badge" translate="no">Medical Engineering</span>
           <span class="badge">PyTorch</span>
           <span class="badge" translate="no">Deep Learning</span>
         </div>
-
-        
-
       </div>
+    </div>
 
-  
-
+    <!-- CORPS DU CASE -->
     <div class="container case-body">
       <article class="case-main">
         <h2>Context</h2>
@@ -73,12 +73,12 @@
 
         <h2>Approach</h2>
         <ul>
-          <li>19 electrodes (10–20) - 20 s windows - RP images (200×200) per second.</li>
-          <li>Simple CNN (32/64) + BatchNorm + MaxPool - 128-FC - 1 logit (no sigmoid).</li>
-          <li>Reproducible preprocessing & splits, metrics at window & patient level.</li>
+          <li>19 electrodes (10–20) – 20 s windows – RP images (200×200) per second.</li>
+          <li>Simple CNN (32/64) + BatchNorm + MaxPool – 128-FC – 1 logit (no sigmoid).</li>
+          <li>Reproducible preprocessing &amp; splits, metrics at window &amp; patient level.</li>
         </ul>
 
-        <h2>Results & highlights</h2>
+        <h2>Results &amp; highlights</h2>
         <ul>
           <li>Coherent structure for good results for a first approach.</li>
           <li>Project awarded <strong>1st prize</strong> (student challenge).</li>
@@ -87,31 +87,16 @@
 
         <h2>Libraries used</h2>
         <ul>
-          <li>Pytorch, Numpy, Pandas, Open CV, Matplotlib</li>
+          <li>PyTorch, NumPy, Pandas, OpenCV, Matplotlib</li>
         </ul>
       </article>
     </div>
   </main>
 
   <footer class="footer">
-    <div class="container"><p>© Théophile Sauffisseau</p></div>
+    <div class="container">
+      <p>© Théophile Sauffisseau</p>
+    </div>
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
