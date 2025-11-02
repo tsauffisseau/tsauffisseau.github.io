@@ -865,7 +865,7 @@ a.mail-link:focus-visible{
     padding-right: 16px;
   }
 
-  /* HOME en colonne */
+  
   .cards--home{
     display: grid;
     grid-template-columns: 1fr;
@@ -878,7 +878,7 @@ a.mail-link:focus-visible{
     margin-top: 12px;
   }
 
-  /* ABOUT : 2x2 */
+  
   .page-about .page-header .socials-top{
     display: grid !important;
     grid-template-columns: repeat(2, minmax(130px, 1fr));
@@ -893,14 +893,14 @@ a.mail-link:focus-visible{
     border-radius: 14px;
   }
 
-  /* titres mobiles */
+  
   .page-title,
   .page .title,
   h1.page-title{
     font-size: 30px;
   }
 
-  /* POSTERS / RESUME : 1 colonne */
+  
   .poster-grid,
   .resume-grid{
     display: grid;
@@ -912,9 +912,9 @@ a.mail-link:focus-visible{
     width: 100%;
   }
 
-  /* ========= CASIOPÉE / PAGES PROJET ========= */
 
-  /* 1. même largeur / padding que les autres pages */
+
+
   body.page-case .case-header,
   body.page-case .case-body{
     width: 100%;
@@ -925,12 +925,12 @@ a.mail-link:focus-visible{
     box-sizing: border-box;
   }
 
-  /* 2. on casse le layout 2 colonnes du desktop */
+  
   body.page-case .case-body{
     display: block;
   }
 
-  /* 3. titre et sous-titre pas énormes */
+  
   body.page-case .case-title h1,
   body.page-case h1{
     font-size: 26px;
@@ -942,7 +942,7 @@ a.mail-link:focus-visible{
     font-size: 15px;
   }
 
-  /* 4. boutons Poster / Repo : côte à côte, petits, à gauche */
+  
   body.page-case .socials-top{
     display: flex;
     flex-wrap: nowrap;
@@ -966,14 +966,14 @@ a.mail-link:focus-visible{
     height: 16px;
   }
 
-  /* 5. badges → wrap normal */
+  
   body.page-case .badges{
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
 
-  /* 6. texte → jamais plus large que l’écran */
+  
   body.page-case p,
   body.page-case li{
     overflow-wrap: break-word;
@@ -982,11 +982,11 @@ a.mail-link:focus-visible{
   }
 }
 
-/* Cassiopée – aligner Poster / Repo à gauche sur mobile */
+
 @media (max-width: 720px){
   body.page-case .socials-top{
     display: flex;
-    justify-content: flex-start;   /* à gauche */
+    justify-content: flex-start;  
     align-items: center;
     gap: 10px;
     width: 100%;
@@ -1002,12 +1002,12 @@ a.mail-link:focus-visible{
   }
 }
 
-/* ===== Cassiopée – forcer Poster/Repo à gauche (mobile) ===== */
+
 @media (max-width: 720px){
   body.page-case .case-title .socials-top{
     display: flex !important;
     flex-wrap: nowrap !important;
-    justify-content: flex-start !important;   /* plus de space-between */
+    justify-content: flex-start !important;   
     gap: 10px !important;
     width: 100% !important;
   }
@@ -1021,7 +1021,7 @@ a.mail-link:focus-visible{
 }
 
 
-/* === Cassiopée : boutons collés à gauche sur mobile === */
+
 @media (max-width: 720px){
   body.page-case .case-title .socials-top{
     display: flex !important;
@@ -1030,7 +1030,7 @@ a.mail-link:focus-visible{
     gap: 10px !important;
   }
   body.page-case .case-title .socials-top .pcta{
-    margin-left: 0 !important;   /* ← ça enlève le auto qui pousse à droite */
+    margin-left: 0 !important;   
     flex: 0 0 auto;
     padding: 6px 12px !important;
     gap: 6px !important;
