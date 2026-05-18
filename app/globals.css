@@ -28,8 +28,8 @@
 
 @layer base {
   body {
-    @apply bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen flex flex-col selection:bg-primary/30;
-  }
+  @apply bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen flex flex-col;
+}
   
   /* Pour cacher la scrollbar sur mobile tout en gardant le scroll */
   .no-scrollbar::-webkit-scrollbar {
