@@ -11,6 +11,9 @@
 !.yarn/versions
 
 
+scripts/
+code_society.txt
+
 AGENTS.md
 CLAUDE.md
 # testing

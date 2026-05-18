@@ -1,42 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    /* Thème Clair */
-    --background: #ffffff;
-    --foreground: #0f172a;
-    --card: #f6f8fb;
-    --muted: #475569;
-    --border: #e2e8f0;
-    --primary: #2563eb;
-    --shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
-  }
-
-  .dark {
-    /* Thème Sombre */
-    --background: #0b0f16;
-    --foreground: #e5e7eb;
-    --card: #111827;
-    --muted: #9aa3b2;
-    --border: #1f2937;
-    --primary: #3b82f6;
-    --shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  }
+/* Configuration du thème pour Tailwind v4 */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
 }
 
-@layer base {
-  body {
-  @apply bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen flex flex-col;
+:root {
+  /* Thème Clair */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #f6f8fb;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --primary: #2563eb;
 }
-  
-  /* Pour cacher la scrollbar sur mobile tout en gardant le scroll */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+
+.dark {
+  /* Thème Sombre */
+  --background: #0b0f16;
+  --foreground: #e5e7eb;
+  --card: #111827;
+  --muted: #9aa3b2;
+  --border: #1f2937;
+  --primary: #3b82f6;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pour cacher la scrollbar sur mobile tout en gardant le scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
