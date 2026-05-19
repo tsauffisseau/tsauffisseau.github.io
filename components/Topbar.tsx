@@ -22,7 +22,7 @@ export function Topbar() {
         {/* Logo Home (à gauche) */}
         <Link href="/" className="flex shrink-0 items-center transition-transform hover:scale-105">
           <Image 
-            src="/assets/favicon.svg" 
+            src="/assets/favicon.png" 
             alt="Home" 
             width={24} 
             height={24} 

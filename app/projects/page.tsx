@@ -14,7 +14,7 @@ export default function Projects() {
           {/* En-tête responsive : passe à la ligne sur mobile */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
-              <Image src="/assets/logo_society_black.svg" alt="Society" width={28} height={28} className="dark:invert shrink-0" aria-hidden="true" />
+              <Image src="/assets/society_logo_white_black" alt="Society" width={28} height={28} className="dark:invert shrink-0" aria-hidden="true" />
               {/* Titre plus petit sur mobile (text-lg), normal sur ordi (sm:text-xl) */}
               <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] group-hover:text-primary transition-colors">Society - The BoardGame Social Network</h3>
             </div>
@@ -55,7 +55,7 @@ export default function Projects() {
               <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">Chesscoach - Game Analyst</h3>
             </div>
             <span className="sm:ml-auto inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold border border-[var(--border)] rounded-full bg-[var(--background)] w-fit">
-              <Image src="/assets/github_black_logo.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
+              <Image src="/assets/github_logo_black.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
               repo
             </span>
           </div>
@@ -76,7 +76,7 @@ export default function Projects() {
               <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">BoardGame Analysis</h3>
             </div>
             <span className="sm:ml-auto inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold border border-[var(--border)] rounded-full bg-[var(--background)] w-fit">
-              <Image src="/assets/github_black_logo.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
+              <Image src="/assets/github_logo_black.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
               repo
             </span>
           </div>

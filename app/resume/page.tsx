@@ -75,7 +75,7 @@ export default function PostersAndResume() {
         >
           {/* Miniature du poster (à ajouter plus tard si tu l'as) */}
           <div className="w-[85px] h-[115px] rounded-lg border border-[var(--border)] bg-[var(--background)] shrink-0 hidden sm:flex items-center justify-center">
-            <Image src="/assets/logo_society_black.svg" alt="Society" width={32} height={32} className="dark:invert opacity-50" />
+            <Image src="/assets/society_logo_white_black" alt="Society" width={32} height={32} className="dark:invert opacity-50" />
           </div>
 
           <div className="flex flex-col gap-1.5 py-1">

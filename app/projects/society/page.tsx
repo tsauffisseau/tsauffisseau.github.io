@@ -7,7 +7,7 @@ export default function SocietyCaseStudy() {
       {/* Header du Projet */}
       <div className="mb-10 border-b border-[var(--border)] pb-8">
         <div className="flex items-center gap-3 mb-4">
-          <Image src="/assets/logo_society_black.svg" alt="Society Logo" width={36} height={36} className="dark:invert" />
+          <Image src="/assets/society_logo_black.svg" alt="Society Logo" width={36} height={36} className="dark:invert" />
           <h1 className="text-3xl sm:text-4xl font-bold">Society App</h1>
         </div>
         
@@ -17,7 +17,7 @@ export default function SocietyCaseStudy() {
         
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 rounded-xl bg-primary/5 text-primary hover:-translate-y-0.5 hover:shadow-md transition-all font-semibold text-sm">
-            <Image src="/assets/logo_society_black.svg" alt="App" width={16} height={16} className="dark:invert" style={{ filter: 'brightness(0) saturate(100%) invert(39%) sepia(85%) saturate(2330%) hue-rotate(214deg) brightness(101%) contrast(97%)' }} />
+            <Image src="/assets/society_logo_black.svg" alt="App" width={16} height={16} className="dark:invert" style={{ filter: 'brightness(0) saturate(100%) invert(39%) sepia(85%) saturate(2330%) hue-rotate(214deg) brightness(101%) contrast(97%)' }} />
             Open Web App
           </a>
           

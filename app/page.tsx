@@ -67,13 +67,13 @@ export default function Home() {
 
         {/* Nouveau logo GitHub noir avec inversion auto en mode sombre */}
         <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-3.5 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40">
-          <Image src="/assets/github_black_logo.svg" alt="GitHub" width={18} height={18} className="dark:invert" />
+          <Image src="/assets/github_logo_black.svg" alt="GitHub" width={18} height={18} className="dark:invert" />
           <span className="font-semibold text-sm">GitHub</span>
         </a>
 
         {/* Society traité comme les autres, avec logo noir et texte "My App" */}
         <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-3.5 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40">
-          <Image src="/assets/logo_society_black.svg" alt="Society" width={18} height={18} className="dark:invert" />
+          <Image src="/assets/society_logo_white_black" alt="Society" width={18} height={18} className="dark:invert" />
           <span className="font-semibold text-sm">My App</span>
         </a>
 

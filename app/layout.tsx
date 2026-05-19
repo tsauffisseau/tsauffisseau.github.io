@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Théophile Sauffisseau | Data & AI Product Builder",
   description: "Portfolio of Théophile Sauffisseau - Data Analyst & AI Product Builder. Projects, Posters, Resume, Personal Creations.",
   icons: {
-    icon: "/assets/favicon.svg",
+    icon: "/assets/favicon.png",
     apple: "/assets/favicon.png",
   },
 };

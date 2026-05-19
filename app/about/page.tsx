@@ -11,7 +11,7 @@ export default function About() {
         
         <div className="flex flex-wrap justify-center gap-3">
           <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--card)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
-            <Image src="/assets/icon-mail-black2.svg" alt="Email" width={16} height={16} className="dark:invert" />
+            <Image src="/assets/mail_black.svg" alt="Email" width={16} height={16} className="dark:invert" />
             Email
           </a>
 
@@ -21,7 +21,7 @@ export default function About() {
           </a>
 
           <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--card)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
-            <Image src="/assets/github_black_logo.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
+            <Image src="/assets/github_logo_black.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
             GitHub
           </a>
         </div>
