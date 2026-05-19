@@ -3,30 +3,25 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <div className="container mx-auto px-4 max-w-[980px] py-8">
+    <div className="container mx-auto px-4 max-w-[980px] py-8 sm:py-12">
       
-      {/* Header : Titre + Liens sociaux */}
+      {/* Header : Titre + Liens sociaux (Sans Society) */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
         <h1 className="text-3xl font-bold">About me</h1>
         
         <div className="flex flex-wrap justify-center gap-3">
-          <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
+          <a href="mailto:theophile.sauffisseau@telecom-sudparis.eu" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--card)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
             <Image src="/assets/icon-mail-black2.svg" alt="Email" width={16} height={16} className="dark:invert" />
             Email
           </a>
-          
-          <a href="https://github.com/tsauffisseau/society-app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-primary/30 rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold text-primary">
-            <Image src="/assets/society_logo.svg" alt="Society" width={16} height={16} />
-            Society App
-          </a>
 
-          <a href="https://linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
+          <a href="https://linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--card)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
             <Image src="/assets/icon-linkedin.svg" alt="LinkedIn" width={16} height={16} />
             LinkedIn
           </a>
 
-          <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
-            <Image src="/assets/icon-github-black.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
+          <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--card)] hover:-translate-y-0.5 hover:shadow-md transition-all text-sm font-semibold">
+            <Image src="/assets/github_black_logo.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
             GitHub
           </a>
         </div>
@@ -45,7 +40,7 @@ export default function About() {
           
           <p>
             Here I share a few favorite projects and end-to-end pipelines.<br />
-            I invite you to have a look at my <Link href="/projects" className="underline decoration-dotted underline-offset-4 hover:opacity-80">projects</Link>, browse my <Link href="/posters" className="underline decoration-dotted underline-offset-4 hover:opacity-80">posters</Link>, or grab my <Link href="/resume" className="underline decoration-dotted underline-offset-4 hover:opacity-80">resume</Link>.
+            I invite you to have a look at my <Link href="/projects" className="underline decoration-dotted underline-offset-4 hover:opacity-80">projects</Link> or grab my <Link href="/resume" className="underline decoration-dotted underline-offset-4 hover:opacity-80">posters & resume</Link>.
           </p>
 
           <p>
@@ -54,12 +49,24 @@ export default function About() {
             My goal is to design innovative solutions tailored to high-impact challenges. 
             I enjoy exploring data and models and turning ideas into simple, tangible demos. 
             I’m also into clean visuals and new ways of seeing and exploring my environment. 
-            Feel free to check my <strong>GitHub</strong> and <strong>Society App</strong>, or reach me by <strong>Email</strong> !
+            Feel free to check my <strong>GitHub</strong>, or reach me by <strong>Email</strong> !
           </p>
 
-          <p>
-            If you’re curious about my artistic work: Have a look at my <Link href="/about/creations" className="underline decoration-dotted underline-offset-4 hover:opacity-80">Personnal Creations</Link>.
-          </p>
+          {/* Nouvelle case claire vers Personal Creations */}
+          <div className="mt-4">
+            <h3 className="font-bold text-lg mb-3">Artistic Work</h3>
+            <Link href="/about/creations" className="group flex items-center justify-between p-5 border border-[var(--border)] rounded-2xl bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
+              <div className="flex flex-col gap-1">
+                <span className="font-bold text-lg group-hover:text-primary transition-colors">Personal Creations</span>
+                <span className="text-[var(--muted)] text-sm">Digital collage, photography, and traditional art</span>
+              </div>
+              <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--background)] flex items-center justify-center shrink-0">
+                {/* Petite flèche qui s'anime au survol */}
+                <span className="text-xl leading-none transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </Link>
+          </div>
+
         </section>
 
         {/* Colonne Droite : Image & Now */}
