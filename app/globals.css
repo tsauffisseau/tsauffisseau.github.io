@@ -48,3 +48,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Fix infaillible pour l'inversion des logos en mode sombre */
+.dark .dark\:invert {
+  filter: invert(1) brightness(100%);
+}

@@ -9,14 +9,12 @@ export default function Projects() {
 
       <div className="flex flex-col gap-6">
         
-        {/* SOCIETY (Pointe vers la nouvelle page) */}
-        <Link href="/projects/society" className="group block bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/50">
-          {/* En-tête responsive : passe à la ligne sur mobile */}
+        {/* SOCIETY */}
+        <Link href="/projects/society" className="group block bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
-              <Image src="/assets/society_logo_white_black" alt="Society" width={28} height={28} className="dark:invert shrink-0" aria-hidden="true" />
-              {/* Titre plus petit sur mobile (text-lg), normal sur ordi (sm:text-xl) */}
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] group-hover:text-primary transition-colors">Society - The BoardGame Social Network</h3>
+              <Image src="/assets/society_logo_white.svg" alt="Society" width={28} height={28} className="shrink-0" aria-hidden="true" />
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] transition-colors">Society - The BoardGame Social Network</h3>
             </div>
           </div>
           <p className="text-[var(--muted)] mb-4 text-sm leading-relaxed">
@@ -25,7 +23,7 @@ export default function Projects() {
           <div className="flex flex-wrap gap-2 mt-auto">
             <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">TypeScript</span>
             <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Next.js</span>
-            <span className="px-3 py-1 text-xs text-[var(--primary)] border border-primary/30 rounded-full bg-primary/5">My App</span>
+            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">My App</span>
           </div>
         </Link>
 

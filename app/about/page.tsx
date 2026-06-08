@@ -5,7 +5,6 @@ export default function About() {
   return (
     <div className="container mx-auto px-4 max-w-[980px] py-8 sm:py-12">
       
-      {/* Header : Titre + Liens sociaux (Sans Society) */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
         <h1 className="text-3xl font-bold">About me</h1>
         
@@ -27,10 +26,8 @@ export default function About() {
         </div>
       </div>
 
-      {/* Grille principale (2/3 Texte - 1/3 Side) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         
-        {/* Colonne Gauche : Texte */}
         <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)]">
           <p>
             I’m Théophile Sauffisseau, a French engineering student focused on <strong>machine learning</strong>.<br />
@@ -52,24 +49,21 @@ export default function About() {
             Feel free to check my <strong>GitHub</strong>, or reach me by <strong>Email</strong> !
           </p>
 
-          {/* Nouvelle case claire vers Personal Creations */}
           <div className="mt-4">
             <h3 className="font-bold text-lg mb-3">Artistic Work</h3>
             <Link href="/about/creations" className="group flex items-center justify-between p-5 border border-[var(--border)] rounded-2xl bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
               <div className="flex flex-col gap-1">
-                <span className="font-bold text-lg group-hover:text-primary transition-colors">Personal Creations</span>
+                <span className="font-bold text-lg transition-colors">Personal Creations</span>
                 <span className="text-[var(--muted)] text-sm">Digital collage, photography, and traditional art</span>
               </div>
               <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--background)] flex items-center justify-center shrink-0">
-                {/* Petite flèche qui s'anime au survol */}
-                <span className="text-xl leading-none transition-transform group-hover:translate-x-1">→</span>
+                <Image src="/assets/arrow.svg" alt="Arrow" width={16} height={16} className="dark:invert" />
               </div>
             </Link>
           </div>
 
         </section>
 
-        {/* Colonne Droite : Image & Now */}
         <aside className="flex flex-col gap-6">
           <Image 
             src="/assets/photo_aboutmetoo.jpg" 

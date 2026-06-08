@@ -8,30 +8,34 @@ import { ThemeToggle } from "./ThemeToggle";
 export function Topbar() {
   const pathname = usePathname();
   
-  // Fusion de Posters et Resume
   const navLinks = [
     { name: "Projects", href: "/projects" },
-    { name: "Posters & Resume", href: "/resume" }, // On pointera vers /resume pour la page fusionnée
+    { name: "Posters & Resume", href: "/resume" },
     { name: "About me", href: "/about" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 flex min-h-16 max-w-[980px] items-center justify-between py-2 sm:py-0 gap-4">
+      <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 max-w-[980px] min-h-16">
         
-        {/* Logo Home (à gauche) */}
-        <Link href="/" className="flex shrink-0 items-center transition-transform hover:scale-105">
-          <Image 
-            src="/assets/favicon.png" 
-            alt="Home" 
-            width={24} 
-            height={24} 
-            className="dark:invert" // S'adapte au mode sombre si ton SVG est noir
-          />
-        </Link>
+        {/* Ligne 1 sur Mobile (Logo + Toggle) / Gauche sur Desktop */}
+        <div className="flex w-full sm:w-auto items-center justify-between">
+          <Link href="/" className="flex shrink-0 items-center transition-transform hover:scale-105">
+            <Image 
+              src="/assets/favicon.png" 
+              alt="Home" 
+              width={24} 
+              height={24} 
+              className="dark:invert"
+            />
+          </Link>
+          <div className="flex sm:hidden shrink-0 items-center">
+            <ThemeToggle />
+          </div>
+        </div>
         
-        {/* Navigation (au centre) */}
-        <nav className="flex flex-1 items-center justify-center gap-4 sm:gap-7 overflow-x-auto no-scrollbar">
+        {/* Navigation - Centrée en bas sur Mobile, au centre sur Desktop */}
+        <nav className="flex items-center justify-center gap-4 sm:gap-7 overflow-x-auto no-scrollbar w-full sm:w-auto">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href === '/resume' && pathname === '/posters');
             return (
@@ -48,8 +52,8 @@ export function Topbar() {
           })}
         </nav>
 
-        {/* Bouton Thème (à droite) */}
-        <div className="flex shrink-0 items-center">
+        {/* Bouton Thème Desktop (Caché sur mobile) */}
+        <div className="hidden sm:flex shrink-0 items-center">
           <ThemeToggle />
         </div>
         
