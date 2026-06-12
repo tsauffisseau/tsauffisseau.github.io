@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* 🚨 LA SOLUTION EST ICI : Force Tailwind à écouter ton bouton de thème au lieu de l'ordinateur */
+@variant dark (&:where(.dark, .dark *));
+
 /* Configuration du thème pour Tailwind v4 */
 @theme {
   --color-background: var(--background);
@@ -52,9 +55,4 @@ body::-webkit-scrollbar {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Fix infaillible pour l'inversion des logos en mode sombre */
-.dark .dark\:invert {
-  filter: invert(1) brightness(100%);
 }
