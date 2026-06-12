@@ -17,7 +17,7 @@ export default function CassiopeeCaseStudy() {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          <span className="px-3 py-1 text-xs font-semibold text-yellow-600 dark:text-yellow-500 border border-yellow-600/30 dark:border-yellow-500/30 rounded-full bg-[var(--background)]">🏆 1st Prize</span>
+          <span className="px-3 py-1 text-xs font-semibold text-yellow-600 dark:text-yellow-500 border border-yellow-600/30 dark:border-yellow-500/30 rounded-full bg-[var(--background)]">1st Prize</span>
           <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Medical Engineering</span>
           <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">PyTorch</span>
           <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Deep Learning</span>

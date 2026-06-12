@@ -28,7 +28,8 @@ export default function About() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         
-        <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)]">
+        {/* L'ordre est inversé sur mobile via order-2 lg:order-1 */}
+        <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)] order-2 lg:order-1">
           <p>
             I’m Théophile Sauffisseau, a French engineering student focused on <strong>machine learning</strong>.<br />
             I am interested in developing explainable models, applied to meaningful topics, particularly in healthcare.<br />
@@ -57,14 +58,16 @@ export default function About() {
                 <span className="text-[var(--muted)] text-sm">Digital collage, photography, and traditional art</span>
               </div>
               <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--background)] flex items-center justify-center shrink-0">
-                <Image src="/assets/arrow.svg" alt="Arrow" width={16} height={16} className="dark:invert" />
+                {/* Flèche en texte */}
+                <span className="text-xl leading-none transition-transform group-hover:translate-x-1">→</span>
               </div>
             </Link>
           </div>
 
         </section>
 
-        <aside className="flex flex-col gap-6">
+        {/* L'ordre est inversé sur mobile via order-1 lg:order-2 */}
+        <aside className="flex flex-col gap-6 order-1 lg:order-2">
           <Image 
             src="/assets/photo_aboutmetoo.jpg" 
             alt="Théophile Sauffisseau" 

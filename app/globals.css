@@ -40,7 +40,12 @@ body {
   flex-direction: column;
 }
 
-/* Pour cacher la scrollbar sur mobile tout en gardant le scroll */
+/* Cache la barre de défilement globale de la page */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pour cacher la scrollbar sur les composants internes tout en gardant le scroll */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

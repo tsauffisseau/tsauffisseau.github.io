@@ -38,7 +38,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full max-w-[760px] mb-8">
         
         {/* Colonne 1 : Cassiopée & LinkedIn */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
           <Link href="/projects/cassiopee" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
             <h3 className="text-lg font-bold text-[var(--foreground)] mb-1">1st Prize Project</h3>
             <p className="text-[var(--muted)] text-sm">Alzheimer AD Detection</p>
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
 
         {/* Colonne 2 : Projects & GitHub */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
           <Link href="/projects" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
             <h3 className="text-lg font-bold text-[var(--foreground)] mb-1">My Projects</h3>
             <p className="text-[var(--muted)] text-sm">Personal Projects & GitHub</p>
@@ -61,14 +61,18 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Colonne 3 : Posters & Society */}
-        <div className="flex flex-col gap-4">
+        {/* Colonne 3 : Posters & Society (Logo Black + invert) */}
+        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
           <Link href="/resume" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
             <h3 className="text-lg font-bold text-[var(--foreground)] mb-1">Posters</h3>
             <p className="text-[var(--muted)] text-sm">Academic Publications</p>
           </Link>
           <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-3.5 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40 shrink-0">
-            <Image src="/assets/society_logo_white.svg" alt="Society" width={18} height={18} />
+           {/* Version Noire (affichée le jour, cachée la nuit) */}
+<Image src="/assets/society_logo_black.svg" alt="Society" width={18} height={18} className="dark:hidden shrink-0" />
+
+{/* Version Blanche (cachée le jour, affichée la nuit) */}
+<Image src="/assets/society_logo_white.svg" alt="Society" width={18} height={18} className="hidden dark:block shrink-0" />
             <span className="font-semibold text-sm">My App</span>
           </a>
         </div>
