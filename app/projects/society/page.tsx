@@ -7,7 +7,8 @@ export default function SocietyCaseStudy() {
       {/* Header du Projet */}
       <div className="mb-10 border-b border-[var(--border)] pb-8">
         <div className="flex items-center gap-3 mb-4">
-          <Image src="/assets/society_logo_black.svg" alt="Society Logo" width={36} height={36} className="dark:invert" />
+          <Image src="/assets/society_logo_black.svg" alt="Society Logo" width={36} height={36} className="dark:hidden" />
+          <Image src="/assets/society_logo_white.svg" alt="Society Logo" width={36} height={36} className="hidden dark:block" />
           <h1 className="text-3xl sm:text-4xl font-bold">Society App</h1>
         </div>
         
@@ -17,11 +18,8 @@ export default function SocietyCaseStudy() {
         
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all font-semibold text-sm">
-            {/* Version Noire (affichée le jour, cachée la nuit) */}
-<Image src="/assets/society_logo_black.svg" alt="Society" width={16} height={16} className="dark:hidden shrink-0" />
-
-{/* Version Blanche (cachée le jour, affichée la nuit) */}
-<Image src="/assets/society_logo_white.svg" alt="Society" width={16} height={16} className="hidden dark:block shrink-0" />
+            <Image src="/assets/society_logo_black.svg" alt="App" width={16} height={16} className="dark:hidden" />
+            <Image src="/assets/society_logo_white.svg" alt="App" width={16} height={16} className="hidden dark:block" />
             Open Web App
           </a>
           

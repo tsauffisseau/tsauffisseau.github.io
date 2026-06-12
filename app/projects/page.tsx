@@ -13,11 +13,8 @@ export default function Projects() {
         <Link href="/projects/society" className="group block bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
-              {/* Version Noire (affichée le jour, cachée la nuit) */}
-<Image src="/assets/society_logo_black.svg" alt="Society" width={28} height={28} className="dark:hidden shrink-0" />
-
-{/* Version Blanche (cachée le jour, affichée la nuit) */}
-<Image src="/assets/society_logo_white.svg" alt="Society" width={28} height={28} className="hidden dark:block shrink-0" />
+              <Image src="/assets/society_logo_black.svg" alt="Society" width={28} height={28} className="shrink-0 dark:hidden" aria-hidden="true" />
+              <Image src="/assets/society_logo_white.svg" alt="Society" width={28} height={28} className="shrink-0 hidden dark:block" aria-hidden="true" />
               <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] transition-colors">Society - The BoardGame Social Network</h3>
             </div>
           </div>

@@ -18,8 +18,8 @@ export function Topbar() {
     <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-md">
       <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-[980px] min-h-16 relative">
         
-        {/* Navigation : En haut sur mobile, centrée en absolu sur Desktop */}
-        <nav className="flex items-center justify-center gap-4 sm:gap-7 overflow-x-auto no-scrollbar w-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:w-auto">
+        {/* Ligne 1 (Mobile) : Liens de navigation tout en haut */}
+        <nav className="flex items-center justify-center gap-4 sm:gap-7 overflow-x-auto no-scrollbar w-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:w-auto order-1 sm:order-2">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href === '/resume' && pathname === '/posters');
             return (
@@ -36,25 +36,25 @@ export function Topbar() {
           })}
         </nav>
 
-        {/* Ligne 2 (Mobile) : Logo centré à gauche, Soleil centré à droite */}
-        <div className="flex w-full justify-center gap-12 sm:w-auto sm:justify-start">
+        {/* Ligne 2 (Mobile) : Home et Soleil en dessous, centrés avec décalage gauche */}
+        <div className="flex w-full justify-center gap-12 items-center sm:w-auto sm:justify-start order-2 sm:order-1 mt-1 sm:mt-0">
           <Link href="/" className="flex shrink-0 items-center transition-transform hover:scale-105">
             <Image 
               src="/assets/favicon.png" 
               alt="Home" 
               width={24} 
               height={24} 
-              className="invert dark:invert-0"
+              className="invert dark:invert-0" /* Devient noir en light mode, redevient blanc en dark mode */
             />
           </Link>
-          {/* Soleil affiché uniquement sur mobile ici */}
+          {/* Version mobile du toggle du thème */}
           <div className="flex shrink-0 items-center sm:hidden">
             <ThemeToggle />
           </div>
         </div>
 
         {/* Bouton Thème Desktop (Caché sur mobile) */}
-        <div className="hidden sm:flex shrink-0 items-center">
+        <div className="hidden sm:flex shrink-0 items-center order-3">
           <ThemeToggle />
         </div>
         
