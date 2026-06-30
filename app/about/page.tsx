@@ -28,26 +28,22 @@ export default function About() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         
-        {/* order-2 fait passer le texte après la photo sur mobile */}
         <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)] order-2 lg:order-1">
           <p>
-            I’m Théophile Sauffisseau, a French engineering student focused on <strong>machine learning</strong>.<br />
-            I am interested in developing explainable models, applied to meaningful topics, particularly in healthcare.<br />
-            Currently working as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division). I am looking for a full-time position (CDI) in Data/AI or Product Management starting in September 2026.
+            I’m Théophile Sauffisseau, a French engineering student from Télécom SudParis with a strong focus on <strong>Machine Learning and Data Engineering</strong>.
           </p>
           
           <p>
-            Here I share a few favorite projects and end-to-end pipelines.<br />
-            I invite you to have a look at my <Link href="/projects" className="underline decoration-dotted underline-offset-4 hover:opacity-80">projects</Link> or grab my <Link href="/resume" className="underline decoration-dotted underline-offset-4 hover:opacity-80">posters & resume</Link>.
+             I am currently completing my final-year internship as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division), where I build backend predictive engines and optimize data pipelines. I am actively looking for a full-time position (CDI) as an ML/Data Engineer starting in <strong>October-November 2026</strong>.
           </p>
 
           <p>
             <strong>My Profile</strong><br />
-            I am interested in developing effective and explainable models, applied to meaningful topics. 
-            My goal is to design innovative solutions tailored to high-impact challenges. 
-            I enjoy exploring data and models and turning ideas into simple, tangible demos. 
-            I’m also into clean visuals and new ways of seeing and exploring my environment. 
-            Feel free to check my <strong>GitHub</strong>, or reach me by <strong>Email</strong> !
+            My goal is to bridge the gap between technical infrastructure and concrete use cases. Whether it is deploying a FastAPI backend, training a PyTorch CNN for medical imaging, or structuring a robust PostgreSQL database, I enjoy turning raw data and complex ideas into reliable, scalable solutions.
+          </p>
+
+          <p>
+             Feel free to check my <strong>GitHub</strong> to read some code, or reach out by <strong>Email</strong>!
           </p>
 
           <div className="mt-4">
@@ -57,7 +53,6 @@ export default function About() {
                 <span className="font-bold text-lg transition-colors">Personal Creations</span>
                 <span className="text-[var(--muted)] text-sm">Digital collage, photography, and traditional art</span>
               </div>
-              {/* Conteneur statique avec ton fichier arrow.svg */}
               <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--background)] flex items-center justify-center shrink-0">
                 <Image src="/assets/arrow.svg" alt="Arrow" width={16} height={16} className="dark:invert" />
               </div>
@@ -66,7 +61,6 @@ export default function About() {
 
         </section>
 
-        {/* order-1 fait passer la photo au-dessus sur mobile */}
         <aside className="flex flex-col gap-6 order-1 lg:order-2">
           <Image 
             src="/assets/photo_aboutmetoo.jpg" 
@@ -80,9 +74,9 @@ export default function About() {
             <h3 className="font-bold text-lg mb-3">Now</h3>
             <ul className="list-disc list-inside text-[var(--muted)] space-y-2 text-sm">
               <li>Data Analyst @ Air Liquide</li>
-              <li>Building "Society" App</li>
-              <li>Seeking full-time roles (Sept 2026)</li>
-              <li>ML Projects - GitHub repo</li>
+              <li>Building "Society" Full-stack App</li>
+              <li>Seeking full-time roles (Oct 2026)</li>
+              <li>Deep Learning / Data Projects</li>
             </ul>
           </div>
         </aside>

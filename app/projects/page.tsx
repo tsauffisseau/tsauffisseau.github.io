@@ -3,9 +3,10 @@ import Link from "next/link";
 
 export default function Projects() {
   return (
-    <div className="container mx-auto px-4 max-w-[980px] py-8 sm:py-12">
+    <div className="container mx-auto px-6 max-w-[980px] py-8 sm:py-12">
       <h1 className="text-3xl font-bold mb-3">Projects</h1>
-      <p className="text-[var(--muted)] mb-8">Personal projects and open-source contributions. Click on the card to see more.</p>
+      {/* Nouvelle phrase d'intro */}
+      <p className="text-[var(--muted)] mb-8 leading-relaxed">Personal projects and open-source contributions. Click on the cards below to see more of it.</p>
 
       <div className="flex flex-col gap-6">
         
@@ -15,16 +16,21 @@ export default function Projects() {
             <div className="flex items-center gap-3">
               <Image src="/assets/society_logo_black.svg" alt="Society" width={28} height={28} className="shrink-0 dark:hidden" aria-hidden="true" />
               <Image src="/assets/society_logo_white.svg" alt="Society" width={28} height={28} className="shrink-0 hidden dark:block" aria-hidden="true" />
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] transition-colors">Society - The BoardGame Social Network</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] transition-colors leading-snug break-words">Society App</h3>
             </div>
           </div>
-          <p className="text-[var(--muted)] mb-4 text-sm leading-relaxed">
-            Development of the "Letterboxd for board games" (TypeScript App). Architecting the product vision, technical stack, database, and UI/UX from scratch. Active development.
+          {/* Nouvelle description technique basée sur ton doc */}
+          <p className="text-[var(--muted)] mb-5 text-sm leading-relaxed">
+            Full-stack application allowing users to track their board game sessions and collections. Architected with FastAPI, PostgreSQL, and Next.js, featuring data aggregation from external APIs.
           </p>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">TypeScript</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Next.js</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">My App</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
+            <div className="flex flex-wrap gap-2">
+               <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Full-stack</span>
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Web App</span>
+            </div>
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                 Lire l'étude de cas →
+            </span>
           </div>
         </Link>
 
@@ -33,16 +39,20 @@ export default function Projects() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-brain.svg" alt="Cassiopee" width={28} height={28} className="shrink-0" aria-hidden="true" />
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">Alzheimer Detection - EEG</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] leading-snug break-words">Alzheimer Detection via CNN</h3>
             </div>
           </div>
-          <p className="text-[var(--muted)] mb-4 text-sm leading-relaxed">
+          <p className="text-[var(--muted)] mb-5 text-sm leading-relaxed">
             CNN on recurrence-plot representations of multichannel time-series (19 channels). Window-level scoring with subject-level aggregation. Reproducible PyTorch pipeline.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">PyTorch</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Medical Engineering</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Deep Learning</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
+             <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">PyTorch</span>
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Deep Learning</span>
+            </div>
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                 Lire l'étude de cas →
+            </span>
           </div>
         </Link>
 
@@ -51,19 +61,21 @@ export default function Projects() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-chess.svg" alt="Chess" width={28} height={28} className="shrink-0" aria-hidden="true" />
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">Chesscoach - Game Analyst</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] leading-snug break-words">Chesscoach - Game Analyst</h3>
             </div>
-            <span className="sm:ml-auto inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold border border-[var(--border)] rounded-full bg-[var(--background)] w-fit">
-              <Image src="/assets/github_logo_black.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
-              repo
-            </span>
           </div>
-          <p className="text-[var(--muted)] mb-4 text-sm leading-relaxed">
+          <p className="text-[var(--muted)] mb-5 text-sm leading-relaxed">
             Streamlit tool to analyze PGN games with Stockfish: Evolution of your score. Mistakes, blunders and worsts moves classification.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Python</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Streamlit</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Python</span>
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Streamlit</span>
+            </div>
+             <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                 <Image src="/assets/github_logo_black.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
+                 Voir le code sur GitHub →
+            </span>
           </div>
         </a>
 
@@ -72,19 +84,21 @@ export default function Projects() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-game.svg" alt="Boardgame" width={28} height={28} className="shrink-0" aria-hidden="true" />
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">BoardGame Analysis</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--foreground)] leading-snug break-words">BoardGame Analysis</h3>
             </div>
-            <span className="sm:ml-auto inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold border border-[var(--border)] rounded-full bg-[var(--background)] w-fit">
-              <Image src="/assets/github_logo_black.svg" alt="GitHub" width={14} height={14} className="dark:invert" />
-              repo
-            </span>
           </div>
-          <p className="text-[var(--muted)] mb-4 text-sm leading-relaxed">
+          <p className="text-[var(--muted)] mb-5 text-sm leading-relaxed">
             Exploring the BoardGameGeek landscape through the lens of playtime, complexity, and popularity.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Python</span>
-            <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Pandas</span>
+           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Python</span>
+              <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Pandas</span>
+            </div>
+             <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                 <Image src="/assets/github_logo_black.svg" alt="GitHub" width={16} height={16} className="dark:invert" />
+                 Voir le code sur GitHub →
+            </span>
           </div>
         </a>
 

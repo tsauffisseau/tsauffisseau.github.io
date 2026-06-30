@@ -39,22 +39,26 @@ export default function SocietyCaseStudy() {
 
       {/* Corps du texte */}
       <article className="max-w-[860px]">
-        <h2 className="text-2xl font-bold mb-4">Product Vision</h2>
+        <h2 className="text-2xl font-bold mb-4">Product Vision & UI/UX</h2>
         <p className="text-[var(--muted)] leading-relaxed mb-8">
-          The board game industry is booming, yet players lack a modern, centralized platform to log plays, review games, and connect with their friends' activity. <strong>Society</strong> was built to bridge this gap, taking inspiration from platforms like Letterboxd or Strava, but tailored to the specific needs of modern board gamers.
+          The board game industry is booming, yet players lack a modern, centralized platform to log plays, review games, and connect with their friends' activity. <strong>Society</strong> was built to bridge this gap. Taking inspiration from platforms like Letterboxd or Strava, I designed an intuitive, app-like user experience with a strong focus on mobile responsiveness and clean aesthetics.
         </p>
 
-        <h2 className="text-2xl font-bold mb-4">Architecture & Approach</h2>
+        <h2 className="text-2xl font-bold mb-4">Architecture & Technical Stack</h2>
+        <p className="text-[var(--muted)] leading-relaxed mb-4">
+          I architected Society as a full-stack, end-to-end product, handling everything from the database design to the final deployment.
+        </p>
         <ul className="list-disc list-inside text-[var(--muted)] space-y-2 mb-8 leading-relaxed">
-          <li><strong>Frontend:</strong> Modern React with Next.js App Router and Tailwind CSS for a fully responsive, app-like UI.</li>
-          <li><strong>Backend:</strong> Robust Python API built with FastAPI, handling user authentication, data logic, and game database management.</li>
-          <li><strong>Database:</strong> Structuring complex relationships between users, collections, ratings, and game metadata.</li>
-          <li><strong>Product Management:</strong> End-to-end design, from Figma mockups and user stories to deployment and continuous integration.</li>
+          <li><strong>Frontend:</strong> React, Next.js (App Router), and Tailwind CSS. Deployed seamlessly on Vercel.</li>
+          <li><strong>Backend:</strong> A robust Python API built with FastAPI, connected to a complex PostgreSQL database, with Alembic handling data migrations.</li>
+          <li><strong>Data & Algorithms:</strong> Custom Python recommendation engines and smart AI integrations utilizing the OpenAI API. Board game metadata is dynamically aggregated via the BGG API.</li>
+          <li><strong>Infrastructure & DevOps:</strong> CI/CD managed through Git/GitHub. Production and development environments are hosted on Railway with built-in observability. Domains (societyapp.fr) are routed via Hostinger.</li>
+          <li><strong>External Services:</strong> Cloudinary for optimized image hosting, Resend for transactional emails, and Google Auth for secure, frictionless login.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold mb-4">Current Status</h2>
+        <h2 className="text-2xl font-bold mb-4">Current Status & Algorithms</h2>
         <p className="text-[var(--muted)] leading-relaxed mb-8">
-          The application is in active development. I am continuously iterating on the product, adding new social features, refining the recommendation algorithms, and improving the mobile experience.
+          The application is live and in active development. I am currently refining the backend recommendation models and leveraging the massive relational database I built to provide users with highly personalized game suggestions based on their logging history and social graph.
         </p>
       </article>
     </div>
