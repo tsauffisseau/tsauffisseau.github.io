@@ -4,23 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Composant interne qui gère le design de la carte et le pop-up
-function ProjectCard({ href, isInternal, targetType, children }: { href: string, isInternal?: boolean, targetType: string, children: React.ReactNode }) {
+// Ce composant ne sert plus QUE pour les liens GitHub externes
+function GithubCard({ href, children }: { href: string, children: React.ReactNode }) {
   const [showMenu, setShowMenu] = useState(false);
-
-  const getMessage = () => {
-    if (targetType === "github") return "Open repository on GitHub?";
-    if (targetType === "app") return "Launch the Web App?";
-    if (targetType === "case-study") return "Read the case study?";
-    return "Open this link?";
-  };
-
-  const getConfirmText = () => {
-    if (targetType === "github") return "OPEN GITHUB";
-    if (targetType === "app") return "LAUNCH APP";
-    if (targetType === "case-study") return "READ STUDY";
-    return "OPEN";
-  };
 
   return (
     <div
@@ -29,49 +15,31 @@ function ProjectCard({ href, isInternal, targetType, children }: { href: string,
     >
       {children}
 
-      {/* OVERLAY POP-UP (Inspiré de ton GameCard.tsx) */}
       {showMenu && (
         <div
           className="absolute inset-0 z-[70] bg-black/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center p-3 animate-in fade-in duration-200 pointer-events-auto"
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowMenu(false); }}
         >
           <p className="text-white font-bold mb-5 text-center text-lg tracking-wide drop-shadow-md">
-            {getMessage()}
+            Open repository on GitHub?
           </p>
           <div className="flex gap-4 items-center justify-center pointer-events-auto">
             
-            {/* Bouton de confirmation */}
-            {isInternal ? (
-              <Link
-                href={href}
-                onClick={(e) => e.stopPropagation()}
-                className="w-[105px] h-[85px] bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-gray-300">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-                <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest text-center px-1 leading-tight">
-                  {getConfirmText()}
-                </span>
-              </Link>
-            ) : (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="w-[105px] h-[85px] bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-gray-300">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest text-center px-1 leading-tight">
-                  {getConfirmText()}
-                </span>
-              </a>
-            )}
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="w-[105px] h-[85px] bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-gray-300">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest text-center px-1 leading-tight">
+                OPEN GITHUB
+              </span>
+            </a>
 
-            {/* Bouton d'annulation */}
             <button
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowMenu(false); }}
               className="w-[105px] h-[85px] bg-red-500/10 border border-red-500/30 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
@@ -99,8 +67,8 @@ export default function Projects() {
 
       <div className="flex flex-col gap-6">
         
-        {/* SOCIETY */}
-        <ProjectCard href="/projects/society" isInternal={true} targetType="case-study">
+        {/* SOCIETY - Lien direct (Sans pop-up) */}
+        <Link href="/projects/society" className="group block bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/society_logo_black.svg" alt="Society" width={28} height={28} className="shrink-0 dark:hidden" aria-hidden="true" />
@@ -120,10 +88,10 @@ export default function Projects() {
                  Case Study →
             </span>
           </div>
-        </ProjectCard>
+        </Link>
 
-        {/* CASSIOPÉE */}
-        <ProjectCard href="/projects/cassiopee" isInternal={true} targetType="case-study">
+        {/* CASSIOPÉE - Lien direct (Sans pop-up) */}
+        <Link href="/projects/cassiopee" className="group block bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-brain.svg" alt="Cassiopee" width={28} height={28} className="shrink-0" aria-hidden="true" />
@@ -142,10 +110,10 @@ export default function Projects() {
                  Case Study →
             </span>
           </div>
-        </ProjectCard>
+        </Link>
 
-        {/* CHESSCOACH */}
-        <ProjectCard href="https://github.com/tsauffisseau/chesscoach" targetType="github">
+        {/* CHESSCOACH - Avec Pop-up GitHub */}
+        <GithubCard href="https://github.com/tsauffisseau/chesscoach">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-chess.svg" alt="Chess" width={28} height={28} className="shrink-0" aria-hidden="true" />
@@ -165,10 +133,10 @@ export default function Projects() {
                  GitHub Repository →
             </span>
           </div>
-        </ProjectCard>
+        </GithubCard>
 
-        {/* BOARDGAME ANALYSIS */}
-        <ProjectCard href="https://github.com/tsauffisseau/boardgame_analysis" targetType="github">
+        {/* BOARDGAME ANALYSIS - Avec Pop-up GitHub */}
+        <GithubCard href="https://github.com/tsauffisseau/boardgame_analysis">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
             <div className="flex items-center gap-3">
               <Image src="/assets/icon-game.svg" alt="Boardgame" width={28} height={28} className="shrink-0" aria-hidden="true" />
@@ -188,7 +156,7 @@ export default function Projects() {
                  GitHub Repository →
             </span>
           </div>
-        </ProjectCard>
+        </GithubCard>
 
       </div>
     </div>

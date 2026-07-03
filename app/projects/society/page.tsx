@@ -1,4 +1,65 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+
+// Composant qui gère le pop-up de confirmation en plein écran pour les petits boutons
+function PdfModalButton({ href, label }: { href: string; label: string }) {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
+      <button
+        onClick={() => setShowModal(true)}
+        className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-sm transition-all font-semibold text-sm cursor-pointer"
+      >
+        <Image src="/assets/icon-pdf.svg" alt="PDF" width={16} height={16} />
+        {label}
+      </button>
+
+      {showModal && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 animate-in fade-in duration-200"
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowModal(false); }}
+        >
+          <p className="text-white font-bold mb-6 text-center text-xl tracking-wide drop-shadow-md">
+            Open PDF document?
+          </p>
+          <div className="flex gap-5 items-center justify-center">
+            
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="w-[115px] h-[95px] bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 text-gray-300">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              <span className="text-[10px] font-black text-gray-200 uppercase tracking-widest text-center px-1 leading-tight">
+                OPEN PDF
+              </span>
+            </a>
+
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowModal(false); }}
+              className="w-[115px] h-[95px] bg-red-500/10 border border-red-500/30 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 text-red-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">
+                CANCEL
+              </span>
+            </button>
+
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default function SocietyCaseStudy() {
   return (
@@ -13,20 +74,19 @@ export default function SocietyCaseStudy() {
         </div>
         
         <p className="text-[var(--muted)] text-lg mb-6">
-          The "Letterboxd for Board Games" – A full-stack social network for board game enthusiasts.
+          A full-stack, data-driven social network tailored for board game enthusiasts.
         </p>
         
         <div className="flex flex-wrap items-center gap-3 mb-6">
+          {/* Lien Direct (Logo explicite) */}
           <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-md transition-all font-semibold text-sm">
             <Image src="/assets/society_logo_black.svg" alt="App" width={16} height={16} className="dark:hidden" />
             <Image src="/assets/society_logo_white.svg" alt="App" width={16} height={16} className="hidden dark:block" />
             Open Web App
           </a>
           
-          <a href="/assets/poster_society.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-xl bg-[var(--background)] hover:-translate-y-0.5 hover:shadow-sm transition-all font-semibold text-sm">
-            <Image src="/assets/icon-pdf.svg" alt="PDF" width={16} height={16} />
-            Architecture Poster
-          </a>
+          {/* Nouveau bouton Modal pour le PDF */}
+          <PdfModalButton href="/assets/poster_society.pdf" label="Architecture Poster" />
         </div>
 
         <div className="flex flex-wrap gap-2">

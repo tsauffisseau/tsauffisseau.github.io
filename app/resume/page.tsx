@@ -16,7 +16,7 @@ function ResumeCard({ href, children }: { href: string, children: React.ReactNod
 
       {showMenu && (
         <div
-          className="absolute inset-0 z-[70] bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-3 animate-in fade-in duration-200 pointer-events-auto"
+          className="absolute inset-0 z-[70] bg-black/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center p-3 animate-in fade-in duration-200 pointer-events-auto"
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowMenu(false); }}
         >
           <p className="text-white font-bold mb-5 text-center text-lg tracking-wide drop-shadow-md">
