@@ -70,7 +70,7 @@ export default function PostersAndResume() {
       <div className="flex flex-col gap-5 w-full max-w-[680px]">
         
         {/* CARTE RESUME */}
-        <ResumeCard href="/assets/Resume_Theophile_Sauffisseau_CDI_Octobre.pdf">
+        <ResumeCard href="/assets/Resume_ThéophileSauffisseau_2026.pdf">
           <div className="flex gap-4 sm:gap-6 w-full">
             <Image 
               src="/assets/resumethumb.jpg" 
@@ -108,7 +108,7 @@ export default function PostersAndResume() {
             />
             <div className="flex flex-col gap-1.5 py-1 flex-1">
               <h3 className="font-bold text-lg sm:text-xl leading-snug break-words">
-                Alzheimer Detection via CNN
+                Alzheimer Detection via CNN - Poster
               </h3>
               <p className="text-[var(--muted)] text-sm mb-3">2025 • Prize-winning project • PDF</p>
               <div className="flex flex-wrap gap-2 mb-2">

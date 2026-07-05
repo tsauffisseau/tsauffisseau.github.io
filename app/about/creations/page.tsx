@@ -6,7 +6,7 @@ export default function Creations() {
       
       <h1 className="text-3xl font-bold mb-4">Personal Creations</h1>
       <p className="text-[var(--muted)] max-w-2xl leading-relaxed mb-8">
-        I build images through digital collage, photography, and <strong>traditional/digital</strong> creation, with a bit of AI. I focus on compact stories and personal compositions. Feel free to check my Instagram and Youtube Channel.
+        I build images through digital collage and <strong>traditional/digital</strong> creation. I focus on personal compositions - Feel free to check my Instagram and Youtube Channel.
       </p>
 
       <a 

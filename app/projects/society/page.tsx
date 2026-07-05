@@ -86,7 +86,7 @@ export default function SocietyCaseStudy() {
           </a>
           
           {/* Nouveau bouton Modal pour le PDF */}
-          <PdfModalButton href="/assets/poster_society.pdf" label="Architecture Poster" />
+          <PdfModalButton href="/assets/poster_society.pdf" label="App Presentation" />
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -101,12 +101,12 @@ export default function SocietyCaseStudy() {
       <article className="max-w-[860px]">
         <h2 className="text-2xl font-bold mb-4">Product Vision & UI/UX</h2>
         <p className="text-[var(--muted)] leading-relaxed mb-8">
-          The board game industry is booming, yet players lack a modern, centralized platform to log plays, review games, and connect with their friends' activity. <strong>Society</strong> was built to bridge this gap. Taking inspiration from platforms like Letterboxd or Strava, I designed an intuitive, app-like user experience with a strong focus on mobile responsiveness and clean aesthetics.
+        While modern board games feature stunning artwork, existing digital tools remain visually outdated, clunky, and fail to do these beautiful illustrations justice. <strong>Society</strong> was built to replace these old interfaces with a comprehensive, all-in-one platform. It seamlessly combines smart game recommendations tailored to your tastes, detailed collection and play tracking, and advanced social features. I designed an intuitive, highly visual user experience that finally brings the aesthetic of modern board gaming to the digital space.
         </p>
 
         <h2 className="text-2xl font-bold mb-4">Architecture & Technical Stack</h2>
         <p className="text-[var(--muted)] leading-relaxed mb-4">
-          I architected Society as a full-stack, end-to-end product, handling everything from the database design to the final deployment.
+          I architected Society(Web App) as a full-stack, end-to-end product, handling everything from the database design to the final deployment.
         </p>
         <ul className="list-disc list-inside text-[var(--muted)] space-y-2 mb-8 leading-relaxed">
           <li><strong>Frontend:</strong> React, Next.js (App Router), and Tailwind CSS. Deployed seamlessly on Vercel.</li>
@@ -118,7 +118,7 @@ export default function SocietyCaseStudy() {
 
         <h2 className="text-2xl font-bold mb-4">Current Status & Algorithms</h2>
         <p className="text-[var(--muted)] leading-relaxed mb-8">
-          The application is live and in active development. I am currently refining the backend recommendation models and leveraging the massive relational database I built to provide users with highly personalized game suggestions based on their logging history and social graph.
+          The application is live and in active development. I am currently refining the backend recommendation models and leveraging the massive relational database I built to provide users with highly personalized game suggestions based on their logging history and wishlist games order.
         </p>
       </article>
     </div>

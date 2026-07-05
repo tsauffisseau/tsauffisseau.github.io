@@ -30,11 +30,11 @@ export default function About() {
         
         <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)] order-2 lg:order-1">
           <p>
-            I’m Théophile Sauffisseau, a French engineering student from Télécom SudParis with a strong focus on <strong>Machine Learning and Data Engineering</strong>.
+            Hi, my name is Théophile. I am a French engineering student from Télécom SudParis with a strong focus on <strong>Machine Learning and Data Engineering</strong>.
           </p>
           
           <p>
-             I am currently completing my final-year internship as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division), where I build backend predictive engines and optimize data pipelines. I am actively looking for a full-time position (CDI) as an ML/Data Engineer starting in <strong>October-November 2026</strong>.
+             I am currently completing my final-year internship as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division), where I transform complex datasets into clear visual insights and leverage cloud tools to optimize data usage.. I am actively looking for a full-time position (CDI) as an ML/Data Engineer starting in <strong>October-November 2026</strong>.
           </p>
 
           <p>
@@ -43,7 +43,7 @@ export default function About() {
           </p>
 
           <p>
-             Feel free to check my <strong>GitHub</strong> to read some code, or reach out by <strong>Email</strong>!
+             Feel free to check my <strong>GitHub</strong>, or reach out by <strong>Email</strong>!
           </p>
 
           <div className="mt-4">
@@ -51,7 +51,7 @@ export default function About() {
             <Link href="/about/creations" className="group flex items-center justify-between p-5 border border-[var(--border)] rounded-2xl bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40">
               <div className="flex flex-col gap-1">
                 <span className="font-bold text-lg transition-colors">Personal Creations</span>
-                <span className="text-[var(--muted)] text-sm">Digital collage, photography, and traditional art</span>
+                <span className="text-[var(--muted)] text-sm">Digital collage, traditional/digital art, video edits</span>
               </div>
               <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--background)] flex items-center justify-center shrink-0">
                 <Image src="/assets/arrow.svg" alt="Arrow" width={16} height={16} className="dark:invert" />
@@ -75,7 +75,7 @@ export default function About() {
             <ul className="list-disc list-inside text-[var(--muted)] space-y-2 text-sm">
               <li>Data Analyst @ Air Liquide</li>
               <li>Building "Society" Full-stack App</li>
-              <li>Seeking full-time roles (Oct 2026)</li>
+              <li>Seeking full-time roles (Oct-Nov 2026)</li>
               <li>Deep Learning / Data Projects</li>
             </ul>
           </div>
