@@ -23,7 +23,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-[var(--muted)] cursor-default text-sm sm:text-base mt-1">
           <span>Data Analyst @ Air Liquide</span>
           <span className="hidden sm:inline">|</span>
-          <span>ML & Data Engineer</span>
+          <span>Business Analytics & Data Modeling</span> 
         </div>
         
         <a

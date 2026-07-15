@@ -30,16 +30,16 @@ export default function About() {
         
         <section className="lg:col-span-2 flex flex-col gap-6 text-base leading-relaxed text-[var(--foreground)] order-2 lg:order-1">
           <p>
-            Hi, my name is Théophile. I am a French engineering student from Télécom SudParis with a strong focus on <strong>Machine Learning and Data Engineering</strong>.
+            Hi, my name is Théophile. I am a French engineering student from Télécom SudParis with a strong focus on <strong>Data Analytics, Business Intelligence, and Data Modeling</strong>.
           </p>
           
           <p>
-             I am currently completing my final-year internship as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division), where I transform complex datasets into clear visual insights and leverage cloud tools to optimize data usage.. I am actively looking for a full-time position (CDI) as an ML/Data Engineer starting in <strong>October-November 2026</strong>.
+             I am currently completing my final-year internship as a <strong>Data Analyst at Air Liquide</strong> (Healthcare division), where I transform complex sales and operational datasets into clear visual insights to drive business decisions. I am actively looking for a full-time position (CDI) as a <strong>Business Data Analyst</strong> starting in October 2026.
           </p>
 
           <p>
             <strong>My Profile</strong><br />
-            My goal is to bridge the gap between technical infrastructure and concrete use cases. Whether it is deploying a FastAPI backend, training a PyTorch CNN for medical imaging, or structuring a robust PostgreSQL database, I enjoy turning raw data and complex ideas into reliable, scalable solutions.
+            My goal is to bridge the gap between data infrastructure and concrete business use cases. Whether it is integrating ETL processes, structuring a robust PostgreSQL database, or designing interactive Power BI dashboards, I enjoy turning raw data into actionable insights for sales and marketing teams.
           </p>
 
           <p>

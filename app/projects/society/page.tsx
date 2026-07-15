@@ -93,7 +93,8 @@ export default function SocietyCaseStudy() {
           <span className="px-3 py-1 text-xs font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-full bg-[var(--background)]">TypeScript</span>
           <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Next.js App Router</span>
           <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">FastAPI (Python)</span>
-          <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Tailwind CSS</span>
+          <span className="px-3 py-1 text-xs font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-full bg-[var(--background)]">Data Modeling</span>
+          <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">PostgreSQL</span>
         </div>
       </div>
 
@@ -109,6 +110,7 @@ export default function SocietyCaseStudy() {
           I architected Society(Web App) as a full-stack, end-to-end product, handling everything from the database design to the final deployment.
         </p>
         <ul className="list-disc list-inside text-[var(--muted)] space-y-2 mb-8 leading-relaxed">
+          <li><strong>Backend & Data Integration:</strong> A robust Python API built with FastAPI, connected to a complex PostgreSQL database. I designed the conceptual and physical data models to ensure data integrity and scalability, with Alembic handling migrations.</li>
           <li><strong>Frontend:</strong> React, Next.js (App Router), and Tailwind CSS. Deployed seamlessly on Vercel.</li>
           <li><strong>Backend:</strong> A robust Python API built with FastAPI, connected to a complex PostgreSQL database, with Alembic handling data migrations.</li>
           <li><strong>Data & Algorithms:</strong> Custom Python recommendation engines and smart AI integrations utilizing the OpenAI API. Board game metadata is dynamically aggregated via the BGG API.</li>
