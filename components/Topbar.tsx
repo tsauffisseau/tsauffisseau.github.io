@@ -37,7 +37,9 @@ export function Topbar() {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={`px-2 py-1.5 text-sm whitespace-nowrap transition-colors ${
-                  isActive ? "text-[var(--foreground)] font-medium" : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                  isActive
+                    ? "text-[var(--foreground)] font-medium underline decoration-[var(--yellow)] decoration-2 underline-offset-8"
+                    : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 {link.name}

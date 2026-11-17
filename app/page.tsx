@@ -47,7 +47,7 @@ export default function Home() {
           placeholder="blur"
           sizes="(min-width: 768px) 200px, 120px"
           priority
-          className="order-1 md:order-2 w-[120px] h-[120px] md:w-[200px] md:h-[200px] rounded-lg object-cover"
+          className="order-1 md:order-2 w-[120px] h-[120px] md:w-[200px] md:h-[200px] rounded-full object-cover"
         />
       </section>
 

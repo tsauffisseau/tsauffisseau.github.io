@@ -5,17 +5,17 @@ import type { ProjectLink } from "@/lib/content";
 
 /** Lien texte : souligné discret, qui se renforce au survol. */
 export const textLink =
-  "underline decoration-[var(--border)] underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]";
+  "underline decoration-[var(--yellow)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--pink)]";
 
 const buttonBase =
   "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors";
-export const buttonPrimary = `${buttonBase} bg-[var(--foreground)] text-[var(--background)] hover:opacity-85`;
+export const buttonPrimary = `${buttonBase} bg-[var(--yellow)] text-[#151413] font-semibold hover:bg-[var(--pink)]`;
 export const buttonSecondary = `${buttonBase} border border-[var(--border)] hover:bg-[var(--card)]`;
 
 /** Marqueurs de contenu à compléter : [À CHIFFRER ...] / [À PRÉCISER ...] */
 const PLACEHOLDER = /^\[À (?:CHIFFRER|PRÉCISER)/;
 const LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
-const TOKENS = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\[À (?:CHIFFRER|PRÉCISER)[^\]]*\])/g;
+const TOKENS = /(\*\*[^*]+\*\*|==[^=]+==|\[[^\]]+\]\([^)]+\)|\[À (?:CHIFFRER|PRÉCISER)[^\]]*\])/g;
 
 export function isPlaceholder(text: string) {
   return PLACEHOLDER.test(text);
@@ -40,6 +40,13 @@ export function Rich({ text }: { text: string }) {
             <strong key={i} className="font-semibold text-[var(--foreground)]">
               {part.slice(2, -2)}
             </strong>
+          );
+        }
+        if (part.startsWith("==") && part.endsWith("==")) {
+          return (
+            <mark key={i} className="marker bg-transparent text-inherit">
+              {part.slice(2, -2)}
+            </mark>
           );
         }
         if (isPlaceholder(part)) return <Placeholder key={i}>{part}</Placeholder>;
@@ -78,10 +85,10 @@ export function KeyFigures({ items }: { items: { value: string; label: string }[
               className={
                 todo
                   ? "font-mono text-sm text-amber-700 dark:text-amber-300"
-                  : "font-[family-name:var(--font-serif)] text-2xl sm:text-3xl leading-tight"
+                  : "font-display text-2xl sm:text-3xl leading-tight"
               }
             >
-              {todo ? "À chiffrer" : k.value}
+              {todo ? "À chiffrer" : <span className="marker">{k.value}</span>}
             </dd>
           </div>
         );

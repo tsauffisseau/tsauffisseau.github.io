@@ -12,22 +12,34 @@
   --color-primary: var(--primary);
 }
 
+/*
+ * Direction artistique : noir doux, jaune surligneur, rose en touche.
+ *   --yellow  fonds (bouton principal, surlignage)
+ *   --pink    petites touches de texte (statuts, sélection)
+ *   --primary couleur de survol des titres et liens
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #161616;
-  --card: #f6f6f5;
-  --muted: #5e5e5e;
-  --border: #e5e5e3;
-  --primary: #2c4f82;
+  --background: #fffdf8;
+  --foreground: #151413;
+  --card: #f7f3ea;
+  --muted: #5f5a52;
+  --border: #e9e3d6;
+  --yellow: #ffd84a;
+  --pink: #c8326c;
+  --primary: #c8326c;
+  --marker: #ffe27a;
 }
 
 .dark {
-  --background: #0e0e0e;
-  --foreground: #ececec;
-  --card: #161616;
-  --muted: #a0a0a0;
-  --border: #272727;
-  --primary: #9db8e2;
+  --background: #131211;
+  --foreground: #f3f0e8;
+  --card: #1b1a17;
+  --muted: #a6a197;
+  --border: #2b2925;
+  --yellow: #f7d54a;
+  --pink: #ff8fb4;
+  --primary: #f7d54a;
+  --marker: rgb(247 213 74 / 0.3);
 }
 
 body {
@@ -40,14 +52,33 @@ body {
   flex-direction: column;
 }
 
+::selection {
+  background: var(--pink);
+  color: #151413;
+}
+
 @layer base {
   h1,
   h2,
   h3 {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-stretch: 118%;
+    font-weight: 650;
+    letter-spacing: -0.02em;
   }
+}
+
+/* Typo des titres, pour les éléments qui ne sont pas des h1-h3 (chiffres clés...). */
+.font-display {
+  font-stretch: 118%;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+/* Surligneur : bande jaune sous le bas du texte. */
+.marker {
+  background-image: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Défilement horizontal sans barre visible (navigation sur mobile). */

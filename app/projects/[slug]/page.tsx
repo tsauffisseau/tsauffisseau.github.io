@@ -43,7 +43,7 @@ export default async function CaseStudy({ params }: Props) {
 
       <header className="mb-12 pb-10 border-b border-[var(--border)] grid grid-cols-1 md:grid-cols-[1fr_280px] gap-8 items-start">
         <div className="min-w-0">
-          {project.status && <p className="text-sm font-medium mb-1">{project.status}</p>}
+          {project.status && <p className="text-sm font-medium text-[var(--pink)] mb-1">{project.status}</p>}
           <p className="text-sm text-[var(--muted)] mb-4">{project.context}</p>
           <h1 className="flex items-center gap-3 text-3xl sm:text-4xl leading-tight mb-3">
             <BrandLogo logo={project.logo} className="h-10 w-10" />
@@ -132,7 +132,7 @@ export default async function CaseStudy({ params }: Props) {
         >
           <div>
             <p className="text-sm text-[var(--muted)] mb-1">Projet suivant</p>
-            <p className="font-[family-name:var(--font-serif)] text-xl group-hover:text-[var(--primary)] transition-colors">
+            <p className="font-display text-xl group-hover:text-[var(--primary)] transition-colors">
               {next.title}
             </p>
           </div>

@@ -4,6 +4,7 @@
  *
  * Syntaxe reconnue dans les textes :
  *   **texte**             mise en gras
+ *   ==texte==             surligné en jaune
  *   [texte](/chemin)      lien
  *   [À CHIFFRER : ...]    chiffre manquant, affiché en surbrillance
  *   [À PRÉCISER : ...]    information à confirmer, affichée en surbrillance
@@ -22,11 +23,11 @@ export const PROFILE = {
   availability: "Disponible en janvier 2027",
   /** Paragraphes d'introduction de la page d'accueil. Le premier est mis en avant. */
   intro: [
-    "Ingénieur Télécom SudParis (IP Paris), je cherche un CDI de Consultant Data ou de Product Data Analyst à Paris, à partir de janvier 2027.",
+    "Ingénieur Télécom SudParis (IP Paris), je cherche un CDI de ==Consultant Data== ou de ==Product Data Analyst== à Paris, à partir de janvier 2027.",
     "Pendant mon stage de fin d'études chez Air Liquide Healthcare, j'ai construit [HCP-360°](/projects/hcp-360), un outil décisionnel destiné à une centaine de commerciaux pour suivre plus de 20 000 prescripteurs. En parallèle, j'ai créé [Society](/projects/society), une application de recommandation de jeux de société qui compte aujourd'hui plus de 200 utilisateurs.",
     "Mon projet d'ingénieur sur la [détection d'Alzheimer](/projects/cassiopee) a reçu le 1er prix parmi 180 projets au Colloque ESSI 2025.",
   ],
-  email: "theophile.sauffisseau@telecom-sudparis.eu",
+  email: "theophilesauffisseau@gmail.com",
   linkedin: "https://www.linkedin.com/in/theophile-sauffisseau",
   github: "https://github.com/tsauffisseau",
   // CV : déposer le PDF final dans /public/assets/, mettre à jour ce chemin

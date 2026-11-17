@@ -86,7 +86,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <article className="relative isolate overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 md:p-7">
       <Watermark project={project} className="-right-6 -top-6 h-48 w-48" />
       <p className="text-sm text-[var(--muted)] mb-3">
-        {project.status ? `${project.status}. ` : ""}
+        {project.status && <span className="text-[var(--pink)]">{project.status}. </span>}
         {project.context}
       </p>
 
