@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PROJECTS, getProject } from "@/lib/content";
 import { BrandLogo, ProjectSummary } from "@/components/ProjectCard";
 import { ArchitectureFlow } from "@/components/ArchitectureFlow";
-import { Badge, KeyFigures, ProjectLinkButton, Rich } from "@/components/ui";
+import { Badge, KeyFigures, ProjectLinkButton, Rich, Title } from "@/components/ui";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -45,9 +45,11 @@ export default async function CaseStudy({ params }: Props) {
         <div className="min-w-0">
           {project.status && <p className="text-sm font-medium text-[var(--pink)] mb-1">{project.status}</p>}
           <p className="text-sm text-[var(--muted)] mb-4">{project.context}</p>
-          <h1 className="flex items-center gap-3 text-3xl sm:text-4xl leading-tight mb-3">
-            <BrandLogo logo={project.logo} className="h-10 w-10" />
-            {project.title}
+          <h1 className="flex items-start gap-4 text-3xl sm:text-4xl leading-tight mb-3">
+            <BrandLogo logo={project.logo} className="h-10 w-10 sm:mt-0.5" />
+            <span>
+              <Title text={project.title} />
+            </span>
           </h1>
           {byline && <p className="text-[var(--muted)] mb-3">{byline}</p>}
           <p className="text-lg leading-relaxed max-w-3xl mb-6">{project.tagline}</p>
@@ -133,7 +135,7 @@ export default async function CaseStudy({ params }: Props) {
           <div>
             <p className="text-sm text-[var(--muted)] mb-1">Projet suivant</p>
             <p className="font-display text-xl group-hover:text-[var(--primary)] transition-colors">
-              {next.title}
+              <Title text={next.title} />
             </p>
           </div>
           <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />

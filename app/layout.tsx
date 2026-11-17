@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Topbar } from "@/components/Topbar";
 import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/Reveal";
 import { PROFILE } from "@/lib/content";
 
 // Archivo, police variable : chasse normale pour le texte, élargie pour les titres (font-stretch).
@@ -34,7 +35,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        {/* Active les animations de révélation seulement si JavaScript est disponible. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className={archivo.className}>
+        <Reveal />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Topbar />
           <main className="flex-1">{children}</main>

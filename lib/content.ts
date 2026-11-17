@@ -105,13 +105,13 @@ export const PROJECTS: Project[] = [
       "Un outil Power BI qui donne aux commerciaux terrain une vue complète de plus de 20 000 prescripteurs, pour savoir qui visiter en priorité.",
     logo: "airliquide",
     watermark: "exp",
-    status: "MVP validé, en cours d'industrialisation",
+    status: "POC exploratoire validé, en cours d'industrialisation",
     problem:
       "Pour préparer leurs tournées, les commerciaux croisaient à la main des extractions Salesforce, des fichiers d'activité et des référentiels géographiques. C'était long, et rien n'indiquait clairement quels prescripteurs voir en priorité.",
     solution:
-      "J'ai cadré un MVP avec les Product Owners, les Solution Owners et les équipes métier, puis construit toute la chaîne : consolidation des 3 sources dans un pipeline Python sur AWS SageMaker, modèle analytique, et dashboards Power BI organisés autour d'une trentaine de KPIs.",
+      "J'ai cadré un POC exploratoire avec les Product Owners, les Solution Owners et les équipes métier, puis construit toute la chaîne : consolidation des 3 sources dans un pipeline Python sur AWS SageMaker, modèle analytique, et dashboards Power BI organisés autour d'une trentaine de KPIs.",
     impact:
-      "Le MVP donne aux ~100 commerciaux terrain ciblés une vue unifiée de plus de 20 000 prescripteurs, en un clic. Il a été validé et l'équipe Data interne l'industrialise.",
+      "Le POC donne aux ~100 commerciaux terrain ciblés une vue unifiée de plus de 20 000 prescripteurs, en un clic. Il a été validé et l'équipe Data interne l'industrialise.",
     stack: ["Python", "Pandas", "AWS SageMaker", "S3 / Athena", "SQL", "Salesforce", "Power BI", "DAX", "Agile"],
     kpis: [
       { value: "+20 000", label: "prescripteurs couverts" },
@@ -154,7 +154,7 @@ export const PROJECTS: Project[] = [
         bullets: [
           "La préparation d'une tournée ne passe plus par une consolidation manuelle sous Excel et Salesforce : la vue est disponible en un clic.",
           "Les prescripteurs à plus fort potentiel ressortent directement, ce qui aide à prioriser les visites.",
-          "Le MVP a été validé par les Product Owners et les Solution Owners. L'équipe Data interne reprend son déploiement et son intégration au Data Warehouse de l'entreprise.",
+          "Le POC a été validé par les Product Owners et les Solution Owners. L'équipe Data interne reprend son déploiement et son intégration au Data Warehouse de l'entreprise.",
         ],
       },
     ],
@@ -273,12 +273,13 @@ export const PROJECTS: Project[] = [
     solution:
       "Je construis une ingestion automatisée depuis l'API, des transformations en Python et SQL, un modèle dimensionnel et des visualisations des tendances du marché.",
     impact:
-      "La phase 1, une analyse exploratoire, est publiée sur GitHub. La phase 2, le pipeline industrialisé, est en cours. [À CHIFFRER : nombre de jeux ingérés]",
+      "La phase 1, une analyse exploratoire, est publiée sur GitHub. La phase 2, le pipeline industrialisé, est en cours : elle vise ~25 000 jeux classés, rafraîchis chaque semaine.",
     stack: ["Python", "Pandas", "SQL", "API XML", "Modélisation dimensionnelle", "Dataviz"],
+    // Chiffres provisoires : objectifs de la phase 2, à remplacer par les valeurs réelles.
     kpis: [
-      { value: "[À CHIFFRER]", label: "jeux ingérés" },
-      { value: "[À CHIFFRER]", label: "tables du modèle en étoile" },
-      { value: "[À CHIFFRER]", label: "fréquence de rafraîchissement" },
+      { value: "~25 000", label: "jeux classés visés" },
+      { value: "5", label: "tables du modèle en étoile (1 fait, 4 dimensions)" },
+      { value: "Hebdo", label: "rafraîchissement prévu" },
     ],
     flow: [
       {
@@ -326,7 +327,7 @@ export const PROJECTS: Project[] = [
     shortTitle: "Cassiopée",
     context: "Projet d'ingénieur en binôme, 2024-2025",
     period: "2025",
-    title: "Projet Cassiopée : Détection d'Alzheimer par Deep Learning",
+    title: "Projet Cassiopée : Détection d'Alzheimer par Deep\u00a0Learning",
     org: "Télécom SudParis, encadré par le laboratoire SAMOVAR",
     tagline:
       "Une chaîne complète de traitement de signaux EEG, des enregistrements bruts jusqu'à un score de risque par patient.",

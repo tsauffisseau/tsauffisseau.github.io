@@ -3,9 +3,25 @@ import { ExternalLink } from "lucide-react";
 import { GithubIcon, PdfIcon } from "./icons";
 import type { ProjectLink } from "@/lib/content";
 
-/** Lien texte : souligné discret, qui se renforce au survol. */
-export const textLink =
-  "underline decoration-[var(--muted)]/40 underline-offset-4 transition-colors hover:text-[var(--pink)] hover:decoration-[var(--pink)]";
+/** Lien texte : souligné discret qui se dessine à l'apparition et passe au rose au survol (voir .u-line). */
+export const textLink = "u-line";
+
+/** Titre de projet : les mots composés (« HCP-360° ») ne sont jamais coupés en fin de ligne. */
+export function Title({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\S+-\S+)/).map((part, i) =>
+        i % 2 ? (
+          <span key={i} className="whitespace-nowrap">
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
 
 const buttonBase =
   "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors";
@@ -53,7 +69,7 @@ export function Rich({ text }: { text: string }) {
         const link = part.match(LINK);
         if (link) {
           return (
-            <Link key={i} href={link[2]} className={`text-[var(--foreground)] ${textLink}`}>
+            <Link key={i} href={link[2]} className={`text-[var(--foreground)] whitespace-nowrap ${textLink}`}>
               {link[1]}
             </Link>
           );

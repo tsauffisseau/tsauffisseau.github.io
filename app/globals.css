@@ -69,14 +69,80 @@ body {
   letter-spacing: -0.02em;
 }
 
+/*
+ * Soulignés et surlignés animés : ils se dessinent de gauche à droite quand ils
+ * entrent à l'écran (classe .is-visible posée par components/Reveal.tsx).
+ * Sans JavaScript (pas de classe .js sur <html>), ils sont affichés directement.
+ */
+.u-line {
+  --u-color: color-mix(in srgb, var(--muted) 45%, transparent);
+  background-image: linear-gradient(var(--u-color), var(--u-color));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 1px;
+  transition:
+    background-size 0.7s cubic-bezier(0.22, 0.7, 0.2, 1),
+    color 0.2s ease;
+}
+.u-line:hover {
+  --u-color: var(--pink);
+  color: var(--pink);
+}
+.js .u-line:not(.is-visible) {
+  background-size: 0% 1px;
+}
+
 /* Surligneur : fond jaune plein, texte sombre, même rendu dans les deux thèmes. */
 .marker {
-  background-color: var(--yellow);
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
   color: #151413;
   padding: 0 0.22em;
   border-radius: 0.18em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  transition:
+    background-size 0.8s cubic-bezier(0.22, 0.7, 0.2, 1) 0.15s,
+    color 0.3s ease 0.3s;
+}
+.js .marker:not(.is-visible) {
+  background-size: 0% 100%;
+  color: inherit;
+}
+
+/* Changement de page : léger fondu avec remontée (app/template.tsx). */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-in {
+  animation: page-in 0.4s cubic-bezier(0.22, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .u-line,
+  .marker {
+    transition: none;
+  }
+  .js .u-line:not(.is-visible) {
+    background-size: 100% 1px;
+  }
+  .js .marker:not(.is-visible) {
+    background-size: 100% 100%;
+    color: #151413;
+  }
+  .page-in {
+    animation: none;
+  }
 }
 
 /* Défilement horizontal sans barre visible (navigation sur mobile). */

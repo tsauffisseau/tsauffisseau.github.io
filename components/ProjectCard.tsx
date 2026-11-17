@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { LogoKey, Project } from "@/lib/content";
-import { Rich } from "./ui";
+import { Rich, Title } from "./ui";
 import { BggIcon, ChessIcon, ExpIcon, PrizeIcon, SocietyLogo } from "./icons";
 import airLiquideLogo from "@/public/assets/logos/airliquide.png";
 import tspLogo from "@/public/assets/logos/tsp.png";
@@ -92,9 +92,11 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.context}
       </p>
 
-      <h2 className="flex items-center gap-3 text-2xl leading-snug mb-1 group-hover:text-[var(--pink)] transition-colors">
+      <h2 className="flex items-start gap-3 text-2xl leading-snug mb-1 group-hover:text-[var(--pink)] transition-colors">
         <BrandLogo logo={project.logo} className="h-9 w-9" />
-        {project.title}
+        <span className="pt-0.5">
+          <Title text={project.title} />
+        </span>
       </h2>
       {project.org && <p className="text-sm text-[var(--muted)] mb-3">{project.org}</p>}
       <p className="leading-relaxed mb-2 max-w-[720px]">{project.tagline}</p>
@@ -123,7 +125,7 @@ export function ProjectRow({ project }: { project: Project }) {
         <BrandLogo logo={project.logo} className="h-9 w-9 mt-0.5" />
         <div className="min-w-0">
           <h3 className="text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">
-            {project.title}
+            <Title text={project.title} />
           </h3>
           <p className="text-sm text-[var(--muted)] leading-relaxed mt-1">{project.tagline}</p>
         </div>
