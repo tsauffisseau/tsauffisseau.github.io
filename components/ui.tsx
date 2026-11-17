@@ -1,11 +1,21 @@
 import Link from "next/link";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { GithubIcon, PdfIcon } from "./icons";
-import type { ProjectLink, Tone } from "@/lib/content";
+import type { ProjectLink } from "@/lib/content";
+
+/** Lien texte : souligné discret, qui se renforce au survol. */
+export const textLink =
+  "underline decoration-[var(--border)] underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]";
+
+const buttonBase =
+  "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors";
+export const buttonPrimary = `${buttonBase} bg-[var(--foreground)] text-[var(--background)] hover:opacity-85`;
+export const buttonSecondary = `${buttonBase} border border-[var(--border)] hover:bg-[var(--card)]`;
 
 /** Marqueurs de contenu à compléter : [À CHIFFRER ...] / [À PRÉCISER ...] */
 const PLACEHOLDER = /^\[À (?:CHIFFRER|PRÉCISER)/;
-const TOKENS = /(\*\*[^*]+\*\*|\[À (?:CHIFFRER|PRÉCISER)[^\]]*\])/g;
+const LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
+const TOKENS = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\[À (?:CHIFFRER|PRÉCISER)[^\]]*\])/g;
 
 export function isPlaceholder(text: string) {
   return PLACEHOLDER.test(text);
@@ -19,7 +29,7 @@ export function Placeholder({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Affiche un texte du fichier de contenu : gère **gras** et les marqueurs à compléter. */
+/** Affiche un texte du fichier de contenu : gras, liens et marqueurs à compléter. */
 export function Rich({ text }: { text: string }) {
   return (
     <>
@@ -33,6 +43,14 @@ export function Rich({ text }: { text: string }) {
           );
         }
         if (isPlaceholder(part)) return <Placeholder key={i}>{part}</Placeholder>;
+        const link = part.match(LINK);
+        if (link) {
+          return (
+            <Link key={i} href={link[2]} className={`text-[var(--foreground)] ${textLink}`}>
+              {link[1]}
+            </Link>
+          );
+        }
         return <span key={i}>{part}</span>;
       })}
     </>
@@ -41,85 +59,41 @@ export function Rich({ text }: { text: string }) {
 
 export function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="px-2.5 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)] whitespace-nowrap">
+    <span className="rounded-md border border-[var(--border)] px-2 py-0.5 text-xs text-[var(--muted)] whitespace-nowrap">
       {children}
     </span>
   );
 }
 
-const TONES: Record<Tone, { pill: string }> = {
-  live: {
-    pill: "text-emerald-700 border-emerald-600/30 bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400/30 dark:bg-emerald-400/10",
-  },
-  wip: {
-    pill: "text-amber-700 border-amber-600/30 bg-amber-50 dark:text-amber-300 dark:border-amber-400/30 dark:bg-amber-400/10",
-  },
-  award: {
-    pill: "text-yellow-700 border-yellow-600/30 bg-yellow-50 dark:text-yellow-400 dark:border-yellow-400/30 dark:bg-yellow-400/10",
-  },
-  neutral: {
-    pill: "text-[var(--muted)] border-[var(--border)] bg-[var(--background)]",
-  },
-};
-
-export function StatusPill({ label, tone }: { label: string; tone: Tone }) {
-  const t = TONES[tone];
+/** Chiffres clés : une rangée de valeurs séparées par de fines lignes, sans cadre. */
+export function KeyFigures({ items }: { items: { value: string; label: string }[] }) {
   return (
-    <span
-      className={`inline-flex items-center px-2.5 py-1 text-xs font-semibold border rounded-full whitespace-nowrap ${t.pill}`}
-    >
-      {label}
-    </span>
+    <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6">
+      {items.map((k) => {
+        const todo = isPlaceholder(k.value);
+        return (
+          <div key={k.label} className="flex flex-col-reverse justify-end border-t border-[var(--border)] pt-3">
+            <dt className="mt-1 text-sm text-[var(--muted)] leading-snug">{k.label}</dt>
+            <dd
+              className={
+                todo
+                  ? "font-mono text-sm text-amber-700 dark:text-amber-300"
+                  : "font-[family-name:var(--font-serif)] text-2xl sm:text-3xl leading-tight"
+              }
+            >
+              {todo ? "À chiffrer" : k.value}
+            </dd>
+          </div>
+        );
+      })}
+    </dl>
   );
 }
 
-export function KpiTile({ value, label, href }: { value: string; label: string; href?: string }) {
-  const todo = isPlaceholder(value);
-  const className = `relative block rounded-xl px-4 py-3.5 border ${
-    todo
-      ? "border-dashed border-amber-500/50 bg-amber-50/60 dark:bg-amber-500/5"
-      : "border-[var(--border)] bg-[var(--card)]"
-  } ${href ? "group transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40" : ""}`;
-  const body = (
-    <>
-      {href && (
-        <ArrowUpRight
-          className="absolute top-3 right-3 h-4 w-4 text-[var(--muted)] group-hover:text-[var(--primary)] transition-colors"
-          aria-hidden="true"
-        />
-      )}
-      <p
-        className={`text-xl sm:text-2xl font-bold tracking-tight leading-tight ${
-          todo ? "text-amber-700 dark:text-amber-300 font-mono text-base sm:text-lg" : ""
-        }`}
-      >
-        {todo ? "À chiffrer" : value}
-      </p>
-      <p className="text-xs sm:text-sm text-[var(--muted)] mt-1 leading-snug">{label}</p>
-    </>
-  );
-  return href ? (
-    <Link href={href} className={className}>
-      {body}
-    </Link>
-  ) : (
-    <div className={className}>{body}</div>
-  );
-}
-
-export function SectionHeading({
-  eyebrow,
-  title,
-  intro,
-}: {
-  eyebrow: string;
-  title: string;
-  intro?: string;
-}) {
+export function SectionHeading({ title, intro }: { title: string; intro?: string }) {
   return (
     <div className="mb-6">
-      <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2">{eyebrow}</p>
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
+      <h2 className="text-2xl sm:text-3xl">{title}</h2>
       {intro && (
         <p className="text-[var(--muted)] mt-2 leading-relaxed max-w-2xl">
           <Rich text={intro} />
@@ -128,11 +102,6 @@ export function SectionHeading({
     </div>
   );
 }
-
-const buttonBase =
-  "inline-flex items-center gap-2 px-4 py-2 rounded-xl border font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-md";
-export const buttonPrimary = `${buttonBase} border-transparent bg-[var(--primary)] text-white hover:brightness-110`;
-export const buttonSecondary = `${buttonBase} border-[var(--border)] bg-[var(--card)] hover:border-[var(--muted)]/40`;
 
 export function ProjectLinkButton({ link }: { link: ProjectLink }) {
   return (

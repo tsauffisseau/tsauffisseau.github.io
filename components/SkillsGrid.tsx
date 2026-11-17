@@ -1,35 +1,18 @@
-import Link from "next/link";
-import { SKILLS, getProject } from "@/lib/content";
+import { SKILLS } from "@/lib/content";
 
-/** Compétences regroupées par domaine, chacune reliée aux projets qui la prouvent. */
+/** Compétences par domaine, présentées comme dans un CV. */
 export function SkillsGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <dl>
       {SKILLS.map((group) => (
-        <div key={group.domain} className="flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5">
-          <h3 className="font-bold mb-3">{group.domain}</h3>
-          <ul className="space-y-1.5 text-sm text-[var(--muted)] mb-4 list-disc pl-5 marker:text-[var(--muted)]">
-            {group.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-auto pt-3 border-t border-[var(--border)] text-xs text-[var(--muted)]">
-            Mis en œuvre dans :{" "}
-            {group.provenIn.map((slug, i) => {
-              const p = getProject(slug);
-              if (!p) return null;
-              return (
-                <span key={slug}>
-                  {i > 0 && ", "}
-                  <Link href={`/projects/${slug}`} className="font-semibold text-[var(--foreground)] hover:text-[var(--primary)]">
-                    {p.shortTitle}
-                  </Link>
-                </span>
-              );
-            })}
-          </p>
+        <div
+          key={group.domain}
+          className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-x-6 gap-y-1 border-t border-[var(--border)] last:border-b py-4"
+        >
+          <dt className="font-medium">{group.domain}</dt>
+          <dd className="text-[var(--muted)] leading-relaxed">{group.items.join(", ")}</dd>
         </div>
       ))}
-    </div>
+    </dl>
   );
 }

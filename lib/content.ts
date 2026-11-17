@@ -1,19 +1,16 @@
 /**
- * SOURCE UNIQUE DU CONTENU DU PORTFOLIO
- * -------------------------------------
- * Tous les textes, chiffres et liens du site sont ici. Les pages ne font que les afficher.
+ * Contenu du portfolio : tous les textes, chiffres et liens du site sont ici,
+ * les pages ne font que les afficher.
  *
- * Marqueurs à remplacer (affichés en surbrillance orange sur le site pour être repérés) :
- *   [À CHIFFRER : ...]  → un chiffre à insérer
- *   [À PRÉCISER : ...]  → une information factuelle à confirmer / compléter
- * Recherche « À CHIFFRER » ou « À PRÉCISER » dans ce fichier pour tous les trouver.
+ * Syntaxe reconnue dans les textes :
+ *   **texte**             mise en gras
+ *   [texte](/chemin)      lien
+ *   [À CHIFFRER : ...]    chiffre manquant, affiché en surbrillance
+ *   [À PRÉCISER : ...]    information à confirmer, affichée en surbrillance
  *
- * Syntaxe : **texte** = mise en gras.
- *
- * Règle : pas de pourcentages de gain ni de métriques de performance (non mesurables / à double tranchant).
- *
- * ⚠️ Cohérence CV ↔ portfolio : les chiffres ci-dessous doivent être strictement
- * identiques à ceux du CV (mêmes valeurs, mêmes arrondis, mêmes mentions « estimé »).
+ * Règles éditoriales :
+ *   - pas de pourcentages de gain ni de métriques de performance de modèle ;
+ *   - les chiffres doivent être identiques à ceux du CV (mêmes valeurs, mêmes arrondis).
  */
 
 import type { StaticImageData } from "next/image";
@@ -22,44 +19,38 @@ import societyCover from "@/public/assets/poster_societythumb.jpg";
 export const PROFILE = {
   name: "Théophile Sauffisseau",
   title: "Consultant Data / Product Data Analyst",
-  availability: "Disponible janvier 2027 · CDI · Paris",
-  school: "Ingénieur Télécom SudParis · Institut Polytechnique de Paris",
-  pitch:
-    "Ingénieur Télécom SudParis (IP Paris) spécialisé dans la conception de solutions data de bout en bout. Je fais le pont entre l'architecture technique (pipelines, modélisation OLTP/OLAP, SQL) et la décision métier (cadrage produit, KPIs, BI).",
+  availability: "Disponible en janvier 2027",
+  /** Paragraphes d'introduction de la page d'accueil. Le premier est mis en avant. */
+  intro: [
+    "Ingénieur Télécom SudParis (IP Paris), je cherche un CDI de Consultant Data ou de Product Data Analyst à Paris, à partir de janvier 2027.",
+    "Pendant mon stage de fin d'études chez Air Liquide Healthcare, j'ai construit [HCP-360°](/projects/hcp-360), un outil décisionnel destiné à une centaine de commerciaux pour suivre plus de 20 000 prescripteurs. En parallèle, j'ai créé [Society](/projects/society), une application de recommandation de jeux de société qui compte aujourd'hui plus de 200 utilisateurs.",
+    "Mon projet d'ingénieur sur la [détection d'Alzheimer](/projects/cassiopee) a reçu le 1er prix parmi 180 projets au Colloque ESSI 2025.",
+  ],
   email: "theophile.sauffisseau@telecom-sudparis.eu",
   linkedin: "https://www.linkedin.com/in/theophile-sauffisseau",
   github: "https://github.com/tsauffisseau",
-  // 👉 CV : dépose le PDF final dans /public/assets/ puis mets à jour ce chemin
-  //    (idéalement un nom sans accent, ex. "/assets/CV_Theophile_Sauffisseau.pdf").
-  //    Pense aussi à régénérer la miniature /public/assets/resumethumb.jpg.
+  // CV : déposer le PDF final dans /public/assets/, mettre à jour ce chemin
+  // et régénérer la miniature /public/assets/resumethumb.jpg.
   cvPath: "/assets/Resume_ThéophileSauffisseau_2026.pdf",
   cvDownloadName: "CV_Theophile_Sauffisseau.pdf",
   siteUrl: "https://portfolio-tsauffisseau.vercel.app",
 };
 
-/** Bandeau de preuves affiché sous le hero : les signaux lisibles en 10 secondes. */
-export const PROOF_POINTS: { value: string; label: string; href?: string }[] = [
-  { value: "Ingénieur IP Paris", label: "Télécom SudParis", href: "/about" },
-  { value: "+20 000", label: "prescripteurs couverts · HCP-360° (Air Liquide)", href: "/projects/hcp-360" },
-  { value: "+200", label: "utilisateurs · Society, app en production", href: "/projects/society" },
-  { value: "1er prix / 180", label: "projets · Colloque ESSI 2025", href: "/projects/cassiopee" },
-];
-
-/** Introduction de la section Projets : les deux extrémités de la chaîne de la donnée. */
+/** Introduction de la page Projets. */
 export const PROJECTS_INTRO =
-  "J'ai travaillé aux deux extrémités de la chaîne de la donnée : côté **OLAP** chez Air Liquide, pour transformer la donnée en décision, et côté **OLTP** avec Society, pour produire une donnée fiable en production.";
+  "J'ai travaillé aux deux bouts de la chaîne de la donnée : côté OLAP chez Air Liquide, pour transformer la donnée en décision, et côté OLTP avec Society, pour produire une donnée fiable en production.";
 
 // ---------------------------------------------------------------------------
-// PROJETS
+// Projets
 // ---------------------------------------------------------------------------
-
-export type Tone = "live" | "wip" | "award" | "neutral";
 
 export type LogoKey = "society" | "airliquide" | "bgg" | "tsp" | "chess";
 
 export type FlowLane = {
   label: string;
-  status?: { label: string; tone: Tone };
+  status?: string;
+  /** Couche encore en construction : affichée en pointillés. */
+  wip?: boolean;
   steps: { title: string; detail?: string }[];
 };
 
@@ -71,21 +62,23 @@ export type ProjectLink = {
 
 export type Project = {
   slug: string;
-  /** Nom court utilisé dans les listes et la navigation. */
+  /** Nom court utilisé dans les métadonnées. */
   shortTitle: string;
-  kicker: string;
+  /** Cadre du projet : stage, projet personnel, projet d'école. */
+  context: string;
+  /** Période affichée dans les listes. */
+  period: string;
   title: string;
   org?: string;
   role?: string;
   tagline: string;
   logo?: LogoKey;
-  /** Extrémité de la chaîne de la donnée couverte par le projet. */
-  layer?: "OLTP" | "OLAP";
-  /** Icône affichée en filigrane derrière la carte du projet. */
+  /** Icône en filigrane derrière la carte du projet. */
   watermark?: "exp" | "prize" | "society" | "bgg";
   /** Visuel cliquable affiché dans l'étude de cas. */
   cover?: { src: StaticImageData; href: string; caption: string };
-  status?: { label: string; tone: Tone };
+  status?: string;
+  /** Résumé de l'étude de cas, en trois temps : besoin, démarche, résultat. */
   problem: string;
   solution: string;
   impact: string;
@@ -98,69 +91,69 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
-  // 1 ─ EXPÉRIENCE PHARE ────────────────────────────────────────────────────
+  // HCP-360° (stage Air Liquide Healthcare)
   {
     slug: "hcp-360",
     shortTitle: "HCP-360°",
-    kicker: "Expérience phare · Stage de fin d'études (6 mois) · 2026",
-    title: "Solution décisionnelle « HCP-360° »",
-    org: "Air Liquide Healthcare · Santé à Domicile France",
+    context: "Stage de fin d'études (6 mois)",
+    period: "2026",
+    title: "Solution décisionnelle HCP-360°",
+    org: "Air Liquide Healthcare, Santé à Domicile France",
     role: "Data Analyst",
     tagline:
-      "Un MVP décisionnel qui donne aux commerciaux terrain une vue 360° de plus de 20 000 prescripteurs pour prioriser leurs tournées.",
+      "Un outil Power BI qui donne aux commerciaux terrain une vue complète de plus de 20 000 prescripteurs, pour savoir qui visiter en priorité.",
     logo: "airliquide",
-    layer: "OLAP",
     watermark: "exp",
-    status: { label: "MVP validé · en industrialisation", tone: "live" },
+    status: "MVP validé, en cours d'industrialisation",
     problem:
-      "Les commerciaux terrain préparaient leurs tournées en consolidant à la main des données dispersées entre Salesforce, l'activité commerciale et des référentiels géographiques : un travail long, sans vision claire des prescripteurs à prioriser.",
+      "Pour préparer leurs tournées, les commerciaux croisaient à la main des extractions Salesforce, des fichiers d'activité et des référentiels géographiques. C'était long, et rien n'indiquait clairement quels prescripteurs voir en priorité.",
     solution:
-      "MVP cadré avec les PO, les SO et le métier : consolidation de **3 sources** via un pipeline Python sur **AWS SageMaker**, modèle analytique et dashboards **Power BI** structurés autour de **~30 KPIs**.",
+      "J'ai cadré un MVP avec les Product Owners, les Solution Owners et les équipes métier, puis construit toute la chaîne : consolidation des 3 sources dans un pipeline Python sur AWS SageMaker, modèle analytique, et dashboards Power BI organisés autour d'une trentaine de KPIs.",
     impact:
-      "Une vue 360° unifiée, en un clic, pour **~100 commerciaux** terrain sur **+20 000 prescripteurs**. MVP validé et repris en industrialisation par l'équipe Data.",
+      "Le MVP donne aux ~100 commerciaux terrain ciblés une vue unifiée de plus de 20 000 prescripteurs, en un clic. Il a été validé et l'équipe Data interne l'industrialise.",
     stack: ["Python", "Pandas", "AWS SageMaker", "S3 / Athena", "SQL", "Salesforce", "Power BI", "DAX", "Agile"],
     kpis: [
       { value: "+20 000", label: "prescripteurs couverts" },
-      { value: "~100", label: "commerciaux terrain & managers ciblés" },
-      { value: "~30", label: "KPIs structurés sur 3 axes" },
+      { value: "~100", label: "commerciaux terrain et managers ciblés" },
+      { value: "~30", label: "KPIs, répartis sur 3 axes" },
       { value: "3", label: "sources consolidées (CRM, activité, géographie)" },
     ],
     flow: [
       {
         label: "Chaîne décisionnelle (OLAP)",
         steps: [
-          { title: "Sources", detail: "CRM Salesforce · activité commerciale · référentiels géographiques" },
-          { title: "Préparation", detail: "Python · AWS SageMaker" },
-          { title: "Modélisation", detail: "Modèle analytique · faits / dimensions" },
-          { title: "Restitution", detail: "Power BI · DAX · ~30 KPIs" },
+          { title: "Sources", detail: "CRM Salesforce, activité commerciale, référentiels géographiques" },
+          { title: "Préparation", detail: "Python sur AWS SageMaker" },
+          { title: "Modélisation", detail: "Modèle analytique en faits et dimensions" },
+          { title: "Restitution", detail: "Power BI, DAX, ~30 KPIs" },
           { title: "Décision", detail: "Priorisation des tournées" },
         ],
       },
     ],
     sections: [
       {
-        title: "Contexte & enjeu métier",
+        title: "Contexte",
         paragraphs: [
           "Dans l'activité Santé à Domicile France d'Air Liquide Healthcare, les commerciaux terrain entretiennent la relation avec les prescripteurs : médecins généralistes, spécialistes, praticiens hospitaliers et libéraux.",
-          "Avant le projet, préparer une tournée signifiait consolider à la main des extractions Salesforce et Excel. L'objectif de HCP-360° : offrir une **vue unifiée de chaque prescripteur, en un clic**, pour objectiver la priorisation des visites.",
+          "Avant le projet, préparer une tournée voulait dire consolider à la main des extractions Salesforce et Excel. L'objectif de HCP-360° était de donner une vue unifiée de chaque prescripteur, en un clic, pour objectiver le choix des visites.",
         ],
       },
       {
-        title: "Ma démarche",
+        title: "Ce que j'ai fait",
         bullets: [
-          "**Cadrage** : interface entre les Product Owners, les Solution Owners et les utilisateurs métier pour traduire les besoins en KPIs et en user stories, dans un cadre agile.",
-          "**Données** : consolidation de 3 sources (CRM Salesforce, données de prescription et d'activité commerciale, référentiels géographiques) via un pipeline de préparation Python sur AWS SageMaker.",
-          "**Modélisation analytique** : structuration en faits et dimensions pour servir des analyses cohérentes et performantes.",
-          "**KPIs** : ~30 indicateurs structurés autour de 3 axes : potentiel du prescripteur, dynamique d'activité commerciale, risque d'attrition.",
-          "**Restitution** : dashboards Power BI (DAX) pensés pour l'usage terrain : lisibles, actionnables, orientés décision.",
+          "J'ai fait l'interface entre les Product Owners, les Solution Owners et les utilisateurs métier pour traduire leurs besoins en KPIs et en user stories, dans un cadre agile.",
+          "J'ai consolidé 3 sources (CRM Salesforce, données de prescription et d'activité commerciale, référentiels géographiques) dans un pipeline de préparation Python sur AWS SageMaker.",
+          "J'ai structuré les données en faits et dimensions, pour que toutes les analyses reposent sur le même modèle.",
+          "J'ai défini ~30 indicateurs autour de 3 axes : le potentiel du prescripteur, la dynamique de l'activité commerciale et le risque d'attrition.",
+          "J'ai conçu les dashboards Power BI (DAX) pour un usage terrain : lisibles, et pensés pour aboutir à une décision.",
         ],
       },
       {
         title: "Résultats",
         bullets: [
-          "**Vue 360° unifiée** : la préparation des tournées passe d'une consolidation manuelle (Excel / Salesforce) à une vue consolidée, en un clic.",
-          "Identification des **prescripteurs à plus fort potentiel** pour prioriser les visites.",
-          "**MVP validé** par les Product Owners et Solution Owners, puis passage en industrialisation : déploiement repris par l'équipe Data interne et intégration au Data Warehouse de l'entreprise.",
+          "La préparation d'une tournée ne passe plus par une consolidation manuelle sous Excel et Salesforce : la vue est disponible en un clic.",
+          "Les prescripteurs à plus fort potentiel ressortent directement, ce qui aide à prioriser les visites.",
+          "Le MVP a été validé par les Product Owners et les Solution Owners. L'équipe Data interne reprend son déploiement et son intégration au Data Warehouse de l'entreprise.",
         ],
       },
     ],
@@ -168,92 +161,92 @@ export const PROJECTS: Project[] = [
     links: [],
   },
 
-  // 2 ─ SOCIETY ─────────────────────────────────────────────────────────────
+  // Society (projet personnel)
   {
     slug: "society",
     shortTitle: "Society",
-    kicker: "Produit data de bout en bout · Projet personnel",
+    context: "Projet personnel",
+    period: "En production",
     title: "Society",
     tagline:
-      "Plateforme sociale et de recommandation IA pour les jeux de société : le « Netflix des jeux de société ».",
+      "Une plateforme sociale de recommandation de jeux de société, pensée comme un « Netflix des jeux de société ».",
     logo: "society",
-    layer: "OLTP",
     watermark: "society",
     cover: {
       src: societyCover,
       href: "/assets/poster_society.pdf",
-      caption: "Présentation produit & technique (PDF)",
+      caption: "Présentation produit et technique (PDF)",
     },
-    status: { label: "En production", tone: "live" },
+    status: "En production sur societyapp.fr",
     problem:
-      "Les outils des joueurs de jeux de société sont datés et ne recommandent rien de pertinent : les données (parties, collections, goûts) existent mais ne sont ni structurées ni valorisées.",
+      "Les outils des joueurs de jeux de société sont datés et leurs recommandations peu pertinentes. Les données existent (parties, collections, goûts), mais personne ne les structure ni ne les exploite.",
     solution:
-      "Développement et mise en production d'un produit data complet : base relationnelle **PostgreSQL de 32 tables** (Alembic), API **FastAPI**, front **Next.js**, recommandation sémantique (**pgvector**, embeddings, API LLM) et **pipelines analytiques (OLAP)** de suivi d'usage.",
+      "J'ai conçu une base PostgreSQL de 32 tables (migrations Alembic), une API FastAPI et un front Next.js. La recommandation repose sur pgvector, des embeddings et une API LLM, et des pipelines analytiques (OLAP) suivent l'usage.",
     impact:
-      "En production sur **societyapp.fr** : **+200 utilisateurs** inscrits, **~400 jeux** modélisés et enrichis, usage suivi par des pipelines OLAP.",
+      "L'application tourne sur societyapp.fr : plus de 200 utilisateurs inscrits, environ 400 jeux modélisés et enrichis, et un usage suivi par des pipelines OLAP.",
     stack: ["PostgreSQL", "pgvector", "Alembic", "FastAPI", "Python", "Next.js", "TypeScript", "Embeddings / LLM", "Railway", "Vercel"],
     kpis: [
       { value: "+200", label: "utilisateurs inscrits" },
-      { value: "~400", label: "jeux modélisés & enrichis" },
+      { value: "~400", label: "jeux modélisés et enrichis" },
       { value: "32", label: "tables relationnelles (PostgreSQL)" },
-      { value: "En prod", label: "societyapp.fr" },
+      { value: "En prod", label: "sur societyapp.fr" },
     ],
     flow: [
       {
         label: "Transactionnel (OLTP)",
-        status: { label: "En production", tone: "live" },
+        status: "en production",
         steps: [
-          { title: "Front", detail: "Next.js · Vercel" },
-          { title: "API", detail: "FastAPI · Railway" },
-          { title: "Base", detail: "PostgreSQL · 32 tables · Alembic" },
-          { title: "Recommandation", detail: "pgvector · embeddings · API LLM" },
+          { title: "Front", detail: "Next.js, hébergé sur Vercel" },
+          { title: "API", detail: "FastAPI, hébergée sur Railway" },
+          { title: "Base", detail: "PostgreSQL, 32 tables, Alembic" },
+          { title: "Recommandation", detail: "pgvector, embeddings, API LLM" },
         ],
       },
       {
         label: "Analytique (OLAP)",
-        status: { label: "Suivi d'usage", tone: "live" },
+        status: "suivi d'usage",
         steps: [
           { title: "Événements", detail: "Parties, collections, wishlists" },
-          { title: "Pipeline", detail: "Python / SQL" },
-          { title: "Modèle analytique", detail: "Faits d'usage · dimensions" },
+          { title: "Pipeline", detail: "Python et SQL" },
+          { title: "Modèle analytique", detail: "Faits d'usage et dimensions" },
           { title: "Pilotage produit", detail: "Engagement, rétention" },
         ],
       },
     ],
     sections: [
       {
-        title: "Vision produit",
+        title: "Le produit",
         paragraphs: [
-          "Les jeux de société modernes ont des univers visuels superbes, mais les outils numériques qui les accompagnent sont restés datés. **Society** réunit dans une même plateforme la recommandation personnalisée, le suivi des parties et des collections, et une dimension sociale.",
-          "Je l'ai abordé comme un produit : identification du besoin, priorisation des fonctionnalités, conception de l'expérience, mise en production et itérations. Aujourd'hui, **+200 utilisateurs** y ont créé un compte, suivent leurs parties et interagissent entre eux.",
+          "Les jeux de société modernes ont des univers visuels superbes, mais les outils numériques qui les accompagnent sont restés datés. Society réunit la recommandation personnalisée, le suivi des parties et des collections, et une dimension sociale.",
+          "Je l'ai mené comme un produit : identifier le besoin, prioriser les fonctionnalités, concevoir l'expérience, mettre en production, puis itérer. Plus de 200 utilisateurs y ont aujourd'hui un compte, suivent leurs parties et échangent entre eux.",
         ],
       },
       {
-        title: "Architecture transactionnelle (OLTP)",
+        title: "Base de données et API (OLTP)",
         bullets: [
-          "**Modélisation** : conception des modèles conceptuel et physique d'une base PostgreSQL de **32 tables** (utilisateurs, jeux, parties, collections, relations sociales), migrations versionnées avec Alembic.",
-          "**Catalogue** : **~400 jeux** modélisés et enrichis (métadonnées, mécaniques, embeddings sémantiques), à partir de l'API BoardGameGeek.",
-          "**API** : backend Python FastAPI, exposant les données au front et au moteur de recommandation.",
-          "**Front** : Next.js (App Router), React et Tailwind CSS.",
+          "J'ai conçu les modèles conceptuel et physique d'une base PostgreSQL de 32 tables (utilisateurs, jeux, parties, collections, relations sociales), avec des migrations versionnées par Alembic.",
+          "Le catalogue compte ~400 jeux, importés depuis l'API BoardGameGeek puis enrichis : métadonnées, mécaniques, embeddings sémantiques.",
+          "Une API FastAPI expose les données au front et au moteur de recommandation.",
+          "Le front est développé en Next.js (App Router), React et Tailwind CSS.",
         ],
       },
       {
-        title: "Moteur de recommandation",
+        title: "Recommandation",
         paragraphs: [
-          "Recherche vectorielle avec **pgvector** sur les embeddings sémantiques des jeux, combinée à une API LLM et à l'historique de l'utilisateur (parties jouées, ordre de la wishlist) pour proposer des jeux réellement pertinents.",
+          "Les recommandations combinent une recherche vectorielle (pgvector) sur les embeddings des jeux, une API LLM et l'historique de l'utilisateur, comme ses parties jouées et l'ordre de sa wishlist.",
         ],
       },
       {
         title: "Couche analytique (OLAP)",
         paragraphs: [
-          "Au-delà de la base qui fait tourner le produit, des pipelines analytiques extraient les événements d'usage vers un modèle analytique (faits / dimensions) pour **piloter** le produit : engagement, rétention et qualité des recommandations.",
+          "En plus de la base qui fait tourner l'application, des pipelines extraient les événements d'usage vers un modèle analytique en faits et dimensions. Je m'en sers pour piloter le produit : engagement, rétention, qualité des recommandations.",
         ],
       },
       {
-        title: "Infrastructure & services",
+        title: "Infrastructure",
         bullets: [
           "Environnements de production et de développement sur Railway, front sur Vercel, CI/CD via GitHub.",
-          "Cloudinary (images), Resend (e-mails transactionnels), Google Auth (connexion), domaine societyapp.fr.",
+          "Cloudinary pour les images, Resend pour les e-mails transactionnels, connexion Google, domaine societyapp.fr.",
         ],
       },
     ],
@@ -263,22 +256,23 @@ export const PROJECTS: Project[] = [
     ],
   },
 
-  // 3 ─ PIPELINE BGG ────────────────────────────────────────────────────────
+  // Pipeline BoardGameGeek (projet personnel, en cours)
   {
     slug: "bgg-pipeline",
     shortTitle: "Pipeline BGG",
-    kicker: "Data Engineering · Projet personnel",
-    title: "Pipeline ETL & Analytics : BoardGameGeek",
-    tagline: "De l'API brute à l'analyse des tendances du marché du jeu de société.",
+    context: "Projet personnel",
+    period: "En cours",
+    title: "Pipeline de données BoardGameGeek",
+    tagline: "De l'API brute de BoardGameGeek à l'analyse des tendances du marché du jeu de société.",
     logo: "bgg",
     watermark: "bgg",
-    status: { label: "Pipeline en construction", tone: "wip" },
+    status: "Pipeline en construction",
     problem:
-      "Le marché du jeu de société génère beaucoup de données (notes, complexité, mécaniques, éditeurs), mais elles sont brutes, au format XML et non historisées : impossible d'en suivre les tendances dans le temps.",
+      "BoardGameGeek publie beaucoup de données sur les jeux (notes, complexité, mécaniques, éditeurs), mais en XML brut et sans historique. Impossible d'y suivre une tendance dans le temps.",
     solution:
-      "Ingestion automatisée depuis l'API BoardGameGeek, nettoyage et transformation en **Python / SQL**, **modèle dimensionnel** analytique et dataviz des tendances du marché.",
+      "Je construis une ingestion automatisée depuis l'API, des transformations en Python et SQL, un modèle dimensionnel et des visualisations des tendances du marché.",
     impact:
-      "Phase 1 (analyse exploratoire) publiée sur GitHub · Phase 2 (pipeline industrialisé) en cours · [À CHIFFRER : nombre de jeux ingérés]",
+      "La phase 1, une analyse exploratoire, est publiée sur GitHub. La phase 2, le pipeline industrialisé, est en cours. [À CHIFFRER : nombre de jeux ingérés]",
     stack: ["Python", "Pandas", "SQL", "API XML", "Modélisation dimensionnelle", "Dataviz"],
     kpis: [
       { value: "[À CHIFFRER]", label: "jeux ingérés" },
@@ -288,33 +282,34 @@ export const PROJECTS: Project[] = [
     flow: [
       {
         label: "Pipeline cible",
-        status: { label: "En construction", tone: "wip" },
+        status: "en construction",
+        wip: true,
         steps: [
-          { title: "Extraction", detail: "API BoardGameGeek · XML" },
-          { title: "Transformation", detail: "Python · Pandas" },
-          { title: "Chargement", detail: "SQL · schéma en étoile" },
-          { title: "Analyse", detail: "Dataviz des tendances" },
+          { title: "Extraction", detail: "API BoardGameGeek (XML)" },
+          { title: "Transformation", detail: "Python, Pandas" },
+          { title: "Chargement", detail: "SQL, schéma en étoile" },
+          { title: "Analyse", detail: "Visualisation des tendances" },
         ],
       },
     ],
     sections: [
       {
-        title: "Phase 1 · Analyse exploratoire (réalisée)",
+        title: "Phase 1 : Analyse exploratoire (terminée)",
         paragraphs: [
-          "Exploration du catalogue BoardGameGeek sous l'angle de la durée de partie, de la complexité et de la popularité, pour identifier les premières tendances et les limites des données disponibles.",
+          "J'ai exploré le catalogue BoardGameGeek sous l'angle de la durée de partie, de la complexité et de la popularité, pour repérer les premières tendances et les limites des données disponibles.",
         ],
       },
       {
-        title: "Phase 2 · Pipeline ETL & modèle dimensionnel (en cours)",
+        title: "Phase 2 : Pipeline et modèle dimensionnel (en cours)",
         bullets: [
-          "**Extraction** : ingestion automatisée et incrémentale depuis l'API BoardGameGeek.",
-          "**Transformation** : parsing XML, nettoyage, normalisation des mécaniques, catégories et éditeurs.",
-          "**Modèle cible** : une table de faits de classement historisée (snapshots) reliée aux dimensions jeu, mécanique, éditeur et date.",
-          "**Restitution** : tableaux de bord sur l'évolution du marché (mécaniques en croissance, complexité moyenne, éditeurs dominants).",
+          "Extraction automatisée et incrémentale depuis l'API BoardGameGeek.",
+          "Parsing du XML, nettoyage, normalisation des mécaniques, catégories et éditeurs.",
+          "Une table de faits des classements, historisée par snapshots, reliée aux dimensions jeu, mécanique, éditeur et date.",
+          "Des tableaux de bord sur l'évolution du marché : mécaniques en croissance, complexité moyenne, éditeurs dominants.",
         ],
       },
     ],
-    // 👉 Ajoute ici le lien du nouveau dépôt du pipeline quand il sera publié.
+    // Ajouter ici le lien du dépôt du pipeline quand il sera publié.
     links: [
       {
         label: "Phase 1 sur GitHub",
@@ -324,39 +319,40 @@ export const PROJECTS: Project[] = [
     ],
   },
 
-  // 4 ─ CASSIOPÉE (source : poster_ESSI2025.pdf) ────────────────────────────
+  // Cassiopée (projet d'école, source : public/assets/poster_ESSI2025.pdf)
   {
     slug: "cassiopee",
     shortTitle: "Cassiopée",
-    kicker: "Projet d'ingénieur en binôme · Deep Learning · 2024-2025",
+    context: "Projet d'ingénieur en binôme, 2024-2025",
+    period: "2025",
     title: "Projet Cassiopée : Détection d'Alzheimer par Deep Learning",
-    org: "Télécom SudParis · encadré par le laboratoire SAMOVAR",
+    org: "Télécom SudParis, encadré par le laboratoire SAMOVAR",
     tagline:
-      "Pipeline complète de traitement de signaux EEG, des enregistrements bruts à un score de risque par patient.",
+      "Une chaîne complète de traitement de signaux EEG, des enregistrements bruts jusqu'à un score de risque par patient.",
     logo: "tsp",
     watermark: "prize",
-    status: { label: "1er prix · Colloque ESSI 2025", tone: "award" },
+    status: "1er prix au Colloque ESSI 2025",
     problem:
-      "Les diagnostics actuels de la maladie d'Alzheimer sont coûteux et invasifs. L'EEG offre une alternative non invasive, mais ses signaux sont bruités et difficiles à interpréter.",
+      "Diagnostiquer la maladie d'Alzheimer coûte cher et passe par des examens invasifs. L'EEG est une alternative non invasive, mais ses signaux sont bruités et difficiles à interpréter.",
     solution:
-      "Signaux EEG filtrés (bande Thêta 2), découpés en époques de 1 s, transformés en images de **motifs récurrents** (Recurrence Plots) puis classés par un **CNN**, avec agrégation des scores par patient.",
+      "Nous avons filtré les signaux EEG (bande Thêta 2), découpés en époques de 1 s, puis transformés en images de motifs récurrents (Recurrence Plots) classées par un CNN. Les scores sont ensuite agrégés par patient.",
     impact:
-      "**1er prix parmi 180 projets** et prix du meilleur poster au Colloque ESSI 2025, sur une cohorte EEG de **364 sujets**.",
+      "Le projet a reçu le 1er prix parmi 180 projets et le prix du meilleur poster au Colloque ESSI 2025. Il porte sur une cohorte EEG de 364 sujets.",
     stack: ["Python", "PyTorch", "NumPy", "Pandas", "OpenCV", "Matplotlib"],
     kpis: [
-      { value: "1er / 180", label: "projets · Colloque ESSI 2025" },
+      { value: "1er / 180", label: "projets au Colloque ESSI 2025" },
       { value: "Meilleur poster", label: "Colloque ESSI 2025" },
-      { value: "364", label: "sujets EEG (182 patients MA / 182 sains)" },
-      { value: "10", label: "répartitions train / validation / test des patients" },
+      { value: "364", label: "sujets EEG (182 patients, 182 sains)" },
+      { value: "10", label: "répartitions train, validation et test" },
     ],
     flow: [
       {
-        label: "Pipeline de traitement",
+        label: "Chaîne de traitement",
         steps: [
-          { title: "Données", detail: "EEG de 364 sujets · 182 MA / 182 sains" },
-          { title: "Prétraitement", detail: "Filtre Thêta 2 (6–8 Hz) · 19 époques de 1 s" },
-          { title: "Représentation", detail: "Recurrence Plots 200×200 · 19 images / patient" },
-          { title: "Modèle", detail: "CNN 3 blocs · PyTorch" },
+          { title: "Données", detail: "EEG de 364 sujets, 182 malades et 182 sains" },
+          { title: "Prétraitement", detail: "Filtre Thêta 2 (6–8 Hz), 19 époques de 1 s" },
+          { title: "Représentation", detail: "Recurrence Plots 200×200, 19 images par patient" },
+          { title: "Modèle", detail: "CNN à 3 blocs, PyTorch" },
           { title: "Décision", detail: "Score agrégé par patient" },
         ],
       },
@@ -365,26 +361,26 @@ export const PROJECTS: Project[] = [
       {
         title: "Contexte",
         paragraphs: [
-          "La maladie d'Alzheimer est la principale maladie neurodégénérative, avec 7,7 millions de nouveaux cas par an dans le monde. Les diagnostics actuels sont coûteux et invasifs ; l'**électroencéphalographie (EEG)** permet de détecter de façon non invasive les altérations précoces des rythmes cérébraux.",
-          "Notre approche : transformer les signaux EEG en images de **motifs récurrents** (Recurrence Plots) qui révèlent des structures périodiques ou transitoires invisibles sur le signal brut, puis entraîner un réseau de neurones convolutif sur ces images.",
+          "La maladie d'Alzheimer est la principale maladie neurodégénérative, avec 7,7 millions de nouveaux cas par an dans le monde. Les diagnostics actuels sont coûteux et invasifs, alors que l'électroencéphalographie (EEG) permet de détecter sans intervention les altérations précoces des rythmes cérébraux.",
+          "Notre idée : transformer les signaux EEG en images de motifs récurrents (Recurrence Plots), qui font apparaître des structures périodiques ou transitoires invisibles sur le signal brut, puis entraîner un réseau de neurones convolutif sur ces images.",
         ],
       },
       {
         title: "Approche",
         bullets: [
-          "**Données** : signaux EEG de 182 individus sains et 182 patients atteints de la maladie d'Alzheimer.",
-          "**Prétraitement** : signaux de 19 s préfiltrés dans la bande Thêta 2 (6–8 Hz), segmentés en 19 époques de 1 s.",
-          "**Représentation** : une image de motifs récurrents 200×200 par époque (distance euclidienne entre points du signal), moyennée pixel à pixel sur deux électrodes : 19 images par patient.",
-          "**Modèle** : CNN à 3 blocs de convolution (ReLU, MaxPool) et une couche entièrement connectée ; score patient obtenu par agrégation sigmoïde des scores de ses images.",
-          "**Évaluation** : 10 répartitions aléatoires des patients en train / validation / test, pour des résultats robustes au niveau patient.",
+          "La cohorte réunit 182 personnes saines et 182 patients atteints de la maladie d'Alzheimer.",
+          "Les signaux de 19 s sont préfiltrés dans la bande Thêta 2 (6–8 Hz), puis découpés en 19 époques de 1 s.",
+          "Chaque époque devient une image de motifs récurrents de 200×200 (distance euclidienne entre points du signal), moyennée pixel à pixel sur deux électrodes. On obtient 19 images par patient.",
+          "Le CNN compte 3 blocs de convolution (ReLU, MaxPool) et une couche entièrement connectée. Le score d'un patient agrège par sigmoïde les scores de ses images.",
+          "Nous avons évalué le modèle sur 10 répartitions aléatoires des patients en train, validation et test, pour des résultats robustes au niveau patient.",
         ],
       },
       {
-        title: "Résultats & distinctions",
+        title: "Résultats",
         bullets: [
-          "Des résultats encourageants pour une première approche, obtenus sur les paires d'électrodes Fp1/O1 et Fp2/O2.",
-          "**1er prix** parmi 180 projets et **prix du meilleur poster** au Colloque ESSI 2025.",
-          "Perspectives : élargir à d'autres électrodes et bandes de fréquences (Alpha, Thêta), optimiser l'architecture du CNN, valider sur une cohorte indépendante.",
+          "Des résultats encourageants pour une première approche, sur les paires d'électrodes Fp1/O1 et Fp2/O2.",
+          "1er prix parmi 180 projets et prix du meilleur poster au Colloque ESSI 2025.",
+          "Pistes pour la suite : étendre à d'autres électrodes et bandes de fréquences (Alpha, Thêta), optimiser l'architecture du CNN, valider sur une cohorte indépendante.",
         ],
       },
     ],
@@ -396,41 +392,38 @@ export function getProject(slug: string) {
   return PROJECTS.find((p) => p.slug === slug);
 }
 
-/** Travaux secondaires, affichés en bas de la page Projets. */
+/** Travaux secondaires, en bas de la page Projets. */
 export const OTHER_WORKS: { title: string; logo?: LogoKey; description: string; stack: string[]; href: string }[] = [
   {
     title: "Chesscoach : Analyse de parties d'échecs",
     logo: "chess",
     description:
-      "Outil Streamlit d'analyse de parties (PGN) avec Stockfish : évolution de l'évaluation, classification des imprécisions, erreurs et gaffes.",
+      "Un outil Streamlit qui analyse des parties d'échecs (PGN) avec Stockfish : évolution de l'évaluation, repérage des imprécisions, erreurs et gaffes.",
     stack: ["Python", "Streamlit"],
     href: "https://github.com/tsauffisseau/chesscoach",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// COMPÉTENCES
+// Compétences
 // ---------------------------------------------------------------------------
 
-export const SKILLS: { domain: string; items: string[]; provenIn: string[] }[] = [
+export const SKILLS: { domain: string; items: string[] }[] = [
   {
-    domain: "Architecture & Modélisation",
+    domain: "Architecture et modélisation",
     items: [
       "Modélisation OLTP / OLAP",
       "Schéma en étoile",
       "Conception de pipelines ETL / ELT",
-      "Cadrage produit & Agile (PO / SO)",
+      "Cadrage produit et agilité (PO / SO)",
     ],
-    provenIn: ["hcp-360", "society", "bgg-pipeline"],
   },
   {
-    domain: "Data, BI & Cloud",
+    domain: "Data, BI et cloud",
     items: ["SQL avancé", "Power BI (DAX)", "AWS (SageMaker, S3 / Athena)", "PostgreSQL (pgvector)"],
-    provenIn: ["hcp-360", "society"],
   },
   {
-    domain: "Développement & Outils",
+    domain: "Développement",
     items: ["Python (Pandas, Scikit-Learn)", "FastAPI", "Next.js", "Git", "Docker"],
-    provenIn: ["society", "bgg-pipeline", "cassiopee"],
   },
 ];

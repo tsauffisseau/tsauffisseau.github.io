@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
-/* 🚨 LA SOLUTION EST ICI : Force Tailwind à écouter ton bouton de thème au lieu de l'ordinateur */
+/* Le thème suit la classe .dark posée par next-themes, pas la préférence du système. */
 @variant dark (&:where(.dark, .dark *));
 
-/* Configuration du thème pour Tailwind v4 */
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -14,23 +13,21 @@
 }
 
 :root {
-  /* Thème Clair */
   --background: #ffffff;
-  --foreground: #0f172a;
-  --card: #f6f8fb;
-  --muted: #475569;
-  --border: #e2e8f0;
-  --primary: #2563eb;
+  --foreground: #161616;
+  --card: #f6f6f5;
+  --muted: #5e5e5e;
+  --border: #e5e5e3;
+  --primary: #2c4f82;
 }
 
 .dark {
-  /* Thème Sombre */
-  --background: #0b0f16;
-  --foreground: #e5e7eb;
-  --card: #111827;
-  --muted: #9aa3b2;
-  --border: #1f2937;
-  --primary: #3b82f6;
+  --background: #0e0e0e;
+  --foreground: #ececec;
+  --card: #161616;
+  --muted: #a0a0a0;
+  --border: #272727;
+  --primary: #9db8e2;
 }
 
 body {
@@ -43,25 +40,21 @@ body {
   flex-direction: column;
 }
 
-/* Cache la barre de défilement globale de la page */
-body::-webkit-scrollbar {
-  display: none;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
 }
 
-/* Pour cacher la scrollbar sur les composants internes tout en gardant le scroll */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+/* Défilement horizontal sans barre visible (navigation sur mobile). */
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
+.no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-html, body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
