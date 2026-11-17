@@ -20,8 +20,8 @@ export function BrandLogo({ logo, className = "h-8 w-8" }: { logo?: LogoKey; cla
       );
     case "tsp":
       return (
-        <span className={`${tile} bg-black`}>
-          <Image src={tspLogo} alt="" sizes="48px" className="w-full h-auto" />
+        <span className={`${tile} bg-white border border-[var(--border)]`}>
+          <Image src={tspLogo} alt="" sizes="48px" className="h-full w-full object-contain" />
         </span>
       );
     case "bgg":
@@ -79,22 +79,22 @@ export function ProjectSummary({ project }: { project: Project }) {
   );
 }
 
-/** Carte détaillée (page Projets). */
+/** Carte détaillée (page Projets), entièrement cliquable. */
 export function ProjectCard({ project }: { project: Project }) {
-  const href = `/projects/${project.slug}`;
   return (
-    <article className="relative isolate overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 md:p-7">
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group relative isolate block overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 md:p-7 transition-colors hover:border-[var(--pink)]/60"
+    >
       <Watermark project={project} className="-right-6 -top-6 h-48 w-48" />
       <p className="text-sm text-[var(--muted)] mb-3">
         {project.status && <span className="text-[var(--pink)]">{project.status}. </span>}
         {project.context}
       </p>
 
-      <h2 className="flex items-center gap-3 text-2xl leading-snug mb-1">
+      <h2 className="flex items-center gap-3 text-2xl leading-snug mb-1 group-hover:text-[var(--pink)] transition-colors">
         <BrandLogo logo={project.logo} className="h-9 w-9" />
-        <Link href={href} className="hover:text-[var(--primary)] transition-colors">
-          {project.title}
-        </Link>
+        {project.title}
       </h2>
       {project.org && <p className="text-sm text-[var(--muted)] mb-3">{project.org}</p>}
       <p className="leading-relaxed mb-2 max-w-[720px]">{project.tagline}</p>
@@ -104,14 +104,11 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mt-5">
         <p className="text-xs text-[var(--muted)] leading-relaxed max-w-[600px]">{project.stack.join(", ")}</p>
-        <Link
-          href={href}
-          className="inline-flex items-center gap-1.5 text-sm font-medium whitespace-nowrap hover:text-[var(--primary)] transition-colors"
-        >
+        <span className="inline-flex items-center gap-1.5 text-sm font-medium whitespace-nowrap group-hover:text-[var(--pink)] transition-colors">
           Étude de cas <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -130,7 +127,7 @@ export function ProjectRow({ project }: { project: Project }) {
           </h3>
           <p className="text-sm text-[var(--muted)] leading-relaxed mt-1">{project.tagline}</p>
         </div>
-        <p className="col-start-2 sm:col-start-auto text-sm text-[var(--muted)] whitespace-nowrap sm:pt-1">
+        <p className="col-start-2 sm:col-start-auto text-sm text-[var(--pink)] whitespace-nowrap sm:pt-1">
           {project.period}
         </p>
       </Link>

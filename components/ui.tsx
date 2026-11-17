@@ -5,7 +5,7 @@ import type { ProjectLink } from "@/lib/content";
 
 /** Lien texte : souligné discret, qui se renforce au survol. */
 export const textLink =
-  "underline decoration-[var(--yellow)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--pink)]";
+  "underline decoration-[var(--muted)]/40 underline-offset-4 transition-colors hover:text-[var(--pink)] hover:decoration-[var(--pink)]";
 
 const buttonBase =
   "inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors";
@@ -44,7 +44,7 @@ export function Rich({ text }: { text: string }) {
         }
         if (part.startsWith("==") && part.endsWith("==")) {
           return (
-            <mark key={i} className="marker bg-transparent text-inherit">
+            <mark key={i} className="marker">
               {part.slice(2, -2)}
             </mark>
           );

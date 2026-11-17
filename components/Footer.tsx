@@ -1,5 +1,6 @@
 import { PROFILE } from "@/lib/content";
-import { textLink } from "./ui";
+
+const textLink = "transition-colors hover:text-[var(--pink)]";
 
 export function Footer() {
   return (
