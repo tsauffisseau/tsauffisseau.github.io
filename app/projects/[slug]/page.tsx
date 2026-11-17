@@ -41,11 +41,15 @@ export default async function CaseStudy({ params }: Props) {
         <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Tous les projets
       </Link>
 
-      <header className="mb-12 pb-10 border-b border-[var(--border)] grid grid-cols-1 md:grid-cols-[1fr_280px] gap-8 items-start">
+      <header
+        className={`mb-12 pb-10 border-b border-[var(--border)] grid grid-cols-1 gap-8 items-start ${
+          project.cover ? "md:grid-cols-[1fr_280px]" : ""
+        }`}
+      >
         <div className="min-w-0">
           {project.status && <p className="text-sm font-medium text-[var(--pink)] mb-1">{project.status}</p>}
           <p className="text-sm text-[var(--muted)] mb-4">{project.context}</p>
-          <h1 className="flex items-start gap-4 text-3xl sm:text-4xl leading-tight mb-3">
+          <h1 className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 text-3xl sm:text-4xl leading-tight text-balance mb-3">
             <BrandLogo logo={project.logo} className="h-10 w-10 sm:mt-0.5" />
             <span>
               <Title text={project.title} />

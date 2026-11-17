@@ -10,7 +10,8 @@ import tspLogo from "@/public/assets/logos/tsp.png";
 /** Logo affiché devant le titre d'un projet, dans une tuile carrée arrondie. */
 export function BrandLogo({ logo, className = "h-8 w-8" }: { logo?: LogoKey; className?: string }) {
   if (!logo) return null;
-  const tile = `shrink-0 inline-flex items-center justify-center overflow-hidden rounded-md ${className}`;
+  // Couleur fixée : les logos ne suivent pas la couleur du titre au survol.
+  const tile = `shrink-0 inline-flex items-center justify-center overflow-hidden rounded-md text-[var(--foreground)] ${className}`;
   switch (logo) {
     case "airliquide":
       return (
@@ -92,7 +93,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.context}
       </p>
 
-      <h2 className="flex items-start gap-3 text-2xl leading-snug mb-1 group-hover:text-[var(--pink)] transition-colors">
+      <h2 className="flex items-start gap-3 text-2xl leading-snug text-balance mb-1 group-hover:text-[var(--pink)] transition-colors">
         <BrandLogo logo={project.logo} className="h-9 w-9" />
         <span className="pt-0.5">
           <Title text={project.title} />

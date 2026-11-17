@@ -80,7 +80,7 @@ export default function About() {
             <h2 className="text-lg mb-2">Formation</h2>
             <p className="text-sm">Télécom SudParis, Institut Polytechnique de Paris</p>
             <p className="text-sm text-[var(--muted)] mt-1">
-              <Rich text="Diplôme d'ingénieur, [À PRÉCISER : spécialisation, années]" />
+              Diplôme d&apos;ingénieur, 2023-2026
             </p>
           </div>
         </aside>
