@@ -45,30 +45,17 @@ export const PROOF_POINTS: { value: string; label: string; href?: string }[] = [
   { value: "1er prix / 180", label: "projets · Colloque ESSI 2025", href: "/projects/cassiopee" },
 ];
 
-/** Fil rouge : la chaîne de valeur de la donnée, vécue côté OLTP et côté OLAP. */
-export const VALUE_CHAIN = {
-  steps: ["Cadrage métier", "Modélisation", "Pipelines", "BI & KPIs", "Décision"],
-  sides: [
-    {
-      tag: "OLTP",
-      title: "Produire une donnée fiable",
-      text: "Avec **Society**, j'ai conçu et mis en production une base relationnelle de **32 tables**, l'API, le moteur de recommandation et les pipelines de suivi d'usage d'une application utilisée par **+200 utilisateurs**.",
-      slug: "society",
-    },
-    {
-      tag: "OLAP",
-      title: "La transformer en décision",
-      text: "Chez **Air Liquide Healthcare**, j'ai cadré avec le métier, consolidé les données sur AWS, modélisé la couche analytique et livré un MVP Power BI de **~30 KPIs** pour **~100 commerciaux** terrain.",
-      slug: "hcp-360",
-    },
-  ],
-};
+/** Introduction de la section Projets : les deux extrémités de la chaîne de la donnée. */
+export const PROJECTS_INTRO =
+  "J'ai travaillé aux deux extrémités de la chaîne de la donnée : côté **OLAP** chez Air Liquide, pour transformer la donnée en décision, et côté **OLTP** avec Society, pour produire une donnée fiable en production.";
 
 // ---------------------------------------------------------------------------
 // PROJETS
 // ---------------------------------------------------------------------------
 
 export type Tone = "live" | "wip" | "award" | "neutral";
+
+export type LogoKey = "society" | "airliquide" | "bgg" | "tsp" | "chess";
 
 export type FlowLane = {
   label: string;
@@ -91,9 +78,11 @@ export type Project = {
   org?: string;
   role?: string;
   tagline: string;
-  logo?: "society";
+  logo?: LogoKey;
+  /** Extrémité de la chaîne de la donnée couverte par le projet. */
+  layer?: "OLTP" | "OLAP";
   /** Icône affichée en filigrane derrière la carte du projet. */
-  watermark?: "exp" | "prize" | "society";
+  watermark?: "exp" | "prize" | "society" | "bgg";
   /** Visuel cliquable affiché dans l'étude de cas. */
   cover?: { src: StaticImageData; href: string; caption: string };
   status?: { label: string; tone: Tone };
@@ -119,6 +108,8 @@ export const PROJECTS: Project[] = [
     role: "Data Analyst",
     tagline:
       "Un MVP décisionnel qui donne aux commerciaux terrain une vue 360° de plus de 20 000 prescripteurs pour prioriser leurs tournées.",
+    logo: "airliquide",
+    layer: "OLAP",
     watermark: "exp",
     status: { label: "MVP validé · en industrialisation", tone: "live" },
     problem:
@@ -186,6 +177,7 @@ export const PROJECTS: Project[] = [
     tagline:
       "Plateforme sociale et de recommandation IA pour les jeux de société : le « Netflix des jeux de société ».",
     logo: "society",
+    layer: "OLTP",
     watermark: "society",
     cover: {
       src: societyCover,
@@ -278,6 +270,8 @@ export const PROJECTS: Project[] = [
     kicker: "Data Engineering · Projet personnel",
     title: "Pipeline ETL & Analytics : BoardGameGeek",
     tagline: "De l'API brute à l'analyse des tendances du marché du jeu de société.",
+    logo: "bgg",
+    watermark: "bgg",
     status: { label: "Pipeline en construction", tone: "wip" },
     problem:
       "Le marché du jeu de société génère beaucoup de données (notes, complexité, mécaniques, éditeurs), mais elles sont brutes, au format XML et non historisées : impossible d'en suivre les tendances dans le temps.",
@@ -335,10 +329,11 @@ export const PROJECTS: Project[] = [
     slug: "cassiopee",
     shortTitle: "Cassiopée",
     kicker: "Projet d'ingénieur en binôme · Deep Learning · 2024-2025",
-    title: "Projet Cassiopée : détection d'Alzheimer par Deep Learning",
+    title: "Projet Cassiopée : Détection d'Alzheimer par Deep Learning",
     org: "Télécom SudParis · encadré par le laboratoire SAMOVAR",
     tagline:
       "Pipeline complète de traitement de signaux EEG, des enregistrements bruts à un score de risque par patient.",
+    logo: "tsp",
     watermark: "prize",
     status: { label: "1er prix · Colloque ESSI 2025", tone: "award" },
     problem:
@@ -402,9 +397,10 @@ export function getProject(slug: string) {
 }
 
 /** Travaux secondaires, affichés en bas de la page Projets. */
-export const OTHER_WORKS: { title: string; description: string; stack: string[]; href: string }[] = [
+export const OTHER_WORKS: { title: string; logo?: LogoKey; description: string; stack: string[]; href: string }[] = [
   {
-    title: "Chesscoach : analyse de parties d'échecs",
+    title: "Chesscoach : Analyse de parties d'échecs",
+    logo: "chess",
     description:
       "Outil Streamlit d'analyse de parties (PGN) avec Stockfish : évolution de l'évaluation, classification des imprécisions, erreurs et gaffes.",
     stack: ["Python", "Streamlit"],

@@ -47,22 +47,18 @@ export function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-const TONES: Record<Tone, { pill: string; dot: string }> = {
+const TONES: Record<Tone, { pill: string }> = {
   live: {
     pill: "text-emerald-700 border-emerald-600/30 bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400/30 dark:bg-emerald-400/10",
-    dot: "bg-emerald-500",
   },
   wip: {
     pill: "text-amber-700 border-amber-600/30 bg-amber-50 dark:text-amber-300 dark:border-amber-400/30 dark:bg-amber-400/10",
-    dot: "bg-amber-500",
   },
   award: {
     pill: "text-yellow-700 border-yellow-600/30 bg-yellow-50 dark:text-yellow-400 dark:border-yellow-400/30 dark:bg-yellow-400/10",
-    dot: "bg-yellow-500",
   },
   neutral: {
     pill: "text-[var(--muted)] border-[var(--border)] bg-[var(--background)]",
-    dot: "bg-[var(--muted)]",
   },
 };
 
@@ -70,9 +66,8 @@ export function StatusPill({ label, tone }: { label: string; tone: Tone }) {
   const t = TONES[tone];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold border rounded-full whitespace-nowrap ${t.pill}`}
+      className={`inline-flex items-center px-2.5 py-1 text-xs font-semibold border rounded-full whitespace-nowrap ${t.pill}`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full ${t.dot}`} aria-hidden="true" />
       {label}
     </span>
   );
@@ -125,7 +120,11 @@ export function SectionHeading({
     <div className="mb-6">
       <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2">{eyebrow}</p>
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
-      {intro && <p className="text-[var(--muted)] mt-2 leading-relaxed max-w-2xl">{intro}</p>}
+      {intro && (
+        <p className="text-[var(--muted)] mt-2 leading-relaxed max-w-2xl">
+          <Rich text={intro} />
+        </p>
+      )}
     </div>
   );
 }

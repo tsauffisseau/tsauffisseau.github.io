@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { OTHER_WORKS, PROJECTS } from "@/lib/content";
-import { ProjectCard } from "@/components/ProjectCard";
-import { Badge, SectionHeading } from "@/components/ui";
+import { OTHER_WORKS, PROJECTS, PROJECTS_INTRO } from "@/lib/content";
+import { BrandLogo, ProjectCard } from "@/components/ProjectCard";
+import { Badge, Rich, SectionHeading } from "@/components/ui";
 import { GithubIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -15,8 +15,7 @@ export default function Projects() {
     <div className="container mx-auto px-4 sm:px-6 max-w-[980px] py-10 sm:py-14">
       <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Projets</h1>
       <p className="text-[var(--muted)] mb-10 leading-relaxed max-w-2xl">
-        Quatre projets, une même logique : partir d&apos;un problème métier, concevoir l&apos;architecture data adaptée,
-        puis mesurer l&apos;impact.
+        <Rich text={PROJECTS_INTRO} />
       </p>
 
       <div className="flex flex-col gap-6">
@@ -36,7 +35,10 @@ export default function Projects() {
               rel="noopener noreferrer"
               className="group flex flex-col gap-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40"
             >
-              <h3 className="font-bold group-hover:text-[var(--primary)] transition-colors">{w.title}</h3>
+              <h3 className="flex items-center gap-2.5 font-bold group-hover:text-[var(--primary)] transition-colors">
+                <BrandLogo logo={w.logo} className="h-7 w-7" />
+                {w.title}
+              </h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed">{w.description}</p>
               <div className="flex flex-wrap items-center justify-between gap-2 mt-auto pt-2">
                 <div className="flex flex-wrap gap-1.5">

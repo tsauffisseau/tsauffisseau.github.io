@@ -91,12 +91,9 @@ export default function About() {
 
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
             <h3 className="font-bold mb-3">En ce moment</h3>
-            <ul className="space-y-2 text-sm text-[var(--muted)]">
+            <ul className="space-y-1.5 text-sm text-[var(--muted)] list-disc pl-5 marker:text-[var(--muted)]">
               {NOW.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 h-1 w-1 rounded-full bg-[var(--primary)] shrink-0" aria-hidden="true" />
-                  {item}
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>

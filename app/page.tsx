@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
-import { PROFILE, PROJECTS, PROOF_POINTS, VALUE_CHAIN } from "@/lib/content";
+import { PROFILE, PROJECTS, PROJECTS_INTRO, PROOF_POINTS } from "@/lib/content";
 import { ProjectTile } from "@/components/ProjectCard";
 import { SkillsGrid } from "@/components/SkillsGrid";
-import { KpiTile, Rich, SectionHeading, buttonPrimary, buttonSecondary } from "@/components/ui";
+import { KpiTile, SectionHeading, buttonPrimary, buttonSecondary } from "@/components/ui";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import profilePhoto from "@/public/assets/profile.jpg";
 
@@ -33,11 +33,7 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-8 md:gap-12">
         <div className="order-2 md:order-1 flex flex-col gap-4">
-          <span className="inline-flex w-fit items-center gap-2 px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border border-emerald-600/30 bg-emerald-50 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
+          <span className="inline-flex w-fit items-center px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border border-emerald-600/30 bg-emerald-50 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
             {PROFILE.availability}
           </span>
 
@@ -79,55 +75,12 @@ export default function Home() {
         ))}
       </section>
 
-      {/* ── FIL ROUGE ────────────────────────────────────────────────────── */}
-      <section>
-        <SectionHeading
-          eyebrow="Mon fil rouge"
-          title="La chaîne de valeur de la donnée, de bout en bout"
-          intro="J'ai vécu en parallèle les deux extrémités de la chaîne : la donnée opérationnelle qui fait tourner un produit, et la donnée analytique qui éclaire une décision."
-        />
-
-        <ol className="flex flex-wrap items-center gap-2 mb-5" aria-label="Étapes de la chaîne de valeur">
-          {VALUE_CHAIN.steps.map((step, i) => (
-            <li key={step} className="flex items-center gap-2">
-              <span className="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)]">
-                {step}
-              </span>
-              {i < VALUE_CHAIN.steps.length - 1 && (
-                <ArrowRight className="h-3.5 w-3.5 text-[var(--muted)]" aria-hidden="true" />
-              )}
-            </li>
-          ))}
-        </ol>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {VALUE_CHAIN.sides.map((side) => (
-            <Link
-              key={side.tag}
-              href={`/projects/${side.slug}`}
-              className="group flex flex-col gap-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40"
-            >
-              <span className="w-fit px-2 py-0.5 text-xs font-mono font-bold rounded-md bg-[var(--primary)]/10 text-[var(--primary)]">
-                {side.tag}
-              </span>
-              <h3 className="text-lg font-bold">{side.title}</h3>
-              <p className="text-sm text-[var(--muted)] leading-relaxed">
-                <Rich text={side.text} />
-              </p>
-              <span className="mt-auto pt-1 inline-flex items-center gap-1.5 text-sm font-semibold group-hover:text-[var(--primary)] transition-colors">
-                Voir le projet <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ── PROJETS ──────────────────────────────────────────────────────── */}
       <section>
         <SectionHeading
           eyebrow="Projets"
           title="Expérience & projets phares"
-          intro="Chaque projet suit la même logique : un problème métier, une architecture data adaptée, un impact mesurable."
+          intro={PROJECTS_INTRO}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {PROJECTS.map((p, i) => (

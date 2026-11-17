@@ -27,10 +27,8 @@ export function Topbar() {
                 key={link.name}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold whitespace-nowrap transition-colors ${
-                  isActive
-                    ? "text-[var(--primary)] bg-[var(--primary)]/10 ring-1 ring-[var(--primary)]/30"
-                    : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                className={`px-2 py-1.5 text-sm sm:text-base font-semibold whitespace-nowrap transition-colors ${
+                  isActive ? "text-[var(--foreground)]" : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 {link.name}

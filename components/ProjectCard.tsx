@@ -1,12 +1,48 @@
 import Link from "next/link";
-import { ArrowRight, Target, Layers, TrendingUp } from "lucide-react";
-import type { Project } from "@/lib/content";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import type { LogoKey, Project } from "@/lib/content";
 import { Badge, Rich, StatusPill } from "./ui";
-import { ExpIcon, PrizeIcon, SocietyLogo } from "./icons";
+import { BggIcon, ChessIcon, ExpIcon, PrizeIcon, SocietyLogo } from "./icons";
+import airLiquideLogo from "@/public/assets/logos/airliquide.png";
+import tspLogo from "@/public/assets/logos/tsp.png";
 
-export function ProjectLogo({ project, className }: { project: Project; className: string }) {
-  if (project.logo === "society") return <SocietyLogo className={`shrink-0 ${className}`} />;
-  return null;
+/** Logo affiché devant le titre d'un projet, dans une tuile carrée arrondie. */
+export function BrandLogo({ logo, className = "h-8 w-8" }: { logo?: LogoKey; className?: string }) {
+  if (!logo) return null;
+  const tile = `shrink-0 inline-flex items-center justify-center overflow-hidden rounded-lg ${className}`;
+  switch (logo) {
+    case "airliquide":
+      return (
+        <span className={`${tile} bg-white border border-[var(--border)]`}>
+          <Image src={airLiquideLogo} alt="" sizes="48px" className="h-full w-full object-contain p-[14%]" />
+        </span>
+      );
+    case "tsp":
+      return (
+        <span className={`${tile} bg-black`}>
+          <Image src={tspLogo} alt="" sizes="48px" className="w-full h-auto" />
+        </span>
+      );
+    case "bgg":
+      return (
+        <span className={tile}>
+          <BggIcon className="h-full w-full" />
+        </span>
+      );
+    case "chess":
+      return (
+        <span className={tile}>
+          <ChessIcon className="h-full w-full" />
+        </span>
+      );
+    case "society":
+      return (
+        <span className={`${tile} border border-[var(--border)] bg-[var(--background)]`}>
+          <SocietyLogo className="h-[68%] w-[68%]" />
+        </span>
+      );
+  }
 }
 
 /** Icône en filigrane derrière une carte : couleur unie, très faible opacité. */
@@ -19,37 +55,37 @@ function Watermark({ project, className }: { project: Project; className: string
       return <PrizeIcon className={cls} />;
     case "society":
       return <SocietyLogo mono className={cls} />;
+    case "bgg":
+      return <BggIcon mono className={cls} />;
     default:
       return null;
   }
 }
 
-function Rank({ rank }: { rank: number }) {
+function Rank({ rank, layer }: { rank: number; layer?: string }) {
   return (
-    <span className="font-mono text-xs font-bold text-[var(--primary)]">{String(rank).padStart(2, "0")}</span>
+    <span className="font-mono text-xs font-bold text-[var(--muted)]">
+      {String(rank).padStart(2, "0")}
+      {layer && <span className="font-normal"> · {layer}</span>}
+    </span>
   );
 }
 
-const PSI = [
-  { key: "problem", label: "Problématique", Icon: Target },
-  { key: "solution", label: "Solution", Icon: Layers },
-  { key: "impact", label: "Impact", Icon: TrendingUp },
+const SUMMARY = [
+  { key: "problem", label: "Le besoin" },
+  { key: "solution", label: "La démarche" },
+  { key: "impact", label: "Le résultat" },
 ] as const;
 
-/** Encart Problème / Solution / Impact, réutilisé sur les cartes et les études de cas. */
-export function ProblemSolutionImpact({ project }: { project: Project }) {
+/** Résumé rédigé du projet (étude de cas) : besoin, démarche, résultat. */
+export function ProjectSummary({ project }: { project: Project }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-      {PSI.map(({ key, label, Icon }) => (
-        <div key={key} className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
-          <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">
-            <Icon className="h-3.5 w-3.5 text-[var(--primary)]" aria-hidden="true" />
-            {label}
-          </p>
-          <p className="text-sm leading-relaxed text-[var(--muted)]">
-            <Rich text={project[key]} />
-          </p>
-        </div>
+    <div className="flex flex-col gap-4 max-w-[820px] rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
+      {SUMMARY.map(({ key, label }) => (
+        <p key={key} className="leading-relaxed text-[var(--muted)]">
+          <span className="font-semibold text-[var(--foreground)]">{label}. </span>
+          <Rich text={project[key]} />
+        </p>
       ))}
     </div>
   );
@@ -63,22 +99,23 @@ export function ProjectCard({ project, rank }: { project: Project; rank: number 
       <Watermark project={project} className="-right-6 -top-6 h-48 w-48" />
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <p className="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
-          <Rank rank={rank} />
+          <Rank rank={rank} layer={project.layer} />
           <span>{project.kicker}</span>
         </p>
         {project.status && <StatusPill label={project.status.label} tone={project.status.tone} />}
       </div>
 
-      <Link href={href} className="group inline-flex items-center gap-3 mb-1">
-        <ProjectLogo project={project} className="h-6 w-6" />
-        <h3 className="text-xl sm:text-2xl font-bold leading-snug group-hover:text-[var(--primary)] transition-colors">
+      <Link href={href} className="inline-flex items-center gap-3 mb-1">
+        <BrandLogo logo={project.logo} className="h-9 w-9" />
+        <h3 className="text-xl sm:text-2xl font-bold leading-snug hover:text-[var(--primary)] transition-colors">
           {project.title}
         </h3>
       </Link>
       {project.org && <p className="text-sm font-semibold text-[var(--foreground)]/80 mb-1">{project.org}</p>}
-      <p className="text-[var(--muted)] mb-5 leading-relaxed">{project.tagline}</p>
-
-      <ProblemSolutionImpact project={project} />
+      <p className="text-[var(--muted)] leading-relaxed mb-2">{project.tagline}</p>
+      <p className="text-sm text-[var(--muted)] leading-relaxed max-w-[760px]">
+        <Rich text={project.impact} />
+      </p>
 
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-5">
         <div className="flex flex-wrap gap-2">
@@ -106,12 +143,12 @@ export function ProjectTile({ project, rank }: { project: Project; rank: number 
     >
       <Watermark project={project} className="-right-5 -bottom-5 h-36 w-36" />
       <div className="flex items-center justify-between gap-2 mb-3">
-        <Rank rank={rank} />
+        <Rank rank={rank} layer={project.layer} />
         {project.status && <StatusPill label={project.status.label} tone={project.status.tone} />}
       </div>
-      <p className="text-xs text-[var(--muted)] mb-1">{project.kicker}</p>
-      <h3 className="flex items-center gap-2 text-lg font-bold leading-snug mb-2 group-hover:text-[var(--primary)] transition-colors">
-        <ProjectLogo project={project} className="h-5 w-5" />
+      <p className="text-xs text-[var(--muted)] mb-2">{project.kicker}</p>
+      <h3 className="flex items-center gap-2.5 text-lg font-bold leading-snug mb-2 group-hover:text-[var(--primary)] transition-colors">
+        <BrandLogo logo={project.logo} className="h-8 w-8" />
         {project.title}
       </h3>
       <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">{project.tagline}</p>

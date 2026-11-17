@@ -25,14 +25,14 @@ type Doc = {
 
 const DOCS: Doc[] = [
   {
-    title: "Poster : détection d'Alzheimer par CNN",
+    title: "Poster : Détection d'Alzheimer par CNN",
     meta: "2025 · 1er prix · Colloque ESSI · PDF",
     tags: ["Deep Learning", "PyTorch"],
     href: "/assets/poster_ESSI2025.pdf",
     thumb: posterEssiThumb,
   },
   {
-    title: "Society : présentation produit & technique",
+    title: "Society : Présentation produit & technique",
     meta: "2026 · Pitch deck · PDF",
     tags: ["Architecture", "Produit"],
     href: "/assets/poster_society.pdf",

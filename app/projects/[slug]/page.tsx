@@ -4,7 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Info } from "lucide-react";
 import { PROJECTS, getProject } from "@/lib/content";
-import { ProblemSolutionImpact, ProjectLogo } from "@/components/ProjectCard";
+import { BrandLogo, ProjectSummary } from "@/components/ProjectCard";
 import { ArchitectureFlow } from "@/components/ArchitectureFlow";
 import { Badge, KpiTile, ProjectLinkButton, Rich, StatusPill } from "@/components/ui";
 
@@ -44,11 +44,11 @@ export default async function CaseStudy({ params }: Props) {
       <header className="mb-10 pb-8 border-b border-[var(--border)] grid grid-cols-1 md:grid-cols-[1fr_300px] gap-8 items-start">
         <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-3 mb-3">
-          <p className="text-sm text-[var(--muted)]">{project.kicker}</p>
           {project.status && <StatusPill label={project.status.label} tone={project.status.tone} />}
+          <p className="text-sm text-[var(--muted)]">{project.kicker}</p>
         </div>
         <h1 className="flex items-center gap-3 text-3xl sm:text-4xl font-bold tracking-tight mb-2">
-          <ProjectLogo project={project} className="h-9 w-9" />
+          <BrandLogo logo={project.logo} className="h-10 w-10" />
           {project.title}
         </h1>
         {(project.org || project.role) && (
@@ -96,10 +96,10 @@ export default async function CaseStudy({ params }: Props) {
       </header>
 
       <div className="flex flex-col gap-12">
-        {/* En un coup d'œil */}
+        {/* Résumé */}
         <section>
-          <h2 className="text-xl font-bold mb-4">En un coup d&apos;œil</h2>
-          <ProblemSolutionImpact project={project} />
+          <h2 className="text-xl font-bold mb-4">Résumé</h2>
+          <ProjectSummary project={project} />
         </section>
 
         {/* Chiffres clés */}
@@ -131,13 +131,10 @@ export default async function CaseStudy({ params }: Props) {
                 </p>
               ))}
               {section.bullets && (
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-2.5 list-disc pl-5 marker:text-[var(--muted)]">
                   {section.bullets.map((b, i) => (
-                    <li key={i} className="flex gap-3 text-[var(--muted)] leading-relaxed">
-                      <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-[var(--primary)] shrink-0" aria-hidden="true" />
-                      <span>
-                        <Rich text={b} />
-                      </span>
+                    <li key={i} className="text-[var(--muted)] leading-relaxed pl-1">
+                      <Rich text={b} />
                     </li>
                   ))}
                 </ul>
