@@ -9,9 +9,9 @@ export function Topbar() {
   const pathname = usePathname();
   
   const navLinks = [
-    { name: "Projects", href: "/projects" },
-    { name: "Posters & Resume", href: "/resume" },
-    { name: "About me", href: "/about" },
+    { name: "Projets", href: "/projects" },
+    { name: "CV & Posters", href: "/resume" },
+    { name: "À propos", href: "/about" },
   ];
 
   return (
@@ -19,15 +19,18 @@ export function Topbar() {
       <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-[980px] min-h-16 relative">
         
         {/* Ligne 1 (Mobile) : Liens de navigation tout en haut */}
-        <nav className="flex items-center justify-center gap-4 sm:gap-7 overflow-x-auto no-scrollbar w-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:w-auto order-1 sm:order-2">
+        <nav className="flex items-center justify-center gap-1 sm:gap-3 overflow-x-auto no-scrollbar w-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:w-auto order-1 sm:order-2">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href === '/resume' && pathname === '/posters');
+            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-sm sm:text-base font-semibold whitespace-nowrap transition-colors hover:text-[var(--foreground)] ${
-                  isActive ? "text-[var(--foreground)]" : "text-[var(--muted)]"
+                aria-current={isActive ? "page" : undefined}
+                className={`px-3 py-1.5 rounded-full text-sm sm:text-base font-semibold whitespace-nowrap transition-colors ${
+                  isActive
+                    ? "text-[var(--primary)] bg-[var(--primary)]/10 ring-1 ring-[var(--primary)]/30"
+                    : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 {link.name}
@@ -41,9 +44,10 @@ export function Topbar() {
           <Link href="/" className="flex shrink-0 items-center transition-transform hover:scale-105">
             <Image 
               src="/assets/favicon.png" 
-              alt="Home" 
+              alt="Accueil"
               width={24} 
               height={24} 
+              priority
               className="invert dark:invert-0" /* Devient noir en light mode, redevient blanc en dark mode */
             />
           </Link>

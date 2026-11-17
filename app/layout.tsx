@@ -4,12 +4,27 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Topbar } from "@/components/Topbar";
 import { Footer } from "@/components/Footer";
+import { PROFILE } from "@/lib/content";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
+const DESCRIPTION =
+  "Théophile Sauffisseau, ingénieur Télécom SudParis (IP Paris) : Consultant Data / Product Data Analyst. Modélisation OLTP/OLAP, pipelines, SQL, Power BI. Disponible janvier 2027 à Paris.";
+
 export const metadata: Metadata = {
-  title: "Théophile Sauffisseau | Business Data Analyst",
-  description: "Portfolio of Théophile Sauffisseau - Business Data Analyst. Data Modeling & Full-Stack Projects, Posters, Resume, Personal Creations.",
+  metadataBase: new URL(PROFILE.siteUrl),
+  title: {
+    default: `${PROFILE.name} | ${PROFILE.title}`,
+    template: `%s | ${PROFILE.name}`,
+  },
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    title: `${PROFILE.name} | ${PROFILE.title}`,
+    description: DESCRIPTION,
+  },
   icons: {
     icon: "/assets/favicon.png",
     apple: "/assets/favicon.png",
@@ -22,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

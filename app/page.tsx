@@ -1,81 +1,161 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
+import { PROFILE, PROJECTS, PROOF_POINTS, VALUE_CHAIN } from "@/lib/content";
+import { ProjectTile } from "@/components/ProjectCard";
+import { SkillsGrid } from "@/components/SkillsGrid";
+import { KpiTile, Rich, SectionHeading, buttonPrimary, buttonSecondary } from "@/components/ui";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import profilePhoto from "@/public/assets/profile.jpg";
+
+function ContactButtons() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <a href={PROFILE.cvPath} download={PROFILE.cvDownloadName} className={buttonPrimary}>
+        <Download className="h-4 w-4" aria-hidden="true" />
+        Télécharger mon CV
+      </a>
+      <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className={buttonSecondary}>
+        <LinkedinIcon />
+        LinkedIn
+      </a>
+      <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className={buttonSecondary}>
+        <GithubIcon />
+        GitHub
+      </a>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center px-6 py-12 sm:py-16">
-      
-      {/* Hero Section */}
-      <div className="flex flex-col items-center text-center gap-3 mb-12">
+    <div className="container mx-auto px-4 sm:px-6 max-w-[980px] py-10 sm:py-16 flex flex-col gap-20 sm:gap-24">
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-8 md:gap-12">
+        <div className="order-2 md:order-1 flex flex-col gap-4">
+          <span className="inline-flex w-fit items-center gap-2 px-3 py-1 text-xs sm:text-sm font-semibold rounded-full border border-emerald-600/30 bg-emerald-50 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            {PROFILE.availability}
+          </span>
+
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">{PROFILE.name}</h1>
+            <p className="text-xl sm:text-2xl font-semibold text-[var(--primary)] mt-2">{PROFILE.title}</p>
+          </div>
+
+          <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed max-w-[620px]">{PROFILE.pitch}</p>
+
+          <ContactButtons />
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm text-[var(--muted)]">
+            <a href={`mailto:${PROFILE.email}`} className="inline-flex items-center gap-1.5 hover:text-[var(--foreground)] transition-colors break-all">
+              <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              {PROFILE.email}
+            </a>
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+              Paris
+            </span>
+          </div>
+        </div>
+
         <Image
-          src="/assets/profile.jpg"
-          alt="Théophile Sauffisseau"
-          width={200}
-          height={200}
-          className="rounded-full border border-[var(--border)] object-cover shadow-sm mb-3"
-          priority 
+          src={profilePhoto}
+          alt={PROFILE.name}
+          placeholder="blur"
+          sizes="(min-width: 768px) 220px, 150px"
+          priority
+          className="order-1 md:order-2 w-[150px] h-[150px] md:w-[220px] md:h-[220px] rounded-full border border-[var(--border)] object-cover shadow-sm"
         />
-        
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight cursor-default break-words">
-          Théophile Sauffisseau
-        </h1>
-        
-        <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-[var(--muted)] cursor-default text-sm sm:text-base mt-1">
-          <span>Data Analyst @ Air Liquide</span>
-          <span className="hidden sm:inline">|</span>
-          <span>Business Analytics & Data Modeling</span> 
+      </section>
+
+      {/* ── EN BREF ──────────────────────────────────────────────────────── */}
+      <section aria-label="En bref" className="grid grid-cols-2 md:grid-cols-4 gap-3 -mt-8 sm:-mt-10">
+        {PROOF_POINTS.map((p) => (
+          <KpiTile key={p.label} value={p.value} label={p.label} href={p.href} />
+        ))}
+      </section>
+
+      {/* ── FIL ROUGE ────────────────────────────────────────────────────── */}
+      <section>
+        <SectionHeading
+          eyebrow="Mon fil rouge"
+          title="La chaîne de valeur de la donnée, de bout en bout"
+          intro="J'ai vécu en parallèle les deux extrémités de la chaîne : la donnée opérationnelle qui fait tourner un produit, et la donnée analytique qui éclaire une décision."
+        />
+
+        <ol className="flex flex-wrap items-center gap-2 mb-5" aria-label="Étapes de la chaîne de valeur">
+          {VALUE_CHAIN.steps.map((step, i) => (
+            <li key={step} className="flex items-center gap-2">
+              <span className="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)]">
+                {step}
+              </span>
+              {i < VALUE_CHAIN.steps.length - 1 && (
+                <ArrowRight className="h-3.5 w-3.5 text-[var(--muted)]" aria-hidden="true" />
+              )}
+            </li>
+          ))}
+        </ol>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {VALUE_CHAIN.sides.map((side) => (
+            <Link
+              key={side.tag}
+              href={`/projects/${side.slug}`}
+              className="group flex flex-col gap-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40"
+            >
+              <span className="w-fit px-2 py-0.5 text-xs font-mono font-bold rounded-md bg-[var(--primary)]/10 text-[var(--primary)]">
+                {side.tag}
+              </span>
+              <h3 className="text-lg font-bold">{side.title}</h3>
+              <p className="text-sm text-[var(--muted)] leading-relaxed">
+                <Rich text={side.text} />
+              </p>
+              <span className="mt-auto pt-1 inline-flex items-center gap-1.5 text-sm font-semibold group-hover:text-[var(--primary)] transition-colors">
+                Voir le projet <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
         </div>
-        
-        <a
-          href="mailto:theophile.sauffisseau@telecom-sudparis.eu"
-          /* Modification ici : text-xs au lieu de text-sm pour rapetisser le mail */
-          className="mt-3 text-xs text-[var(--muted)] hover:text-[var(--foreground)] transition-colors break-all"
+      </section>
+
+      {/* ── PROJETS ──────────────────────────────────────────────────────── */}
+      <section>
+        <SectionHeading
+          eyebrow="Projets"
+          title="Expérience & projets phares"
+          intro="Chaque projet suit la même logique : un problème métier, une architecture data adaptée, un impact mesurable."
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {PROJECTS.map((p, i) => (
+            <ProjectTile key={p.slug} project={p} rank={i + 1} />
+          ))}
+        </div>
+        <Link
+          href="/projects"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold hover:text-[var(--primary)] transition-colors"
         >
-          theophile.sauffisseau@telecom-sudparis.eu
-        </a>
-      </div>
+          Tous les projets en détail <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full max-w-[760px] mb-8">
-        
-        {/* Colonne 1 : Cassiopée & LinkedIn */}
-        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
-          <Link href="/projects/cassiopee" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
-            <h3 className="text-lg font-bold text-[var(--foreground)] mb-1 leading-snug">1st Prize Project</h3>
-            <p className="text-[var(--muted)] text-sm">Alzheimer Detection via CNN</p>
-          </Link>
-          {/* w-fit et mx-auto pour que le bouton prenne juste la taille de son contenu et reste centré */}
-          <a href="https://www.linkedin.com/in/theophile-sauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-5 py-3 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40 shrink-0 w-fit mx-auto">
-            <Image src="/assets/icon-linkedin.svg" alt="LinkedIn" width={18} height={18} />
-            <span className="font-semibold text-sm">LinkedIn</span>
-          </a>
-        </div>
+      {/* ── COMPÉTENCES ──────────────────────────────────────────────────── */}
+      <section>
+        <SectionHeading eyebrow="Compétences" title="Une stack orientée architecture & conseil" />
+        <SkillsGrid />
+      </section>
 
-        {/* Colonne 2 : Projects & GitHub */}
-        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
-          <Link href="/projects" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
-            <h3 className="text-lg font-bold text-[var(--foreground)] mb-1 leading-snug">My Projects</h3>
-            <p className="text-[var(--muted)] text-sm">Personal Projects & GitHub</p>
-          </Link>
-          <a href="https://github.com/tsauffisseau" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-5 py-3 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40 shrink-0 w-fit mx-auto">
-            <Image src="/assets/github_logo_black.svg" alt="GitHub" width={18} height={18} className="dark:invert" />
-            <span className="font-semibold text-sm">GitHub</span>
-          </a>
-        </div>
-
-        {/* Colonne 3 : Posters & Society */}
-        <div className="flex flex-col gap-4 max-w-[320px] w-full mx-auto sm:max-w-none">
-          <Link href="/resume" className="group flex flex-col items-center justify-center p-6 rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 text-center flex-1">
-            <h3 className="text-lg font-bold text-[var(--foreground)] mb-1 leading-snug">My Posters & Resume</h3>
-            <p className="text-[var(--muted)] text-sm">Academic Poster and more</p>
-          </Link>
-          <a href="https://societyapp.fr" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-5 py-3 rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:border-[var(--muted)]/40 shrink-0 w-fit mx-auto">
-            <Image src="/assets/society_logo_black.svg" alt="Society" width={18} height={18} className="dark:hidden" />
-            <Image src="/assets/society_logo_white.svg" alt="Society" width={18} height={18} className="hidden dark:block" />
-            <span className="font-semibold text-sm">Web App</span>
-          </a>
-        </div>
-
-      </div>
+      {/* ── CONTACT ──────────────────────────────────────────────────────── */}
+      <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8 flex flex-col gap-4">
+        <h2 className="text-2xl font-bold tracking-tight">Échangeons</h2>
+        <p className="text-[var(--muted)] leading-relaxed max-w-2xl">
+          Vous recrutez un Consultant Data ou un Product Data Analyst pour 2027 ? Je serais ravi d&apos;en discuter.
+        </p>
+        <ContactButtons />
+      </section>
     </div>
   );
 }

@@ -1,153 +1,121 @@
-"use client";
+import type { Metadata } from "next";
+import Image, { type StaticImageData } from "next/image";
+import { Download } from "lucide-react";
+import { PROFILE } from "@/lib/content";
+import { Badge, buttonPrimary, buttonSecondary } from "@/components/ui";
+import { PdfIcon } from "@/components/icons";
+// Imports statiques : dimensions réelles connues au build (aucun recadrage)
+// et flou de chargement généré automatiquement.
+import resumeThumb from "@/public/assets/resumethumb.jpg";
+import posterEssiThumb from "@/public/assets/poster_ESSI2025thumb.jpg";
+import posterSocietyThumb from "@/public/assets/poster_societythumb.jpg";
 
-import { useState } from "react";
-import Image from "next/image";
+export const metadata: Metadata = {
+  title: "CV & Posters",
+  description: "CV de Théophile Sauffisseau et supports de présentation de ses projets.",
+};
 
-// Composant qui ajoute l'overlay sur le PDF
-function ResumeCard({ href, children }: { href: string, children: React.ReactNode }) {
-  const [showMenu, setShowMenu] = useState(false);
+type Doc = {
+  title: string;
+  meta: string;
+  tags: string[];
+  href: string;
+  thumb: StaticImageData;
+};
 
+const DOCS: Doc[] = [
+  {
+    title: "Poster : détection d'Alzheimer par CNN",
+    meta: "2025 · 1er prix · Colloque ESSI · PDF",
+    tags: ["Deep Learning", "PyTorch"],
+    href: "/assets/poster_ESSI2025.pdf",
+    thumb: posterEssiThumb,
+  },
+  {
+    title: "Society : présentation produit & technique",
+    meta: "2026 · Pitch deck · PDF",
+    tags: ["Architecture", "Produit"],
+    href: "/assets/poster_society.pdf",
+    thumb: posterSocietyThumb,
+  },
+];
+
+/** Miniature à largeur fixe : la hauteur suit le ratio réel du document (portrait ou paysage). */
+function Thumb({ src, width }: { src: StaticImageData; width: number }) {
   return (
-    <div
-      className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 p-5 border border-[var(--border)] rounded-2xl bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40 cursor-pointer overflow-hidden"
-      onClick={() => setShowMenu(true)}
-    >
-      {children}
-
-      {showMenu && (
-        <div
-          className="absolute inset-0 z-[70] bg-black/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center p-3 animate-in fade-in duration-200 pointer-events-auto"
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowMenu(false); }}
-        >
-          <p className="text-white font-bold mb-5 text-center text-lg tracking-wide drop-shadow-md">
-            Open PDF document?
-          </p>
-          <div className="flex gap-4 items-center justify-center pointer-events-auto">
-            
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="w-[105px] h-[85px] bg-white/10 border border-white/20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-gray-300">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest text-center px-1 leading-tight">
-                OPEN PDF
-              </span>
-            </a>
-
-            <button
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowMenu(false); }}
-              className="w-[105px] h-[85px] bg-red-500/10 border border-red-500/30 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shrink-0"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-red-500">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-              <span className="text-[9px] font-black text-red-500 uppercase tracking-widest">
-                CANCEL
-              </span>
-            </button>
-            
-          </div>
-        </div>
-      )}
+    <div className="shrink-0 hidden sm:flex items-start" style={{ width }}>
+      <Image
+        src={src}
+        alt=""
+        placeholder="blur"
+        sizes={`${width}px`}
+        className="w-full h-auto rounded-lg border border-[var(--border)] shadow-sm"
+      />
     </div>
   );
 }
 
-export default function PostersAndResume() {
+export default function ResumePage() {
   return (
-    <div className="flex flex-col items-center px-6 py-12 sm:py-16">
-      
-      <h1 className="text-3xl font-bold mb-4 text-center">Posters & Resume</h1>
-      <p className="text-[var(--muted)] mb-10 max-w-2xl text-center leading-relaxed">
-        Here you’ll find my resume, scientific posters, and technical overviews of my main projects.
+    <div className="container mx-auto px-4 sm:px-6 max-w-[760px] py-10 sm:py-14">
+      <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">CV & Posters</h1>
+      <p className="text-[var(--muted)] mb-10 leading-relaxed">
+        Mon CV et les supports de présentation de mes principaux projets.
       </p>
 
-      <div className="flex flex-col gap-5 w-full max-w-[680px]">
-        
-        {/* CARTE RESUME */}
-        <ResumeCard href="/assets/Resume_ThéophileSauffisseau_2026.pdf">
-          <div className="flex gap-4 sm:gap-6 w-full">
-            <Image 
-              src="/assets/resumethumb.jpg" 
-              alt="Resume Thumbnail" 
-              width={85} 
-              height={115} 
-              className="rounded-lg object-cover border border-[var(--border)] shrink-0 hidden sm:block" 
-            />
-            <div className="flex flex-col gap-1.5 py-1 flex-1">
-              <h3 className="font-bold text-lg sm:text-xl leading-snug break-words">
-                Théophile Sauffisseau - Resume
-              </h3>
-              <p className="text-[var(--muted)] text-sm mb-3">French • 2026 • PDF</p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Machine Learning</span>
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Data Engineering</span>
-              </div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] mt-auto group-hover:text-[var(--primary)] transition-colors">
-                 <Image src="/assets/icon-pdf.svg" alt="PDF" width={16} height={16} />
-                 Open PDF →
-              </span>
-            </div>
+      {/* CV */}
+      <div className="flex gap-5 sm:gap-6 p-5 sm:p-6 border border-[var(--border)] rounded-2xl bg-[var(--card)] mb-10">
+        <Thumb src={resumeThumb} width={110} />
+        <div className="flex flex-col gap-2 flex-1">
+          <h2 className="font-bold text-xl leading-snug">CV · {PROFILE.name}</h2>
+          <p className="text-[var(--muted)] text-sm">{PROFILE.title} · Disponible janvier 2027</p>
+          <div className="flex flex-wrap gap-2 mb-2">
+            <Badge>Conseil Data</Badge>
+            <Badge>BI & Modélisation</Badge>
+            <Badge>Produit</Badge>
           </div>
-        </ResumeCard>
-
-        {/* CARTE POSTER CASSIOPÉE */}
-        <ResumeCard href="/assets/poster_ESSI2025.pdf">
-          <div className="flex gap-4 sm:gap-6 w-full">
-            <Image 
-              src="/assets/poster_ESSI2025thumb.jpg" 
-              alt="Poster Alzheimer EEG" 
-              width={85} 
-              height={115} 
-              className="rounded-lg object-cover border border-[var(--border)] shrink-0 hidden sm:block" 
-            />
-            <div className="flex flex-col gap-1.5 py-1 flex-1">
-              <h3 className="font-bold text-lg sm:text-xl leading-snug break-words">
-                Alzheimer Detection via CNN - Poster
-              </h3>
-              <p className="text-[var(--muted)] text-sm mb-3">2025 • Prize-winning project • PDF</p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Deep Learning</span>
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">PyTorch</span>
-              </div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] mt-auto group-hover:text-[var(--primary)] transition-colors">
-                 <Image src="/assets/icon-pdf.svg" alt="PDF" width={16} height={16} />
-                 Open PDF →
-              </span>
-            </div>
+          <div className="flex flex-wrap gap-3 mt-auto">
+            <a href={PROFILE.cvPath} download={PROFILE.cvDownloadName} className={buttonPrimary}>
+              <Download className="h-4 w-4" aria-hidden="true" /> Télécharger
+            </a>
+            <a href={PROFILE.cvPath} target="_blank" rel="noopener noreferrer" className={buttonSecondary}>
+              <PdfIcon /> Ouvrir le PDF
+            </a>
           </div>
-        </ResumeCard>
+        </div>
+      </div>
 
-        {/* CARTE POSTER SOCIETY */}
-        <ResumeCard href="/assets/poster_society.pdf">
-          <div className="flex gap-4 sm:gap-6 w-full">
-            <div className="w-[85px] h-[115px] rounded-lg border border-[var(--border)] bg-[var(--background)] shrink-0 hidden sm:flex items-center justify-center">
-              <Image src="/assets/society_logo_black.svg" alt="Society" width={32} height={32} className="dark:hidden opacity-50" />
-              <Image src="/assets/society_logo_white.svg" alt="Society" width={32} height={32} className="hidden dark:block opacity-50" />
-            </div>
-
-            <div className="flex flex-col gap-1.5 py-1 flex-1">
-              <h3 className="font-bold text-lg sm:text-xl leading-snug break-words text-[var(--foreground)]">
-                Society App - Technical Overview
-              </h3>
-              <p className="text-[var(--muted)] text-sm mb-3">2026 • Product Pitch Deck • PDF</p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Architecture</span>
-                <span className="px-3 py-1 text-xs text-[var(--muted)] border border-[var(--border)] rounded-full bg-[var(--background)]">Full-stack</span>
+      {/* Posters */}
+      <h2 className="text-xl font-bold mb-4">Posters & présentations</h2>
+      <div className="flex flex-col gap-4">
+        {DOCS.map((doc) => {
+          const landscape = doc.thumb.width > doc.thumb.height;
+          return (
+            <a
+              key={doc.href}
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-4 sm:gap-6 p-5 border border-[var(--border)] rounded-2xl bg-[var(--card)] transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--muted)]/40"
+            >
+              <Thumb src={doc.thumb} width={landscape ? 170 : 96} />
+              <div className="flex flex-col gap-1.5 py-1 flex-1">
+                <h3 className="font-bold text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">
+                  {doc.title}
+                </h3>
+                <p className="text-[var(--muted)] text-sm mb-2">{doc.meta}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {doc.tags.map((t) => (
+                    <Badge key={t}>{t}</Badge>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold mt-auto">
+                  <PdfIcon /> Ouvrir le PDF →
+                </span>
               </div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] mt-auto group-hover:text-[var(--primary)] transition-colors">
-                 <Image src="/assets/icon-pdf.svg" alt="PDF" width={16} height={16} />
-                 Open PDF →
-              </span>
-            </div>
-          </div>
-        </ResumeCard>
-
+            </a>
+          );
+        })}
       </div>
     </div>
   );
