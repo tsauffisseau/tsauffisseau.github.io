@@ -12,12 +12,16 @@
  * Règles éditoriales :
  *   - pas de pourcentages de gain ni de métriques de performance de modèle ;
  *   - les chiffres doivent être identiques à ceux du CV (mêmes valeurs, mêmes arrondis).
+ *
+ * Les espaces insécables de la typographie française (avant « : », dans « 20 000 »...)
+ * sont ajoutées automatiquement à l'export (voir lib/typo.ts).
  */
 
 import type { StaticImageData } from "next/image";
 import societyCover from "@/public/assets/poster_societythumb.jpg";
+import { typeset } from "./typo";
 
-export const PROFILE = {
+export const PROFILE = typeset({
   name: "Théophile Sauffisseau",
   title: "Consultant Data / Product Data Analyst",
   availability: "Disponible en janvier 2027",
@@ -25,7 +29,7 @@ export const PROFILE = {
   intro: [
     "Ingénieur Télécom SudParis (IP Paris), je cherche un CDI de ==Consultant Data== ou de ==Product Data Analyst== à Paris, à partir de janvier 2027.",
     "Pendant mon stage de fin d'études chez Air Liquide Healthcare, j'ai construit [HCP-360°](/projects/hcp-360), un outil décisionnel destiné à une centaine de commerciaux pour suivre plus de 20 000 prescripteurs. En parallèle, j'ai créé [Society](/projects/society), une application de recommandation de jeux de société qui compte aujourd'hui plus de 200 utilisateurs.",
-    "Mon projet d'ingénieur sur la [détection d'Alzheimer](/projects/cassiopee) a reçu le 1er prix parmi 180 projets au Colloque ESSI 2025.",
+    "Mon projet d'ingénieur sur la [détection d'Alzheimer](/projects/cassiopee) a remporté le 1er prix (sur 180 projets) au Colloque ESSI 2025.",
   ],
   email: "theophilesauffisseau@gmail.com",
   linkedin: "https://www.linkedin.com/in/theophile-sauffisseau",
@@ -35,11 +39,12 @@ export const PROFILE = {
   cvPath: "/assets/Resume_ThéophileSauffisseau_2026.pdf",
   cvDownloadName: "CV_Theophile_Sauffisseau.pdf",
   siteUrl: "https://portfolio-tsauffisseau.vercel.app",
-};
+});
 
 /** Introduction de la page Projets. */
-export const PROJECTS_INTRO =
-  "J'ai travaillé aux deux bouts de la chaîne de la donnée : côté OLAP chez Air Liquide, pour transformer la donnée en décision, et côté OLTP avec Society, pour produire une donnée fiable en production.";
+export const PROJECTS_INTRO = typeset(
+  "J'ai travaillé aux deux bouts de la chaîne de la donnée : côté OLAP chez Air Liquide, pour aider les équipes à décider, et côté OLTP avec Society, pour faire tourner une application en production.",
+);
 
 // ---------------------------------------------------------------------------
 // Projets
@@ -91,14 +96,14 @@ export type Project = {
   links: ProjectLink[];
 };
 
-export const PROJECTS: Project[] = [
+export const PROJECTS: Project[] = typeset<Project[]>([
   // HCP-360° (stage Air Liquide Healthcare)
   {
     slug: "hcp-360",
     shortTitle: "HCP-360°",
     context: "Stage de fin d'études (6 mois)",
     period: "2026",
-    title: "Solution décisionnelle HCP-360°",
+    title: "{Solution décisionnelle} HCP-360°",
     org: "Air Liquide Healthcare, Santé à Domicile France",
     role: "Data Analyst",
     tagline:
@@ -111,7 +116,7 @@ export const PROJECTS: Project[] = [
     solution:
       "J'ai cadré un POC exploratoire avec les Product Owners, les Solution Owners et les équipes métier, puis construit toute la chaîne : consolidation des 3 sources dans un pipeline Python sur AWS SageMaker, modèle analytique, et dashboards Power BI organisés autour d'une trentaine de KPIs.",
     impact:
-      "Le POC donne aux ~100 commerciaux terrain ciblés une vue unifiée de plus de 20 000 prescripteurs, en un clic. Il a été validé et l'équipe Data interne l'industrialise.",
+      "Une vue unifiée de chaque prescripteur, en un clic, pour les ~100 commerciaux terrain ciblés, au lieu de croiser plusieurs extractions à la main.",
     stack: ["Python", "Pandas", "AWS SageMaker", "S3 / Athena", "SQL", "Salesforce", "Power BI", "DAX", "Agile"],
     kpis: [
       { value: "+20 000", label: "prescripteurs couverts" },
@@ -170,7 +175,7 @@ export const PROJECTS: Project[] = [
     period: "En production",
     title: "Society",
     tagline:
-      "Une plateforme sociale de recommandation de jeux de société, pensée comme un « Netflix des jeux de société ».",
+      "Une plateforme sociale qui recommande des jeux de société, pensée comme un « Netflix du jeu de société ».",
     logo: "society",
     watermark: "society",
     cover: {
@@ -184,7 +189,7 @@ export const PROJECTS: Project[] = [
     solution:
       "J'ai conçu une base PostgreSQL de 32 tables (migrations Alembic), une API FastAPI et un front Next.js. La recommandation repose sur pgvector, des embeddings et une API LLM, et des pipelines analytiques (OLAP) suivent l'usage.",
     impact:
-      "L'application tourne sur societyapp.fr : plus de 200 utilisateurs inscrits, environ 400 jeux modélisés et enrichis, et un usage suivi par des pipelines OLAP.",
+      "Plus de 200 utilisateurs inscrits et environ 400 jeux modélisés et enrichis. Les données d'usage me servent à piloter le produit.",
     stack: ["PostgreSQL", "pgvector", "Alembic", "FastAPI", "Python", "Next.js", "TypeScript", "Embeddings / LLM", "Railway", "Vercel"],
     kpis: [
       { value: "+200", label: "utilisateurs inscrits" },
@@ -327,7 +332,7 @@ export const PROJECTS: Project[] = [
     shortTitle: "Cassiopée",
     context: "Projet d'ingénieur en binôme, 2024-2025",
     period: "2025",
-    title: "Projet Cassiopée : Détection d'Alzheimer par Deep\u00a0Learning",
+    title: "{Projet Cassiopée :} {Détection d'Alzheimer} {par Deep Learning}",
     org: "Télécom SudParis, encadré par le laboratoire SAMOVAR",
     tagline:
       "Une chaîne complète de traitement de signaux EEG, des enregistrements bruts jusqu'à un score de risque par patient.",
@@ -388,14 +393,14 @@ export const PROJECTS: Project[] = [
     ],
     links: [{ label: "Poster (PDF)", href: "/assets/poster_ESSI2025.pdf", kind: "pdf" }],
   },
-];
+]);
 
 export function getProject(slug: string) {
   return PROJECTS.find((p) => p.slug === slug);
 }
 
 /** Travaux secondaires, en bas de la page Projets. */
-export const OTHER_WORKS: { title: string; logo?: LogoKey; description: string; stack: string[]; href: string }[] = [
+export const OTHER_WORKS = typeset<{ title: string; logo?: LogoKey; description: string; stack: string[]; href: string }[]>([
   {
     title: "Chesscoach : Analyse de parties d'échecs",
     logo: "chess",
@@ -404,20 +409,20 @@ export const OTHER_WORKS: { title: string; logo?: LogoKey; description: string; 
     stack: ["Python", "Streamlit"],
     href: "https://github.com/tsauffisseau/chesscoach",
   },
-];
+]);
 
 // ---------------------------------------------------------------------------
 // Compétences
 // ---------------------------------------------------------------------------
 
-export const SKILLS: { domain: string; items: string[] }[] = [
+export const SKILLS = typeset<{ domain: string; items: string[] }[]>([
   {
     domain: "Architecture et modélisation",
     items: [
       "Modélisation OLTP / OLAP",
-      "Schéma en étoile",
-      "Conception de pipelines ETL / ELT",
-      "Cadrage produit et agilité (PO / SO)",
+      "schéma en étoile",
+      "conception de pipelines ETL / ELT",
+      "cadrage produit et agilité (PO / SO)",
     ],
   },
   {
@@ -428,4 +433,4 @@ export const SKILLS: { domain: string; items: string[] }[] = [
     domain: "Développement",
     items: ["Python (Pandas, Scikit-Learn)", "FastAPI", "Next.js", "Git", "Docker"],
   },
-];
+]);

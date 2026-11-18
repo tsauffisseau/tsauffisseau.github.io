@@ -69,6 +69,16 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* Sur mobile, titres un peu moins larges pour éviter les coupures disgracieuses. */
+@media (max-width: 639px) {
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-stretch: 106%;
+  }
+}
+
 /*
  * Soulignés et surlignés animés : ils se dessinent de gauche à droite quand ils
  * entrent à l'écran (classe .is-visible posée par components/Reveal.tsx).

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import { Download } from "lucide-react";
 import { PROFILE } from "@/lib/content";
-import { buttonPrimary, buttonSecondary } from "@/components/ui";
+import { Title, buttonPrimary, buttonSecondary } from "@/components/ui";
 import { PdfIcon } from "@/components/icons";
 // Imports statiques : dimensions réelles connues au build et flou de chargement automatique.
 import resumeThumb from "@/public/assets/resumethumb.jpg";
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 type Doc = {
+  /** Titre, avec {groupes de mots} insécables (voir Title). */
   title: string;
   meta: string;
   href: string;
@@ -23,23 +24,29 @@ type Doc = {
 
 const DOCS: Doc[] = [
   {
-    title: "Poster : Détection d'Alzheimer par CNN",
+    title: "Poster : {Détection d'Alzheimer} par CNN",
     meta: "1er prix au Colloque ESSI 2025",
     href: "/assets/poster_ESSI2025.pdf",
     thumb: posterEssiThumb,
   },
   {
-    title: "Society : Présentation produit et technique",
+    title: "Society : {Présentation produit} et technique",
     meta: "Pitch deck, 2026",
     href: "/assets/poster_society.pdf",
     thumb: posterSocietyThumb,
   },
 ];
 
-/** Miniature à largeur fixe : la hauteur suit le ratio réel du document (portrait ou paysage). */
-function Thumb({ src, width }: { src: StaticImageData; width: number }) {
+/**
+ * Miniature à largeur fixe (plus étroite sur mobile) : la hauteur suit le ratio
+ * réel du document, portrait ou paysage.
+ */
+function Thumb({ src, width, mobileWidth }: { src: StaticImageData; width: number; mobileWidth: number }) {
   return (
-    <div className="shrink-0 hidden sm:block" style={{ width }}>
+    <div
+      className="shrink-0 w-[var(--w-mobile)] sm:w-[var(--w)]"
+      style={{ "--w": `${width}px`, "--w-mobile": `${mobileWidth}px` } as React.CSSProperties}
+    >
       <Image
         src={src}
         alt=""
@@ -59,10 +66,10 @@ export default function ResumePage() {
         <p className="text-lg text-[var(--muted)] mb-12 leading-relaxed">
           Mon CV et les supports de présentation de mes principaux projets.
         </p>
-  
-        <div className="flex gap-6 pb-10 mb-10 border-b border-[var(--border)]">
-          <Thumb src={resumeThumb} width={110} />
-          <div className="flex flex-col gap-2">
+
+        <div className="flex gap-4 sm:gap-6 pb-10 mb-10 border-b border-[var(--border)]">
+          <Thumb src={resumeThumb} width={110} mobileWidth={84} />
+          <div className="flex flex-col gap-2 min-w-0">
             <h2 className="text-2xl">CV</h2>
             <p className="text-[var(--muted)]">
               {PROFILE.title}. {PROFILE.availability}.
@@ -77,18 +84,22 @@ export default function ResumePage() {
             </div>
           </div>
         </div>
-  
+
         <h2 className="text-2xl mb-2">Posters et présentations</h2>
         <ul>
           {DOCS.map((doc) => {
             const landscape = doc.thumb.width > doc.thumb.height;
             return (
               <li key={doc.href} className="border-b border-[var(--border)] last:border-b-0">
-                <a href={doc.href} target="_blank" rel="noopener noreferrer" className="group flex gap-6 py-6">
-                  <Thumb src={doc.thumb} width={landscape ? 170 : 96} />
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">
-                      {doc.title}
+                <a href={doc.href} target="_blank" rel="noopener noreferrer" className="group flex gap-4 sm:gap-6 py-6">
+                  <Thumb
+                    src={doc.thumb}
+                    width={landscape ? 170 : 96}
+                    mobileWidth={landscape ? 128 : 72}
+                  />
+                  <div className="flex flex-col gap-1 min-w-0">
+                    <h3 className="text-base sm:text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">
+                      <Title text={doc.title} />
                     </h3>
                     <p className="text-sm text-[var(--muted)]">{doc.meta}</p>
                     <span className="inline-flex items-center gap-2 text-sm mt-3">
@@ -99,7 +110,7 @@ export default function ResumePage() {
               </li>
             );
           })}
-      </ul>
+        </ul>
       </div>
     </div>
   );

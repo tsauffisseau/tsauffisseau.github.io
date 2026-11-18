@@ -13,8 +13,19 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 sm:px-6 max-w-[980px] py-12 sm:py-20 flex flex-col gap-20 sm:gap-24">
       <section className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-14 items-start">
-        <div className="order-2 md:order-1 flex flex-col gap-5 max-w-[640px]">
-          <h1 className="text-4xl sm:text-5xl leading-tight">{PROFILE.name}</h1>
+        <div className="flex flex-col gap-5 max-w-[640px]">
+          {/* Sur mobile, la photo se place à gauche du nom ; sur ordinateur, dans la colonne de droite. */}
+          <div className="flex items-center gap-5">
+            <Image
+              src={profilePhoto}
+              alt=""
+              placeholder="blur"
+              sizes="96px"
+              priority
+              className="md:hidden w-24 h-24 shrink-0 rounded-full object-cover"
+            />
+            <h1 className="text-[2rem] sm:text-5xl leading-tight">{PROFILE.name}</h1>
+          </div>
           <p className="text-lg sm:text-xl leading-relaxed">
             <Rich text={lead} />
           </p>
@@ -45,9 +56,9 @@ export default function Home() {
           src={profilePhoto}
           alt={PROFILE.name}
           placeholder="blur"
-          sizes="(min-width: 768px) 200px, 120px"
+          sizes="200px"
           priority
-          className="order-1 md:order-2 w-[120px] h-[120px] md:w-[200px] md:h-[200px] rounded-full object-cover"
+          className="hidden md:block w-[200px] h-[200px] rounded-full object-cover"
         />
       </section>
 

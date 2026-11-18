@@ -49,7 +49,7 @@ export default async function CaseStudy({ params }: Props) {
         <div className="min-w-0">
           {project.status && <p className="text-sm font-medium text-[var(--pink)] mb-1">{project.status}</p>}
           <p className="text-sm text-[var(--muted)] mb-4">{project.context}</p>
-          <h1 className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 text-3xl sm:text-4xl leading-tight text-balance mb-3">
+          <h1 className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 text-[1.6rem] sm:text-4xl leading-tight text-pretty mb-3">
             <BrandLogo logo={project.logo} className="h-10 w-10 sm:mt-0.5" />
             <span>
               <Title text={project.title} />

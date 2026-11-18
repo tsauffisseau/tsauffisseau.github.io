@@ -5,11 +5,11 @@ const textLink = "transition-colors hover:text-[var(--pink)]";
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-[var(--border)] py-8">
-      <div className="container mx-auto max-w-[980px] px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm text-[var(--muted)]">
+      <div className="container mx-auto max-w-[980px] px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-[var(--muted)] text-center">
         <p>
           © {new Date().getFullYear()} {PROFILE.name}
         </p>
-        <p className="flex flex-wrap gap-x-5 gap-y-1">
+        <p className="flex flex-wrap justify-center gap-x-5 gap-y-1">
           <a href={`mailto:${PROFILE.email}`} className={textLink}>
             {PROFILE.email}
           </a>

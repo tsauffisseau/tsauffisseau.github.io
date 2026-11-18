@@ -2,23 +2,30 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon, PdfIcon } from "./icons";
 import type { ProjectLink } from "@/lib/content";
+import { fr } from "@/lib/typo";
 
 /** Lien texte : souligné discret qui se dessine à l'apparition et passe au rose au survol (voir .u-line). */
 export const textLink = "u-line";
 
-/** Titre de projet : les mots composés (« HCP-360° ») ne sont jamais coupés en fin de ligne. */
+/**
+ * Titre de projet, avec des coupures de ligne maîtrisées :
+ *   - {groupe de mots} reste toujours sur une même ligne ;
+ *   - les mots composés (« HCP-360° ») ne sont jamais coupés.
+ */
 export function Title({ text }: { text: string }) {
   return (
     <>
-      {text.split(/(\S+-\S+)/).map((part, i) =>
-        i % 2 ? (
-          <span key={i} className="whitespace-nowrap">
-            {part}
-          </span>
-        ) : (
-          part
-        ),
-      )}
+      {fr(text)
+        .split(/(\{[^}]+\}|\S+-\S+)/)
+        .map((part, i) =>
+          i % 2 ? (
+            <span key={i} className="whitespace-nowrap">
+              {part.replace(/^\{|\}$/g, "")}
+            </span>
+          ) : (
+            part
+          ),
+        )}
     </>
   );
 }
@@ -49,7 +56,7 @@ export function Placeholder({ children }: { children: React.ReactNode }) {
 export function Rich({ text }: { text: string }) {
   return (
     <>
-      {text.split(TOKENS).map((part, i) => {
+      {fr(text).split(TOKENS).map((part, i) => {
         if (!part) return null;
         if (part.startsWith("**") && part.endsWith("**")) {
           return (

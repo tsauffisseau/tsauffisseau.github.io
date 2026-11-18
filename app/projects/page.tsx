@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { OTHER_WORKS, PROJECTS, PROJECTS_INTRO } from "@/lib/content";
 import { BrandLogo, ProjectCard } from "@/components/ProjectCard";
-import { Rich, SectionHeading } from "@/components/ui";
+import { Rich, SectionHeading, Title } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Projets",
@@ -27,7 +27,7 @@ export default function Projects() {
         <SectionHeading title="Autres travaux" />
         <ul>
           {OTHER_WORKS.map((w) => (
-            <li key={w.href} className="border-t border-[var(--border)] last:border-b">
+            <li key={w.href} className="border-t border-[var(--border)]">
               <a
                 href={w.href}
                 target="_blank"
@@ -36,7 +36,9 @@ export default function Projects() {
               >
                 <BrandLogo logo={w.logo} className="h-9 w-9 mt-0.5" />
                 <div className="min-w-0">
-                  <h3 className="text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">{w.title}</h3>
+                  <h3 className="text-lg leading-snug group-hover:text-[var(--primary)] transition-colors">
+                    <Title text={w.title} />
+                  </h3>
                   <p className="text-sm text-[var(--muted)] leading-relaxed mt-1">{w.description}</p>
                 </div>
                 <p className="col-start-2 sm:col-start-auto text-sm text-[var(--muted)] whitespace-nowrap sm:pt-1">

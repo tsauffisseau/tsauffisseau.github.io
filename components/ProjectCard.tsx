@@ -93,7 +93,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.context}
       </p>
 
-      <h2 className="flex items-start gap-3 text-2xl leading-snug text-balance mb-1 group-hover:text-[var(--pink)] transition-colors">
+      <h2 className="flex items-start gap-3 text-[1.2rem] sm:text-2xl leading-snug text-pretty mb-1 group-hover:text-[var(--pink)] transition-colors">
         <BrandLogo logo={project.logo} className="h-9 w-9" />
         <span className="pt-0.5">
           <Title text={project.title} />
