@@ -1,10 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 type Artwork = { src: StaticImageData; alt: string };
+
+const control =
+  "flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/85 hover:bg-white/20 hover:text-white transition-colors";
 
 /** Largeur d'une vignette carrée sur ordinateur. */
 const TILE = 300;
@@ -70,72 +74,76 @@ export function Gallery({ items }: { items: Artwork[] }) {
         ))}
       </div>
 
-      {current && open !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={current.alt}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
-          onClick={close}
-          onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
-          onTouchEnd={(e) => {
-            if (touchX.current === null) return;
-            const dx = e.changedTouches[0].clientX - touchX.current;
-            if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
-            touchX.current = null;
-          }}
-        >
-          <div className="relative h-[85vh] w-[92vw]" onClick={(e) => e.stopPropagation()}>
+      {/* Rendu dans <body> : l'animation de page (transform) piégerait sinon le fond sous le menu. */}
+      {current &&
+        open !== null &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={current.alt}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={close}
+            onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+            onTouchEnd={(e) => {
+              if (touchX.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+              touchX.current = null;
+            }}
+          >
+            {/* L'image garde ses proportions et tient dans l'écran, avec une marge pour les commandes. */}
             <Image
               key={open}
               src={current.src}
               alt={current.alt}
-              fill
               placeholder="blur"
-              sizes="92vw"
-              className="object-contain page-in"
+              sizes="100vw"
+              onClick={(e) => e.stopPropagation()}
+              className="page-in h-auto w-auto max-h-[calc(100dvh-9rem)] max-w-[calc(100vw-2rem)] sm:max-h-[calc(100dvh-8rem)] sm:max-w-[calc(100vw-9rem)] rounded-md object-contain shadow-2xl"
             />
-          </div>
 
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Fermer"
-            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-          >
-            <X className="h-6 w-6" />
-          </button>
-          {items.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  step(-1);
-                }}
-                aria-label="Œuvre précédente"
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-              >
-                <ChevronLeft className="h-7 w-7" />
-              </button>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  step(1);
-                }}
-                aria-label="Œuvre suivante"
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-              >
-                <ChevronRight className="h-7 w-7" />
-              </button>
-              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/70">
-                {open + 1} / {items.length}
-              </p>
-            </>
-          )}
-        </div>
-      )}
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Fermer"
+              className={`${control} absolute top-3 right-3 sm:top-5 sm:right-5`}
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            {items.length > 1 && (
+              <div className="absolute bottom-4 inset-x-0 flex items-center justify-center gap-4 sm:static">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    step(-1);
+                  }}
+                  aria-label="Œuvre précédente"
+                  className={`${control} sm:absolute sm:left-5 sm:top-1/2 sm:-translate-y-1/2`}
+                >
+                  <ChevronLeft className="h-7 w-7" />
+                </button>
+                <p className="text-sm tabular-nums text-white/70 sm:absolute sm:bottom-5 sm:left-1/2 sm:-translate-x-1/2">
+                  {open + 1} / {items.length}
+                </p>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    step(1);
+                  }}
+                  aria-label="Œuvre suivante"
+                  className={`${control} sm:absolute sm:right-5 sm:top-1/2 sm:-translate-y-1/2`}
+                >
+                  <ChevronRight className="h-7 w-7" />
+                </button>
+              </div>
+            )}
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
