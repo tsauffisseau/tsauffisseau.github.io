@@ -19,6 +19,7 @@
 
 import type { StaticImageData } from "next/image";
 import societyCover from "@/public/assets/poster_societythumb.jpg";
+import ludiqueCover from "@/public/assets/ludique_dashboard_thumb.jpg";
 import { typeset } from "./typo";
 
 export const PROFILE = typeset({
@@ -262,67 +263,95 @@ export const PROJECTS: Project[] = typeset<Project[]>([
     ],
   },
 
-  // Pipeline BoardGameGeek (projet personnel, en cours)
+  // Ludique : pipeline BoardGameGeek (projet personnel, source : github.com/tsauffisseau/ludique)
   {
     slug: "bgg-pipeline",
-    shortTitle: "Pipeline BGG",
+    shortTitle: "Ludique",
     context: "Projet personnel",
-    period: "En cours",
-    title: "Pipeline de données BoardGameGeek",
-    tagline: "De l'API brute de BoardGameGeek à l'analyse des tendances du marché du jeu de société.",
+    period: "2026",
+    title: "{Ludique :} {Les niches du marché} {du jeu de société}",
+    tagline:
+      "Quels jeux de société plaisent beaucoup aux joueurs, mais restent rarement publiés ? Un pipeline de données complet sur le catalogue BoardGameGeek pour répondre à la question d'un éditeur.",
     logo: "bgg",
     watermark: "bgg",
-    status: "Pipeline en construction",
+    cover: {
+      src: ludiqueCover,
+      href: "/assets/ludique_dashboard.jpg",
+      caption: "Tableau de bord Streamlit, sur données réelles",
+    },
+    status: "Pipeline livré, historique hebdomadaire",
     problem:
-      "BoardGameGeek publie beaucoup de données sur les jeux (notes, complexité, mécaniques, éditeurs), mais en XML brut et sans historique. Impossible d'y suivre une tendance dans le temps.",
+      "Un éditeur veut savoir où investir : quels types de jeux plaisent beaucoup, mais restent peu publiés ? BoardGameGeek a les données, mais en XML brut, sans historique et sans chiffres de ventes.",
     solution:
-      "Je construis une ingestion automatisée depuis l'API, des transformations en Python et SQL, un modèle dimensionnel et des visualisations des tendances du marché.",
+      "J'ai construit toute la chaîne : extraction depuis l'API, couches Bronze, Silver et Gold, modèle en étoile PostgreSQL historisé chaque semaine, SQL analytique, segmentation K-means et tableau de bord Streamlit. Le tout se lance en une commande Docker, avec des tests et une CI GitHub Actions.",
     impact:
-      "La phase 1, une analyse exploratoire, est publiée sur GitHub. La phase 2, le pipeline industrialisé, est en cours : elle vise ~25 000 jeux classés, rafraîchis chaque semaine.",
-    stack: ["Python", "Pandas", "SQL", "API XML", "Modélisation dimensionnelle", "Dataviz"],
-    // Chiffres provisoires : objectifs de la phase 2, à remplacer par les valeurs réelles.
+      "Sur un échantillon réel de 4 364 jeux, l'analyse fait ressortir des niches précises, comme les jeux d'aventure narratifs jouables en solo, et montre la montée du jeu en solitaire.",
+    stack: ["Python", "PostgreSQL", "SQL", "Pydantic", "Parquet", "Scikit-Learn (K-means)", "Streamlit", "Docker", "GitHub Actions", "AWS S3 / Athena"],
     kpis: [
-      { value: "~25 000", label: "jeux classés visés" },
-      { value: "5", label: "tables du modèle en étoile (1 fait, 4 dimensions)" },
-      { value: "Hebdo", label: "rafraîchissement prévu" },
+      { value: "4 364", label: "jeux analysés, tirés au hasard dans le catalogue" },
+      { value: "12", label: "tables du modèle en étoile (1 fait, 7 dimensions, 4 ponts)" },
+      { value: "15", label: "tests SQL de qualité des données" },
+      { value: "1 commande", label: "pour tout lancer (docker compose up)" },
     ],
     flow: [
       {
-        label: "Pipeline cible",
-        status: "en construction",
-        wip: true,
+        label: "Pipeline (architecture médaillon)",
         steps: [
-          { title: "Extraction", detail: "API BoardGameGeek (XML)" },
-          { title: "Transformation", detail: "Python, Pandas" },
-          { title: "Chargement", detail: "SQL, schéma en étoile" },
-          { title: "Analyse", detail: "Visualisation des tendances" },
+          { title: "Extraction", detail: "API XML BoardGameGeek, limite de débit, reprises" },
+          { title: "Bronze", detail: "Réponses brutes en Parquet, immuables" },
+          { title: "Silver", detail: "Parsing, contrats Pydantic, quarantaine" },
+          { title: "Gold", detail: "PostgreSQL, modèle en étoile, historique hebdomadaire" },
+          { title: "Restitution", detail: "SQL analytique, K-means, Streamlit" },
         ],
       },
     ],
     sections: [
       {
-        title: "Phase 1 : Analyse exploratoire (terminée)",
+        title: "La question",
         paragraphs: [
-          "J'ai exploré le catalogue BoardGameGeek sous l'angle de la durée de partie, de la complexité et de la popularité, pour repérer les premières tendances et les limites des données disponibles.",
+          "Le projet part d'une question d'éditeur : quels types de jeux sont très bien notés par les joueurs, mais encore rarement publiés ?",
+          "C'est la suite de ma [première analyse exploratoire](https://github.com/tsauffisseau/boardgame_analysis), faite en notebooks sur un export statique. Cette version l'industrialise : ingestion de l'API en direct, modèle en étoile testé, historique hebdomadaire et déploiement Docker en une commande.",
         ],
       },
       {
-        title: "Phase 2 : Pipeline et modèle dimensionnel (en cours)",
+        title: "Ce que montrent les données",
         bullets: [
-          "Extraction automatisée et incrémentale depuis l'API BoardGameGeek.",
-          "Parsing du XML, nettoyage, normalisation des mécaniques, catégories et éditeurs.",
-          "Une table de faits des classements, historisée par snapshots, reliée aux dimensions jeu, mécanique, éditeur et date.",
-          "Des tableaux de bord sur l'évolution du marché : mécaniques en croissance, complexité moyenne, éditeurs dominants.",
+          "Les niches les plus prometteuses sont les jeux d'aventure narratifs jouables en solo. Le croisement Scénario / Campagne × Exploration obtient une note moyenne de 8,11, avec seulement 10 jeux dans l'échantillon.",
+          "Le jeu en solitaire est la mécanique qui monte : sa part a été multipliée par 7,5 entre les sorties de 2000-2014 et celles depuis 2015. À l'inverse, le « lancer de dés et déplacement » ne pèse plus qu'un quart de sa part passée, et c'est la mécanique la moins bien notée.",
+          "La complexité fait gagner des notes, pas des joueurs : note et complexité sont nettement corrélées (r = 0,52), alors que le nombre d'exemplaires possédés suit à peine.",
+          "Le marché est concentré : les jeux de stratégie de durée moyenne représentent un jeu établi sur cinq, mais plus de quatre exemplaires possédés sur cinq.",
+        ],
+      },
+      {
+        title: "Architecture et modèle de données",
+        bullets: [
+          "L'extraction passe par un client Python sur l'API XML de BoardGameGeek, par lots de 20, avec limitation de débit, reprises progressives sur les erreurs 429 et 5xx, et réponses brutes conservées telles quelles.",
+          "La couche Silver parse et type le XML, puis valide chaque enregistrement avec des contrats Pydantic. Les enregistrements invalides partent en quarantaine, avec leur motif.",
+          "Le modèle en étoile PostgreSQL a pour grain un jeu à une date de snapshot. Il compte 7 dimensions et 4 tables ponts pour les relations N-N, avec des poids d'allocation qui évitent de compter deux fois un même exemplaire.",
+          "L'historique est chargé de façon incrémentale chaque semaine. Les mises à jour sont idempotentes : relancer le pipeline sans nouvelle donnée ne change rien.",
+          "Les modèles SQL s'exécutent dans l'ordre de leurs dépendances, à la manière de dbt, et dans une seule transaction : un modèle en échec ne laisse jamais un entrepôt à moitié construit.",
+        ],
+      },
+      {
+        title: "Qualité et choix de conception",
+        bullets: [
+          "Trois niveaux de contrôle : contrats Pydantic, profilage des données et 15 tests SQL. Un test bloquant arrête le pipeline, un avertissement est signalé avec des exemples.",
+          "L'échantillon est tiré au hasard parmi les identifiants BoardGameGeek, plutôt qu'un « top 1000 » qui ne montrerait que les succès.",
+          "BoardGameGeek note « 0 » une valeur inconnue. Ces zéros deviennent des valeurs manquantes, pour ne pas fausser les moyennes.",
+          "Faute de chiffres de ventes, les exemplaires possédés servent d'indicateur de pénétration du marché, et les listes d'envies d'indicateur de demande non satisfaite.",
+        ],
+      },
+      {
+        title: "Limites et suite",
+        paragraphs: [
+          "L'historique réel ne compte encore que deux snapshots : les tendances de classement prendront leur sens après quelques mois de rafraîchissement hebdomadaire. Prochaines étapes : suivre aussi l'évolution des attributs des jeux (SCD de type 2), orchestrer le pipeline avec Airflow ou Dagster, et passer la couche Gold sous dbt.",
         ],
       },
     ],
-    // Ajouter ici le lien du dépôt du pipeline quand il sera publié.
+    note: "Les données BoardGameGeek ne sont pas redistribuées : le dépôt contient un échantillon synthétique au même format, et les résultats ci-dessus viennent de données réelles conservées en local.",
     links: [
-      {
-        label: "Phase 1 sur GitHub",
-        href: "https://github.com/tsauffisseau/boardgame_analysis",
-        kind: "github",
-      },
+      { label: "Voir le dépôt", href: "https://github.com/tsauffisseau/ludique", kind: "github" },
+      { label: "Tableau de bord complet", href: "/assets/ludique_dashboard.jpg", kind: "site" },
     ],
   },
 

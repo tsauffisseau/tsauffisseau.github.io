@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const NOW = [
   "Je cherche un CDI à Paris à partir de janvier 2027.",
   "Je continue de faire évoluer Society (societyapp.fr).",
-  "Je construis le pipeline de données BoardGameGeek.",
+  "Je fais tourner chaque semaine mon pipeline BoardGameGeek, Ludique.",
 ];
 
 export default function About() {

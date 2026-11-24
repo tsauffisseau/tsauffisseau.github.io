@@ -74,6 +74,19 @@ export function Rich({ text }: { text: string }) {
         }
         if (isPlaceholder(part)) return <Placeholder key={i}>{part}</Placeholder>;
         const link = part.match(LINK);
+        if (link && link[2].startsWith("http")) {
+          return (
+            <a
+              key={i}
+              href={link[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-[var(--foreground)] ${textLink}`}
+            >
+              {link[1]}
+            </a>
+          );
+        }
         if (link) {
           return (
             <Link key={i} href={link[2]} className={`text-[var(--foreground)] whitespace-nowrap ${textLink}`}>
